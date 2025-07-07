@@ -11,6 +11,20 @@ interface WorkingHoursProps {
  * @returns  working hours
  */
 const WorkingHours: FunctionComponent<WorkingHoursProps> = ({service}) => {
+	const workingHours = service.workingHours;
+
+	console.log(workingHours);
+
+	if (!workingHours) {
+		return (
+			<Box sx={{textAlign: "center", mt: 10}}>
+				<Typography color='text.secondary'>
+					لا توجد بيانات عن ساعات العمل
+				</Typography>
+			</Box>
+		);
+	}
+
 	return (
 		<Box
 			sx={{
@@ -50,11 +64,11 @@ const WorkingHours: FunctionComponent<WorkingHoursProps> = ({service}) => {
 								}[day]
 							}
 						</Typography>
-						{hours.closed ? (
+						{hours?.closed ? (
 							<Typography color='error'>مغلق</Typography>
 						) : (
 							<Typography>
-								{hours.from} - {hours.to}
+								{hours?.from} - {hours?.to}
 							</Typography>
 						)}
 					</Box>

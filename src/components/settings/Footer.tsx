@@ -14,7 +14,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 				mt: 5,
 			}}
 		>
-			<Typography dir='ltr' variant='body1'>
+			<Typography color='#ED6C03' dir='ltr' variant='body1'>
 				© جميع الحقوق محفوظة - موقع أفراحنا 2025
 			</Typography>
 		</Box>

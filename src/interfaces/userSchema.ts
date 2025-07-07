@@ -7,13 +7,20 @@ export interface JwtPayload {
 	phone: string;
 	email: string;
 	role: string;
+	profileImage: {
+		url: string;
+		public_id?: string;
+	};
 	businessName: string;
 	category: string;
 	vendorId?: string;
-	isSubscribed?: boolean;
-	planId?: string;
-	subscriptionDate?: Date;
-	expiryDate?: Date;
+	subscriptionData: {
+		isSubscribed?: boolean;
+		planId?: string;
+		subscriptionDate?: Date;
+		expiryDate?: Date;
+		recommendedServices: boolean;
+	};
 }
 
 export interface LoginSchema {
@@ -55,7 +62,7 @@ export interface usersMessages {
 }
 
 export interface VendorDataResponse {
-	_id: {$oid: string};
+	_id: string;
 	businessName: string;
 	phone: string;
 	email: string;
@@ -64,15 +71,21 @@ export interface VendorDataResponse {
 	address: {
 		city: string;
 		street: string;
-		_id: {$oid: string};
+		_id: string;
 	};
+	profileImage: {
+		url: string;
+		public_id?: string;
+	};
+	vendorId?: string;
 	category: string;
-	planId?: string;
-	expiryDate: Date | null;
-	isSubscribed: boolean;
-	subscriptionDate: Date | null;
-	createdAt: {$date: string};
-	updatedAt: {$date: string};
-	recommendedServices: boolean;
-	__v: number;
+	createdAt: Date;
+	updatedAt: Date;
+	subscriptionData: {
+		isSubscribed: boolean;
+		planId: string;
+		subscriptionDate: Date | null;
+		expiryDate: Date | null;
+		recommendedServices: boolean;
+	};
 }

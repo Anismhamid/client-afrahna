@@ -4,7 +4,7 @@ const api = `${import.meta.env.VITE_API_URI}`;
 
 export const getAllService = async () => {
 	try {
-		const allService = await axios.get(api);
+		const allService = await axios.get(`${api}/services`);
 		return allService.data;
 	} catch (error) {
 		console.log(error);
@@ -30,16 +30,16 @@ export const getServiceByCategories = async (category: string) => {
 };
 
 // get Spicific Halls decoration for vendors
-export const getHalsDecorationForSpicificUser = async (userId: string) => {
-	try {
-		const spicificHals = await axios.get(`${api}/services/${userId}`, {
-			headers: {Authorization: localStorage.getItem("token")},
-		});
-		return spicificHals.data;
-	} catch (error) {
-		console.log(error);
-	}
-};
+// export const getHalsDecorationForSpicificUser = async (userId: string) => {
+// 	try {
+// 		const spicificHals = await axios.get(`${api}/services/${userId}`, {
+// 			headers: {Authorization: localStorage.getItem("token")},
+// 		});
+// 		return spicificHals.data;
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// };
 
 export const getUnavailableDates = async (
 	vendorId: string,

@@ -63,7 +63,7 @@ const BusinessRegister: FunctionComponent = () => {
 		onSubmit: (values) => {
 			newBusinessRegisterUser(values).then((userData) => {
 				localStorage.setItem("token", userData);
-				navigate("/subscription");
+				navigate("/");
 				successToast("مرحبا بك في منصه افراحنا");
 			});
 		},
@@ -106,7 +106,7 @@ const BusinessRegister: FunctionComponent = () => {
 					variant='h6'
 					align='center'
 					gutterBottom
-					sx={{color: "#555", fontWeight: "normal", mt: -1}}
+					sx={{color: "warning.main", fontWeight: "normal", mt: -1}}
 				>
 					انضم الان إلى موقعنا واستمتع بخدمات مخصصة لحفلات الزفاف والمناسبات
 					الخاصة

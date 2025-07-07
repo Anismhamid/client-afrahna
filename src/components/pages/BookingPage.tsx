@@ -35,7 +35,7 @@ interface SingleServicePageProps {}
 const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 	const [galleryOpen, setGalleryOpen] = useState(false);
 	const [galleryType, setGalleryType] = useState<
-		"main" | "photos" | "videos" | "contact" 
+		"main" | "photos" | "videos" | "contact"
 	>("main");
 	const {vendorId = ""} = useParams<{vendorId: string}>();
 	const navigate = useNavigate();
@@ -469,19 +469,31 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 											>
 												لا توجد خدمات متاحة
 											</Typography>
-											<Typography
-												variant='body1'
-												color='error'
-												sx={{
-													fontWeight: "bold",
-													gridColumn: "1 / -1",
-													textAlign: "center",
-												}}
-											>
-												{service.services.length === 0
-													? "يجب عليك اضافة خدمة واحده على الاقل لكي يتم اظهارها للمستخدمين"
-													: ""}
-											</Typography>
+											{service.services.length === 0 && (
+												<>
+													<Typography
+														variant='body1'
+														color='error'
+														sx={{
+															fontWeight: "bold",
+															gridColumn: "1 / -1",
+															textAlign: "center",
+														}}
+													>
+														يجب عليك اضافة خدمة واحده على
+														الاقل لكي يتم اظهارها للمستخدمين
+													</Typography>
+													<Button
+														sx={{
+															m: "auto",
+														}}
+														onClick={()=>navigate(`/vendors/${vendorId}`)}
+														variant='contained'
+													>
+														اضافه خدماتك المميزة
+													</Button>
+												</>
+											)}
 										</>
 									)}
 								</Box>

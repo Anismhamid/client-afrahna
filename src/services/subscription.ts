@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = `${import.meta.env.VITE_API_URI}`;
+const api = `${import.meta.env.VITE_API_URI}/vendor`;
 
 export const subscriptionToPlans = async (
 	vendorId: string,

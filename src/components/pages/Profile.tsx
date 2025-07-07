@@ -9,31 +9,34 @@ import {
 	Paper,
 	Chip,
 	Stack,
+	CardMedia,
+	// CardMedia,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import MyBookings from "./MyBookings";
-import {CheckCircleOutline, Upgrade, Person, ErrorOutline} from "@mui/icons-material";
+import {ErrorOutline, Person} from "@mui/icons-material";
 import VendorsAnalyticsDashboard from "./VendorsAnalyticsDashboard";
 import {useServiceData} from "../../hooks/useServiceData";
+// import {subscriptionPlans} from "../../subscribes/subscribtionTypes/subscriptionPlans";
+import {subscriptionColor} from "../../subscribes/subscribtionTypes/subscriptionUtils";
+// import SubscriptionInfo from "../../subscribes/SubscriptionInfo";
+// import ProfileImage from "../../atoms/UploadImage";
 import { subscriptionPlans } from "../../subscribes/subscribtionTypes/subscriptionPlans";
-import { subscriptionColor } from "../../subscribes/subscribtionTypes/subscriptionUtils";
 
 interface ProfileProps {}
 
 const Profile: FunctionComponent<ProfileProps> = () => {
 	const {user} = useUser();
+	console.log(user);
+	
 	const navigate = useNavigate();
-	const {
-		planId,
-		loading: serviceLoading,
-		error: serviceError,
-	} = useServiceData(user?._id || "");
+	const {planId, loading: serviceLoading} = useServiceData(user?._id || "");
 
 	const currentUser =
 		user?.businessName ||
 		`${user?.name?.first || ""} ${user?.name?.last || ""}`.trim();
 	const currentPlan = subscriptionPlans.find(
-		(plan) => plan.id === (planId || user?.planId),
+		(plan) => plan.id === (planId || user?.subscriptionData.planId),
 	);
 
 	if (serviceLoading) {
@@ -91,13 +94,16 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 				الملف الشخصي
 			</Typography>
 
-			{serviceError && (
-				<Typography color='error' sx={{mb: 2}}>
-					تحذير: حدث خطأ في تحميل بيانات الخدمة
-				</Typography>
-			)}
+			<CardMedia
+				component='img'
+				image={user.profileImage?.url}
+				alt='صورة الكرسي'
+				sx={{maxWidth: 200, mx: "auto", mb: 3}}
+			/>
 
-			<VendorsAnalyticsDashboard />
+			{/* <ProfileImage /> */}
+
+			{user.role === "isVendor" && <VendorsAnalyticsDashboard />}
 
 			<Paper
 				elevation={3}
@@ -105,7 +111,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					p: 4,
 					mb: 4,
 					borderLeft: `4px solid ${subscriptionColor(
-						planId || user.planId || "free",
+						planId || user.subscriptionData.planId || "free",
 					)}`,
 				}}
 			>
@@ -145,108 +151,110 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 				</Stack>
 			</Paper>
 
-			{(user.isSubscribed || planId) && (
-				<Paper elevation={3} sx={{p: 4, mb: 4}}>
-					<Typography variant='h4' gutterBottom sx={{mb: 3}}>
-						معلومات الاشتراك
-					</Typography>
+			{/* // <Paper elevation={3} sx={{p: 4, mb: 4}}>
+			// 	<Typography variant='h4' gutterBottom sx={{mb: 3}}>
+			// 		معلومات الاشتراك
+			// 	</Typography>
 
-					<Stack spacing={3} sx={{mb: 4}}>
-						<Box>
-							<Typography variant='subtitle1' color='text.secondary'>
-								الخطة الحالية
-							</Typography>
-							<Chip
-								label={planId || user.planId || "free"}
-								sx={{
-									backgroundColor: subscriptionColor(
-										planId || user.planId || "free",
-									),
-									color: "white",
-									fontSize: "1rem",
-									p: 2,
-									mt: 1,
-								}}
-							/>
-						</Box>
+			// 	<Stack spacing={3} sx={{mb: 4}}>
+			// 		<Box>
+			// 			<Typography variant='subtitle1' color='text.secondary'>
+			// 				الخطة الحالية
+			// 			</Typography>
+			// 			<Chip
+			// 				label={planId || user.planId || "free"}
+			// 				sx={{
+			// 					backgroundColor: subscriptionColor(
+			// 						planId || user.planId || "free",
+			// 					),
+			// 					color: "white",
+			// 					fontSize: "1rem",
+			// 					p: 2,
+			// 					mt: 1,
+			// 				}}
+			// 			/>
+			// 		</Box>
 
-						<Box>
-							<Typography variant='subtitle1' color='text.secondary'>
-								تاريخ الاشتراك
-							</Typography>
-							<Typography variant='h6'>
-								{user.subscriptionDate
-									? new Date(user.subscriptionDate).toLocaleDateString(
-											"he-IL",
-									  )
-									: "غير متوفر"}
-							</Typography>
-						</Box>
+			// 		<Box>
+			// 			<Typography variant='subtitle1' color='text.secondary'>
+			// 				تاريخ الاشتراك
+			// 			</Typography>
 
-						<Box>
-							<Typography variant='subtitle1' color='text.secondary'>
-								تاريخ الانتهاء
-							</Typography>
-							<Typography variant='h6'>
-								{user.expiryDate
-									? new Date(user.expiryDate).toLocaleDateString(
-											"he-IL",
-									  )
-									: "غير متوفر"}
-							</Typography>
-						</Box>
-					</Stack>
+			// 			<Typography variant='h6'>
+			// 				{user.subscriptionDate
+			// 					? new Date(user.subscriptionDate).toLocaleDateString(
+			// 							"he-IL",
+			// 					  )
+			// 					: "لم تقم بالاشتراك بعد"}
+			// 			</Typography>
+			// 		</Box>
 
-					{currentPlan && (
-						<Paper elevation={2} sx={{p: 3, backgroundColor: "action.hover"}}>
-							<Typography variant='h5' align='center' gutterBottom>
-								{currentPlan.name}
-							</Typography>
-							<Typography
-								variant='h6'
-								align='center'
-								gutterBottom
-								sx={{mb: 3}}
-							>
-								السعر: {currentPlan.price} ر.س
-							</Typography>
+			// 		<Box>
+			// 			<Typography variant='subtitle1' color='text.secondary'>
+			// 				تاريخ الانتهاء
+			// 			</Typography>
+			// 			<Typography variant='h6'>
+			// 				{user.expiryDate
+			// 					? new Date(user.expiryDate).toLocaleDateString(
+			// 							"he-IL",
+			// 					  )
+			// 					: "غير متوفر"}
+			// 			</Typography>
+			// 		</Box>
+			// 	</Stack>
 
-							<Stack spacing={2}>
-								{currentPlan.features.map((feature, index) => (
-									<Box
-										key={index}
-										sx={{display: "flex", alignItems: "center"}}
-									>
-										<CheckCircleOutline
-											color='success'
-											sx={{ml: 1}}
-										/>
-										<Typography variant='body1'>
-											{feature.text}
-										</Typography>
-									</Box>
-								))}
-							</Stack>
-						</Paper>
-					)}
+			// 	{currentPlan && (
+			// 		<Paper elevation={2} sx={{p: 3, backgroundColor: "action.hover"}}>
+			// 			<Typography variant='h5' align='center' gutterBottom>
+			// 				{currentPlan.name}
+			// 			</Typography>
+			// 			<Typography
+			// 				variant='h6'
+			// 				align='center'
+			// 				gutterBottom
+			// 				sx={{mb: 3}}
+			// 			>
+			// 				السعر: {currentPlan.price}
+			// 			</Typography>
 
-					{user.role === "isVendor" && (
-						<Button
-							startIcon={<Upgrade />}
-							variant='contained'
-							fullWidth
-							sx={{mt: 3}}
-							onClick={() => navigate("/subscribtion")}
-						>
-							{user.isSubscribed ? "ترقية الاشتراك" : "اشترك الآن"}
-						</Button>
-					)}
-				</Paper>
-			)}
+			// 			<Stack spacing={2}>
+			// 				{currentPlan.features.map((feature, index) => (
+			// 					<Box
+			// 						key={index}
+			// 						sx={{display: "flex", alignItems: "center"}}
+			// 					>
+			// 						<CheckCircleOutline
+			// 							color='success'
+			// 							sx={{ml: 1}}
+			// 						/>
+			// 						<Typography variant='body1'>
+			// 							{feature.text}
+			// 						</Typography>
+			// 					</Box>
+			// 				))}
+			// 			</Stack>
+			// 		</Paper>
+			// 	)}
+
+			// 	{user.role === "isVendor" && (
+			// 		<Button
+			// 			startIcon={<Upgrade />}
+			// 			variant='contained'
+			// 			fullWidth
+			// 			sx={{mt: 3}}
+			// 			onClick={() => navigate("/subscribtion")}
+			// 		>
+			// 			{user.isSubscribed ? "ترقية الاشتراك" : "اشترك الآن"}
+			// 		</Button>
+			// 	)}
+			// </Paper> */}
+			{/* {(user.isSubscribed || planId) && (
+				)} */}
+			{/* <SubscriptionInfo vendorId={user.vendorId as string} /> */}
 
 			<Paper elevation={3} sx={{p: 3}}>
-				<Typography variant='h4' gutterBottom sx={{mb: 2}}>
-					الحجوزات الأخيرة
+				<Typography textAlign={"center"} variant='h4' gutterBottom sx={{mb: 2}}>
+					الحجوزات
 				</Typography>
 				<Divider sx={{mb: 3}} />
 				<MyBookings />

@@ -9,7 +9,7 @@ import {getCoordinates} from "../../../atoms/map/OpenStreetMap";
 import ServiceFilters from "./ServiceFilters";
 import ServiceCard from "./ServiceCard";
 import useMetaDocument from "../../../hooks/useMetaDocunent";
-import {Typography} from "@mui/material";
+import {Box, Skeleton, Typography} from "@mui/material";
 
 interface GlobalVendorsPageProps {
 	category: string;

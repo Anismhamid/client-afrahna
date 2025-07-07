@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 
 import {Button, Box, Typography, LinearProgress} from "@mui/material";
 import {registerNewUser} from "../../services/usersServices";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {successToast} from "../../atoms/notifications/Toasts";
 import {getStrengthColor, getPasswordStrengthLabel} from "../../helpers/passwordChecker";
 import zxcvbn from "zxcvbn";
@@ -86,6 +86,16 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					maxWidth: "600px",
 				}}
 			>
+				<Box>
+					<Button
+						variant='contained'
+						sx={{fontSize: "18"}}
+						onClick={() => navigate(-1)}
+					>
+						الخلف
+					</Button>
+				</Box>
+				نوع الحساب: مستخدم جديد
 				<Typography
 					variant='h4'
 					align='center'
@@ -98,12 +108,11 @@ const Register: FunctionComponent<RegisterProps> = () => {
 				>
 					سجل الآن واحصل على خدماتنا المميزة
 				</Typography>
-
 				<Typography
 					variant='h6'
 					align='center'
 					gutterBottom
-					sx={{color: "#555", mt: -1}}
+					sx={{color: "warning.main", fontWeight: "normal", mt: -1}}
 				>
 					انضم الان إلى موقعنا واستمتع بخدمات مخصصة لحفلات الزفاف والمناسبات
 					الخاصة
@@ -276,12 +285,13 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					</div>
 				</div>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					loading={formik.isSubmitting}
+					sx={{backgroundColor: "success.main", fontSize: "18px"}}
 					type='submit'
 					variant='contained'
 					fullWidth
 				>
-					تسجيل
+					التالي
 				</Button>
 			</Box>
 			<Box
@@ -309,13 +319,23 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					مستخدم جديد
 				</Button>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					sx={{backgroundColor: "warning.main", fontSize: "18px"}}
 					onClick={() => navigate("/business-register")}
-					type='button'
 					variant='contained'
 				>
-					بائع جديد
+					التسجيل كمزود خدمات جديد
 				</Button>
+				<Box display='flex' justifyContent='center' gap={2}>
+					<Typography sx={{color: "warning.main"}} variant='body2'>
+						<Link to='/privacy-policy'>سياسة الخصوصية</Link>
+					</Typography>
+					<Typography sx={{color: "warning.main"}} variant='body2'>
+						|
+					</Typography>
+					<Typography sx={{color: "warning.main"}} variant='body2'>
+						<Link to='/terms-of-use'>شروط الاستخدام</Link>
+					</Typography>
+				</Box>
 			</Box>
 		</main>
 	);

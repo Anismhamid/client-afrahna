@@ -1,6 +1,5 @@
-import {FunctionComponent, useEffect, useState} from "react";
+import {FunctionComponent, memo, useCallback, useEffect, useState} from "react";
 import {
-	Grid,
 	Typography,
 	Card,
 	CardMedia,
@@ -12,7 +11,8 @@ import {
 	Skeleton,
 	useTheme,
 	useMediaQuery,
-	CardActions,
+	IconButton,
+	Grid,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -22,9 +22,127 @@ import {Services} from "../../interfaces/services";
 import {Link} from "react-router-dom";
 import {formatCurrency} from "../../helpers/vendors";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; // Essential for basic slider styling
-import "slick-carousel/slick/slick-theme.css"; // Essential for default theme (dots, arrows)
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
+
+interface ServiceCardProps {
+	service: Services;
+	isFavorite: boolean;
+	onToggleFavorite: (id: string) => void;
+}
+
+const ServiceCard = memo(({service, isFavorite, onToggleFavorite}: ServiceCardProps) => {
+	const theme = useTheme();
+	const imageUrl =
+		Array.isArray(service.images) && service.images.length > 0
+			? typeof service.images[0] === "string"
+				? service.images[0]
+				: service.images[0].url
+			: "/wedding-rings.png";
+
+
+	return (
+		<Card
+			sx={{
+				borderRadius: 2,
+				boxShadow: 1,
+				height: "100%",
+				transition: "transform 0.3s, box-shadow 0.3s",
+				"&:hover": {
+					transform: "translateY(-5px)",
+					boxShadow: 8,
+				},
+			}}
+		>
+			<Link to={`/service/${service._id}`} style={{textDecoration: "none"}}>
+				<Box sx={{position: "relative"}}>
+					<CardMedia
+						component='img'
+						height='200'
+						image={imageUrl}
+						alt={service.businessName}
+						sx={{
+							objectFit: "cover",
+							backgroundColor: theme.palette.grey[200],
+						}}
+					/>
+					<Chip
+						label={formatCurrency(service.price?.min || 0)}
+						color='primary'
+						sx={{
+							position: "absolute",
+							top: 16,
+							left: 16,
+							fontWeight: "bold",
+							px: 1.5,
+							py: 0.5,
+							borderRadius: "8px",
+						}}
+					/>
+					<IconButton
+						onClick={(e) => {
+							e.preventDefault();
+							onToggleFavorite(service.vendorId);
+						}}
+						sx={{
+							position: "absolute",
+							top: 16,
+							right: 16,
+							bgcolor: "background.paper",
+							"&:hover": {
+								bgcolor: "action.hover",
+							},
+						}}
+					>
+						{isFavorite ? (
+							<FavoriteIcon color='primary' />
+						) : (
+							<FavoriteBorderIcon color='primary' />
+						)}
+					</IconButton>
+				</Box>
+
+				<CardContent sx={{flexGrow: 1, p: 2}}>
+					<Typography
+						variant='h6'
+						sx={{
+							fontWeight: "bold",
+							mb: 1,
+							overflow: "hidden",
+							textOverflow: "ellipsis",
+							whiteSpace: "nowrap",
+						}}
+					>
+						{service.businessName}
+					</Typography>
+
+					<Box sx={{display: "flex", alignItems: "center", mb: 1}}>
+						<Rating value={5} precision={0.5} readOnly sx={{ml: 1}} />
+						<Typography variant='body2' color='text.secondary'>
+							(19)
+						</Typography>
+					</Box>
+
+					{service.address && (
+						<Box sx={{display: "flex", alignItems: "center", mb: 2}}>
+							<LocationOnIcon
+								fontSize='small'
+								color='primary'
+								sx={{ml: 0.5}}
+							/>
+							<Typography variant='body2' color='text.secondary'>
+								{`${service.address.city || ""}, ${
+									service.address.street || ""
+								}`}
+							</Typography>
+						</Box>
+					)}
+				</CardContent>
+			</Link>
+		</Card>
+	);
+});
 
 interface RecommendedServicesProps {}
 
@@ -80,27 +198,31 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		],
 	};
 
-	useEffect(() => {
+	const fetchServices = useCallback(async () => {
 		setLoading(true);
-		getRecommendedVendors()
-			.then((res) => setServices(res))
-			.catch((err) => {
-				console.error("Failed to fetch recommended vendors:", err); // Use console.error for errors
-			})
-			.finally(() => setLoading(false));
+		try {
+			const res = await getRecommendedVendors();
+			setServices(res);
+		} catch (err) {
+			console.error("Failed to fetch vendors:", err);
+		} finally {
+			setLoading(false);
+		}
 	}, []);
 
-	const toggleFavorite = (serviceId: string) => {
+	useEffect(() => {
+		fetchServices();
+	}, [fetchServices]);
+
+	const toggleFavorite = useCallback((serviceId: string) => {
 		setFavorites((prev) => {
 			const newFavorites = new Set(prev);
-			if (newFavorites.has(serviceId)) {
-				newFavorites.delete(serviceId);
-			} else {
-				newFavorites.add(serviceId);
-			}
+			newFavorites.has(serviceId)
+				? newFavorites.delete(serviceId)
+				: newFavorites.add(serviceId);
 			return newFavorites;
 		});
-	};
+	}, []);
 
 	if (loading) {
 		return (
@@ -119,45 +241,25 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 				</Typography>
 				<HorizontalDevider />
 				<Grid container spacing={1} justifyContent='center'>
-					{[...Array(isMobile ? 1 : isTablet ? 2 : 3)].map(
-						(
-							_,
-							index, // Adjust skeleton count
-						) => (
-							<Grid size={{xs: 12, md: 4}} key={index}>
-								<Card sx={{borderRadius: 4, m: 3, height: "80%"}}>
-									<Skeleton variant='rectangular' height={180} />
-									<CardContent>
-										<Skeleton
-											variant='text'
-											width='80%'
-											sx={{mb: 1}}
-										/>
-										<Skeleton
-											variant='text'
-											width='60%'
-											sx={{mb: 1}}
-										/>
-										<Skeleton variant='text' width='60%' />
-									</CardContent>
-									<CardActions sx={{justifyContent: "flex-end", p: 2}}>
-										<Skeleton
-											variant='circular'
-											width={36}
-											height={36}
-										/>
-									</CardActions>
-								</Card>
-							</Grid>
-						),
-					)}
+					{[...Array(isMobile ? 1 : isTablet ? 2 : 3)].map((_, index) => (
+						<Grid size={{xs: 12, md: 4}} key={index}>
+							<Card sx={{borderRadius: 4, m: 3, height: "80%"}}>
+								<Skeleton variant='rectangular' height={180} />
+								<CardContent>
+									<Skeleton variant='text' width='80%' sx={{mb: 1}} />
+									<Skeleton variant='text' width='60%' sx={{mb: 1}} />
+									<Skeleton variant='text' width='60%' />
+								</CardContent>
+							</Card>
+						</Grid>
+					))}
 				</Grid>
 			</Box>
 		);
 	}
 
 	return (
-		<Box component={"div"} sx={{p: 4, textAlign: "center"}}>
+		<Box sx={{p: 4, textAlign: "center"}}>
 			<Typography
 				variant='h4'
 				gutterBottom
@@ -171,149 +273,15 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 				الخدمات الموصى بها
 			</Typography>
 			<HorizontalDevider />
-			{services.length ? (
+			{services.length  ? (
 				<Slider {...settings}>
-					{services.map((service, index) => (
-						<Box key={service.vendorId} sx={{p: 1}}>
-							<Card
-								sx={{
-									borderRadius: 2,
-									boxShadow: 1,
-									display: "flex",
-									flexDirection: "column",
-									height: "100%",
-									transition: "transform 0.3s, box-shadow 0.3s",
-									"&:hover": {
-										transform: "translateY(-5px)",
-										boxShadow: 8,
-									},
-									cursor: "pointer",
-								}}
-							>
-								<Link
-									to={`/service/${service.vendorId}`}
-									style={{textDecoration: "none"}}
-								>
-									<Box sx={{position: "relative"}}>
-										{service.images && (
-											<Box key={service.vendorId + index}>
-												<CardMedia
-													component='img'
-													height='200'
-													image={
-														Array.isArray(service.images)
-															? service.images[0]?.url
-															: service.businessName
-													}
-													alt={service.businessName}
-												/>
-												<Chip
-													label={formatCurrency(
-														service.price.min,
-													)}
-													color='primary'
-													sx={{
-														position: "absolute",
-														top: 16,
-														left: 16,
-														fontWeight: "bold",
-														fontSize: "1rem",
-														px: 1.5,
-														py: 0.5,
-														borderRadius: "8px",
-													}}
-												/>
-											</Box>
-										)}
-
-										<Button
-											size='small'
-											onClick={(e) => {
-												e.preventDefault();
-												toggleFavorite(service.vendorId);
-											}}
-											sx={{
-												position: "absolute",
-												top: 16,
-												right: 16,
-												minWidth: "auto",
-												padding: "6px",
-												borderRadius: "50%",
-												backgroundColor:
-													"rgba(255, 255, 255, 0.9)",
-												"&:hover": {
-													backgroundColor:
-														"rgba(255, 255, 255, 1)",
-												},
-											}}
-										>
-											{favorites.has(service.vendorId) ? (
-												<FavoriteIcon color='primary' />
-											) : (
-												<FavoriteBorderIcon color='primary' />
-											)}
-										</Button>
-									</Box>
-								</Link>
-								<CardContent sx={{flexGrow: 1, p: 2}}>
-									<Typography
-										variant='h6'
-										sx={{
-											fontWeight: "bold",
-											mb: 1,
-											overflow: "hidden",
-											textOverflow: "ellipsis",
-											whiteSpace: "nowrap",
-										}}
-									>
-										{service.businessName}
-									</Typography>
-
-									<Box
-										sx={{
-											display: "flex",
-											alignItems: "center",
-											mb: 1,
-										}}
-									>
-										<Rating
-											// value={service.rating || 5}
-											value={5}
-											precision={0.5}
-											readOnly
-											sx={{ml: 1}}
-										/>
-										<Typography
-											variant='body2'
-											color='text.secondary'
-										>
-											{/* ({service.reviewCount || 0}) */}({19})
-										</Typography>
-									</Box>
-
-									<Box
-										sx={{
-											display: "flex",
-											alignItems: "center",
-											mb: 2,
-										}}
-									>
-										<LocationOnIcon
-											fontSize='small'
-											color='primary'
-											sx={{ml: 0.5}}
-										/>
-										<Typography
-											variant='body2'
-											color='text.secondary'
-										>
-											{`${service.address?.city || ""}, ${
-												service.address?.street || ""
-											}`}
-										</Typography>
-									</Box>
-								</CardContent>
-							</Card>
+					{services.map((service) => (
+						<Box key={service._id} px={1}>
+							<ServiceCard
+								service={service}
+								isFavorite={favorites.has(service.vendorId)}
+								onToggleFavorite={toggleFavorite}
+							/>
 						</Box>
 					))}
 				</Slider>
