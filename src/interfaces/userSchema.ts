@@ -1,26 +1,40 @@
+// Base interfaces for reusability
+interface Name {
+	first: string;
+	last: string;
+}
+
+interface Address {
+	city: string;
+	street: string;
+	_id?: string;
+}
+
+interface ProfileImage {
+	url: string;
+	public_id?: string;
+}
+
+export interface SubscriptionData {
+	isSubscribed: boolean;
+	planId?: string;
+	subscriptionDate?: Date | null;
+	expiryDate?: Date | null;
+	recommendedServices: boolean;
+}
+
+// Main interfaces
 export interface JwtPayload {
 	_id: string;
-	name: {
-		first: string;
-		last: string;
-	};
+	name: Name;
 	phone: string;
 	email: string;
 	role: string;
-	profileImage: {
-		url: string;
-		public_id?: string;
-	};
+	profileImage: ProfileImage;
 	businessName: string;
 	category: string;
 	vendorId?: string;
-	subscriptionData: {
-		isSubscribed?: boolean;
-		planId?: string;
-		subscriptionDate?: Date;
-		expiryDate?: Date;
-		recommendedServices: boolean;
-	};
+	subscriptionData: SubscriptionData;
 }
 
 export interface LoginSchema {
@@ -29,36 +43,25 @@ export interface LoginSchema {
 }
 
 export interface UserSchema {
-	name: {
-		first: string;
-		last: string;
-	};
+	name: Name;
 	email: string;
 	password: string;
 	phone: string;
-	address: {
-		city: string;
-		street: string;
-	};
+	address: Address;
 }
 
-export interface BusinessUserSchema {
+export interface BusinessUserSchema extends Omit<UserSchema, "name"> {
 	businessName: string;
-	phone: string;
-	email: string;
-	password: string;
-	address: {
-		city: string;
-		street: string;
-	};
 	category: string;
+	subscribtionData: SubscriptionData;
 }
 
-export interface usersMessages {
+export interface UserMessage {
 	name: string;
 	email: string;
 	subject: string;
 	message: string;
+	createdAt?: Date; // Optional as it may be added by the server
 }
 
 export interface VendorDataResponse {
@@ -67,25 +70,35 @@ export interface VendorDataResponse {
 	phone: string;
 	email: string;
 	role: string;
-	pictures: {url: string; alt: string}[];
-	address: {
-		city: string;
-		street: string;
-		_id: string;
-	};
-	profileImage: {
+	pictures: {
 		url: string;
-		public_id?: string;
-	};
+		alt: string;
+	}[];
+	address: Address;
+	profileImage: ProfileImage;
 	vendorId?: string;
 	category: string;
 	createdAt: Date;
 	updatedAt: Date;
-	subscriptionData: {
-		isSubscribed: boolean;
-		planId: string;
-		subscriptionDate: Date | null;
-		expiryDate: Date | null;
-		recommendedServices: boolean;
-	};
+	subscribtionData: SubscriptionData;
+}
+
+// Additional utility types
+export type UserRole = "admin" | "isVendor" | "customer";
+
+export interface PaginatedVendorResponse {
+	data: VendorDataResponse[];
+	total: number;
+	page: number;
+	limit: number;
+}
+
+// For form validation
+export interface LoginFormValues extends LoginSchema {
+	rememberMe?: boolean;
+}
+
+export interface BusinessRegistrationFormValues extends BusinessUserSchema {
+	confirmPassword: string;
+	termsAccepted: boolean;
 }

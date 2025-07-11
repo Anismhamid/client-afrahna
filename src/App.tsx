@@ -4,13 +4,9 @@ import rtlPlugin from "stylis-plugin-rtl";
 import {prefixer} from "stylis";
 import {CacheProvider} from "@emotion/react";
 import createCache from "@emotion/cache";
-import {
-	createStyles,
-	createTheme,
-	PaletteMode,
-	ThemeProvider,
-} from "@mui/material/styles";
+import {createTheme, PaletteMode, ThemeProvider} from "@mui/material/styles";
 import {Toaster} from "react-hot-toast";
+import "../locales/i18n";
 
 import AppRoutes from "./routes/AppRoutes";
 import Footer from "./components/settings/Footer";

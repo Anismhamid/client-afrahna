@@ -8,35 +8,36 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {FunctionComponent} from "react";
-import {useTheme} from "../../atoms/Theme";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
+import {useTranslation} from "react-i18next";
 
 const faqs = [
 	{
-		question: "كيف يمكنني حجز خدمة من المنصة؟",
-		answer: "قم بتصفح الفئات، اختر الخدمة المناسبة، ثم اضغط على 'احجز الآن' واتبع التعليمات لإتمام الحجز.",
+		question: "faq.q1",
+		answer: "faq.a1",
 	},
 	{
-		question: "هل أحتاج إلى إنشاء حساب لإجراء حجز؟",
-		answer: "نعم، يجب تسجيل الدخول بحسابك حتى نتمكن من ربط الحجوزات بك وتوفير الدعم المناسب.",
+		question: "faq.q2",
+		answer: "faq.a2",
 	},
 	{
-		question: "هل يمكنني إلغاء الحجز بعد الدفع؟",
-		answer: "نعم، لكن حسب سياسة مقدم الخدمة. بعض الخدمات قابلة للإلغاء مع استرداد جزئي أو كامل خلال مدة محددة.",
+		question: "faq.q3",
+		answer: "faq.a3",
 	},
 	{
-		question: "ما طرق الدفع المتاحة؟",
-		answer: "نقبل الدفع عبر بطاقات الائتمان، Apple Pay، STC Pay، والتحويل البنكي لبعض الخطط.",
+		question: "faq.q4",
+		answer: "faq.a4",
 	},
 	{
-		question: "كيف يمكنني التواصل مع مزود الخدمة؟",
-		answer: "بعد الحجز، يظهر لك زر 'راسل المزود' في صفحة الحجز الخاصة بك. يمكنك التواصل مباشرة.",
+		question: "faq.q5",
+		answer: "faq.a5",
 	},
 ];
 
 interface FAQPageProps {}
 
 const FAQPage: FunctionComponent<FAQPageProps> = () => {
+	const {t} = useTranslation();
 	return (
 		<Container maxWidth='md' sx={{py: 5}}>
 			<Typography
@@ -50,7 +51,7 @@ const FAQPage: FunctionComponent<FAQPageProps> = () => {
 				gutterBottom
 				color='primary'
 			>
-				الاسـئـلـه الـشـائـعـه
+				{t("faq.title")}
 			</Typography>
 			<HorizontalDevider />
 			<Box
@@ -66,11 +67,11 @@ const FAQPage: FunctionComponent<FAQPageProps> = () => {
 					<Accordion key={index} sx={{mb: 2}}>
 						<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 							<Typography variant='subtitle1' fontWeight='bold'>
-								{faq.question}
+								{t(faq.question)}
 							</Typography>
 						</AccordionSummary>
 						<AccordionDetails>
-							<Typography variant='body1'>{faq.answer}</Typography>
+							<Typography variant='body1'>{t(faq.answer)}</Typography>
 						</AccordionDetails>
 					</Accordion>
 				))}

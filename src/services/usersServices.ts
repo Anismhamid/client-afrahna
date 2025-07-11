@@ -39,19 +39,30 @@ export const userLogin = async (userData: LoginSchema) => {
 
 // getUserById
 export const getUserById = async (userId: string) => {
-	const {data} = await axios.get(`${api}/users/for-vendors/${userId}`, {
+	const data = await axios.get(`${api}/users/for-vendors/${userId}`, {
 		headers: {Authorization: localStorage.getItem("token")},
 	});
-	return data;
+	return data.data;
 };
 
 export const getVendorSubscriptionPlan = async (vendorId: string) => {
-	try {
-		const userPlan = await axios.get(`${api}/business/${vendorId}`);
-		return userPlan.data;
-	} catch (error) {
-		console.log(error);
-	}
+  try {
+    const response = await axios.get(
+		`${api}/business/vendor/vendorSubscriptionData/${vendorId}`,
+	);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 404) {
+        return {
+          planId: "free",
+          isSubscribed: false,
+          recommendedServices: false
+        };
+      }
+    }
+    throw error;
+  }
 };
 
 export const getAllUsers = async () => {

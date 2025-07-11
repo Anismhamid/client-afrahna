@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = `${import.meta.env.VITE_API_URI}/videos`;
 
-export const uploadVideo = async (file: File) => {
+export const uploadVideo = async (file: File, p0: (progressEvent: { loaded: number; total: any; }) => void) => {
 	const formData = new FormData();
 	formData.append("file", file);
 

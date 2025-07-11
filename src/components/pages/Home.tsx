@@ -1,5 +1,5 @@
 import {FunctionComponent, useEffect, useState} from "react";
-import {Box, Typography, CardContent, CardActionArea, Card} from "@mui/material";
+import {Box, Typography, CardContent, CardActionArea, Card, Button} from "@mui/material";
 
 import {Link} from "react-router-dom";
 import {mainMenu} from "../../config/mainMenu";
@@ -15,6 +15,7 @@ import {getAdsVideos} from "../../services/videosForAds";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
 import JsonLd from "../JsonLd";
 import {generateCategoriesItemListJsonLd} from "../../utils/structuredData";
+import {useTranslation} from "react-i18next";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface HomeProps {}
@@ -23,6 +24,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 	const {user, setUser} = useUser();
 	const [videos, setVideos] = useState<string[]>([]);
 	const api = `${import.meta.env.VITE_API_URI}/videos`;
+	const {t, i18n} = useTranslation();
 
 	useEffect(() => {
 		const fetchVideos = async () => {
@@ -49,7 +51,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 
 	return (
 		<>
-			<title>الرئيسية | افراحنا</title>
+			<title>{t("home.tab")}</title>
 			<Box
 				component={"main"}
 				sx={{
@@ -58,6 +60,10 @@ const Home: FunctionComponent<HomeProps> = () => {
 					py: 4,
 				}}
 			>
+				<Button onClick={() => i18n.changeLanguage("en")}>English</Button>
+				<Button onClick={() => i18n.changeLanguage("ar")}>العربية</Button>
+				<Button onClick={() => i18n.changeLanguage("he")}>עברית</Button>
+
 				<Box>
 					{mainMenu.length > 0 && (
 						<JsonLd data={generateCategoriesItemListJsonLd(mainMenu)} />
@@ -71,25 +77,27 @@ const Home: FunctionComponent<HomeProps> = () => {
 							textAlign: "center",
 						}}
 					>
-						منـصة أفراحـنـا
+						{t("home.title")}
 					</Typography>
 					<HorizontalDevider />
 					<Typography
 						variant='h2'
-						fontSize="2rem"
+						fontSize='2rem'
 						align='center'
 						gutterBottom
 						sx={{color: "primary.main"}}
 					>
-						لدينا جميع الخدمات التي تحتاجها ليوم الزفاف
+						{t("home.subTitle")}
 					</Typography>
 				</Box>
 				<Box sx={{maxWidth: "70%", textAlign: "center", margin: "auto"}}>
 					{user && user.role === "admin" && <VideoUpload />}
 				</Box>
 
+				{/* video ads */}
 				<VideoAds videos={videos} />
 
+				{/* recommended vendors */}
 				<Box sx={{overflowY: "auto"}}>
 					<RecommendedServices />
 				</Box>
@@ -106,7 +114,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 							mt: 10,
 						}}
 					>
-						خدمـات منـصة أفراحـنـا
+						{t("afrahna.services")}
 					</Typography>
 					<HorizontalDevider />
 					<Box className='row row-cols-1 row-cols-2  row-cols-lg-6 '>
@@ -152,7 +160,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 													fontWeight='bold'
 													sx={{color: "primary.dark"}}
 												>
-													{cat.label}
+													{t(cat.label)}
 												</Typography>
 											</CardContent>
 										</CardActionArea>

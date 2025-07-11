@@ -25,6 +25,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import SubscripbeButton from "../../subscribes/subscribeButton/SubscripbeButton";
 import {navbarItems} from "../../config/mainMenu";
 import {CloseButton} from "react-bootstrap";
+import {useTranslation} from "react-i18next";
 
 const Navbar: FunctionComponent = () => {
 	const [open, setOpen] = useState(false);
@@ -33,6 +34,7 @@ const Navbar: FunctionComponent = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const {user, setUser} = useUser();
+	const {t} = useTranslation();
 
 	const toggleDrawer = (open: boolean) => () => {
 		setOpen(open);
@@ -62,7 +64,7 @@ const Navbar: FunctionComponent = () => {
 			>
 				<ListItemButton>
 					<ListItemIcon>{icon}</ListItemIcon>
-					<ListItemText primary={text} />
+					<ListItemText primary={t(text)} />
 				</ListItemButton>
 			</NavLink>
 		</ListItem>
@@ -86,7 +88,7 @@ const Navbar: FunctionComponent = () => {
 					borderRadius: 10,
 					fontSize: "1.2rem",
 				}}
-				position="sticky"
+				position='sticky'
 			>
 				<Toolbar>
 					<Box
@@ -121,7 +123,7 @@ const Navbar: FunctionComponent = () => {
 								color: "white",
 							}}
 						>
-							افراحـنـا
+							{t("afrahna.title")}
 						</NavLink>
 
 						{!user?._id ? (
@@ -131,7 +133,7 @@ const Navbar: FunctionComponent = () => {
 									onClick={() => navigate("/login")}
 									color='warning'
 								>
-									الدخول
+									{t("navbar.login")}
 								</Button>
 							</Box>
 						) : (
@@ -249,11 +251,12 @@ const Navbar: FunctionComponent = () => {
 							</>
 						)}
 
-						{user?.role === "isVendor" && !user.isSubscribed && (
-							<Box sx={{width: "100%", m: "auto"}}>
-								<SubscripbeButton />
-							</Box>
-						)}
+						{user?.role === "isVendor" &&
+							!user?.subscribtionData?.isSubscribed && (
+								<Box sx={{width: "100%", m: "auto"}}>
+									<SubscripbeButton />
+								</Box>
+							)}
 
 						<Divider color='error' variant='fullWidth' />
 						{user?._id ? (

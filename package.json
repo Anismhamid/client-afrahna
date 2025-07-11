@@ -24,6 +24,8 @@
 		"bootstrap": "^5.3.6",
 		"dayjs": "^1.11.13",
 		"formik": "^2.4.6",
+		"i18next": "^25.3.2",
+		"i18next-browser-languagedetector": "^8.2.0",
 		"jwt-decode": "^4.0.0",
 		"leaflet": "^1.9.4",
 		"lucide-react": "^0.515.0",
@@ -32,6 +34,7 @@
 		"react-calendar": "^6.0.0",
 		"react-dom": "^19.1.0",
 		"react-hot-toast": "^2.5.2",
+		"react-i18next": "^15.6.0",
 		"react-icons": "^5.5.0",
 		"react-leaflet": "^5.0.0",
 		"react-router-dom": "^7.6.2",
@@ -67,4 +70,3 @@
 		"vitest": "^3.2.3"
 	}
 }
-

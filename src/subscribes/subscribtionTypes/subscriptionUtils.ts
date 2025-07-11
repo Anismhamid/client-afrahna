@@ -1,20 +1,17 @@
+// 🎨 צבע רקע לפי מזהה המנוי
 export const subscriptionColor = (planId: string): string => {
-	switch (planId) {
-		case "free":
-			return "#00000029";
-		case "basic":
-			return "silver-bg";
-		case "gold":
-			return "gold-bg";
-		case "premium":
-			return "premium-bg";
-		case "enterprise":
-			return "enterprise-bg";
-		default:
-			return "#00000029";
-	}
+	const colors: Record<string, string> = {
+		free: "#00000029",
+		basic: "silver-bg",
+		gold: "gold-bg",
+		premium: "premium-bg",
+		enterprise: "enterprise-bg",
+	};
+
+	return colors[planId] ?? "#00000029";
 };
 
+// how many services are displayed per plan
 export const getVisibleServices = (
 	planId: string,
 	services: {
@@ -23,15 +20,15 @@ export const getVisibleServices = (
 		price: number;
 	}[],
 ) => {
-	switch (planId) {
-		case "basic":
-			return services.slice(0, 6);
-		case "gold":
-			return services.slice(0, 13);
-		case "premium":
-		case "enterprise":
-			return services;
-		default:
-			return services.slice(0, 1);
-	}
+	const visibleCount: Record<string, number | "all"> = {
+		free: 1,
+		basic: 6,
+		gold: 13,
+		premium: "all",
+		enterprise: "all",
+	};
+
+	const limit = visibleCount[planId] ?? 1;
+
+	return limit === "all" ? services : services.slice(0, limit);
 };

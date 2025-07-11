@@ -1,5 +1,6 @@
 import {Box, Typography, CircularProgress} from "@mui/material";
 import {FunctionComponent, useEffect, useRef, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 interface VideoAdsCarouselProps {
 	title?: string;
@@ -8,10 +9,11 @@ interface VideoAdsCarouselProps {
 }
 
 const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
-	title = "دعاية منصة افراحنا",
+	title,
 	videos,
 	durationSeconds = 60,
 }) => {
+	const {t} = useTranslation();
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [error, setError] = useState<string | null>(null);
@@ -92,13 +94,10 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 	if (videos.length === 0) {
 		return (
 			<Box sx={{maxWidth: 700, mx: "auto"}} ref={containerRef}>
-				<Typography variant='h6' textAlign='right' gutterBottom>
-					{title}
-				</Typography>
 				<Box
 					sx={{
 						position: "relative",
-						paddingTop: "56.25%", 
+						paddingTop: "56.25%",
 						borderRadius: 2,
 						overflow: "hidden",
 						bgcolor: "background.paper",
@@ -114,7 +113,7 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 							transform: "translate(-50%, -50%)",
 						}}
 					>
-						لا تتوفر فيديوهات حالياً
+						{t("add.noVideos")}
 					</Typography>
 				</Box>
 			</Box>
@@ -123,10 +122,6 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 
 	return (
 		<Box sx={{maxWidth: {xs: "100%", md: "70%"}, mx: "auto"}} ref={containerRef}>
-			<Typography variant='h6' textAlign='right' gutterBottom>
-				{title}
-			</Typography>
-
 			<Box
 				sx={{
 					position: "relative",

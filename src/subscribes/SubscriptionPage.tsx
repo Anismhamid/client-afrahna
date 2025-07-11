@@ -1,6 +1,6 @@
 import {Box, Typography, Button, Paper, Tooltip, Chip, Divider} from "@mui/material";
 import {useFormik} from "formik";
-import {FunctionComponent, useEffect, useState} from "react";
+import {FunctionComponent, useState} from "react";
 import * as Yup from "yup";
 import PaymentForm from "./payment/PaymentForm";
 import {errorToast, successToast} from "../atoms/notifications/Toasts";
@@ -18,10 +18,6 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 	const [selectedPlanId, setSelectedPlanId] = useState<string>("");
 	const navigate = useNavigate();
 	const {user, setUser} = useUser();
-
-	useEffect(() => {
-		console.log(user && user.planId);
-	}, [user]);
 
 	const formik = useFormik({
 		initialValues: {
@@ -55,12 +51,17 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 				return;
 			}
 
+
 			try {
 				const sub = await subscriptionToPlans(user._id, {
 					isSubscribed: true,
 					planId: selectedPlanId,
+					subscriptionDate: new Date().toISOString(),
+					expiryDate: new Date(
+						Date.now() + 30 * 24 * 60 * 60 * 1000,
+					).toISOString(),
+					recommendedServices: false,
 				});
-				console.log(sub);
 
 				if (sub.token) {
 					localStorage.setItem("token", sub.token);
@@ -285,7 +286,7 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 									sx={{
 										mt: 3,
 										backgroundColor: isSelected
-											? "primary.defualt"
+											? "primary.default"
 											: "transparent",
 										color: isSelected
 											? "warning.main"

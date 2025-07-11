@@ -7,8 +7,17 @@ import "swiper/swiper-bundle.css";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
+import {useTranslation} from "react-i18next";
 
-const testimonials = [
+interface Testimonial {
+	name: string;
+	feedback: string;
+	avatar: string;
+	rating: number;
+	date: string;
+}
+
+const testimonials: Testimonial[] = [
 	{
 		name: "ليلى من القدس",
 		feedback:
@@ -45,7 +54,7 @@ const testimonials = [
 
 const TestimonialsSlider = () => {
 	const theme = useTheme();
-
+	const {t} = useTranslation();
 	const renderStars = (rating: number) => {
 		return (
 			<Box sx={{display: "flex", justifyContent: "center", mb: 1}}>
@@ -80,7 +89,7 @@ const TestimonialsSlider = () => {
 						mt: 10,
 					}}
 				>
-					آراء عملائنا
+					{t("testimonials.title")}
 				</Typography>
 				<HorizontalDevider />
 				<Swiper

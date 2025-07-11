@@ -25,6 +25,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
+import {useTranslation} from "react-i18next";
 
 interface ServiceCardProps {
 	service: Services;
@@ -40,7 +41,6 @@ const ServiceCard = memo(({service, isFavorite, onToggleFavorite}: ServiceCardPr
 				? service.images[0]
 				: service.images[0].url
 			: "/wedding-rings.png";
-
 
 	return (
 		<Card
@@ -153,6 +153,7 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+	const {t} = useTranslation();
 
 	const settings = {
 		infinite: true,
@@ -237,7 +238,7 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 						mt: 10,
 					}}
 				>
-					الخدمات الموصى بها
+					{t("recommendedVendors.title")}
 				</Typography>
 				<HorizontalDevider />
 				<Grid container spacing={1} justifyContent='center'>
@@ -270,10 +271,10 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 					mt: 10,
 				}}
 			>
-				الخدمات الموصى بها
+				{t("recommendedVendors.title")}
 			</Typography>
 			<HorizontalDevider />
-			{services.length  ? (
+			{services.length ? (
 				<Slider {...settings}>
 					{services.map((service) => (
 						<Box key={service._id} px={1}>
@@ -288,7 +289,7 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 			) : (
 				<Box sx={{textAlign: "center", py: 4}}>
 					<Typography variant='body1' color='text.secondary'>
-						لا توجد خدمات موصى بها حالياً
+						{t("recommendedVendors.noServices")}
 					</Typography>
 				</Box>
 			)}

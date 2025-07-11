@@ -1,0 +1,72 @@
+{
+	"home": {
+		"tab": "Home",
+		"title": "Afrahna platform",
+		"subTitle": "We have all the services you need for your wedding day"
+	},
+
+	"afrahna": {
+		"title": "Afrahna",
+		"services": "Our wedding services"
+	},
+
+	"menu": {
+		"halls": "Halls",
+		"hallsDecoration": "Hall Decoration",
+		"carDecoration": "Car Decoration",
+		"coffeeKiosks": "Coffee Kiosks",
+		"beautySalons": "Beauty Salons",
+		"chairs": "Chair Rentals",
+		"pastry": "Pastry",
+		"frezzer": "Freezer Rental",
+		"dabkePlatforms": "Dabke Platforms",
+		"photography": "Photography",
+		"sterio": "Stereo",
+		"cooks": "Cooks",
+		"restaurants": "Wedding Restaurants",
+		"waiters": "Waiters",
+		"fireworks": "Fireworks",
+		"invitationCards": "Invitation Cards",
+		"nuts": "Nuts",
+		"religiousBands": "Religious Bands",
+		"kidsEntertainment": "Kids Entertainment",
+		"fruitDecoration": "Fruit Decoration",
+		"weddingGifts": "Wedding Gift Arrangement",
+		"luxuryCars": "Luxury Cars Rental"
+	},
+
+	"navbar": {
+		"home": "Home",
+		"about": "About",
+		"contact": "Contact",
+		"login": "login",
+		"logout": "logout"
+	},
+
+	"recommendedVendors": {
+		"title": "Recommended vendors",
+		"noServices": "There are currently no recommended services",
+		"ratingCount": "({{count}})"
+	},
+
+	"faq": {
+		"title": "Frequently Asked Questions",
+		"q1": "How can I book a service from the platform?",
+		"a1": "Browse the categories, choose the appropriate service, then click 'Book Now' and follow the instructions to complete the reservation",
+		"q2": "Do I need to create an account to make a reservation?",
+		"a2": "Yes, you must be logged in to your account so that we can link bookings to you and provide appropriate support",
+		"q3": "Can I cancel my reservation after payment?",
+		"a3": "Yes, but depending on the service provider's policy. Some services are cancelable with a partial or full refund within a specified period",
+		"q4": "What payment methods are available?",
+		"a4": "We accept payments via credit cards, Apple Pay, STC Pay, and bank transfer for some plans",
+		"q5": "How can I contact the service provider?",
+		"a5": "After booking, you'll see a 'Contact Provider' button on your booking page. You can contact us directly"
+	},
+	"testimonials": {
+		"title": "Customer Testimonials"
+	},
+	"plans": {
+		"subscriptionPlans": "Subscription Plans",
+		"choosePlan": "Choose the right plan for you"
+	}
+}

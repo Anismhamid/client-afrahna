@@ -27,112 +27,112 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 export const mainMenu = [
 	{
-		label: "قاعات",
+		label: "menu.halls",
 		icon: <MeetingRoom fontSize='medium' color='warning' />,
 		link: "/wedding-halls",
 	},
 	{
-		label: "تزيين قاعات",
+		label: "menu.hallsDecoration",
 		icon: <Celebration fontSize='medium' color='warning' />,
 		link: "/hals-decoration",
 	},
 	{
-		label: "تزيين سيارات",
+		label: "menu.carDecoration",
 		icon: <DirectionsCar fontSize='medium' color='warning' />,
 		link: "/cars-decoration",
 	},
 	{
-		label: "كيوسكات قهوة",
+		label: "menu.coffeeKiosks",
 		icon: <Coffee fontSize='medium' color='warning' />,
 		link: "/coffee-kiosks",
 	},
 	{
-		label: "صالونات تجميل",
+		label: "menu.beautySalons",
 		icon: <Spa fontSize='medium' color='warning' />,
 		link: "/cosmatics",
 	},
 	{
-		label: "تأجير كراسي",
+		label: "menu.chairs",
 		icon: <Chair fontSize='medium' color='warning' />,
 		link: "/chairs",
 	},
 	{
-		label: "حلويات",
+		label: "menu.pastry",
 		icon: <Cake fontSize='medium' color='warning' />,
 		link: "/pastry",
 	},
 	{
-		label: "تأجير برادات",
+		label: "menu.frezzer",
 		icon: <Kitchen fontSize='medium' color='warning' />,
 		link: "/frezzer",
 	},
 	{
-		label: "منصات دبكة",
+		label: "menu.dabkePlatforms",
 		icon: <Festival fontSize='medium' color='warning' />,
 		link: "/dabke-platforms",
 	},
 	{
-		label: "تصوير",
+		label: "menu.photography",
 		icon: <CameraAlt fontSize='medium' color='warning' />,
 		link: "/photography",
 	},
 	{
-		label: "ستيريو",
+		label: "menu.sterio",
 		icon: <Speaker fontSize='medium' color='warning' />,
 		link: "/sterio",
 	},
 	{
-		label: "طباخين",
+		label: "menu.cooks",
 		icon: <Restaurant fontSize='medium' color='warning' />,
 		link: "/cooks",
 	},
 	{
-		label: "مطاعم للأعراس",
+		label: "menu.restaurants",
 		icon: <Flatware fontSize='medium' color='warning' />,
 		link: "/restaurants",
 	},
 	{
-		label: "نادلين",
+		label: "menu.waiters",
 		icon: <RoomService fontSize='medium' color='warning' />,
 		link: "/Waiters",
 	},
 	{
-		label: "العاب نارية",
+		label: "menu.fireworks",
 		icon: <LocalFireDepartment fontSize='medium' color='warning' />,
 		link: "/fireworks",
 	},
 	{
-		label: "بطاقات دعوة",
+		label: "menu.invitationCards",
 		icon: <Brush fontSize='medium' color='warning' />,
 		link: "/invitation-cards",
 	},
 	{
-		label: "مكسرات",
+		label: "menu.nuts",
 		icon: <RestaurantMenu fontSize='medium' color='warning' />,
 		link: "/nuts",
 	},
 	{
-		label: "فرق دينية",
+		label: "menu.religiousBands",
 		icon: <EmojiEvents fontSize='medium' color='warning' />,
 		link: "/religious-bands",
 	},
 	{
-		label: "الهاء الأطفال",
+		label: "menu.kidsEntertainment",
 		icon: <ChildCare fontSize='medium' color='warning' />,
 		link: "/kids-entertainment",
 	},
 	{
-		label: "تزيين فاكهة",
+		label: "menu.fruitDecoration",
 		icon: <LocalFlorist fontSize='medium' color='warning' />,
 		link: "/fruit-decoration",
 	},
 	{
-		label: "تنسيق هدايا للعرسان",
+		label: "menu.weddingGifts",
 		icon: <EmojiEvents fontSize='medium' color='warning' />,
 		link: "/wedding-gifts",
 	},
 	{
-		label: "تأجير سيارات فخمة",
+		label: "menu.luxuryCars",
 		icon: <DirectionsCarFilled fontSize='medium' color='warning' />,
 		link: "/luxury-cars",
 	},
@@ -141,17 +141,17 @@ export const mainMenu = [
 
 export const navbarItems = [
 	{
-		text: "الرئيسيه",
+		text: "navbar.home",
 		icon: <HomeIcon sx={{fontSize: 30}} color='error' />,
 		path: "/",
 	},
 	{
-		text: "من نحن",
+		text: "navbar.about",
 		icon: <InfoIcon sx={{fontSize: 30}} color='warning' />,
 		path: "/about",
 	},
 	{
-		text: "اتصل بنا",
+		text: "navbar.contact",
 		icon: <ContactMailIcon sx={{fontSize: 30}} color='success' />,
 		path: "/contact",
 	},
