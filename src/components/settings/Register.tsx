@@ -10,11 +10,14 @@ import {Link, useNavigate} from "react-router-dom";
 import {successToast} from "../../atoms/notifications/Toasts";
 import {getStrengthColor, getPasswordStrengthLabel} from "../../helpers/passwordChecker";
 import zxcvbn from "zxcvbn";
+import {useTranslation} from "react-i18next";
 
 interface RegisterProps {}
 
 const Register: FunctionComponent<RegisterProps> = () => {
 	const navigate = useNavigate();
+	const {t} = useTranslation();
+
 	const [passwordScore, setPasswordScore] = useState(0);
 	const [passwordFeedback, setPasswordFeedback] = useState<string[]>([]);
 
@@ -34,21 +37,21 @@ const Register: FunctionComponent<RegisterProps> = () => {
 		},
 		validationSchema: Yup.object({
 			name: Yup.object({
-				first: Yup.string().required("الرجاء إدخال الاسم الأول"),
-				last: Yup.string().required("الرجاء إدخال الاسم الأخير"),
+				first: Yup.string().required(t("registerPage.firstNameValidation")),
+				last: Yup.string().required(t("registerPage.lastNameValidation")),
 			}),
 			email: Yup.string()
-				.email("البريد الإلكتروني غير صالح")
-				.required("الرجاء إدخال البريد الإلكتروني"),
+				.email(t("registerPage.validEmailValidation"))
+				.required(t("registerPage.emailValidation")),
 			password: Yup.string()
-				.min(8, "كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل")
+				.min(8, t("registerPage.validPasswordValidation"))
 				.max(30)
-				.required("الرجاء إدخال كلمة المرور")
+				.required(t("registerPage.passwordValidation"))
 				.matches(
 					/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])/,
-					"كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورقم ورمز خاص",
+					t("registerPage.matchPasswordValidation"),
 				),
-			phone: Yup.string().required("الرجاء إدخال رقم الهاتف"),
+			phone: Yup.string().required(t("registerPage.phoneValidation")),
 			address: Yup.object({
 				city: Yup.string().required("الرجاء إدخال المدينة"),
 				street: Yup.string().required("الرجاء إدخال الشارع"),
@@ -60,7 +63,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 			registerNewUser(values).then((userData) => {
 				localStorage.setItem("token", userData);
 				navigate("/");
-				successToast("مرحبا بك في منصه افراحنا");
+				successToast(t("login.wellcomeMessage"));
 			});
 		},
 	});
@@ -92,10 +95,32 @@ const Register: FunctionComponent<RegisterProps> = () => {
 						sx={{fontSize: "18"}}
 						onClick={() => navigate(-1)}
 					>
-						الخلف
+						{t("registerPage.back")}
 					</Button>
 				</Box>
-				نوع الحساب: مستخدم جديد
+				<Box display={"flex"} alignContent={"center"} alignItems={"center"}>
+					<Typography
+						variant='h5'
+						sx={{
+							color: "#0F2D44",
+							fontWeight: "bold",
+							pr: 1,
+						}}
+					>
+						{t("registerPage.registerType.title")} |
+					</Typography>
+
+					<Typography
+						variant='body2'
+						sx={{
+							color: "#0F2D44",
+							fontWeight: "bold",
+						}}
+					>
+						{t("registerPage.newUser")}
+					</Typography>
+				</Box>
+
 				<Typography
 					variant='h4'
 					align='center'
@@ -106,7 +131,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 						paddingTop: "60px",
 					}}
 				>
-					سجل الآن واحصل على خدماتنا المميزة
+					{t("login.title")}
 				</Typography>
 				<Typography
 					variant='h6'
@@ -114,13 +139,12 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					gutterBottom
 					sx={{color: "warning.main", fontWeight: "normal", mt: -1}}
 				>
-					انضم الان إلى موقعنا واستمتع بخدمات مخصصة لحفلات الزفاف والمناسبات
-					الخاصة
+					{t("login.subtitle")}
 				</Typography>
-				<div className='row row-cols-md-2 py-2'>
-					<div className=' mb-3'>
+				<Box className='row row-cols-md-2 py-2'>
+					<Box className=' mb-3'>
 						<TextField
-							label='الاسم الأول'
+							label={t("registerPage.fName")}
 							name='name.first'
 							value={formik.values.name.first}
 							onChange={formik.handleChange}
@@ -135,10 +159,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
 							variant='filled'
 							fullWidth
 						/>
-					</div>
-					<div>
+					</Box>
+					<Box>
 						<TextField
-							label='الاسم الأخير'
+							label={t("registerPage.lName")}
 							name='name.last'
 							value={formik.values.name.last}
 							onChange={formik.handleChange}
@@ -153,10 +177,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
 							variant='filled'
 							fullWidth
 						/>
-					</div>
-					<div className=' mb-3'>
+					</Box>
+					<Box className=' mb-3'>
 						<TextField
-							label='البريد الإلكتروني'
+							label={t("registerPage.email")}
 							name='email'
 							type='email'
 							value={formik.values.email}
@@ -167,10 +191,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
 							variant='filled'
 							fullWidth
 						/>
-					</div>
-					<div>
+					</Box>
+					<Box>
 						<TextField
-							label='كلمة المرور'
+							label={t("registerPage.password")}
 							name='password'
 							type='password'
 							value={formik.values.password}
@@ -231,10 +255,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
 								</Box>
 							</>
 						)}
-					</div>
-					<div className=' mb-3'>
+					</Box>
+					<Box className=' mb-3'>
 						<TextField
-							label='رقم الهاتف'
+							label={t("registerPage.phoneNum")}
 							name='phone'
 							value={formik.values.phone}
 							onChange={formik.handleChange}
@@ -244,10 +268,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
 							variant='filled'
 							fullWidth
 						/>
-					</div>
-					<div>
+					</Box>
+					<Box>
 						<TextField
-							label='المدينة'
+							label={t("registerPage.city")}
 							name='address.city'
 							value={formik.values.address.city}
 							onChange={formik.handleChange}
@@ -263,10 +287,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
 							variant='filled'
 							fullWidth
 						/>
-					</div>
-					<div className=' mb-3'>
+					</Box>
+					<Box className=' mb-3'>
 						<TextField
-							label='الشارع'
+							label={t("registerPage.street")}
 							name='address.street'
 							value={formik.values.address.street}
 							onChange={formik.handleChange}
@@ -282,33 +306,24 @@ const Register: FunctionComponent<RegisterProps> = () => {
 							variant='filled'
 							fullWidth
 						/>
-					</div>
-				</div>
+					</Box>
+				</Box>
 				<Button
 					loading={formik.isSubmitting}
-					sx={{backgroundColor: "success.main", fontSize: "18px"}}
+					sx={{backgroundColor: "success.main"}}
 					type='submit'
 					variant='contained'
 					fullWidth
 				>
-					التالي
+					{t("registerPage.create")}
 				</Button>
-			</Box>
-			<Box
-				sx={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "space-around",
-					mt: 5,
-				}}
-			>
 				<Button
 					sx={{backgroundColor: "#0F2D44"}}
 					type='button'
 					variant='contained'
 					onClick={() => navigate("/login")}
 				>
-					تسجيل الدخول
+					{t("login.login")}
 				</Button>
 				<Button
 					sx={{backgroundColor: "#0F2D44"}}
@@ -316,26 +331,26 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					type='button'
 					variant='contained'
 				>
-					مستخدم جديد
+					{t("registerPage.newUser")}
 				</Button>
 				<Button
-					sx={{backgroundColor: "warning.main", fontSize: "18px"}}
+					sx={{backgroundColor: "#0F2D44"}}
 					onClick={() => navigate("/business-register")}
 					variant='contained'
 				>
-					التسجيل كمزود خدمات جديد
+					{t("registerPage.newVendor")}
 				</Button>
-				<Box display='flex' justifyContent='center' gap={2}>
-					<Typography sx={{color: "warning.main"}} variant='body2'>
-						<Link to='/privacy-policy'>سياسة الخصوصية</Link>
-					</Typography>
-					<Typography sx={{color: "warning.main"}} variant='body2'>
-						|
-					</Typography>
-					<Typography sx={{color: "warning.main"}} variant='body2'>
-						<Link to='/terms-of-use'>شروط الاستخدام</Link>
-					</Typography>
-				</Box>
+			</Box>
+			<Box display='flex' justifyContent='center' gap={2}>
+				<Typography sx={{color: "warning.main"}} variant='body2'>
+					<Link to='/privacy-policy'>{t("privacyPolicy")}</Link>
+				</Typography>
+				<Typography sx={{color: "warning.main"}} variant='body2'>
+					|
+				</Typography>
+				<Typography sx={{color: "warning.main"}} variant='body2'>
+					<Link to='/terms-of-use'>{t("termsOfUse")}</Link>
+				</Typography>
 			</Box>
 		</main>
 	);

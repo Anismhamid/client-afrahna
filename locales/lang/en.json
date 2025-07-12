@@ -1,24 +1,22 @@
 {
 	"home": {
-		"tab": "Home",
-		"title": "Afrahna platform",
+		"tab": "Home | Afrahna",
+		"title": "Afrahna Platform",
 		"subTitle": "We have all the services you need for your wedding day"
 	},
-
 	"afrahna": {
 		"title": "Afrahna",
-		"services": "Our wedding services"
+		"services": "Afrahna Platform Services"
 	},
-
 	"menu": {
 		"halls": "Halls",
-		"hallsDecoration": "Hall Decoration",
-		"carDecoration": "Car Decoration",
+		"hallsDecoration": "Hall Decorations",
+		"carDecoration": "Car Decorations",
 		"coffeeKiosks": "Coffee Kiosks",
 		"beautySalons": "Beauty Salons",
 		"chairs": "Chair Rentals",
-		"pastry": "Pastry",
-		"frezzer": "Freezer Rental",
+		"pastry": "Pastries",
+		"frezzer": "Freezer Rentals",
 		"dabkePlatforms": "Dabke Platforms",
 		"photography": "Photography",
 		"sterio": "Stereo",
@@ -31,42 +29,82 @@
 		"religiousBands": "Religious Bands",
 		"kidsEntertainment": "Kids Entertainment",
 		"fruitDecoration": "Fruit Decoration",
-		"weddingGifts": "Wedding Gift Arrangement",
-		"luxuryCars": "Luxury Cars Rental"
+		"weddingGifts": "Wedding Gift Arrangements",
+		"luxuryCars": "Luxury Car Rentals"
 	},
-
 	"navbar": {
 		"home": "Home",
-		"about": "About",
-		"contact": "Contact",
-		"login": "login",
-		"logout": "logout"
+		"about": "About Us",
+		"contact": "Contact Us",
+		"login": "Login",
+		"logout": "Logout"
 	},
-
+	"login": {
+		"login": "Login",
+		"logout": "Logout",
+		"title": "Register now and get our premium services",
+		"subtitle": "Join our platform now and enjoy services tailored for weddings and special occasions",
+		"wellcomeMessage": "Welcome afrahna platform"
+	},
+	"registerPage": {
+		"newUser": "New User",
+		"newVendor": "New Vendor",
+		"businessName": "Business / Company Name",
+		"email": "Email",
+		"emailValidation": "Please enter an email",
+		"validEmailValidation": "Please enter a valid email",
+		"password": "Password",
+		"passwordValidation": "Please enter a password",
+		"validPasswordValidation": "Password must contain at least 6 characters",
+		"matchPasswordValidation": "The password must contain an uppercase and lowercase letter, a number, and a special character",
+		"fName": "First Name",
+		"firstNameValidation": "Please enter your first name",
+		"lName": "Last Name",
+		"lastNameValidation": "Please enter your last name",
+		"phoneNum": "Phone Number",
+		"phoneValidation": "Please enter your phone number",
+		"city": "City",
+		"cityValidation": "Please enter your city",
+		"street": "Street",
+		"streetValidation": "Please enter your street",
+		"categoryValidation": "Please enter the category.",
+		"registerType": {
+			"title": "register Type",
+			"newUser": "New User",
+			"newVendor": "New service provider"
+		},
+		"serviceProvider": "Service provider",
+		"category": "Category",
+		"create": "Create",
+		"back": "Back"
+	},
+	"privacyPolicy": "Privacy Policy",
+	"termsOfUse": "Terms of Use",
+	"about": {},
+	"payment": {},
 	"recommendedVendors": {
-		"title": "Recommended vendors",
-		"noServices": "There are currently no recommended services",
+		"title": "Recommended Vendors",
+		"noServices": "No recommended services available currently",
 		"ratingCount": "({{count}})"
 	},
-
 	"faq": {
 		"title": "Frequently Asked Questions",
 		"q1": "How can I book a service from the platform?",
-		"a1": "Browse the categories, choose the appropriate service, then click 'Book Now' and follow the instructions to complete the reservation",
-		"q2": "Do I need to create an account to make a reservation?",
-		"a2": "Yes, you must be logged in to your account so that we can link bookings to you and provide appropriate support",
-		"q3": "Can I cancel my reservation after payment?",
-		"a3": "Yes, but depending on the service provider's policy. Some services are cancelable with a partial or full refund within a specified period",
+		"a1": "Browse the categories, choose the right service, then click 'Book Now' and follow the instructions to complete the booking",
+		"q2": "Do I need to create an account to book?",
+		"a2": "Yes, you must be registered so we can link bookings to you and offer proper support",
+		"q3": "Can I cancel a booking after payment?",
+		"a3": "Yes, but depending on the provider’s policy. Some services allow full or partial refunds within a specific period",
 		"q4": "What payment methods are available?",
-		"a4": "We accept payments via credit cards, Apple Pay, STC Pay, and bank transfer for some plans",
+		"a4": "We accept credit cards, Apple Pay, STC Pay, and bank transfer for certain plans",
 		"q5": "How can I contact the service provider?",
-		"a5": "After booking, you'll see a 'Contact Provider' button on your booking page. You can contact us directly"
+		"a5": "After booking, a 'Contact Provider' button will appear on your booking page. You can also contact us directly"
 	},
 	"testimonials": {
-		"title": "Customer Testimonials"
+		"title": "Customer Reviews"
 	},
 	"plans": {
 		"subscriptionPlans": "Subscription Plans",
-		"choosePlan": "Choose the right plan for you"
+		"choosePlan": "Choose the plan that suits you"
 	}
 }

@@ -26,6 +26,7 @@ import SubscripbeButton from "../../subscribes/subscribeButton/SubscripbeButton"
 import {navbarItems} from "../../config/mainMenu";
 import {CloseButton} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
+import TranslateButtons from "../../atoms/TranslateButtons";
 
 const Navbar: FunctionComponent = () => {
 	const [open, setOpen] = useState(false);
@@ -121,6 +122,7 @@ const Navbar: FunctionComponent = () => {
 								cursor: "pointer",
 								fontWeight: "bold",
 								color: "white",
+								fontSize: "16px",
 							}}
 						>
 							{t("afrahna.title")}
@@ -129,6 +131,7 @@ const Navbar: FunctionComponent = () => {
 						{!user?._id ? (
 							<Box>
 								<Button
+									sx={{fontSize: "11px"}}
 									variant='contained'
 									onClick={() => navigate("/login")}
 									color='warning'
@@ -252,7 +255,7 @@ const Navbar: FunctionComponent = () => {
 						)}
 
 						{user?.role === "isVendor" &&
-							!user?.subscribtionData?.isSubscribed && (
+							!user?.subscriptionData?.isSubscribed && (
 								<Box sx={{width: "100%", m: "auto"}}>
 									<SubscripbeButton />
 								</Box>
@@ -294,6 +297,7 @@ const Navbar: FunctionComponent = () => {
 							</Box>
 						)}
 					</List>
+					<TranslateButtons />
 				</Box>
 			</Drawer>
 		</Box>

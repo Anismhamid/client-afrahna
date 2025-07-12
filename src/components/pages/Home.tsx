@@ -60,10 +60,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 					py: 4,
 				}}
 			>
-				<Button onClick={() => i18n.changeLanguage("en")}>English</Button>
-				<Button onClick={() => i18n.changeLanguage("ar")}>العربية</Button>
-				<Button onClick={() => i18n.changeLanguage("he")}>עברית</Button>
-
+			
 				<Box>
 					{mainMenu.length > 0 && (
 						<JsonLd data={generateCategoriesItemListJsonLd(mainMenu)} />

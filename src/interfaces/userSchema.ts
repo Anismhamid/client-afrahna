@@ -53,7 +53,6 @@ export interface UserSchema {
 export interface BusinessUserSchema extends Omit<UserSchema, "name"> {
 	businessName: string;
 	category: string;
-	subscribtionData: SubscriptionData;
 }
 
 export interface UserMessage {
@@ -61,7 +60,6 @@ export interface UserMessage {
 	email: string;
 	subject: string;
 	message: string;
-	createdAt?: Date; // Optional as it may be added by the server
 }
 
 export interface VendorDataResponse {

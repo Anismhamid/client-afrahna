@@ -1,6 +1,6 @@
 import {useFormik} from "formik";
 import {FunctionComponent, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {BusinessUserSchema} from "../../interfaces/userSchema";
 import * as Yup from "yup";
 import {
@@ -21,11 +21,13 @@ import {successToast} from "../../atoms/notifications/Toasts";
 import zxcvbn from "zxcvbn";
 import LinearProgress from "@mui/material/LinearProgress";
 import {getStrengthColor, getPasswordStrengthLabel} from "../../helpers/passwordChecker";
+import {useTranslation} from "react-i18next";
 
 const BusinessRegister: FunctionComponent = () => {
 	const navigate = useNavigate();
 	const [passwordScore, setPasswordScore] = useState(0);
 	const [passwordFeedback, setPasswordFeedback] = useState<string[]>([]);
+	const {t} = useTranslation();
 
 	const formik = useFormik<BusinessUserSchema>({
 		initialValues: {
@@ -40,31 +42,31 @@ const BusinessRegister: FunctionComponent = () => {
 			category: "",
 		},
 		validationSchema: Yup.object({
-			businessName: Yup.string().required("الرجاء إدخال الاسم"),
-			phone: Yup.string().required("الرجاء إدخال رقم الهاتف"),
+			businessName: Yup.string().required(t("registerPage.firstNameValidation")),
+			phone: Yup.string().required(t("registerPage.phoneValidation")),
 			email: Yup.string()
-				.email("البريد الإلكتروني غير صالح")
-				.required("الرجاء إدخال البريد الإلكتروني"),
+				.email(t("registerPage.validEmailValidation"))
+				.required(t("registerPage.emailValidation")),
 			password: Yup.string()
-				.min(8, "كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل")
+				.min(8, t("registerPage.validPasswordValidation"))
 				.max(30)
-				.required("الرجاء إدخال كلمة المرور")
+				.required(t("registerPage.passwordValidation"))
 				.matches(
 					/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])/,
-					"كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورقم ورمز خاص",
+					t("registerPage.matchPasswordValidation"),
 				),
 			address: Yup.object({
-				city: Yup.string().required("الرجاء إدخال المدينة"),
-				street: Yup.string().required("الرجاء إدخال الشارع"),
+				city: Yup.string().required(t("registerPage.cityValidation")),
+				street: Yup.string().required(t("registerPage.streetValidation")),
 			}),
-			category: Yup.string().required("الرجاء ادخال الفئة"),
+			category: Yup.string().required(t("registerPage.categoryValidation")),
 		}),
 
 		onSubmit: (values) => {
 			newBusinessRegisterUser(values).then((userData) => {
 				localStorage.setItem("token", userData);
 				navigate("/");
-				successToast("مرحبا بك في منصه افراحنا");
+				successToast(t("login.wellcomeMessage"));
 			});
 		},
 	});
@@ -90,6 +92,37 @@ const BusinessRegister: FunctionComponent = () => {
 					maxWidth: "600px",
 				}}
 			>
+				<Box>
+					<Button
+						variant='contained'
+						sx={{fontSize: "18"}}
+						onClick={() => navigate(-1)}
+					>
+						{t("registerPage.back")}
+					</Button>
+				</Box>
+				<Box display={"flex"} alignContent={"center"} alignItems={"center"}>
+					<Typography
+						variant='h5'
+						sx={{
+							color: "#0F2D44",
+							fontWeight: "bold",
+							pr: 1,
+						}}
+					>
+						{t("registerPage.registerType.title")} |
+					</Typography>
+
+					<Typography
+						variant='body2'
+						sx={{
+							color: "#0F2D44",
+							fontWeight: "bold",
+						}}
+					>
+						{t("registerPage.registerType.newVendor")}
+					</Typography>
+				</Box>
 				<Typography
 					variant='h4'
 					align='center'
@@ -99,7 +132,7 @@ const BusinessRegister: FunctionComponent = () => {
 						paddingTop: "60px",
 					}}
 				>
-					سجل الآن واحصل على خدماتنا المميزة
+					{t("login.title")}
 				</Typography>
 
 				<Typography
@@ -108,13 +141,12 @@ const BusinessRegister: FunctionComponent = () => {
 					gutterBottom
 					sx={{color: "warning.main", fontWeight: "normal", mt: -1}}
 				>
-					انضم الان إلى موقعنا واستمتع بخدمات مخصصة لحفلات الزفاف والمناسبات
-					الخاصة
+					{t("login.subtitle")}
 				</Typography>
 				<div className='row row-cols-md-2 py-2'>
 					<div className=' mb-3'>
 						<TextField
-							label='الاسم المتجر / الشركة'
+							label={t("registerPage.businessName")}
 							name='businessName'
 							value={formik.values.businessName}
 							onChange={formik.handleChange}
@@ -132,7 +164,7 @@ const BusinessRegister: FunctionComponent = () => {
 					</div>
 					<div className=' mb-3'>
 						<TextField
-							label='البريد الإلكتروني'
+							label={t("registerPage.email")}
 							name='email'
 							type='email'
 							value={formik.values.email}
@@ -146,7 +178,7 @@ const BusinessRegister: FunctionComponent = () => {
 					</div>
 					<div>
 						<TextField
-							label='كلمة المرور'
+							label={t("registerPage.password")}
 							name='password'
 							type='password'
 							value={formik.values.password}
@@ -210,7 +242,7 @@ const BusinessRegister: FunctionComponent = () => {
 					</div>
 					<div className=' mb-3'>
 						<TextField
-							label='رقم الهاتف'
+							label={t("registerPage.phoneNum")}
 							name='phone'
 							value={formik.values.phone}
 							onChange={formik.handleChange}
@@ -223,7 +255,7 @@ const BusinessRegister: FunctionComponent = () => {
 					</div>
 					<div>
 						<TextField
-							label='المدينة'
+							label={t("registerPage.city")}
 							name='address.city'
 							value={formik.values.address.city}
 							onChange={formik.handleChange}
@@ -242,7 +274,7 @@ const BusinessRegister: FunctionComponent = () => {
 					</div>
 					<div className=' mb-3'>
 						<TextField
-							label='الشارع'
+							label={t("registerPage.street")}
 							name='address.street'
 							value={formik.values.address.street}
 							onChange={formik.handleChange}
@@ -269,9 +301,9 @@ const BusinessRegister: FunctionComponent = () => {
 								formik.touched.category && Boolean(formik.errors.category)
 							}
 						>
-							<InputLabel>الفئة</InputLabel>
+							<InputLabel>{t("registerPage.category")}</InputLabel>
 							<Select
-								label='الفئة'
+								label={t("registerPage.category")}
 								name='category'
 								value={formik.values.category}
 								onChange={formik.handleChange}
@@ -281,7 +313,7 @@ const BusinessRegister: FunctionComponent = () => {
 								{mainMenu.map((category, index) => (
 									<MenuItem key={index} value={category.label}>
 										<ListItemIcon>{category.icon}</ListItemIcon>
-										<ListItemText primary={category.label} />
+										<ListItemText primary={t(category.label)} />
 									</MenuItem>
 								))}
 							</Select>
@@ -293,9 +325,48 @@ const BusinessRegister: FunctionComponent = () => {
 						</FormControl>
 					</div>
 				</div>
-				<Button type='submit' variant='contained' fullWidth>
-					تسجيل
+				<Button
+					loading={formik.isSubmitting}
+					sx={{backgroundColor: "success.main"}}
+					type='submit'
+					variant='contained'
+				>
+					{t("registerPage.create")}
 				</Button>
+				<Button
+					sx={{backgroundColor: "#0F2D44"}}
+					type='button'
+					variant='contained'
+					onClick={() => navigate("/login")}
+				>
+					{t("login.login")}
+				</Button>
+				<Button
+					sx={{backgroundColor: "#0F2D44"}}
+					onClick={() => navigate("/register")}
+					type='button'
+					variant='contained'
+				>
+					{t("registerPage.newUser")}
+				</Button>
+				<Button
+					sx={{backgroundColor: "#0F2D44"}}
+					onClick={() => navigate("/business-register")}
+					variant='contained'
+				>
+					{t("registerPage.newVendor")}
+				</Button>
+			</Box>
+			<Box display='flex' justifyContent='center' gap={2}>
+				<Typography sx={{color: "warning.main"}} variant='body2'>
+					<Link to='/privacy-policy'>{t("privacyPolicy")}</Link>
+				</Typography>
+				<Typography sx={{color: "warning.main"}} variant='body2'>
+					|
+				</Typography>
+				<Typography sx={{color: "warning.main"}} variant='body2'>
+					<Link to='/terms-of-use'>{t("termsOfUse")}</Link>
+				</Typography>
 			</Box>
 		</main>
 	);

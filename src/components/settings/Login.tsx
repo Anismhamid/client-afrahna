@@ -7,30 +7,30 @@ import {Button, Box, Typography} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import {userLogin} from "../../services/usersServices";
 import {errorToast, successToast} from "../../atoms/notifications/Toasts";
+import {useTranslation} from "react-i18next";
 
 interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
 	const navigate = useNavigate();
-
+	const {t} = useTranslation();
 	const formik = useFormik<LoginSchema>({
 		initialValues: {
 			email: "",
 			password: "",
 		},
 		validationSchema: Yup.object({
-			email: Yup.string().required("الرجاء إدخال البريد الإلكتروني"),
-			password: Yup.string().required("الرجاء إدخال كلمة المرور"),
+			email: Yup.string().required(t("registerPage.emailValidation")),
+			password: Yup.string().required(t("registerPage.passwordValidation")),
 		}),
 		onSubmit: async (values, {setSubmitting}) => {
 			try {
 				const token = await userLogin(values);
 				localStorage.setItem("token", token);
-				successToast("مرحبا بك في منصة أفراحنا");
+				successToast(t("login.wellcomeMessage"));
 				navigate("/");
 			} catch (error: any) {
-				const message =
-					error?.response?.data?.message || "حدث خطأ اثناء تسجيل الدخول";
+				const message = error?.response?.data?.message || t("login.error");
 				errorToast(message);
 			} finally {
 				setSubmitting(false);
@@ -72,7 +72,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 						color: "primary.main",
 					}}
 				>
-					سجل الآن واحصل على خدماتنا المميزة
+					{t("login.title")}
 				</Typography>
 				<Typography
 					variant='h6'
@@ -80,11 +80,10 @@ const Login: FunctionComponent<LoginProps> = () => {
 					gutterBottom
 					sx={{color: "warning.main", fontWeight: "normal", mt: -1}}
 				>
-					انضم الان إلى موقعنا واستمتع بخدمات المخصصة لحفلات الزفاف والمناسبات
-					الخاصة
+					{t("login.subtitle")}
 				</Typography>
 				<TextField
-					label='البريد الإلكتروني'
+					label={t("registerPage.email")}
 					name='email'
 					type='email'
 					value={formik.values.email}
@@ -95,7 +94,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 					variant='filled'
 				/>
 				<TextField
-					label='كلمة المرور'
+					label={t("registerPage.password")}
 					name='password'
 					type='password'
 					value={formik.values.password}
@@ -110,31 +109,31 @@ const Login: FunctionComponent<LoginProps> = () => {
 					type='submit'
 					variant='contained'
 				>
-					تسجيل الدخول
+					{t("login.login")}
 				</Button>
 				<Button
 					sx={{backgroundColor: "primary.main"}}
 					onClick={() => navigate("/register")}
 					variant='contained'
 				>
-					مستخدم جديد
+					{t("registerPage.newUser")}
 				</Button>
 				<Button
 					sx={{backgroundColor: "primary.main"}}
 					onClick={() => navigate("/business-register")}
 					variant='contained'
 				>
-					بائع جديد
+					{t("registerPage.newVendor")}
 				</Button>
 				<Box display='flex' justifyContent='center' gap={2}>
 					<Typography sx={{color: "warning.main"}} variant='body2'>
-						<Link to='/privacy-policy'>سياسة الخصوصية</Link>
+						<Link to='/privacy-policy'>{t("privacyPolicy")}</Link>
 					</Typography>
 					<Typography sx={{color: "warning.main"}} variant='body2'>
 						|
 					</Typography>
 					<Typography sx={{color: "warning.main"}} variant='body2'>
-						<Link to='/terms-of-use'>شروط الاستخدام</Link>
+						<Link to='/terms-of-use'>{t("termsOfUse")}</Link>
 					</Typography>
 				</Box>
 			</Box>
