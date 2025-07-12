@@ -79,7 +79,120 @@
 		"back": "Back"
 	},
 	"privacyPolicy": "Privacy Policy",
+	 "privacy": {
+    "title": "Afra7na Platform Privacy Policy",
+    "intro": "At Afra7na, we consider your privacy very important. This policy defines how we collect, use, share, and protect your personal information. By using our platform, you agree to the collection and use of information in accordance with this policy.",
+    "sections": [
+      {
+        "title": "Information We Collect",
+        "items": [
+          "Account information (name, email, phone number, optional profile picture)",
+          "Usage data (types of services used, browsing duration, preferences)",
+          "Payment information (via secure gateways like PayFort or Apple Pay; we do not store card data)",
+          "Technical data (IP address, browser type, language settings)"
+        ]
+      },
+      {
+        "title": "How We Use Data",
+        "items": [
+          "Improve and personalize user experience",
+          "Provide better technical support and troubleshoot issues",
+          "Send important updates or special offers (with your consent)",
+          "Analyze platform performance and make improvements",
+          "Comply with legal obligations"
+        ]
+      },
+      {
+        "title": "Information Protection",
+        "items": [
+          "Encrypt data during transmission using TLS/SSL protocols",
+          "Secure storage according to PCI DSS standards for payment data",
+          "Restricted access for authorized personnel only",
+          "Regular security audits of the system"
+        ]
+      },
+      {
+        "title": "Your Rights",
+        "items": [
+          "Request a copy of your personal data",
+          "Request correction of inaccurate information",
+          "Request deletion of your personal data (subject to legal restrictions)",
+          "Unsubscribe from promotional messages",
+          "Withdraw consent for data processing"
+        ]
+      },
+      {
+        "title": "Data Sharing with Third Parties",
+        "items": [
+          "Only approved payment service providers",
+          "Service partners necessary for platform operation",
+          "Government entities when legally required",
+          "We do not sell your data to external marketing parties"
+        ]
+      }
+    ],
+    "contact": {
+      "title": "Contact Us",
+      "description": "For any inquiries about our privacy policy or data practices, please contact us via:",
+      "email": "Email: privacy@afra7na.com",
+      "phone": "Phone: 0500000000 (from 8 AM to 8 PM)",
+      "address": "Address: Umm al-Fahm, Israel"
+    },
+    "lastUpdate": "This policy was last updated on 27.5.2025. We reserve the right to amend this policy and will post any changes on this page with an updated review date."
+  },
 	"termsOfUse": "Terms of Use",
+
+	"terms": {
+		"title": "Afrahna Platform Terms of Use",
+		"intro": "These terms govern your use of the Afrahna platform and define users' rights and obligations. Please read them carefully before using the platform.",
+		"sections": [
+			{
+				"title": "Acceptance of Terms",
+				"items": [
+					"By using Afrahna, you agree to be bound by these terms.",
+					"If you do not agree to any part, you must stop using the platform."
+				]
+			},
+			{
+				"title": "Platform Usage",
+				"items": [
+					"Use the platform only for legal and legitimate personal or professional purposes.",
+					"Do not post or share offensive, misleading, illegal, or rights-violating content.",
+					"Fraudulent or harmful activities are prohibited."
+				]
+			},
+			{
+				"title": "Account Creation",
+				"items": [
+					"Provide accurate and complete information when creating an account.",
+					"You are responsible for maintaining the confidentiality of your login credentials.",
+					"Report any unauthorized use of your account immediately."
+				]
+			},
+			{
+				"title": "Intellectual Property",
+				"items": [
+					"All intellectual property rights belong to Afrahna or its licensors.",
+					"Do not copy, republish, or reuse any part of the platform without written permission."
+				]
+			},
+			{
+				"title": "Modifications to Terms",
+				"items": [
+					"We may update these terms at any time at our discretion.",
+					"Updates will be posted on this page with the modification date.",
+					"Continued use of the platform after changes means acceptance of the updated terms."
+				]
+			}
+		],
+		"contactUsTitle": "Contact Us",
+		"contactUsDescription": "For inquiries or feedback regarding the Terms of Use, please contact us via:",
+		"contactEmail": "Email: {{email}}",
+		"contactPhone": "Phone: {{phone}} (from 8 AM to 8 PM)",
+		"contactAddress": "Address: {{address}}",
+		"lastUpdate": "The Terms of Use were last updated on {{date}}. We reserve the right to modify these terms at any time and will post updates on this page."
+	},
+
 	"about": {},
 	"payment": {},
 	"recommendedVendors": {

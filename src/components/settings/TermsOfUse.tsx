@@ -16,53 +16,17 @@ import {
 	AccountCircle,
 	Email,
 } from "@mui/icons-material";
+import {useTranslation} from "react-i18next";
+
+const icons = [<Gavel />, <Rule />, <AccountCircle />, <Description />, <AccessTime />];
 
 const TermsOfUse: FunctionComponent = () => {
-	const termsSections = [
-		{
-			title: "الموافقة على الشروط",
-			icon: <Gavel />,
-			items: [
-				"باستخدامك لمنصة أفراحنا، فإنك توافق على الالتزام بهذه الشروط.",
-				"إذا لم توافق على أي جزء من الشروط، يجب عليك التوقف عن استخدام المنصة.",
-			],
-		},
-		{
-			title: "استخدام المنصة",
-			icon: <Rule />,
-			items: [
-				"يجب استخدام المنصة فقط للأغراض القانونية والشخصية أو المهنية المشروعة.",
-				"يُحظر نشر أو مشاركة أي محتوى مسيء، مضلل، غير قانوني أو ينتهك حقوق الآخرين.",
-				"يُمنع استخدام المنصة في أي أنشطة احتيالية أو ضارة.",
-			],
-		},
-		{
-			title: "إنشاء الحسابات",
-			icon: <AccountCircle />,
-			items: [
-				"يجب تقديم معلومات دقيقة وكاملة عند إنشاء الحساب.",
-				"أنت مسؤول عن الحفاظ على سرية معلومات الدخول الخاصة بك.",
-				"يجب الإبلاغ فورًا عن أي استخدام غير مصرح به لحسابك.",
-			],
-		},
-		{
-			title: "حقوق الملكية الفكرية",
-			icon: <Description />,
-			items: [
-				"جميع الحقوق والملكية الفكرية في المنصة ومحتواها محفوظة لأفراحنا أو للمرخصين.",
-				"يُمنع نسخ أو إعادة نشر أو استخدام أي جزء من المنصة دون إذن كتابي.",
-			],
-		},
-		{
-			title: "تعديل الشروط",
-			icon: <AccessTime />,
-			items: [
-				"يحق لنا تعديل هذه الشروط في أي وقت وفقًا لتقديرنا.",
-				"سندرج أي تحديث على هذه الصفحة مع تحديد تاريخ التعديل.",
-				"يعتبر استمرارك في استخدام المنصة بعد التعديل موافقة على الشروط المحدثة.",
-			],
-		},
-	];
+	const {t} = useTranslation();
+
+	const termsSections = t("terms.sections", {returnObjects: true}) as {
+		title: string;
+		items: string[];
+	}[];
 
 	return (
 		<Container maxWidth='md' sx={{py: 5}}>
@@ -82,14 +46,13 @@ const TermsOfUse: FunctionComponent = () => {
 					sx={{fontWeight: "bold", color: "primary.main"}}
 				>
 					<Gavel sx={{verticalAlign: "middle", mr: 1}} />
-					شروط الاستخدام لمنصة أفراحنا
+					{t("terms.title")}
 				</Typography>
 
 				<Divider sx={{my: 3}} />
 
 				<Typography variant='body1' sx={{mb: 4, lineHeight: 1.8}}>
-					تهدف هذه الشروط إلى تنظيم استخدامك لمنصة أفراحنا وتحدد الحقوق
-					والواجبات الخاصة بالمستخدمين. يرجى قراءتها بعناية قبل استخدامك للمنصة.
+					{t("terms.intro")}
 				</Typography>
 
 				<List>
@@ -97,8 +60,9 @@ const TermsOfUse: FunctionComponent = () => {
 						<Box key={index} sx={{mb: 4}}>
 							<ListItem disableGutters>
 								<ListItemIcon sx={{minWidth: 40, color: "primary.main"}}>
-									{section.icon}
+									{icons[index]}
 								</ListItemIcon>
+
 								<Typography variant='h6' sx={{fontWeight: "bold"}}>
 									{section.title}
 								</Typography>
@@ -130,30 +94,21 @@ const TermsOfUse: FunctionComponent = () => {
 
 				<Typography variant='h6' gutterBottom sx={{mt: 3, fontWeight: "bold"}}>
 					<Email sx={{verticalAlign: "middle", mr: 1}} />
-					التواصل معنا
+					{t("terms.contactUsTitle")}{" "}
 				</Typography>
-				<Typography variant='body1'>
-					للاستفسارات أو الملاحظات بخصوص شروط الاستخدام، يرجى التواصل معنا عبر:
-				</Typography>
+				<Typography variant='body1'>{t("terms.contactUsDescription")}</Typography>
 				<Typography variant='body1' sx={{pl: 4}}>
-					• البريد الإلكتروني: <strong>terms@afra7na.com</strong>
-					<br />• الهاتف: <strong>0500000000</strong> (من 8 صباحًا إلى 8 مساءً)
-					<br />• العنوان: ام الفحم اسرائيل
+					• {t("terms.contactEmail", {email: "terms@afra7na.com"})} <br />•{" "}
+					{t("terms.contactPhone", {phone: "0500000000"})} <br />•{" "}
+					{t("terms.contactAddress", {address: "أم الفحم، إسرائيل"})}
 				</Typography>
 
 				<Typography
 					variant='body2'
 					color='text.secondary'
-					sx={{
-						mt: 4,
-						fontStyle: "italic",
-						borderTop: "1px dashed",
-						borderColor: "divider",
-						pt: 2,
-					}}
+					sx={{mt: 4, fontStyle: "italic"}}
 				>
-					تم آخر تحديث لشروط الاستخدام في 27.5.2025. نحتفظ بالحق في تعديل هذه
-					الشروط في أي وقت وسننشر التحديثات على هذه الصفحة.
+					{t("terms.lastUpdate", {date: "27.5.2025"})}
 				</Typography>
 			</Box>
 		</Container>
