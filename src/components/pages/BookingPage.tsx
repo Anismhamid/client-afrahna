@@ -33,7 +33,7 @@ import {Paper} from "@mui/material";
 interface SingleServicePageProps {}
 
 const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
-	const [galleryOpen, setGalleryOpen] = useState(false);
+	const [galleryOpen, setGalleryOpen] = useState(true);
 	const [galleryType, setGalleryType] = useState<
 		"main" | "photos" | "videos" | "contact"
 	>("main");
