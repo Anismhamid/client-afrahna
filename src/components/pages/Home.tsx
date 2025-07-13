@@ -24,7 +24,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 	const {user, setUser} = useUser();
 	const [videos, setVideos] = useState<string[]>([]);
 	const api = `${import.meta.env.VITE_API_URI}/videos`;
-	const {t, i18n} = useTranslation();
+	const {t} = useTranslation();
 
 	useEffect(() => {
 		const fetchVideos = async () => {
@@ -60,7 +60,6 @@ const Home: FunctionComponent<HomeProps> = () => {
 					py: 4,
 				}}
 			>
-			
 				<Box>
 					{mainMenu.length > 0 && (
 						<JsonLd data={generateCategoriesItemListJsonLd(mainMenu)} />

@@ -9,7 +9,8 @@ import {getCoordinates} from "../../../atoms/map/OpenStreetMap";
 import ServiceFilters from "./ServiceFilters";
 import ServiceCard from "./ServiceCard";
 import useMetaDocument from "../../../hooks/useMetaDocunent";
-import {Box, Skeleton, Typography} from "@mui/material";
+import {Typography} from "@mui/material";
+import {useTranslation} from "react-i18next";
 
 interface GlobalVendorsPageProps {
 	category: string;
@@ -24,12 +25,11 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 	pageTitle,
 	metaDescription,
 	introText,
-	subCategories = [],
 }) => {
+	const {t} = useTranslation();
 	const [services, setServices] = useState<Services[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [searchTerm, setSearchTerm] = useState<string>("");
-	const [activeSubCategory, setActiveSubCategory] = useState<string>("الكل");
 	const [sortBy, setSortBy] = useState<"rating" | "price" | "location" | "none">(
 		"none",
 	);
@@ -69,6 +69,8 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 
 				// Fetch and enhance services
 				const servicesData = await getServiceByCategories(category);
+				console.log("servicesData.length:", servicesData); // 👈 Check if this is > 0
+
 				const enhancedServices = await Promise.all(
 					servicesData.map(
 						async (service: {
@@ -133,7 +135,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 	const filteredServices = useMemo(() => {
 		let result = [...services];
 
-		// التصفية حسب البحث
+		// Filter by search
 		if (searchTerm) {
 			result = result.filter(
 				(service) =>
@@ -147,14 +149,14 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 			);
 		}
 
-		// التصفية حسب التصنيف الفرعي
-		if (activeSubCategory !== "الكل") {
-			result = result.filter((service) =>
-				service.services?.some((s) => s.featureName.includes(activeSubCategory)),
-			);
-		}
+		// // التصفية حسب التصنيف الفرعي
+		// if (activeSubCategory !== "الكل") {
+		// 	result = result.filter((service) =>
+		// 		service.services?.some((s) => s.featureName.includes(activeSubCategory)),
+		// 	);
+		// }
 
-		// التصفية حسب السعر (بناءً على الخدمات الفرعية)
+		// Filter by price (based on sub-services)
 		result = result.filter((service) => {
 			if (!service.services || service.services.length === 0) return false;
 
@@ -164,7 +166,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 			return minServicePrice >= priceRange[0] && maxServicePrice <= priceRange[1];
 		});
 
-		// الترتيب
+		// Sort
 		switch (sortBy) {
 			// case "rating":
 			// 	result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
@@ -202,7 +204,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 		}
 
 		return result;
-	}, [services, searchTerm, activeSubCategory, sortBy, priceRange, userLocation]);
+	}, [services, searchTerm, sortBy, priceRange, userLocation]);
 
 	if (loading) {
 		return (
@@ -219,7 +221,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 				sx={{color: "primary.main", fontSize: "3rem"}}
 				className='display-6 fw-bold text-center mb-3'
 			>
-				{pageTitle}
+				{t(pageTitle)}
 			</Typography>
 			<HorizontalDevider />
 			<div className='text-center mb-5 p-3'>
@@ -237,7 +239,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 					sx={{color: "primary.main", fontSize: "2rem"}}
 					className='lead'
 				>
-					{introText}
+					{t(introText)}
 				</Typography>
 			</div>
 
@@ -248,15 +250,12 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 				setSortBy={setSortBy}
 				priceRange={priceRange}
 				setPriceRange={setPriceRange}
-				subCategories={subCategories}
-				activeSubCategory={activeSubCategory}
-				setActiveSubCategory={setActiveSubCategory}
 			/>
 
 			<div className='container'>
 				{filteredServices.length === 0 ? (
 					<div className='text-center py-5'>
-						<h4>لا توجد خدمات متاحة حسب معايير البحث المحددة</h4>
+						<h4>{t("globalVendorsPage.noServices")}</h4>
 					</div>
 				) : (
 					<div className='row m-auto row-cols-1 row-cols-md-2 row-cols-xl-4 g-5'>

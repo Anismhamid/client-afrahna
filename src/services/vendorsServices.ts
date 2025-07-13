@@ -36,11 +36,12 @@ export const getServiceByVendorId = async (vendorId: string) => {
 	}
 };
 
-
 export const getServiceByCategories = async (category: string) => {
 	try {
-		const allHalls = await axios.get(`${api}/services/by-category/${category}`);
-		return allHalls.data;
+		console.log(category);
+
+		const services = await axios.get(`${api}/services/by-category/${category}`);
+		return services.data;
 	} catch (error) {
 		console.log(error);
 	}
@@ -68,20 +69,14 @@ export const addVendorPicture = async (
 	image: {url: string; alt: string},
 ) => {
 	try {
-		const res = await axios.post(
-			`${api}/services/picture/${vendorId}`,
-			image,
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: localStorage.getItem("token"),
-				},
+		const res = await axios.post(`${api}/services/picture/${vendorId}`, image, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: localStorage.getItem("token"),
 			},
-		);
+		});
 		return res.data;
 	} catch (error) {
 		console.log(error);
 	}
 };
-
-

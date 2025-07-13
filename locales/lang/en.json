@@ -33,6 +33,164 @@
 		"luxuryCars": "Luxury Car Rentals"
 	},
 
+	"services": {
+		"hals": {
+			"category": "Halls",
+			"pageTitle": "Best Wedding and Event Halls - Afrahna",
+			"metaDescription": "Book the finest luxury wedding halls in various sizes and elegant designs. We provide halls with complete facilities and excellent services for all occasions.",
+			"introText": "Choose from the most beautiful wedding halls suitable for your needs. Spacious areas, luxurious decorations, and full equipment to ensure your event’s success.",
+			"subCategories": ["Indoor Halls", "Outdoor Halls", "Garden Halls"]
+		},
+		"hallsDecoration": {
+			"category": "Halls Decoration",
+			"pageTitle": "Top Wedding Hall Decoration Services - Afrahna",
+			"metaDescription": "Wedding hall decoration services with the latest designs and creative ideas. Full or partial decoration as you wish at the best prices.",
+			"introText": "Turn your wedding hall into a masterpiece with our comprehensive decoration services. Innovative designs, coordinated colors, and luxurious arrangements suitable for all tastes.",
+			"subCategories": [
+				"Full Decoration",
+				"Partial Decoration",
+				"Flower Decorations"
+			]
+		},
+		"carsDecoration": {
+			"category": "Car Decoration",
+			"pageTitle": "Wedding Car Decoration - Afrahna",
+			"metaDescription": "Wedding car decoration services with the finest designs and natural flowers. Luxurious decoration for your wedding convoy worthy of your special occasion.",
+			"introText": "Make your wedding convoy unforgettable with our luxurious car decoration services. Innovative designs and coordinated colors to suit all tastes.",
+			"subCategories": [
+				"Classic Decoration",
+				"Modern Decoration",
+				"Flower Decoration"
+			]
+		},
+		"coffeeKiosks": {
+			"category": "Coffee Kiosks",
+			"pageTitle": "Best Coffee Kiosks for Events - Afrahna",
+			"metaDescription": "Professional mobile coffee kiosk rentals for events and weddings. Serving hot and cold drinks with high quality.",
+			"introText": "Add a special touch to your event with our mobile coffee kiosks. Elegant designs and professional service to provide the best drinks to your guests.",
+			"subCategories": ["Regular Kiosk", "Luxury Kiosk", "Full Service"]
+		},
+		"chairs": {
+			"category": "Chairs",
+			"pageTitle": "Chair Rental Services for Weddings and Events - Afrahna",
+			"metaDescription": "Elegant chair and table rentals for weddings and events. Various options of luxurious and comfortable chairs at competitive prices.",
+			"introText": "We provide a wide range of chairs and tables suitable for all types of events. Luxurious, comfortable, and high-quality chairs matching your taste.",
+			"subCategories": ["Plastic Chairs", "Fabric Chairs", "VIP Chairs"]
+		},
+		"cosmatics": {
+			"category": "Beauty Salons",
+			"pageTitle": "Best Beauty Salons for Brides and Events - Afrahna",
+			"metaDescription": "We offer the best beauty salons specializing in makeup and hair styling for brides and guests. High quality and professional service worthy of your special day.",
+			"introText": "We offer the best beauty salons specializing in makeup and hair styling for brides and guests. High quality and professional service worthy of your special day."
+		},
+		"pastry": {
+			"category": "Pastry",
+			"pageTitle": "Best Wedding and Event Pastries - Afrahna",
+			"metaDescription": "A distinctive selection of wedding pastries with high quality and innovative designs. Eastern and Western pastries to suit all tastes.",
+			"introText": "Choose from our wide range of expert-made pastries. We offer traditional and modern pastries in various shapes and sizes."
+		},
+		"frezzer": {
+			"category": "Freezer Rentals",
+			"pageTitle": "Freezer Rental Services for Events - Afrahna",
+			"metaDescription": "Beverage freezer rentals for events and weddings. High-quality freezers in different capacities with delivery and installation services.",
+			"introText": "We provide high-quality beverage freezers for large and small events. Daily or weekly rental with delivery and installation services."
+		},
+		"photography": {
+			"category": "Photography",
+			"pageTitle": "Wedding and Event Photography Services - Afrahna",
+			"metaDescription": "Professional wedding photographers to capture the best moments of your event. High-quality photography and video services.",
+			"introText": "Preserve your event memories beautifully with our experienced photographers. We offer comprehensive photography services tailored to all needs and budgets."
+		},
+		"stereo": {
+			"category": "Stereo Systems",
+			"pageTitle": "Professional Audio System Rentals for Events - Afrahna",
+			"metaDescription": "Rental of professional audio and stereo systems for events and weddings. Complete stereo systems with microphones and expert technician service.",
+			"introText": "Make your event livelier with our professional audio systems. We provide full audio setups with high quality for excellent sound experience."
+		},
+		"coocks": {
+			"category": "Cooks",
+			"pageTitle": "Top Cooks for Events and Weddings - Afrahna",
+			"metaDescription": "Professional cooks services to prepare special dishes at your event. Cooks specialized in Arabic and international cuisines.",
+			"introText": "Enjoy special dishes prepared by professional cooks at your event. We offer a wide range of cooks specializing in various types of cuisine."
+		},
+		"restaurants": {
+			"category": "Wedding Restaurants",
+			"pageTitle": "Best Restaurants for Wedding Receptions - Afrahna",
+			"metaDescription": "List of the best restaurants suitable for wedding receptions. Luxurious dining halls and diverse menus that suit all tastes.",
+			"introText": "Choose from the best restaurants suitable for wedding receptions. Diverse menus and excellent service worthy of your special occasion."
+		},
+		"witress": {
+			"category": "Waiters",
+			"pageTitle": "Professional Waiter Services for Events - Afrahna",
+			"metaDescription": "Providing professional waiters to serve guests at events and weddings. A trained and complete team to ensure excellent service.",
+			"introText": "We provide a professional team of waiters to serve your guests with the highest professionalism. High training and wide experience in event service."
+		},
+		"fireWorks": {
+			"category": "Fireworks",
+			"pageTitle": "Fireworks Services for Events - Afrahna",
+			"metaDescription": "Organizing fireworks shows for events and weddings. Customized and safe shows supervised by licensed and professional teams.",
+			"introText": "Add a magical touch to your event with our special fireworks shows. We offer safe and innovative shows supervised by professional and licensed teams."
+		},
+		"invitationCards": {
+			"category": "Invitation Cards",
+			"pageTitle": "Unique Invitation Card Designs - Afrahna",
+			"metaDescription": "Custom invitation card designs for weddings and events. Innovative designs and luxurious materials matching your taste.",
+			"introText": "Design unique invitation cards worthy of your event. We offer a wide variety of designs and luxurious materials reflecting your personality."
+		},
+		"nuts": {
+			"category": "Nuts",
+			"pageTitle": "Best Nut Selections for Events - Afrahna",
+			"metaDescription": "Providing luxurious and fresh nuts for events and weddings. Premium quality nuts with elegant packaging.",
+			"introText": "Choose from our wide selection of luxurious nuts for events. High quality and elegant packaging suitable for your guests."
+		},
+		"religiousband": {
+			"category": "Religious Bands",
+			"pageTitle": "Religious Singing Bands for Events - Afrahna",
+			"metaDescription": "Providing professional religious singing bands for events and weddings. Beautiful voices and songs suitable for religious occasions.",
+			"introText": "Add a special spiritual atmosphere to your event with our professional religious singing bands. We offer a selection of distinguished bands with beautiful voices."
+		},
+		"kidsEntertainment": {
+			"category": "Kids Entertainment",
+			"pageTitle": "Kids Entertainment Services for Events - Afrahna",
+			"metaDescription": "Comprehensive entertainment programs for kids at events and weddings. Fun and safe activities supervised by specialists in child care.",
+			"introText": "Provide your young guests with fun and safe time with our special entertainment programs. Interactive activities and fun competitions supervised by specialists."
+		},
+		"fruitDecoration": {
+			"category": "Fruit Decoration",
+			"pageTitle": "Fruit Decoration and Arrangement Services for Events - Afrahna",
+			"metaDescription": "Luxurious fruit decoration and arrangement for events and weddings. Innovative designs with fresh and high-quality fruits.",
+			"introText": "Add a touch of elegance and distinct taste with our luxurious fruit arrangements. We offer innovative designs made from fresh and high-quality fruits."
+		},
+		"weddinggifts": {
+			"category": "Wedding Gifts Arrangement",
+			"pageTitle": "Wedding Gift Arrangement Services - Afrahna",
+			"metaDescription": "Special gift arrangements for newlyweds on their wedding. Creative ideas and professional execution for gifts worthy of your happy occasion.",
+			"introText": "Give special gifts to newlyweds expressing your feelings on their wedding day. We offer creative ideas and professional execution for customized gifts."
+		},
+		"luxuryCars": {
+			"category": "Luxury Car Rentals",
+			"pageTitle": "Luxury Car Rentals for Weddings - Afrahna",
+			"metaDescription": "Rental of modern luxury cars for wedding convoys. A unique selection of the latest luxury models with professional drivers.",
+			"introText": "Make your wedding convoy more special with our luxury cars. We offer a unique selection of the latest models with professional drivers."
+		},
+		"dapkaPlatform": {
+			"category": "Dabka Platforms",
+			"pageTitle": "Best Dabka Platforms for Events and Weddings - Afrahna",
+			"metaDescription": "We provide the best platforms for traditional Dabka dance, in various sizes and designs suitable for weddings and special events. High-quality materials and safe installation.",
+			"introText": "Add excitement and joy to your party with our sturdy and custom-made Dabka dance platforms. We provide platforms in various sizes and designs suitable for all types of events."
+		}
+	},
+
+	"globalVendorsPage": {
+		"noServices": "There are no services available according to the specified search criteria",
+		"searchService": "Search for services...",
+		"allServices": "All",
+		"PriceRange": "Price range",
+		"closest": "closest",
+		"cheapest": "cheapest",
+		"topRated": "Top Rated"
+	},
+
 	"navbar": {
 		"home": "Home",
 		"about": "About Us",
@@ -44,8 +202,7 @@
 		"bookingsManagement": "Bookings management",
 		"servicesManagement": "Services management",
 		"userManagement": "Users management",
-		"vendorsManagement": "Vendors management",
-		"": ""
+		"vendorsManagement": "Vendors management"
 	},
 
 	"login": {

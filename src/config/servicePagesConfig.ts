@@ -13,200 +13,135 @@ interface ServicePageConfig {
 export const servicePagesConfig: Record<string, ServicePageConfig> = {
 	hals: {
 		category: "قاعات",
-		pageTitle: "أفضل قاعات الأفراح والمناسبات - افراحنا",
-		metaDescription:
-			"احجز أفضل قاعات الأفراح الفاخرة بمساحات متنوعة وتصاميم راقية. نوفر قاعات بتجهيزات كاملة وخدمات مميزة لجميع المناسبات.",
-		introText:
-			"اختار من بين أجمل قاعات الأفراح المناسبة لاحتياجاتك. مساحات واسعة، ديكورات فاخرة، وتجهيزات متكاملة لضمان نجاح مناسبتك.",
-		subCategories: ["قاعات داخلية", "قاعات خارجية", "قاعات حدائق"],
+		pageTitle: "services.hals.pageTitle",
+		metaDescription: "services.hals.metaDescription",
+		introText: "services.hals.introText",
 	},
 	halsDecoration: {
 		category: "تزيين قاعات",
-		pageTitle: "أفضل خدمات تزيين قاعات الأفراح - افراحنا",
-		metaDescription:
-			"خدمات تزيين قاعات الأفراح بأحدث الديكورات والأفكار الإبداعية. تزيين كامل أو جزئي حسب رغبتك وبأفضل الأسعار.",
-		introText:
-			"حول قاعة فرحك إلى تحفة فنية مع خدمات التزيين المتكاملة لدينا. ديكورات مبتكرة، ألوان متناسقة، وتركيبات فاخرة تتناسب مع كل الأذواق.",
-		subCategories: ["تزيين كامل", "تزيين جزئي", "ديكورات زهور"],
+		pageTitle: "services.halsDecoration.pageTitle",
+		metaDescription: "services.halsDecoration.metaDescription",
+		introText: "services.halsDecoration.introText",
 	},
 	carsDecoration: {
 		category: "تزيين سيارات",
-		pageTitle: "تزيين سيارات الأعراس - افراحنا",
-		metaDescription:
-			"خدمات تزيين سيارات الأعراس بأجمل التصاميم والزهور الطبيعية. تزيين فاخر لموكب الزفاف يليق بمناسبتك الخاصة.",
-		introText:
-			"اجعل موكب زفافك لا يُنسى مع خدمات تزيين السيارات الفاخرة لدينا. تصاميم مبتكرة وألوان متناسقة تناسب جميع الأذواق.",
-		subCategories: ["تزيين كلاسيكي", "تزيين عصري", "تزيين بالزهور"],
+		pageTitle: "services.carsDecoration.pageTitle",
+		metaDescription: "services.carsDecoration.metaDescription",
+		introText: "services.carsDecoration.introText",
 	},
 	coffeeKiosks: {
 		category: "كيوسكات قهوة",
-		pageTitle: "أفضل كيوسكات القهوة للمناسبات - افراحنا",
-		metaDescription:
-			"تأجير كيوسكات قهوة متنقلة باحترافية عالية للمناسبات والأعراس. تقديم مشروبات ساخنة وباردة بجودة عالية.",
-		introText:
-			"أضف لمسة مميزة لمناسبتك مع كيوسكات القهوة المتنقلة. تصميمات أنيقة وخدمة احترافية لتقديم أفضل المشروبات لضيوفك.",
-		subCategories: ["كيوسك عادي", "كيوسك فاخر", "خدمة متكاملة"],
+		pageTitle: "services.coffeeKiosks.pageTitle",
+		metaDescription: "services.coffeeKiosks.metaDescription",
+		introText: "services.coffeeKiosks.introText",
 	},
 	chairs: {
 		category: "كراسي",
-		pageTitle: "خدمات تأجير كراسي للأعراس والمناسبات - افراحنا",
-		metaDescription:
-			"تأجير كراسي وطاولات أنيقة للأعراس والمناسبات. خيارات متنوعة من الكراسي الفاخرة والمريحة بأسعار تنافسية.",
-		introText:
-			"نوفر مجموعة واسعة من الكراسي والطاولات المناسبة لجميع أنواع المناسبات. كراسي فاخرة، مريحة، وبجودة عالية تتناسب مع ذوقك.",
-		subCategories: ["كراسي بلاستيك", "كراسي قماش", "كراسي VIP"],
+		pageTitle: "services.chairs.pageTitle",
+		metaDescription: "services.chairs.metaDescription",
+		introText: "services.chairs.introText",
 	},
 	cosmatics: {
 		category: "صالونات تجميل",
-		pageTitle: "أفضل صالونات التجميل للعروس والمناسبات - افراحنا",
-		metaDescription:
-			"نقدّم لكِ أفضل صالونات التجميل المختصة بالمكياج وتسريحات الشعر للعروس والمعازيم. جودة عالية وخدمة احترافية تليق بيومكِ المميز.",
-		introText:
-			"نقدّم لكِ أفضل صالونات التجميل المختصة بالمكياج وتسريحات الشعر للعروس والمعازيم. جودة عالية وخدمة احترافية تليق بيومكِ المميز.",
+		pageTitle: "services.cosmatics.category",
+		metaDescription: "services.cosmatics.metaDescription",
+		introText: "services.cosmatics.introText",
 	},
 	pastry: {
 		category: "حلويات",
-		pageTitle: "أفضل حلويات الأعراس والمناسبات - افراحنا",
-		metaDescription:
-			"تشكيلة مميزة من حلويات الأعراس بجودة عالية وأشكال مبتكرة. حلويات شرقية وغربية تتناسب مع جميع الأذواق.",
-		introText:
-			"اختار من بين تشكيلتنا الواسعة من الحلويات المصنوعة بأيدٍ خبيرة. نقدم حلويات تقليدية وعصرية بأشكال وأحجام متنوعة.",
-		subCategories: ["حلويات شرقية", "حلويات غربية", "كيكات مخصصة"],
+		pageTitle: "services.pastry.category",
+		metaDescription: "services.pastry.metaDescription",
+		introText: "services.pastry.introText",
 	},
 	frezzer: {
 		category: "تأجير برادات",
-		pageTitle: "خدمات تأجير البرادات للمناسبات - افراحنا",
-		metaDescription:
-			"تأجير برادات مشروبات للمناسبات والأعراس. برادات بجودة عالية وبسعات مختلفة مع خدمة التوصيل والتركيب.",
-		introText:
-			"نوفر برادات مشروبات بمواصفات عالية للمناسبات الكبيرة والصغيرة. تأجير يومي أو أسبوعي مع خدمة التوصيل والتركيب.",
-		subCategories: ["برادات صغيرة", "برادات متوسطة", "برادات كبيرة"],
+		pageTitle: "services.frezzer.category",
+		metaDescription: "services.frezzer.metaDescription",
+		introText: "services.frezzer.introText",
 	},
 	photography: {
 		category: "تصوير",
-		pageTitle: "خدمات تصوير الأعراس والمناسبات - افراحنا",
-		metaDescription:
-			"أفضل مصوري الأعراس المحترفين لالتقاط أجمل اللحظات في مناسبتك. تصوير فوتوغرافي وفيديو بجودة عالية.",
-		introText:
-			"احفظ ذكريات مناسبتك بأجمل صورة مع مصورينا المحترفين. نقدم خدمات تصوير متكاملة تتناسب مع جميع الاحتياجات والميزانيات.",
-		subCategories: ["تصوير فوتوغرافي", "تصوير فيديو", "تصوير جوي"],
+		pageTitle: "services.photography.category",
+		metaDescription: "services.photography.metaDescription",
+		introText: "services.photography.introText",
 	},
 	stereo: {
 		category: "ستيريو",
-		pageTitle: "تأجير أنظمة صوتية للمناسبات - افراحنا",
-		metaDescription:
-			"تأجير أنظمة صوتية واحترافية للمناسبات والأعراس. أنظمة ستيريو متكاملة مع ميكروفونات وخدمة فني متخصص.",
-		introText:
-			"اجعل مناسبتك أكثر حيوية مع أنظمة الصوت الاحترافية لدينا. نوفر أنظمة صوتية متكاملة بجودة عالية لضمان تجربة سمعية ممتازة.",
-		subCategories: ["أنظمة صغيرة", "أنظمة متوسطة", "أنظمة احترافية"],
+		pageTitle: "services.stereo.category",
+		metaDescription: "services.stereo.metaDescription",
+		introText: "services.stereo.introText",
 	},
 	coocks: {
 		category: "طباخين",
-		pageTitle: "أفضل الطهاة للمناسبات والأعراس - افراحنا",
-		metaDescription:
-			"خدمات توفير طهاة محترفين لإعداد أطباق مميزة في مناسبتك. طهاة متخصصون في المأكولات العربية والعالمية.",
-		introText:
-			"استمتع بأطباق مميزة معدّة بأيدي طهاة محترفين في مناسبتك. نقدم تشكيلة واسعة من الطهاة المتخصصين في مختلف أنواع المأكولات.",
-		subCategories: ["مطابخ عربية", "مطابخ عالمية", "مطابخ حلويات"],
+		pageTitle: "services.coocks.category",
+		metaDescription: "services.coocks.metaDescription",
+		introText: "services.coocks.introText",
 	},
 	restaurants: {
-		category: "مطاعم للأعراس",
-		pageTitle: "أفضل المطاعم لاستقبالات الأعراس - افراحنا",
-		metaDescription:
-			"قائمة بأفضل المطاعم المناسبة لاستقبالات الأعراس. قاعات طعام فاخرة وقوائم طعام متنوعة تتناسب مع جميع الأذواق.",
-		introText:
-			"اختار من بين أفضل المطاعم المناسبة لاستقبالات الأعراس. قوائم طعام متنوعة وخدمة مميزة تليق بمناسبتك الخاصة.",
-		subCategories: ["مطاعم فاخرة", "مطاعم عائلية", "قوائم مخصصة"],
+		category: "مطاعم للاعراس",
+		pageTitle: "services.restaurants.category",
+		metaDescription: "services.restaurants.metaDescription",
+		introText: "services.restaurants.introText",
 	},
 	witress: {
 		category: "نادلين",
-		pageTitle: "خدمات توفير نادلين للمناسبات - افراحنا",
-		metaDescription:
-			"توفير نادلين محترفين لخدمة الضيوف في المناسبات والأعراس. فريق متكامل مدرب على أعلى مستوى لضمان خدمة مميزة.",
-		introText:
-			"نوفر فريقًا من النادلين المحترفين لخدمة ضيوفك بأعلى مستويات الاحترافية. تدريب عالي وخبرة واسعة في مجال خدمة المناسبات.",
-		subCategories: ["نادلين عاديين", "نادلين محترفين", "خدمة متكاملة"],
+		pageTitle: "services.witress.category",
+		metaDescription: "services.witress.metaDescription",
+		introText: "services.witress.introText",
 	},
 	fireWorks: {
 		category: "العاب نارية",
-		pageTitle: "خدمات الألعاب النارية للمناسبات - افراحنا",
-		metaDescription:
-			"تنظيم عروض الألعاب النارية للمناسبات والأعراس. عروض مخصصة وآمنة بإشراف فرق محترفة ومرخصة.",
-		introText:
-			"أضف لمسة ساحرة لمناسبتك مع عروض الألعاب النارية المميزة. نقدم عروضًا آمنة ومبتكرة بإشراف فرق محترفة ومرخصة.",
-		subCategories: ["عروض صغيرة", "عروض متوسطة", "عروض كبيرة"],
+		pageTitle: "services.fireWorks.category",
+		metaDescription: "services.fireWorks.metaDescription",
+		introText: "services.fireWorks.introText",
 	},
 	invitationCards: {
 		category: "بطاقات دعوة",
-		pageTitle: "تصميم بطاقات دعوة مميزة - افراحنا",
-		metaDescription:
-			"تصميم بطاقات دعوة مخصصة للأعراس والمناسبات. تصاميم مبتكرة وخامات فاخرة تناسب ذوقك.",
-		introText:
-			"صمم بطاقات دعوة مميزة تليق بمناسبتك. نقدم تشكيلة واسعة من التصاميم والخامات الفاخرة التي تعكس شخصيتك.",
-		subCategories: ["تصاميم كلاسيكية", "تصاميم عصرية", "تصاميم مخصصة"],
+		pageTitle: "services.invitationCards.category",
+		metaDescription: "services.invitationCards.metaDescription",
+		introText: "services.invitationCards.introText",
 	},
 	nuts: {
 		category: "مكسرات",
-		pageTitle: "أفضل تشكيلات المكسرات للمناسبات - افراحنا",
-		metaDescription:
-			"توفير تشكيلات مكسرات فاخرة للمناسبات والأعراس. مكسرات طازجة وعالية الجودة بتغليف مميز.",
-		introText:
-			"اختار من بين تشكيلتنا الواسعة من المكسرات الفاخرة للمناسبات. جودة عالية وتغليف مميز يليق بضيوفك.",
-		subCategories: ["مكسرات محلية", "مكسرات مستوردة", "سلال هدايا"],
+		pageTitle: "services.nuts.category",
+		metaDescription: "services.nuts.metaDescription",
+		introText: "services.nuts.introText",
 	},
 	religiousband: {
 		category: "فرق دينية",
-		pageTitle: "فرق إنشاد ديني للمناسبات - افراحنا",
-		metaDescription:
-			"توفير فرق إنشاد ديني محترفة للمناسبات والأعراس. أصوات جميلة وأناشيد متناسبة مع طبيعة المناسبات الدينية.",
-		introText:
-			"أضف جوًا روحانيًا مميزًا لمناسبتك مع فرق الإنشاد الديني المحترفة. نقدم مجموعة من الفرق المتميزة ذات الأصوات الجميلة.",
-		subCategories: ["فرق إنشاد", "فرق مديح", "فرق دينية متنوعة"],
+		pageTitle: "services.religiousband.category",
+		metaDescription: "services.religiousband.metaDescription",
+		introText: "services.religiousband.introText",
 	},
 	kidsEntertainment: {
-		category: "الهاء الأطفال",
-		pageTitle: "خدمات ترفيهية للأطفال في المناسبات - افراحنا",
-		metaDescription:
-			"برامج ترفيهية متكاملة للأطفال في المناسبات والأعراس. أنشطة ممتعة وآمنة بإشراف متخصصين في التعامل مع الأطفال.",
-		introText:
-			"وفر لضيوفك الصغار وقتًا ممتعًا وآمنًا مع برامج الترفيه المخصصة للأطفال. أنشطة تفاعلية ومسابقات ممتعة بإشراف متخصصين.",
-		subCategories: ["ألعاب حركية", "ورش عمل", "مسابقات ترفيهية"],
+		category: "الهاء الاولاد",
+		pageTitle: "services.kidsEntertainment.category",
+		metaDescription: "services.kidsEntertainment.metaDescription",
+		introText: "services.kidsEntertainment.introText",
 	},
 	fruitDecoration: {
-		category: "تزيين فاكهة",
-		pageTitle: "خدمات تزيين وتنسيق الفواكه للمناسبات - افراحنا",
-		metaDescription:
-			"تزيين وتنسيق فواكه فاخرة للمناسبات والأعراس. تشكيلات مبتكرة من الفواكه الطازجة والعالية الجودة.",
-		introText:
-			"أضف لمسة من الأناقة والذوق المميز مع تشكيلات الفواكه الفاخرة. نقدم تصاميم مبتكرة من الفواكه الطازجة والعالية الجودة.",
-		subCategories: ["سلال فواكه", "أشكال فنية", "تنسيقات مخصصة"],
+		category: "services.fruitDecoration.category",
+		pageTitle: "services.fruitDecoration.category",
+		metaDescription: "services.fruitDecoration.metaDescription",
+		introText: "services.fruitDecoration.introText",
 	},
 	weddinggifts: {
-		category: "تنسيق هدايا للعرسان",
-		pageTitle: "خدمات تنسيق هدايا العرسان - افراحنا",
-		metaDescription:
-			"تنسيق هدايا مميزة للعرسان بمناسبة الزفاف. أفكار إبداعية وتنفيذ احترافي لهدايا تليق بمناسبتكم السعيدة.",
-		introText:
-			"قدم هدايا مميزة للعرسان تعبر عن مشاعركم بمناسبة زفافهم. نقدم أفكارًا إبداعية وتنفيذًا احترافيًا لهدايا تليق بهذه المناسبة.",
-		subCategories: ["هدايا تقليدية", "هدايا مخصصة", "سلال هدايا"],
+		category: "services.weddinggifts.category",
+		pageTitle: "services.weddinggifts.category",
+		metaDescription: "services.weddinggifts.metaDescription",
+		introText: "services.weddinggifts.introText",
 	},
 	luxuryCars: {
-		category: "تأجير سيارات فخمة",
-		pageTitle: "تأجير سيارات فخمة للأعراس - افراحنا",
-		metaDescription:
-			"تأجير سيارات فخمة وعصرية لمواكب الأعراس. تشكيلة مميزة من أحدث الموديلات الفاخرة مع سائقين محترفين.",
-		introText:
-			"اجعل موكب زفافك أكثر تميزًا مع سياراتنا الفاخرة. نقدم تشكيلة مميزة من أحدث الموديلات مع سائقين محترفين.",
-		subCategories: ["سيارات كلاسيكية", "سيارات عصرية", "ليموزين"],
+		category: "services.luxuryCars.category",
+		pageTitle: "services.luxuryCars.category",
+		metaDescription: "services.luxuryCars.metaDescription",
+		introText: "services.luxuryCars.introText",
 	},
 	dapkaPlatform: {
-		category: "منصات دبكة",
-		pageTitle: "أفضل منصات الدبكة للمناسبات والأعراس - افراحنا",
-		metaDescription:
-			"نوفر لك أفضل المنصات لرقصات الدبكة الشعبية، بأحجام وتصاميم متعددة تناسب أجواء الأعراس والمناسبات الخاصة. خامات عالية الجودة وتركيب آمن.",
-		introText:
-			"أضف لمسة من الحماس والفرح لحفلتك مع منصات الدبكة المتينة والمخصصة لرقصات الدبكة الشعبية. نوفر منصات بأحجام وتصاميم متنوعة تناسب جميع أنواع الفعاليات.",
-		subCategories: ["سيارات كلاسيكية", "سيارات عصرية", "ليموزين"],
+		category: "services.dapkaPlatform.category",
+		pageTitle: "services.dapkaPlatform.category",
+		metaDescription: "services.dapkaPlatform.metaDescription",
+		introText: "services.dapkaPlatform.introText",
 	},
 };
 
