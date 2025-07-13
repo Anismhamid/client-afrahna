@@ -14,7 +14,8 @@ header {
   background-color: var(--dark-bg) !important;
 
   & nav {
-    background-color: #0F2D44;
+    background-color: #296fa5;
+    border: 5px double #000;
   }
 }
 
@@ -31,11 +32,12 @@ body {
   min-height: 100vh;
   font-weight: 400;
   line-height: 1.6;
+
   & a {
-      text-decoration: none;
-      color: inherit;
-      transition: color 0.3s ease;
-    }
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+  }
 }
 
 main {
@@ -48,7 +50,7 @@ main {
   width: 99%;
 }
 
-h2{
+h2 {
   text-align: center;
 }
 
@@ -170,7 +172,7 @@ form {
   transition: transform 0.3s ease;
 }
 
-.hover-zoom{
+.hover-zoom {
   transition: "transform 0.3s ease"
 }
 
@@ -199,7 +201,8 @@ form {
   border-radius: 50%;
   box-shadow: 0 2px 10px rgb(0, 0, 0);
   transition: all 0.3s ease;
-&::before {
+
+  &::before {
     color: #fd7f19 !important;
     background-color: #ffffff !important;
     border-radius: 50%;
