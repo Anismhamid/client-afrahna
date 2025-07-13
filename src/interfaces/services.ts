@@ -1,8 +1,8 @@
 export interface Address {
 	city: string;
 	street: string;
-	lat?: number; // إحداثيات خط العرض (اختيارية)
-	lng?: number; // إحداثيات خط الطول (اختيارية)
+	lat?: number;
+	lng?: number;
 }
 
 export interface Services {
@@ -38,6 +38,7 @@ export interface Services {
 		saturday: {from?: string; to?: string; closed: boolean};
 	};
 }
+
 export const vendorsServicesInitionalData = {
 	businessName: "",
 	email: "",

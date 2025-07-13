@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect} from "react";
 import {getCoordinates} from "../atoms/map/OpenStreetMap";
 import {getVisibleServices} from "../subscribes/subscribtionTypes/subscriptionUtils";
 import {VendorDataResponse, SubscriptionData} from "../interfaces/userSchema";
@@ -6,21 +6,38 @@ import {getVendorSubscriptionPlan} from "../services/usersServices";
 import {getVendorData} from "../services/vendorServices";
 import {getServiceByVendorId, getUnavailableDates} from "../services/vendorsServices";
 
-// Type Definitions
 interface Service {
 	id?: string;
 	featureName: string;
 	price: number;
-	description?: string;
-	duration?: number;
 }
 
-interface VendorService {
+interface WorkingHoursType {
+	sunday: {from: string; to: string; closed: false};
+	monday: {from: string; to: string; closed: false};
+	tuesday: {from: string; to: string; closed: false};
+	wednesday: {from: string; to: string; closed: false};
+	thursday: {from: string; to: string; closed: false};
+	friday: {from: string; to: string; closed: false};
+	saturday: {from: string; to: string; closed: false};
+}
+
+const defaultWorkingHours: WorkingHoursType = {
+	sunday: {from: "", to: "", closed: false},
+	monday: {from: "", to: "", closed: false},
+	tuesday: {from: "", to: "", closed: false},
+	wednesday: {from: "", to: "", closed: false},
+	thursday: {from: "", to: "", closed: false},
+	friday: {from: "", to: "", closed: false},
+	saturday: {from: "", to: "", closed: false},
+};
+
+export interface VendorService {
 	businessName: string;
 	email: string;
 	phone: string;
 	category: string;
-	images: string[];
+	images: {url: string; alt: string}[];
 	description: string;
 	priceType: string;
 	price: {min: number; max: number};
@@ -33,7 +50,8 @@ interface VendorService {
 	allowOverlappingBookings: boolean;
 	bookingDurationInHours: number;
 	bookingType: "single" | "multiple";
-	workingHours: Record<string, {from: string; to: string; closed: boolean}>;
+	workingHours: WorkingHoursType;
+	//  Record<string, {from: string; to: string; closed: boolean}>;
 }
 
 interface ServiceData {
@@ -45,7 +63,7 @@ interface ServiceData {
 	error: Error | null;
 	planId: string;
 	businessAddress: {lat: number; lng: number};
-	subscriptionInfo: SubscriptionData;
+	SubscriptionData: SubscriptionData;
 	vendorProfile: VendorDataResponse | null;
 }
 
@@ -67,15 +85,7 @@ const initialServiceData: ServiceData = {
 		allowOverlappingBookings: false,
 		bookingDurationInHours: 1,
 		bookingType: "single",
-		workingHours: {
-			sunday: {from: "", to: "", closed: false},
-			monday: {from: "", to: "", closed: false},
-			tuesday: {from: "", to: "", closed: false},
-			wednesday: {from: "", to: "", closed: false},
-			thursday: {from: "", to: "", closed: false},
-			friday: {from: "", to: "", closed: false},
-			saturday: {from: "", to: "", closed: false},
-		},
+		workingHours: defaultWorkingHours,
 	},
 	unavailableDates: [],
 	vendorId: "",
@@ -84,7 +94,7 @@ const initialServiceData: ServiceData = {
 	error: null,
 	planId: "free",
 	businessAddress: {lat: 0, lng: 0},
-	subscriptionInfo: {
+	SubscriptionData: {
 		isSubscribed: false,
 		planId: "free",
 		recommendedServices: false,
@@ -94,16 +104,6 @@ const initialServiceData: ServiceData = {
 
 export const useServiceData = (vendorId: string): ServiceData => {
 	const [data, setData] = useState<ServiceData>(initialServiceData);
-	const abortControllerRef = useRef<AbortController | null>(null);
-
-	useEffect(() => {
-		// Cleanup function
-		return () => {
-			if (abortControllerRef.current) {
-				abortControllerRef.current.abort();
-			}
-		};
-	}, []);
 
 	useEffect(() => {
 		if (!vendorId) {
@@ -114,10 +114,6 @@ export const useServiceData = (vendorId: string): ServiceData => {
 			}));
 			return;
 		}
-
-		// Create new AbortController for this request
-		abortControllerRef.current = new AbortController();
-		const signal = abortControllerRef.current.signal;
 
 		const loadData = async () => {
 			try {
@@ -138,15 +134,18 @@ export const useServiceData = (vendorId: string): ServiceData => {
 				]);
 
 				// Normalize in case response is array
-				const businessData = Array.isArray(rawBusinessData)
-					? rawBusinessData[0]
-					: rawBusinessData;
+				const businessData =
+					Array.isArray(rawBusinessData) && rawBusinessData.length > 0
+						? rawBusinessData[0]
+						: rawBusinessData;
 
-				// Validate
-				if (!businessData || !businessData.vendorId) {
-					throw new Error("Invalid business service data");
+				if (
+					!businessData ||
+					typeof businessData !== "object" ||
+					!businessData.vendorId
+				) {
+					throw new Error("No service data found for this vendor");
 				}
-
 
 				// Normalize address data
 				const businessAddress = {
@@ -207,13 +206,10 @@ export const useServiceData = (vendorId: string): ServiceData => {
 					error: null,
 					planId: effectivePlanId,
 					businessAddress: coordinates,
-					subscriptionInfo: subscriptionData,
+					SubscriptionData: subscriptionData,
 					vendorProfile,
 				});
-			} catch (error:any) {
-				// Ignore abort errors
-				if (error.name === "AbortError") return;
-
+			} catch (error: any) {
 				console.error("Error fetching service data:", error);
 				setData({
 					...initialServiceData,
@@ -225,13 +221,6 @@ export const useServiceData = (vendorId: string): ServiceData => {
 		};
 
 		loadData();
-
-		return () => {
-			// Abort ongoing request if component unmounts or vendorId changes
-			if (abortControllerRef.current) {
-				abortControllerRef.current.abort();
-			}
-		};
 	}, [vendorId]);
 
 	return data;

@@ -147,7 +147,7 @@ const Navbar: FunctionComponent = () => {
 									size='small'
 									onClick={logout}
 								>
-									خروج
+									{t("login.logout")}
 								</Button>
 							</Box>
 						)}
@@ -221,14 +221,14 @@ const Navbar: FunctionComponent = () => {
 										textAlign: "center",
 									}}
 								>
-									ادارة
+									{t("navbar.management")}
 								</Typography>
 
-								{navLinkItem("/profile", <Person />, "الملف الشخصي")}
+								{navLinkItem("/profile", <Person />, t("navbar.profile"))}
 								{navLinkItem(
 									"/my-bookings",
 									<ChecklistRtlIcon />,
-									"حجوزات",
+									t("navbar.bookingsManagement"),
 								)}
 							</>
 						)}
@@ -236,7 +236,7 @@ const Navbar: FunctionComponent = () => {
 							navLinkItem(
 								`/vendors/${user._id}`,
 								<SettingsIcon color='info' />,
-								"اداره الخدمات",
+								t("navbar.servicesManagement"),
 							)}
 
 						{user?.role === "admin" && (
@@ -244,12 +244,12 @@ const Navbar: FunctionComponent = () => {
 								{navLinkItem(
 									"/manage/users",
 									<SettingsIcon color='info' />,
-									"ادارة المستخدمين",
+									t("navbar.userManagement"),
 								)}
 								{navLinkItem(
 									"/manage/vendors",
 									<SettingsIcon color='primary' />,
-									"ادارة مزودي الخدمات",
+									t("navbar.vendorsManagement"),
 								)}
 							</>
 						)}
@@ -277,7 +277,7 @@ const Navbar: FunctionComponent = () => {
 									onClick={logout}
 								>
 									<Logout />
-									خروج
+									{t("login.logout")}
 								</Button>
 							</Box>
 						) : (
@@ -292,7 +292,7 @@ const Navbar: FunctionComponent = () => {
 									variant='outlined'
 									onClick={() => navigate("/login")}
 								>
-									الدخول
+									{t("login.login")}
 								</Button>
 							</Box>
 						)}

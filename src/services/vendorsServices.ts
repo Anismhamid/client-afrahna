@@ -11,14 +11,31 @@ export const getAllService = async () => {
 	}
 };
 
+// export const getServiceByVendorId = async (vendorId: string) => {
+// 	try {
+// 		const vendor = await axios.get(`${api}/services/vendor/${vendorId}`);
+// 		return vendor.data;
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// };
+
 export const getServiceByVendorId = async (vendorId: string) => {
 	try {
-		const vendor = await axios.get(`${api}/services/vendor/${vendorId}`);
-		return vendor.data;
+		const res = await axios.get(`${api}/services/vendor/${vendorId}`);
+
+		// הגנה: אם מחזיר מערך ריק, תחזיר null
+		if (Array.isArray(res.data) && res.data.length === 0) {
+			return null;
+		}
+
+		return res.data;
 	} catch (error) {
-		console.log(error);
+		console.error("Error in getServiceByVendorId:", error);
+		return null; // מומלץ תמיד להחזיר משהו קבוע במקרה של שגיאה
 	}
 };
+
 
 export const getServiceByCategories = async (category: string) => {
 	try {
@@ -28,18 +45,6 @@ export const getServiceByCategories = async (category: string) => {
 		console.log(error);
 	}
 };
-
-// get Spicific Halls decoration for vendors
-// export const getHalsDecorationForSpicificUser = async (userId: string) => {
-// 	try {
-// 		const spicificHals = await axios.get(`${api}/services/${userId}`, {
-// 			headers: {Authorization: localStorage.getItem("token")},
-// 		});
-// 		return spicificHals.data;
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// };
 
 export const getUnavailableDates = async (
 	vendorId: string,
