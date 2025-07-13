@@ -224,7 +224,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 			>
 				{service?.businessName}
 			</Typography>
-			<Paper sx={{p: 4, boxShadow: "0 0 10px 1px inset"}}>
+			<Paper id='address-Paper' sx={{p: 4}}>
 				<Box
 					sx={{
 						display: "flex",
@@ -487,7 +487,11 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 														sx={{
 															m: "auto",
 														}}
-														onClick={()=>navigate(`/vendors/${vendorId}`)}
+														onClick={() =>
+															navigate(
+																`/vendors/${vendorId}`,
+															)
+														}
 														variant='contained'
 													>
 														اضافه خدماتك المميزة
