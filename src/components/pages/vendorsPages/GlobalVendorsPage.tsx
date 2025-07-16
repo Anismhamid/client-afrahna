@@ -69,7 +69,6 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 
 				// Fetch and enhance services
 				const servicesData = await getServiceByCategories(category);
-				console.log("servicesData.length:", servicesData); // 👈 Check if this is > 0
 
 				const enhancedServices = await Promise.all(
 					servicesData.map(
@@ -148,13 +147,6 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 					service.address.city.toLowerCase().includes(searchTerm.toLowerCase()),
 			);
 		}
-
-		// // التصفية حسب التصنيف الفرعي
-		// if (activeSubCategory !== "الكل") {
-		// 	result = result.filter((service) =>
-		// 		service.services?.some((s) => s.featureName.includes(activeSubCategory)),
-		// 	);
-		// }
 
 		// Filter by price (based on sub-services)
 		result = result.filter((service) => {
