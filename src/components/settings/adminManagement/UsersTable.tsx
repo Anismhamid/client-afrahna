@@ -3,14 +3,15 @@ import {errorToast} from "../../../atoms/notifications/Toasts";
 import {getAllUsers} from "../../../services/usersServices";
 import {JwtPayload} from "../../../interfaces/userSchema";
 import {Link} from "react-router-dom";
-import { useUser } from "../../../contextApi/useUserData";
+import {useUser} from "../../../contextApi/useUserData";
+import {useTranslation} from "react-i18next";
 
 interface UsersTableProps {}
 
 const UsersTable: FunctionComponent<UsersTableProps> = () => {
 	const [users, setUsers] = useState<JwtPayload[]>([]);
 	const {user} = useUser();
-
+	const {t} = useTranslation();
 	useEffect(() => {
 		if (user?.role !== "admin") return;
 		getAllUsers()
@@ -20,22 +21,22 @@ const UsersTable: FunctionComponent<UsersTableProps> = () => {
 	return (
 		<main>
 			<div className='container text-center pt-5'>
-				<h1 className=' my-5'>جدول المستخدمين</h1>
+				<h1 className=' my-5'>{t("usersManagement.usersTable")}</h1>
 				{users.length === 0 ? (
-					<p>لا يوجد المستخدمين لعرضهم</p>
+					<p>{t("usersManagement.noUsers")}</p>
 				) : (
 					<div className='table-responsive'>
 						<Link className='btn btn-primary my-3' to={`/manage/vendors`}>
-							ادارة مزودي الخدمات
+							{t("usersManagement.vendorsProviderManagement")}
 						</Link>
 						<table className={"table table-striped table-danger"}>
 							<thead>
 								<tr>
-									<th>الاسم</th>
-									<th>الايميل</th>
-									<th>الهاتف</th>
-									<th>تعديل</th>
-									<th>حذف</th>
+									<th>{t("registerPage.fName")}</th>
+									<th>{t("registerPage.email")}</th>
+									<th>{t("usersManagement.phone")}</th>
+									<th>{t("usersManagement.edit")}</th>
+									<th>{t("usersManagement.delete")}</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -55,7 +56,7 @@ const UsersTable: FunctionComponent<UsersTableProps> = () => {
 												className='btn btn-warning'
 												onClick={() => {}}
 											>
-												تعديل
+												{t("usersManagement.edit")}
 											</button>
 										</td>
 										<td>
@@ -63,7 +64,7 @@ const UsersTable: FunctionComponent<UsersTableProps> = () => {
 												className='btn btn-danger'
 												onClick={() => {}}
 											>
-												حذف
+												{t("usersManagement.delete")}
 											</button>
 										</td>
 									</tr>

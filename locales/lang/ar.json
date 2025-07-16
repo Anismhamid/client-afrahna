@@ -10,6 +10,12 @@
 		"services": "خدمات منصة أفراحنا"
 	},
 
+	"editServices": {
+		"tryAgain": "إعادة المحاولة",
+		"myServicesPage":"صفحتي",
+		"businessName":"الاسم التجاري"
+	},
+
 	"services": {
 		"hals": {
 			"category": "قاعات",
@@ -185,7 +191,13 @@
 		"about": "من نحن",
 		"contact": "اتصل بنا",
 		"login": "تسجيل الدخول",
-		"logout": "تسجيل الخروج"
+		"logout": "تسجيل الخروج",
+		"profile": "الملف الشخصي",
+		"management": "الإدارة",
+		"bookingsManagement": "إدارة الحجوزات",
+		"servicesManagement": "إدارة الخدمات",
+		"userManagement": "إدارة المستخدمين",
+		"vendorsManagement": "إدارة المزودين"
 	},
 	"login": {
 		"login": "تسجيل الدخول",
@@ -226,6 +238,17 @@
 		"create": "إنشاء",
 		"back": "رجوع"
 	},
+
+	"usersManagement": {
+		"usersTable": "جدول المستخدمين",
+		"vendorsTable": "جدول المستخدمين",
+		"edit": "تعديل",
+		"delete": "حذف",
+		"noUsers": "لا يوجد المستخدمين لعرضهم",
+		"noVendors": "لا يوجد مزودين لعرضهم",
+		"phone": "هاتف"
+	},
+
 	"privacyPolicy": "سياسة الخصوصية",
 	"privacy": {
 		"title": "سياسة خصوصية منصة أفراحنا",

@@ -30,6 +30,7 @@ import CustomTextFiled from "./CustomTextFiled";
 import {days, vendorsvalidationSchema} from "./servicesFormik";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
 import {TimeClockPicker} from "./WorkingTimePicker";
+import {useTranslation} from "react-i18next";
 
 interface EditServicesProps {}
 
@@ -41,7 +42,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 	const [openAddImage, setOpenAddImage] = useState<boolean>(false);
 	const {user} = useUser();
 	const {vendorId} = useParams<{vendorId: string}>();
-
+	const {t} = useTranslation();
 	const navigate = useNavigate();
 
 	const handleClickOpenAddImage = () => setOpenAddImage(!openAddImage);
@@ -137,7 +138,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 					onClick={() => window.location.reload()}
 					sx={{mt: 2}}
 				>
-					إعادة المحاولة
+					{t("editServices.tryAgain")}
 				</Button>
 			</Box>
 		);
@@ -156,7 +157,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 					sx={{mb: 2, position: "sticky", top: 80, left: 20, zIndex: 2}}
 					onClick={() => navigate(`/service/${vendorId}`)}
 				>
-					صفحتي
+					{t("editServices.myservicesPage")}
 				</Button>
 				{/* edit section */}
 				<Box component='form' onSubmit={formik.handleSubmit} noValidate>
@@ -167,14 +168,14 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='الاسم التجاري'
+										label={t('editServices.businessName')}
 										name='businessName'
 									/>
 								</Grid>
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='هاتف'
+										label={t('registerPage.phone')}
 										name='phone'
 									/>
 								</Grid>
@@ -184,14 +185,14 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='المدينة'
+										label={t("registerPage.city")}
 										name='address.city'
 									/>
 								</Grid>
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='الشارع'
+										label={t("registerPage.street")}
 										name='address.street'
 									/>
 								</Grid>
@@ -356,64 +357,73 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 							</Typography>
 							<HorizontalDevider />
 							{days.map(({key, label}) => (
-								<Grid container spacing={2} key={key} alignItems='center'>
-									<Grid size={{xs: 12, md: 6}}>
-										<TimeClockPicker
-											label={`وقت البدء (${label})`}
-											value={
-												formik.values.workingHours[key]?.from ||
-												""
-											}
-											onChange={(time) =>
-												formik.setFieldValue(
-													`workingHours.${key}.from`,
-													time,
-												)
-											}
-											disabled={
-												formik.values.workingHours[key]?.closed
-											}
-										/>
+								<Box alignItems='center' marginBlock={"auto"}>
+									<Grid container spacing={2} key={key}>
+										<Grid
+											size={{xs: 6, md: 2, lg: 3}}
+											alignItems='center'
+										>
+											<TimeClockPicker
+												label={`وقت البدء (${label})`}
+												value={
+													formik.values.workingHours[key]
+														?.from || ""
+												}
+												onChange={(time) =>
+													formik.setFieldValue(
+														`workingHours.${key}.from`,
+														time,
+													)
+												}
+												disabled={
+													formik.values.workingHours[key]
+														?.closed
+												}
+											/>
+										</Grid>
+										<Grid size={{xs: 6, md: 6}}>
+											<TimeClockPicker
+												label={`وقت الانتهاء (${label})`}
+												value={
+													formik.values.workingHours[key]?.to ||
+													""
+												}
+												onChange={(time) =>
+													formik.setFieldValue(
+														`workingHours.${key}.to`,
+														time,
+													)
+												}
+												disabled={
+													formik.values.workingHours[key]
+														?.closed
+												}
+											/>
+										</Grid>
+										<Grid size={{xs: 6, md: 6}}>
+											<FormControlLabel
+												control={
+													<Checkbox
+														checked={
+															formik.values.workingHours[
+																key
+															]?.closed
+														}
+														onChange={(e) =>
+															formik.setFieldValue(
+																`workingHours.${key}.closed`,
+																e.target.checked,
+															)
+														}
+														color='primary'
+													/>
+												}
+												label='مغلق'
+												sx={{justifyContent: "flex-end"}}
+											/>
+										</Grid>
 									</Grid>
-									<Grid size={{xs: 12, md: 6}}>
-										<TimeClockPicker
-											label={`وقت الانتهاء (${label})`}
-											value={
-												formik.values.workingHours[key]?.to || ""
-											}
-											onChange={(time) =>
-												formik.setFieldValue(
-													`workingHours.${key}.to`,
-													time,
-												)
-											}
-											disabled={
-												formik.values.workingHours[key]?.closed
-											}
-										/>
-									</Grid>
-									<Grid size={{xs: 12, md: 6}}>
-										<FormControlLabel
-											control={
-												<Checkbox
-													checked={
-														formik.values.workingHours[key]
-															?.closed
-													}
-													onChange={(e) =>
-														formik.setFieldValue(
-															`workingHours.${key}.closed`,
-															e.target.checked,
-														)
-													}
-													color='primary'
-												/>
-											}
-											label='مغلق'
-											sx={{justifyContent: "flex-end"}}
-										/>
-									</Grid>
-								</Grid>
+								</Box>
 							))}
 
 							{/* note section */}

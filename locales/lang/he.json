@@ -184,7 +184,13 @@
 		"about": "אודותינו",
 		"contact": "צור קשר",
 		"login": "התחבר",
-		"logout": "התנתק"
+		"logout": "התנתק",
+		"management": "ניהול",
+		"profile": "פרופיל",
+		"bookingsManagement": "ניהול הזמנות",
+		"servicesManagement": "ניהול שירותים",
+		"userManagement": "ניהול משתמשים",
+		"vendorsManagement": "ניהול ספקים"
 	},
 
 	"login": {
@@ -194,6 +200,7 @@
 		"subtitle": "הצטרף לפלטפורמה שלנו ותהנה משירותים המותאמים ליום חתונה ואירועים מיוחדים",
 		"wellcomeMessage": "ברוכים הבאים לפלטפורמת אפרחה"
 	},
+
 	"registerPage": {
 		"newUser": "משתמש חדש",
 		"newVendor": "ספק שירות חדש",
@@ -226,6 +233,20 @@
 		"create": "צור",
 		"back": "חזור"
 	},
+
+	"usersManagement": {
+		"usersTable": "טבלת משתמשים",
+		"vendorsTable": "טבלת ספקים",
+		"edit": "עריכה",
+		"delete": "מחיקה",
+		"noUsers": "אין משתמשים להצגה",
+		"noVendors": "אין ספקים להצגה",
+		"phone": "טלפון",
+		"vendorsProviderManagement": "ניהול ספקי שירות",
+		"usersProviderManagement": "ניהול משתמשים"
+	},
+
+	"vendorsManagement": {},
 	"privacyPolicy": "מדיניות פרטיות",
 	"privacy": {
 		"title": "מדיניות פרטיות פלטפורמת אפרחה",

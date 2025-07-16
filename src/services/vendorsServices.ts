@@ -11,15 +11,6 @@ export const getAllService = async () => {
 	}
 };
 
-// export const getServiceByVendorId = async (vendorId: string) => {
-// 	try {
-// 		const vendor = await axios.get(`${api}/services/vendor/${vendorId}`);
-// 		return vendor.data;
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// };
-
 export const getServiceByVendorId = async (vendorId: string) => {
 	try {
 		const res = await axios.get(`${api}/services/vendor/${vendorId}`);

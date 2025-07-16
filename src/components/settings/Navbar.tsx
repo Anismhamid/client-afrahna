@@ -15,15 +15,20 @@ import {
 	Typography,
 	useMediaQuery,
 	useTheme,
+	InputLabel,
+	FormControl,
+	Select,
+	SelectChangeEvent,
 } from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
-import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useUser} from "../../contextApi/useUserData";
 import {Logout, Person} from "@mui/icons-material";
 import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SubscripbeButton from "../../subscribes/subscribeButton/SubscripbeButton";
-import {navbarItems} from "../../config/mainMenu";
+import {mainMenu, navbarItems} from "../../config/mainMenu";
 import {CloseButton} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import TranslateButtons from "../../atoms/TranslateButtons";
@@ -70,6 +75,15 @@ const Navbar: FunctionComponent = () => {
 			</NavLink>
 		</ListItem>
 	);
+
+	const [selectedService, setSelectedService] = useState<string>("");
+
+	const handleServiceChange = (event: SelectChangeEvent) => {
+		const value = event.target.value;
+		setSelectedService(value );
+		navigate(value);
+	};
+
 
 	return (
 		<Box
@@ -209,7 +223,6 @@ const Navbar: FunctionComponent = () => {
 						{navbarItems.map((item) =>
 							navLinkItem(item.path, item.icon, item.text),
 						)}
-
 						{user && (
 							<>
 								<Typography
@@ -238,7 +251,6 @@ const Navbar: FunctionComponent = () => {
 								<SettingsIcon color='info' />,
 								t("navbar.servicesManagement"),
 							)}
-
 						{user?.role === "admin" && (
 							<>
 								{navLinkItem(
@@ -253,15 +265,52 @@ const Navbar: FunctionComponent = () => {
 								)}
 							</>
 						)}
-
 						{user?.role === "isVendor" &&
 							!user?.subscriptionData?.isSubscribed && (
 								<Box sx={{width: "100%", m: "auto"}}>
 									<SubscripbeButton />
 								</Box>
 							)}
-
 						<Divider color='error' variant='fullWidth' />
+
+						{/* select form nav menu */}
+						<FormControl
+							dir='rtl'
+							sx={{
+								m: 1,
+								minWidth: "90%",
+
+								textAlign: "center",
+								direction: "ltr",
+							}}
+						>
+							<InputLabel shrink htmlFor='select-multiple-native'>
+								خدماتنا
+							</InputLabel>
+							<Select<string>
+								multiple
+								native
+								value={selectedService}
+								// @ts-ignore Typings are not considering `native`
+								onChange={handleServiceChange}
+								label='Native'
+								inputProps={{
+									id: "select-multiple-native",
+								}}
+							>
+								{mainMenu.map((item) => (
+									<option
+										
+										dir='rtl'
+										style={{color: ""}}
+										key={item.label}
+										value={item.link}
+									>
+										<Link to={item.link}>{t(item.label)}</Link>
+									</option>
+								))}
+							</Select>
+						</FormControl>
 						{user?._id ? (
 							<Box
 								sx={{position: "relative", right: 0, left: 0, bottom: 0}}

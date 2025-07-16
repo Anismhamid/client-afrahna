@@ -27,7 +27,7 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 export const mainMenu = [
 	{
-		label: "menu.halls",
+		label: "menu.hals",
 		icon: <MeetingRoom fontSize='medium' color='warning' />,
 		link: "/wedding-halls",
 	},

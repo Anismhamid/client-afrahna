@@ -9,7 +9,7 @@
 		"services": "Afrahna Platform Services"
 	},
 	"menu": {
-		"halls": "Halls",
+		"hals": "Halls",
 		"hallsDecoration": "Hall Decorations",
 		"carDecoration": "Car Decorations",
 		"coffeeKiosks": "Coffee Kiosks",
@@ -41,7 +41,7 @@
 			"introText": "Choose from the most beautiful wedding halls suitable for your needs. Spacious areas, luxurious decorations, and full equipment to ensure your event’s success.",
 			"subCategories": ["Indoor Halls", "Outdoor Halls", "Garden Halls"]
 		},
-		"hallsDecoration": {
+		"halsDecoration": {
 			"category": "Halls Decoration",
 			"pageTitle": "Top Wedding Hall Decoration Services - Afrahna",
 			"metaDescription": "Wedding hall decoration services with the latest designs and creative ideas. Full or partial decoration as you wish at the best prices.",
@@ -246,6 +246,18 @@
 		"category": "Category",
 		"create": "Create",
 		"back": "Back"
+	},
+
+	"usersManagement": {
+		"usersTable": "Users Table",
+		"vendorsTable": "Vendors Table",
+		"edit": "Edit",
+		"delete": "Delete",
+		"noUsers": "No users to display",
+		"noVendors": "No vendors to display",
+		"phone": "Phone",
+		"vendorsProviderManagement": "Vendors management",
+		"usersProviderManagement": "User management"
 	},
 
 	"privacyPolicy": "Privacy Policy",

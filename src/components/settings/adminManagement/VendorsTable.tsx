@@ -4,14 +4,15 @@ import {getAllVendors} from "../../../services/vendorServices";
 import {JwtPayload} from "../../../interfaces/userSchema";
 import {Link} from "react-router-dom";
 import {useUser} from "../../../contextApi/useUserData";
+import { useTranslation } from "react-i18next";
 
 interface VendorsTableProps {}
 
 const VendorsTable: FunctionComponent<VendorsTableProps> = () => {
 	const [vendors, setVendors] = useState<JwtPayload[]>([]);
 	const {user} = useUser();
+	const {t} = useTranslation();
 
-  
 	useEffect(() => {
 		if (user?.role !== "admin") return;
 		getAllVendors()
@@ -22,22 +23,22 @@ const VendorsTable: FunctionComponent<VendorsTableProps> = () => {
 	return (
 		<main>
 			<div className='container  text-center pt-5'>
-				<h1 className=' my-5'>جدول الموردين</h1>
+				<h1 className=' my-5'>{t("usersManagement.vendorsTable")}</h1>
 				{vendors.length === 0 ? (
-					<p>لا يوجد مزودي خدمات لعرضهم</p>
+					<p>{t("usersManagement.noVendors")}</p>
 				) : (
 					<div className='table-responsive'>
 						<Link className='btn btn-primary my-3' to={`/manage/users`}>
-							ادارة المستخدمين
+							{t("usersManagement.usersProviderManagement")}
 						</Link>
 						<table className={"table table-striped table-danger"}>
 							<thead>
 								<tr>
-									<th>الاسم</th>
-									<th>الايميل</th>
-									<th>الهاتف</th>
-									<th>تعديل</th>
-									<th>حذف</th>
+									<th>{t("registerPage.fName")}</th>
+									<th>{t("registerPage.email")}</th>
+									<th>{t("usersManagement.phone")}</th>
+									<th>{t("usersManagement.edit")}</th>
+									<th>{t("usersManagement.delete")}</th>
 								</tr>
 							</thead>
 							<tbody>
