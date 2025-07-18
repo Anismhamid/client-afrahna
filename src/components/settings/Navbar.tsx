@@ -178,7 +178,7 @@ const Navbar: FunctionComponent = () => {
 				onClose={toggleDrawer(false)}
 			>
 				<CloseButton
-					style={{width: "100%", marginTop: 8, height: "100%"}}
+					style={{width: "100%", marginTop: 10}}
 					onClick={toggleDrawer(false)}
 				/>
 
@@ -279,9 +279,9 @@ const Navbar: FunctionComponent = () => {
 						<Divider color='error' variant='fullWidth' />
 
 						{/* navigate menu */}
-						<Grid container spacing={2}>
+						<Grid container spacing={0}>
 							{mainMenu.map((item, i) => (
-								<Grid size={{xs: 6}}>
+								<Grid size={{xs: 12}}>
 									<Tabs
 										aria-label='Soft tabs'
 										value={item.label}
@@ -296,6 +296,7 @@ const Navbar: FunctionComponent = () => {
 												component={Link}
 												to={item.link}
 												value={i}
+												sx={{m: "auto",width:"100%",marginBlock:0}}
 											>
 												{t(item.label)}
 											</Tab>

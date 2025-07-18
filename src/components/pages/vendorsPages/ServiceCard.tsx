@@ -3,6 +3,8 @@ import {Badge} from "react-bootstrap";
 import {FunctionComponent, useMemo} from "react";
 import {Services} from "../../../interfaces/services";
 import {formatCurrency} from "../../../helpers/vendors";
+import {Button} from "@mui/material";
+import WazeIcon from "/wazeIcon.png";
 
 interface ServiceCardProps {
 	service: Services & {rating?: number};
@@ -18,6 +20,18 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 
 	const isDefaultLocation =
 		service.address.lat === 32.0853 && service.address.lng === 34.7818;
+
+	const lat = service.address.lat;
+	const lng = service.address.lng;
+
+	const openWaze = () => {
+		if (!lat || !lng) {
+			alert("Location not available");
+			return;
+		}
+		const wazeUrl = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+		window.open(wazeUrl, "_blank");
+	};
 
 	return (
 		<div className='col'>
@@ -45,6 +59,20 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 						<div className='text-muted'>لا توجد صورة</div>
 					)}
 				</div>
+				{/* כפתור ניווט ל-Waze */}
+				<Button
+					variant='outlined'
+					color='primary'
+					onClick={openWaze}
+					sx={{display: "flex", alignItems: "center"}}
+				>
+					<img
+						src={WazeIcon}
+						alt='Waze'
+						style={{width: 30, height: 30, marginInline: 8}}
+					/>
+					Waze
+				</Button>
 
 				<div className='card-body d-flex flex-column'>
 					<div className='d-flex justify-content-between align-items-start'>

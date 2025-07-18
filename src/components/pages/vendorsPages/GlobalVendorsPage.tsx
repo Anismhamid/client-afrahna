@@ -9,8 +9,9 @@ import {getCoordinates} from "../../../atoms/map/OpenStreetMap";
 import ServiceFilters from "./ServiceFilters";
 import ServiceCard from "./ServiceCard";
 import useMetaDocument from "../../../hooks/useMetaDocunent";
-import {Typography} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
+import WazeIcon from "@mui/icons-material/Navigation";
 
 interface GlobalVendorsPageProps {
 	category: string;
