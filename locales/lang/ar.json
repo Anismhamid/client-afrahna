@@ -12,8 +12,8 @@
 
 	"editServices": {
 		"tryAgain": "إعادة المحاولة",
-		"myServicesPage":"صفحتي",
-		"businessName":"الاسم التجاري"
+		"myServicesPage": "صفحتي",
+		"businessName": "الاسم التجاري"
 	},
 
 	"services": {
@@ -156,24 +156,24 @@
 		"hallsDecoration": "تزيين القاعات",
 		"carDecoration": "تزيين السيارات",
 		"coffeeKiosks": "أكشاك القهوة",
-		"beautySalons": "صالونات التجميل",
+		"beautySalons": "صالونات تجميل",
 		"chairs": "تأجير الكراسي",
 		"pastry": "المعجنات",
 		"frezzer": "تأجير المجمدات",
 		"dabkePlatforms": "منصات الدبكة",
-		"photography": "التصوير الفوتوغرافي",
-		"sterio": "الصوتيات",
-		"cooks": "الطهاة",
-		"restaurants": "مطاعم الزفاف",
-		"waiters": "النادلون",
-		"fireworks": "الألعاب النارية",
-		"invitationCards": "بطاقات الدعوة",
-		"nuts": "المكسرات",
-		"religiousBands": "الفرق الدينية",
-		"kidsEntertainment": "ترفيه الأطفال",
-		"fruitDecoration": "تزيين الفاكهة",
-		"weddingGifts": "ترتيبات هدايا الزفاف",
-		"luxuryCars": "تأجير السيارات الفاخرة"
+		"photography": "مصورين",
+		"sterio": "ستيريو",
+		"cooks": "(طباخين) طهاة",
+		"restaurants": "مطاعم للاعراس",
+		"waiters": "نادلون",
+		"fireworks": "مختص ألعاب النارية",
+		"invitationCards": "(مطابع) بطاقات الدعوة",
+		"nuts": "محامص",
+		"religiousBands": "مغنيين",
+		"kidsEntertainment": "ترفيه الأطفال وقت الزفاف",
+		"fruitDecoration": "تزيين فاكهة",
+		"weddingGifts": "تنسيق هدايا للاعراس",
+		"luxuryCars": "سيارات فاخرة"
 	},
 
 	"globalVendorsPage": {
@@ -246,7 +246,9 @@
 		"delete": "حذف",
 		"noUsers": "لا يوجد المستخدمين لعرضهم",
 		"noVendors": "لا يوجد مزودين لعرضهم",
-		"phone": "هاتف"
+		"phone": "هاتف",
+		"vendorsProviderManagement": "إدارة مزودين الخدمة",
+		"usersProviderManagement": "إدارة المستخدمين"
 	},
 
 	"privacyPolicy": "سياسة الخصوصية",

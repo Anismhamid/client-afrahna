@@ -19,6 +19,7 @@ import {
 	FormControl,
 	Select,
 	SelectChangeEvent,
+	Grid,
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -32,6 +33,9 @@ import {mainMenu, navbarItems} from "../../config/mainMenu";
 import {CloseButton} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import TranslateButtons from "../../atoms/TranslateButtons";
+import Tabs from "@mui/joy/Tabs";
+import TabList from "@mui/joy/TabList";
+import Tab from "@mui/joy/Tab";
 
 const Navbar: FunctionComponent = () => {
 	const [open, setOpen] = useState(false);
@@ -41,6 +45,7 @@ const Navbar: FunctionComponent = () => {
 	const location = useLocation();
 	const {user, setUser} = useUser();
 	const {t} = useTranslation();
+	const [index, setIndex] = useState(0);
 
 	const toggleDrawer = (open: boolean) => () => {
 		setOpen(open);
@@ -75,15 +80,6 @@ const Navbar: FunctionComponent = () => {
 			</NavLink>
 		</ListItem>
 	);
-
-	const [selectedService, setSelectedService] = useState<string>("");
-
-	const handleServiceChange = (event: SelectChangeEvent) => {
-		const value = event.target.value;
-		setSelectedService(value );
-		navigate(value);
-	};
-
 
 	return (
 		<Box
@@ -129,18 +125,27 @@ const Navbar: FunctionComponent = () => {
 						>
 							<MenuIcon />
 						</IconButton>
-
-						<NavLink
-							to='/'
-							style={{
-								cursor: "pointer",
-								fontWeight: "bold",
-								color: "white",
-								fontSize: "16px",
+						<Box
+							sx={{
+								border: 1,
+								borderRadius: 3,
+								px: 2,
+								"& a:hover": {
+									fontSize: "17px",
+								},
 							}}
 						>
-							{t("afrahna.title")}
-						</NavLink>
+							<NavLink
+								to='/'
+								style={{
+									cursor: "pointer",
+									fontWeight: "bold",
+									color: "white",
+								}}
+							>
+								{t("afrahna.title")}
+							</NavLink>
+						</Box>
 
 						{!user?._id ? (
 							<Box>
@@ -169,13 +174,17 @@ const Navbar: FunctionComponent = () => {
 				</Toolbar>
 			</AppBar>
 
+			{/* side drawer */}
 			<Drawer
-				variant='temporary'
+				variant='persistent'
 				anchor={isMobile ? "top" : "right"}
 				open={open}
 				onClose={toggleDrawer(false)}
 			>
-				<CloseButton style={{width: "50%"}} onClick={toggleDrawer(false)} />
+				<CloseButton
+					style={{width: "100%", marginTop: 8, height: "100%"}}
+					onClick={toggleDrawer(false)}
+				/>
 
 				{user && (
 					<Box
@@ -273,44 +282,32 @@ const Navbar: FunctionComponent = () => {
 							)}
 						<Divider color='error' variant='fullWidth' />
 
-						{/* select form nav menu */}
-						<FormControl
-							dir='rtl'
-							sx={{
-								m: 1,
-								minWidth: "90%",
-
-								textAlign: "center",
-								direction: "ltr",
-							}}
-						>
-							<InputLabel shrink htmlFor='select-multiple-native'>
-								خدماتنا
-							</InputLabel>
-							<Select<string>
-								multiple
-								native
-								value={selectedService}
-								// @ts-ignore Typings are not considering `native`
-								onChange={handleServiceChange}
-								label='Native'
-								inputProps={{
-									id: "select-multiple-native",
-								}}
-							>
-								{mainMenu.map((item) => (
-									<option
-										
-										dir='rtl'
-										style={{color: ""}}
-										key={item.label}
-										value={item.link}
+						{/* navigate menu */}
+						<Grid container spacing={2}>
+							{mainMenu.map((item, i) => (
+								<Grid size={{xs: 6}}>
+									<Tabs
+										aria-label='Soft tabs'
+										value={item.label}
+										onChange={(_, value) => setIndex(value as number)}
 									>
-										<Link to={item.link}>{t(item.label)}</Link>
-									</option>
-								))}
-							</Select>
-						</FormControl>
+										<TabList variant='soft'>
+											<Tab
+												variant={index === i ? "solid" : "plain"}
+												color={
+													index === i ? "primary" : "neutral"
+												}
+												component={Link}
+												to={item.link}
+												value={i}
+											>
+												{t(item.label)}
+											</Tab>
+										</TabList>
+									</Tabs>
+								</Grid>
+							))}
+						</Grid>
 						{user?._id ? (
 							<Box
 								sx={{position: "relative", right: 0, left: 0, bottom: 0}}
@@ -346,6 +343,7 @@ const Navbar: FunctionComponent = () => {
 							</Box>
 						)}
 					</List>
+					{/* Translate buttons */}
 					<TranslateButtons />
 				</Box>
 			</Drawer>
