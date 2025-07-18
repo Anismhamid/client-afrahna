@@ -15,10 +15,6 @@ import {
 	Typography,
 	useMediaQuery,
 	useTheme,
-	InputLabel,
-	FormControl,
-	Select,
-	SelectChangeEvent,
 	Grid,
 } from "@mui/material";
 

@@ -113,7 +113,7 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 							transform: "translate(-50%, -50%)",
 						}}
 					>
-						{t("add.noVideos")}
+						{t("ads.noVideo")}
 					</Typography>
 				</Box>
 			</Box>

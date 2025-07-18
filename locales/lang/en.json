@@ -8,6 +8,15 @@
 		"title": "Afrahna",
 		"services": "Afrahna Platform Services"
 	},
+
+	"ads": {
+		"noVideo": "No ad videos available"
+	},
+
+	"footer": {
+		"copyRight": "All rights reserved - Afrahna Website"
+	},
+
 	"menu": {
 		"hals": "Halls",
 		"hallsDecoration": "Hall Decorations",
@@ -208,8 +217,10 @@
 	"login": {
 		"login": "Login",
 		"logout": "Logout",
-		"title": "Register now and get our premium services",
+		"title": "Login now and get our premium services",
 		"subtitle": "Join our platform now and enjoy services tailored for weddings and special occasions",
+		"joinToAfrahnaVendor": "Join Afrahna now and enjoy the best services for your business",
+		"joinToAfrahnaUser": "Join Afrahna now and enjoy the best services for your wedding",
 		"wellcomeMessage": "Welcome afrahna platform"
 	},
 

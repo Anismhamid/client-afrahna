@@ -105,7 +105,7 @@ const BusinessRegister: FunctionComponent = () => {
 					<Typography
 						variant='h5'
 						sx={{
-							color: "#0F2D44",
+							color: "#804e16",
 							fontWeight: "bold",
 							pr: 1,
 						}}
@@ -116,7 +116,7 @@ const BusinessRegister: FunctionComponent = () => {
 					<Typography
 						variant='body2'
 						sx={{
-							color: "#0F2D44",
+							color: "#1d812a",
 							fontWeight: "bold",
 						}}
 					>
@@ -132,7 +132,7 @@ const BusinessRegister: FunctionComponent = () => {
 						paddingTop: "60px",
 					}}
 				>
-					{t("login.title")}
+					{t("login.joinToAfrahnaVendor")}
 				</Typography>
 
 				<Typography

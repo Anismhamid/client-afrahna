@@ -1,9 +1,11 @@
 import {Box, Typography} from "@mui/material";
 import {FunctionComponent} from "react";
+import {useTranslation} from "react-i18next";
 
 interface FooterProps {}
 
 const Footer: FunctionComponent<FooterProps> = () => {
+	const {t} = useTranslation();
 	return (
 		<Box
 			component='footer'
@@ -15,7 +17,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 			}}
 		>
 			<Typography color='#ED6C03' dir='ltr' variant='body1'>
-				© جميع الحقوق محفوظة - موقع أفراحنا 2025
+				© {t("footer.copyRight")} 2025
 			</Typography>
 		</Box>
 	);

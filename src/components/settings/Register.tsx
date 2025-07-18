@@ -102,7 +102,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					<Typography
 						variant='h5'
 						sx={{
-							color: "#0F2D44",
+							color: "#804e16",
 							fontWeight: "bold",
 							pr: 1,
 						}}
@@ -131,7 +131,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 						paddingTop: "60px",
 					}}
 				>
-					{t("login.title")}
+					{t("login.joinToAfrahnaUser")}
 				</Typography>
 				<Typography
 					variant='h6'
