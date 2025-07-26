@@ -10,27 +10,28 @@
 
 }
 
-header {
-  background-color: var(--dark-bg) !important;
-
-  & nav {
-    background-color: #296fa5;
-    border: 5px double #000;
-  }
-}
-
-#address-Paper {
-  border-radius: 50px;
-  background: linear-gradient(145deg, #0000004b, #f0f0f0);
-  box-shadow: 6px 6px 6px #a8a8a8,
-    -6px -6px 6px #000000;
-}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Noto Kufi Arabic", sans-serif;
+}
+
+header {
+  /* background-color: var(--dark-bg) !important; */
+  background-image: url("/public/Pink Floral Congratulations Card");
+
+  & nav {
+    background-color: #296fa509;
+    border: 5px double #0000000c;
+  }
+}
+
+#address-Paper {
+  border-radius: 50px;
+  background: linear-gradient(145deg, #0000004b, #f0f0f038);
+  box-shadow: 6px 6px 6px #0c0c0c,
 }
 
 body {

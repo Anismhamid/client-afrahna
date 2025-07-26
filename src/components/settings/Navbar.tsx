@@ -41,7 +41,7 @@ const Navbar: FunctionComponent = () => {
 	const location = useLocation();
 	const {user, setUser} = useUser();
 	const {t} = useTranslation();
-	const [index, setIndex] = useState(0);
+	const [index, setIndex] = useState<number>(0);
 
 	const toggleDrawer = (open: boolean) => () => {
 		setOpen(open);
@@ -89,10 +89,12 @@ const Navbar: FunctionComponent = () => {
 			}}
 			width={isMobile ? "100%" : "90%"}
 		>
+			{/* Translate buttons */}
+			<TranslateButtons />
 			<AppBar
 				sx={{
 					zIndex: 2,
-					borderRadius: 10,
+					borderRadius: 6,
 					fontSize: "1.2rem",
 				}}
 				position='sticky'
@@ -104,11 +106,8 @@ const Navbar: FunctionComponent = () => {
 							display: "flex",
 							alignItems: "center",
 							justifyContent: "space-between",
-							px: 2,
-							py: 2,
-							color: "white",
+							p: 2,
 							width: "100%",
-							borderRadius: 8,
 							boxShadow: "0 0 10px 2px inset black ",
 						}}
 					>
@@ -281,14 +280,16 @@ const Navbar: FunctionComponent = () => {
 						{/* navigate menu */}
 						<Grid container spacing={0}>
 							{mainMenu.map((item, i) => (
-								<Grid size={{xs: 12}}>
+								<Grid size={{xs: 12}} key={i}>
 									<Tabs
-										aria-label='Soft tabs'
-										value={item.label}
+										aria-label='main menu tabs'
+										value={i}
 										onChange={(_, value) => setIndex(value as number)}
+										variant='plain'
 									>
-										<TabList variant='soft'>
+										<TabList>
 											<Tab
+												key={item.label}
 												variant={index === i ? "solid" : "plain"}
 												color={
 													index === i ? "primary" : "neutral"
@@ -296,7 +297,7 @@ const Navbar: FunctionComponent = () => {
 												component={Link}
 												to={item.link}
 												value={i}
-												sx={{m: "auto",width:"100%",marginBlock:0}}
+												sx={{width: "100%"}}
 											>
 												{t(item.label)}
 											</Tab>
@@ -340,8 +341,6 @@ const Navbar: FunctionComponent = () => {
 							</Box>
 						)}
 					</List>
-					{/* Translate buttons */}
-					<TranslateButtons />
 				</Box>
 			</Drawer>
 		</Box>

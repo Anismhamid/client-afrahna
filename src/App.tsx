@@ -48,15 +48,15 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<ThemeProvider theme={theme}>
-				<Theme mode={mode} setMode={setMode} />
-				<CssBaseline />
-				<Toaster position='top-center' reverseOrder={false} />
-				<CacheProvider value={cacheRtl}>
+			<CacheProvider value={cacheRtl}>
+				<ThemeProvider theme={theme}>
+					<Theme mode={mode} setMode={setMode} />
+					<CssBaseline />
+					<Toaster position='top-center' reverseOrder={false} />
 					<AppRoutes />
-				</CacheProvider>
-				<Footer />
-			</ThemeProvider>
+					<Footer />
+				</ThemeProvider>
+			</CacheProvider>
 		</Router>
 	);
 }

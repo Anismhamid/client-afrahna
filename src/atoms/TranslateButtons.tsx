@@ -6,10 +6,21 @@ interface TranslateButtonsProps {}
 
 const TranslateButtons: FunctionComponent<TranslateButtonsProps> = () => {
 	return (
-		<Box sx={{textAlign: "center", p: 3}}>
-			<Button onClick={() => i18n.changeLanguage("ar")}>العربية</Button>
-			<Button onClick={() => i18n.changeLanguage("he")}>עברית</Button>
-			<Button onClick={() => i18n.changeLanguage("en")}>English</Button>
+		<Box
+			sx={{
+				textAlign: "center",
+				background: "#0F4073",
+				borderRadius: "3px 3px 0 0 ",
+				width: "93%",
+				m: "auto",
+				"& button": {
+					color: "orange",
+				},
+			}}
+		>
+			<Button onClick={() => i18n.changeLanguage("ar")}>AR</Button>|
+			<Button onClick={() => i18n.changeLanguage("he")}>He</Button>|
+			<Button onClick={() => i18n.changeLanguage("en")}>En</Button>
 		</Box>
 	);
 };
