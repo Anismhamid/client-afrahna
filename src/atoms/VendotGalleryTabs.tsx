@@ -9,10 +9,7 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
-// import TabPanel from "@mui/lab/TabPanel";
-// import VideoUpload from "./Ads/VideoUpload";
-// import {Button} from "@mui/material";
-// import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 interface VendorGalleryTabsProps {
 	vendorId: string;
@@ -27,6 +24,7 @@ const VendorGalleryTabs: FunctionComponent<VendorGalleryTabsProps> = ({
 	const [value, setValue] = useState("1");
 	// const navigate = useNavigate();
 
+	const {t} = useTranslation();
 	const handleChange = (e: SyntheticEvent, newValue: string) => {
 		e.preventDefault();
 		setValue(newValue);
@@ -49,7 +47,7 @@ const VendorGalleryTabs: FunctionComponent<VendorGalleryTabsProps> = ({
 								openGalleries(true);
 								setGalleryType("main");
 							}}
-							label='الرئيسية'
+							label={t("afrahna.main")}
 							value='1'
 						/>
 						<Tab
@@ -57,7 +55,7 @@ const VendorGalleryTabs: FunctionComponent<VendorGalleryTabsProps> = ({
 								openGalleries(true);
 								setGalleryType("videos");
 							}}
-							label='فيديوهات'
+							label={t("afrahna.vedios")}
 							value='2'
 						/>
 						<Tab
@@ -65,7 +63,7 @@ const VendorGalleryTabs: FunctionComponent<VendorGalleryTabsProps> = ({
 								openGalleries(true);
 								setGalleryType("photos");
 							}}
-							label='صور'
+							label={t("afrahna.images")}
 							value='3'
 						/>
 						<Tab
@@ -73,7 +71,7 @@ const VendorGalleryTabs: FunctionComponent<VendorGalleryTabsProps> = ({
 								openGalleries(true);
 								setGalleryType("contact");
 							}}
-							label='معلومات الاتصال'
+							label={t("afrahna.contactInfo")}
 							value='4'
 						/>
 					</TabList>

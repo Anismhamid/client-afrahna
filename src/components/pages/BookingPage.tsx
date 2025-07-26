@@ -29,10 +29,13 @@ import JsonLd from "../JsonLd";
 import {generateSingleServiceJsonLd} from "../../utils/structuredData";
 import LeafletMap from "../../atoms/map/LeafletMap";
 import {Paper} from "@mui/material";
+import {useTranslation} from "react-i18next";
+import i18n from "../../../locales/i18n";
 
 interface SingleServicePageProps {}
 
 const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
+	const [refresh, setRefresh] = useState<boolean>(false);
 	const [galleryOpen, setGalleryOpen] = useState(true);
 	const [galleryType, setGalleryType] = useState<
 		"main" | "photos" | "videos" | "contact"
@@ -53,6 +56,10 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 		error,
 	} = useServiceData(vendorId);
 
+	const {t} = useTranslation();
+
+	const reload = () => setRefresh(!refresh);
+
 	const descriptionPoints = service?.description
 		? service.description
 				.split("-")
@@ -68,7 +75,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 		);
 		setIsDateAvailable(available);
 		if (!available) {
-			errorToast("لا يمكن الحجز في التاريخ الذي حددته، يرجى اختيار تاريخ آخر");
+			errorToast(t("booking.tryAnotherDate"));
 		}
 	};
 
@@ -104,15 +111,12 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 						price: yup.number().required(),
 					}),
 				)
-				.min(1, "يجب تحديد ميزة واحدة على الأقل."),
+				.min(1, t("booking.bookingError")),
 			note: yup.string(),
 		}),
 		onSubmit: async (values, {resetForm}) => {
 			if (!user) {
-				customToast(
-					"يجب عليك تسجيل الدخول لتستفيد من جميع خدماتنا المميزة",
-					navigate,
-				);
+				customToast(t("booking.loginToBook"), navigate);
 				return;
 			}
 			if (!vendorId || !service) return;
@@ -125,11 +129,32 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 			);
 
 			if (result?.success) {
+				const featuresText = values.features
+					.map(
+						(feature) =>
+							`${feature.featureName} - ${feature.price.toLocaleString(
+								i18n.language,
+								{
+									style: "currency",
+									currency: "ILS",
+								},
+							)}`,
+					)
+					.join(", ");
+
+				const formattedDate = selectedDate.toLocaleDateString(i18n.language, {
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				});
+
 				successToast(
-					`تم إرسال الطلب لتاريخ ${selectedDate.toLocaleDateString()} مع الخدمات:\n${values.features
-						.map((feature) => `${feature.featureName} - ${feature.price} ₪`)
-						.join(", ")}`,
+					t("booking.sendingSuccess", {
+						date: formattedDate,
+						features: featuresText,
+					}),
 				);
+
 				resetForm();
 			}
 		},
@@ -142,14 +167,10 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 		return (
 			<Box component={"main"} sx={{textAlign: "center", p: 4}}>
 				<Typography color='error' variant='h6' gutterBottom>
-					فشل تحميل بيانات الخدمة
+					{t("booking.serviceLoadingError")}
 				</Typography>
-				<Button
-					variant='contained'
-					color='primary'
-					onClick={() => window.location.reload()}
-				>
-					اعادة التحميل
+				<Button variant='contained' color='primary' onClick={reload}>
+					{t("booking.reload")}
 				</Button>
 			</Box>
 		);
@@ -167,10 +188,11 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 					}}
 				>
 					<Typography variant='h4' color='primary'>
-						تم إرسال طلبك بنجاح!
+						{t("booking.sendingSuccess")}
 					</Typography>
 					<Typography variant='body1' sx={{mb: 3}}>
-						سيتم التواصل معك قريبًا لتأكيد الطلب {service.phone}
+						{t("booking.weWellContactYou")}
+						{service.phone}
 					</Typography>
 					<Button
 						variant='contained'
@@ -178,7 +200,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 						size='large'
 						onClick={() => navigate("/")}
 					>
-						العودة إلى الصفحة الرئيسية
+						{t("booking.backToHome")}
 					</Button>
 
 					<Button
@@ -192,16 +214,14 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 						size='large'
 						onClick={() => navigate("/my-bookings")}
 					>
-						رؤيه الطلبات التي طلبتها
+						{t("booking.yourBooks")}
 					</Button>
 				</Box>
 			</Box>
 		);
 	}
 
-	// const sameUser = user && user._id === service.vendorId;
 	const adminUser = user && user.role === "admin";
-	// const adminUserOrSameUsaer = adminUser || sameUser;
 
 	return (
 		<Box
@@ -288,7 +308,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 						}}
 						onClick={() => navigate(`/vendors/${vendorId}`)}
 					>
-						ادارة الصفحه
+						{t("booking.pageManage")}
 					</Button>
 				</>
 			)}
@@ -301,27 +321,6 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 				<Box sx={{mt: 2}}>
 					{galleryType === "main" && (
 						<>
-							<Box
-								width={"100%"}
-								display={"flex"}
-								alignItems={"center"}
-								justifyContent={"space-around"}
-							>
-								{adminUser && (
-									<Button
-										size='medium'
-										color='primary'
-										variant='contained'
-										sx={{
-											position: "relative",
-											top: 0,
-										}}
-										onClick={() => navigate(`/vendors/${vendorId}`)}
-									>
-										ادارة الصفحه
-									</Button>
-								)}
-							</Box>
 							{/* facing image view */}
 							<ReactSlick images={service?.images as any} />
 							{/* Map */}
@@ -413,7 +412,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 									align='center'
 									gutterBottom
 								>
-									اختر الخدمات المطلوبة
+									{t("booking.chooseService")}
 								</Typography>
 
 								<Box
@@ -467,7 +466,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 													textAlign: "center",
 												}}
 											>
-												لا توجد خدمات متاحة
+												{t("booking.noServiceToChoose")}
 											</Typography>
 											{service.services.length === 0 && (
 												<>
@@ -480,8 +479,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 															textAlign: "center",
 														}}
 													>
-														يجب عليك اضافة خدمة واحده على
-														الاقل لكي يتم اظهارها للمستخدمين
+														{t("booking.haveToAddOneFuture")}
 													</Typography>
 													<Button
 														sx={{
@@ -494,7 +492,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 														}
 														variant='contained'
 													>
-														اضافه خدماتك المميزة
+														{t("booking.AddFuture")}
 													</Button>
 												</>
 											)}
@@ -508,7 +506,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 										fontWeight={700}
 										variant='h6'
 									>
-										سعر الطلبات المحددة الشامل{" "}
+										{t("booking.AllYorFuturesPrice")}{" "}
 										{formatCurrency(totalPrice)}
 									</Typography>
 								</Box>
@@ -516,7 +514,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 								<TextField
 									fullWidth
 									name='note'
-									label='ملاحظات إضافية (اختياري)'
+									label={t("booking.note")}
 									multiline
 									rows={4}
 									value={formik.values.note}
@@ -543,7 +541,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 										size='large'
 										sx={{px: 6}}
 									>
-										احجز الآن
+										{t("globalVendorsPage.bookNow")}
 									</Button>
 								</Box>
 							</Box>
@@ -566,13 +564,13 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 									to={`mailto:${service.email}`}
 									className=' text-success d-block'
 								>
-									ايميل: {service.email}
+									{t("registerPage.email")}: {service.email}
 								</Link>
 								<Link
 									to={`tel:+947${service.phone}`}
 									className=' text-success'
 								>
-									هاتف: {service.phone}
+									{t("registerPage.phoneNum")}: {service.phone}
 								</Link>
 							</>
 						)}

@@ -6,6 +6,10 @@
 	},
 
 	"afrahna": {
+		"main": "الرئيسية",
+		"vedios": "فيديوهات",
+		"images": "صور",
+		"contactInfo": "معلومات الاتصال",
 		"title": "أفراحنا",
 		"services": "خدمات منصة أفراحنا"
 	},
@@ -190,7 +194,14 @@
 		"PriceRange": "نطاق السعر",
 		"closest": "الأقرب",
 		"cheapest": "الأرخص",
-		"topRated": "الأعلى تقييماً"
+		"topRated": "الأعلى تقييماً",
+		"AvailableServices": "الخدمات المتاحة",
+		"moreServices": "خدمات أخرى",
+		"noImage": "لا توجد صورة",
+		"bookNow": "احجز الان",
+		"location": {
+			"basedOnCity": "الموقع التقريبي (بناءً على المدينة فقط)"
+		}
 	},
 
 	"navbar": {
@@ -260,6 +271,46 @@
 		"usersProviderManagement": "إدارة المستخدمين"
 	},
 
+	"booking": {
+		"loginToBook": "يجب عليك تسجيل الدخول لتستفيد من جميع خدماتنا المميزة",
+		"bookingError": "يجب تحديد ميزة واحدة على الأقل",
+		"sendingSuccess": "تم إرسال الطلب لتاريخ {{date}} مع الخدمات التالية:\n{{features}}",
+		"tryAnotherDate": "لا يمكن الحجز في التاريخ الذي حددته، يرجى اختيار تاريخ آخر",
+		"serviceLoadingError": "فشل تحميل بيانات الخدمة",
+		"reload": "اعادة التحميل",
+		"requistHasBeenSent": "تم إرسال طلبك بنجاح!",
+		"weWellContactYou": "سيتم التواصل معك قريبًا لتأكيد الطلب ",
+		"backToHome": "العودة إلى الصفحة الرئيسية",
+		"yourBooks": "رؤيه الطلبات التي طلبتها",
+		"pageManage": "ادارة الصفحه",
+		"chooseService": "اختر الخدمات المطلوبة",
+		"noServiceToChoose": "لا توجد خدمات متاحة",
+		"haveToAddOneFuture": "يجب عليك اضافة خدمة واحده على الاقل لكي يتم اظهارها للمستخدمين",
+		"AddFuture": "اضافه خدماتك المميزة",
+		"AllYorFuturesPrice": "سعر الطلبات المحددة الشامل",
+		"note": "ملاحظات إضافية (اختياري)",
+		"gallery": {
+			"noImages": "لا توجد صور متاحة حالياً لهذه الخدمة"
+		},
+		"workingHoursTitle": "ساعات العمل",
+		"workingHours": "لا توجد بيانات عن ساعات العمل"
+	},
+
+	"days": {
+		"sunday": "الأحد",
+		"monday": "الإثنين",
+		"tuesday": "الثلاثاء",
+		"wednesday": "الأربعاء",
+		"thursday": "الخميس",
+		"friday": "الجمعة",
+		"saturday": "السبت"
+	},
+	"closed": "مغلق",
+
+	"calendar": {
+		"directions": "إذا كان حقل التاريخ مُؤشرًا باللون الأحمر، فهذا يعني أن التاريخ غير متاح",
+		"chooseBookDate": "اختر تاريخ الحجز"
+	},
 	"privacyPolicy": "سياسة الخصوصية",
 	"privacy": {
 		"title": "سياسة خصوصية منصة أفراحنا",

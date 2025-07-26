@@ -1,6 +1,7 @@
 import {Box, Typography} from "@mui/material";
 import {FunctionComponent} from "react";
 import {Services} from "../../interfaces/services";
+import {useTranslation} from "react-i18next";
 
 interface WorkingHoursProps {
 	service: Services;
@@ -12,14 +13,13 @@ interface WorkingHoursProps {
  */
 const WorkingHours: FunctionComponent<WorkingHoursProps> = ({service}) => {
 	const workingHours = service.workingHours;
-
-	console.log(workingHours);
+	const {t} = useTranslation();
 
 	if (!workingHours) {
 		return (
 			<Box sx={{textAlign: "center", mt: 10}}>
 				<Typography color='text.secondary'>
-					لا توجد بيانات عن ساعات العمل
+					{t("booking.workingHours")}
 				</Typography>
 			</Box>
 		);
@@ -35,9 +35,7 @@ const WorkingHours: FunctionComponent<WorkingHoursProps> = ({service}) => {
 				borderRadius: 2,
 			}}
 		>
-			<Typography variant='h6' gutterBottom>
-				ساعات العمل
-			</Typography>
+			<Typography variant='h6' gutterBottom></Typography>
 			<Box component='ul' sx={{pl: 0, listStyle: "none"}}>
 				{Object.entries(service.workingHours).map(([day, hours]) => (
 					<Box
@@ -54,18 +52,18 @@ const WorkingHours: FunctionComponent<WorkingHoursProps> = ({service}) => {
 						<Typography>
 							{
 								{
-									sunday: "الأحد",
-									monday: "الإثنين",
-									tuesday: "الثلاثاء",
-									wednesday: "الأربعاء",
-									thursday: "الخميس",
-									friday: "الجمعة",
-									saturday: "السبت",
+									sunday: t("days.sunday"),
+									monday: t("days.monday"),
+									tuesday: t("days.tuesday"),
+									wednesday: t("days.wednesday"),
+									thursday: t("days.thursday"),
+									friday: t("days.friday"),
+									saturday: t("days.saturday"),
 								}[day]
 							}
 						</Typography>
 						{hours?.closed ? (
-							<Typography color='error'>مغلق</Typography>
+							<Typography color='error'>{t("closed")}</Typography>
 						) : (
 							<Typography>
 								{hours?.from} - {hours?.to}

@@ -5,6 +5,7 @@ import {Services} from "../../../interfaces/services";
 import {formatCurrency} from "../../../helpers/vendors";
 import {Button} from "@mui/material";
 import WazeIcon from "/wazeIcon.png";
+import {useTranslation} from "react-i18next";
 
 interface ServiceCardProps {
 	service: Services & {rating?: number};
@@ -18,6 +19,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 		return {min: Math.min(...prices), max: Math.max(...prices)};
 	}, [service.services]);
 
+	const {t} = useTranslation();
 	const isDefaultLocation =
 		service.address.lat === 32.0853 && service.address.lng === 34.7818;
 
@@ -41,7 +43,8 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 			>
 				{isDefaultLocation && (
 					<div className='alert alert-warning small mb-0'>
-						الموقع التقريبي (بناءً على المدينة فقط)
+						{t("globalVendorsPage.location.basedOnCity")}
+						{t("globalVendorsPage.moreServices")}
 					</div>
 				)}
 
@@ -56,7 +59,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 							style={{height: "100%", objectFit: "cover"}}
 						/>
 					) : (
-						<div className='text-muted'>لا توجد صورة</div>
+						<div className='text-muted'>{t("globalVendorsPage.noImage")}</div>
 					)}
 				</div>
 				{/* כפתור ניווט ל-Waze */}
@@ -102,16 +105,17 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 
 					{service.services?.length > 0 && (
 						<div className='mb-2'>
-							<strong>الخدمات المتاحة:</strong>
+							<strong>{t("globalVendorsPage.AvailableServices")}:</strong>
 							<ul className='list-unstyled small'>
-								{service.services.slice(0, 2).map((s, index: number) => (
+								{service.services.slice(0, 1).map((s, index: number) => (
 									<li key={index} className='text-muted'>
 										{s.featureName} - {formatCurrency(s.price)}
 									</li>
 								))}
-								{service.services.length > 2 && (
+								{service.services.length > 1 && (
 									<li className='text-muted'>
-										+{service.services.length - 2} خدمات أخرى
+										+{service.services.length - 1}{" "}
+										{t("globalVendorsPage.moreServices")}
 									</li>
 								)}
 							</ul>
@@ -131,7 +135,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 							)}
 						</div>
 						<button onClick={onNavigate} className='btn btn-outline-success'>
-							احجز الان
+							{t("globalVendorsPage.bookNow")}
 						</button>
 					</div>
 				</div>

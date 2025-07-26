@@ -60,7 +60,7 @@ const ServiceFilters: FunctionComponent<ServiceFiltersProps> = ({
 							variant={sortBy === "price" ? "primary" : "outline-secondary"}
 							onClick={() => setSortBy("price")}
 						>
-							<FaMoneyBillWave className='me-2' />{" "}
+							<FaMoneyBillWave className='me-2' />
 							{t("globalVendorsPage.cheapest")}
 						</Button>
 						<Button
@@ -97,26 +97,6 @@ const ServiceFilters: FunctionComponent<ServiceFiltersProps> = ({
 					</div>
 				</div>
 			</div>
-
-			{/* {subCategories?.length && (
-				<div className='row mt-3'>
-					<div className='col-12'>
-						<Tabs
-							activeKey={activeSubCategory}
-							onSelect={(k) => setActiveSubCategory(k || "الكل")}
-							className='mb-3'
-						>
-							<Tab
-								eventKey={t("globalVendorsPage.allServices")}
-								title={t("globalVendorsPage.allServices")}
-							/>
-							{subCategories.map((subCat) => (
-								<Tab key={subCat} eventKey={subCat} title={subCat} />
-							))}
-						</Tabs>
-					</div>
-				</div>
-			)} */}
 		</div>
 	);
 };

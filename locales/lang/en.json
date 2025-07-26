@@ -5,6 +5,10 @@
 		"subTitle": "We have all the services you need for your wedding day"
 	},
 	"afrahna": {
+		"main": "Main",
+		"vedios": "Vedios",
+		"images": "Images",
+		"contactInfo": "Contact information",
 		"title": "Afrahna",
 		"services": "Afrahna Platform Services"
 	},
@@ -197,7 +201,14 @@
 		"PriceRange": "Price range",
 		"closest": "closest",
 		"cheapest": "cheapest",
-		"topRated": "Top Rated"
+		"topRated": "Top Rated",
+		"AvailableServices": "Available services",
+		"moreServices": "more services",
+		"noImage": "No image to review",
+		"bookNow": "Book now",
+		"location": {
+			"basedOnCity": "Approximate location (based on city only)"
+		}
 	},
 
 	"navbar": {
@@ -271,6 +282,46 @@
 		"usersProviderManagement": "User management"
 	},
 
+	"booking": {
+		"loginToBook": "You must log in to benefit from all our distinguished services",
+		"bookingError": "At least one feature must be specified",
+		"sendingSuccess": "Your request has been sent for {{date}} with the following services:\n{{features}}",
+		"tryAnotherDate": "Booking is not available on the selected date. Please choose another date.",
+		"serviceLoadingError": "Failed to load service data.",
+		"reload": "Reload",
+		"requistHasBeenSent": "Your request has been sent successfully!",
+		"weWellContactYou": "We will contact you soon to confirm the request.",
+		"backToHome": "Back to Home Page",
+		"yourBooks": "View your requests",
+		"pageManage": "Manage Page",
+		"chooseService": "Choose the required services",
+		"noServiceToChoose": "No available services to choose from.",
+		"haveToAddOneFuture": "You must add at least one service to make it visible to users.",
+		"AddFuture": "Add your premium services",
+		"AllYorFuturesPrice": "Total price for selected services",
+		"note": "Additional notes (optional)",
+		"gallery": {
+			"noImages": "No images available for this service at the moment."
+		},
+		"workingHoursTitle": "Working hours",
+		"workingHours": "No working hours data available"
+	},
+
+	"days": {
+		"sunday": "Sunday",
+		"monday": "Monday",
+		"tuesday": "Tuesday",
+		"wednesday": "Wednesday",
+		"thursday": "Thursday",
+		"friday": "Friday",
+		"saturday": "Saturday"
+	},
+
+	"closed": "Closed",
+	"calendar": {
+		"directions": "If the date field is marked in red, it means the date is unavailable",
+		"chooseBookDate": "Choose a booking date"
+	},
 	"privacyPolicy": "Privacy Policy",
 
 	"privacy": {

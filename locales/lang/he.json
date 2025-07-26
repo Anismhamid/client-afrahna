@@ -5,6 +5,11 @@
 		"subTitle": "כל השירותים שאתם צריכים ליום החתונה שלכם"
 	},
 	"afrahna": {
+		"main": "ראשי",
+		"vedios": "וידאו",
+		"images": "תמונות",
+		"contactInfo": "פרטי קשר",
+
 		"title": "Afrahna",
 		"services": "שירותי פלטפורמת Afrahna"
 	},
@@ -184,7 +189,14 @@
 		"PriceRange": "טווח מחירים",
 		"closest": "הקרוב ביותר",
 		"cheapest": "הזול ביותר",
-		"topRated": "המדורג ביותר"
+		"topRated": "המדורג ביותר",
+		"AvailableServices": "שירותים זמינים",
+		"moreServices": "שירותים נוספים",
+		"noImage": "אין תמונה",
+		"bookNow": "הזמן עכשיו",
+		"location": {
+			"basedOnCity": "מיקום משוער (מבוסס על עיר בלבד)"
+		}
 	},
 
 	"navbar": {
@@ -257,6 +269,48 @@
 	},
 
 	"vendorsManagement": {},
+
+	"booking": {
+		"loginToBook": "עליך להתחבר כדי ליהנות מכל השירותים הייחודיים שלנו",
+		"bookingError": "יש לציין לפחות מאפיין אחד",
+		"sendingSuccess": "הבקשה נשלחה לתאריך {{date}} עם השירותים הבאים:\n{{features}}",
+		"tryAnotherDate": "לא ניתן להזמין בתאריך שבחרת, אנא נסה תאריך אחר",
+		"serviceLoadingError": "שגיאה בטעינת נתוני השירות",
+		"reload": "טעינה מחדש",
+		"requistHasBeenSent": "הבקשה נשלחה בהצלחה!",
+		"weWellContactYou": "ניצור איתך קשר בקרוב לאישור הבקשה",
+		"backToHome": "חזרה לעמוד הראשי",
+		"yourBooks": "הצגת הבקשות שלך",
+		"pageManage": "ניהול העמוד",
+		"chooseService": "בחר את השירותים הרצויים",
+		"noServiceToChoose": "אין שירותים זמינים לבחירה",
+		"haveToAddOneFuture": "עליך להוסיף לפחות שירות אחד כדי שיוצג למשתמשים",
+		"AddFuture": "הוסף את השירותים המיוחדים שלך",
+		"AllYorFuturesPrice": "מחיר כולל של השירותים שנבחרו",
+		"note": "הערות נוספות (לא חובה)",
+		"gallery": {
+			"noImages": "אין תמונות זמינות כרגע לשירות זה"
+		},
+		"workingHoursTitle": "שעות עבודה",
+		"workingHours": "אין מידע על שעות הפעילות"
+	},
+
+	"days": {
+		"sunday": "ראשון",
+		"monday": "שני",
+		"tuesday": "שלישי",
+		"wednesday": "רביעי",
+		"thursday": "חמישי",
+		"friday": "שישי",
+		"saturday": "שבת"
+	},
+
+	"closed": "סגור",
+
+	"calendar": {
+		"directions": "אם שדה התאריך מסומן באדום, המשמעות היא שהתאריך לא פנוי",
+		"chooseBookDate": "בחר תאריך להזמנה"
+	},
 	"privacyPolicy": "מדיניות פרטיות",
 	"privacy": {
 		"title": "מדיניות פרטיות פלטפורמת Afrahna",

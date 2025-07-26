@@ -3,6 +3,7 @@ import {FunctionComponent} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {useTranslation} from "react-i18next";
 
 interface ReactSlickProps {
 	images: {
@@ -13,6 +14,7 @@ interface ReactSlickProps {
 }
 
 const ReactSlick: FunctionComponent<ReactSlickProps> = ({images}) => {
+	const {t} = useTranslation();
 	const sliderSettings = {
 		dots: true,
 		infinite: true,
@@ -81,7 +83,7 @@ const ReactSlick: FunctionComponent<ReactSlickProps> = ({images}) => {
 					color='textSecondary'
 					sx={{mt: 3}}
 				>
-					لا توجد صور متاحة حالياً لهذه الخدمة.
+					{t("booking.gallery.noImages")}
 				</Typography>
 			)}
 		</Container>
