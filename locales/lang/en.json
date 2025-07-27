@@ -14,7 +14,8 @@
 	},
 
 	"ads": {
-		"noVideo": "No ad videos available"
+		"noVideo": "No ad videos available",
+		"video": {}
 	},
 
 	"footer": {
@@ -386,6 +387,16 @@
 		"lastUpdate": "This policy was last updated on 27.5.2025. We reserve the right to amend this policy and will post any changes on this page with an updated review date."
 	},
 
+	"analytics": {},
+	"pnf": {},
+	"contactUs": {},
+	
+	"payment": {},
+	"atoms": {},
+	"testimonialsSlider": {},
+	"addNewServiceModal": {},
+	"addNewPicture": {},
+
 	"termsOfUse": "Terms of Use",
 
 	"terms": {
@@ -439,8 +450,55 @@
 		"lastUpdate": "The Terms of Use were last updated on {{date}}. We reserve the right to modify these terms at any time and will post updates on this page."
 	},
 
-	"about": {},
-	"payment": {},
+	"about": {
+		"title": "About Afrahna Platform",
+		"subtitle": "The leading platform for wedding and event planning in the Middle East",
+		"vision": {
+			"title": "Our Vision",
+			"content": "Afrahna Platform was created to simplify and streamline wedding and event planning for couples and businesses. We aim to connect quality service providers with customers looking for professional solutions for unforgettable events."
+		},
+		"offerings": {
+			"title": "What We Offer?",
+			"content": "Afrahna is a comprehensive digital marketplace that brings together a wide range of wedding and event services, including:",
+			"categories": [
+				"Venues and accommodation (indoor, outdoor, garden venues)",
+				"Design and makeup (hall decorations, car decorations, makeup and grooming)",
+				"Catering (catering, sweets, inflatables, coffee bars)",
+				"Entertainment (dabke bands, fireworks, photographers, sound systems)",
+				"Additional services (invitations, gifts, luxury car rentals, kids' corners)"
+			],
+			"advantages": [
+				"Wide variety - dozens of service categories in one place",
+				"Centralized information - vendor pages with descriptions, photos, prices and reviews",
+				"Availability and transparency - price comparison, online scheduling and direct communication",
+				"Reliability - verified vendors with customer ratings",
+				"Adapted to local culture - services specially tailored for Arab, Druze and Muslim weddings"
+			]
+		},
+		"audience": {
+			"title": "Who Is It For?",
+			"items": [
+				"Engaged couples - Find all the vendors you need for your dream event",
+				"Service providers - Expand your customer base through a professional platform",
+				"Event organizers - Easily manage different vendors in one place"
+			]
+		},
+		"process": {
+			"title": "How It Works?",
+			"steps": [
+				"Browse and select - Search for services by category or location",
+				"Compare - Read reviews, check prices and ratings",
+				"Coordinate and pay - Contact directly or book online",
+				"Smooth experience - Get support until the end of the event"
+			]
+		},
+		"cta": {
+			"title": "Ready to get started?",
+			"content": "For questions or more information, contact us through the 'Contact Us' page on the website or via email",
+			"button": "Contact Us"
+		},
+		"footer": "🌐 Afrahna - The leading platform for wedding and event planning in the Middle East!"
+	},
 	"recommendedVendors": {
 		"title": "Recommended Vendors",
 		"noServices": "No recommended services available currently",
@@ -464,6 +522,8 @@
 	},
 	"plans": {
 		"subscriptionPlans": "Subscription Plans",
-		"choosePlan": "Choose the plan that suits you"
+		"subscriptionButtons": "Subscription Plans",
+		"choosePlan": "Choose the plan that suits you",
+		"subscription": {}
 	}
 }

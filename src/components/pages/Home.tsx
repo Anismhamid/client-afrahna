@@ -16,6 +16,7 @@ import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
 import JsonLd from "../JsonLd";
 import {generateCategoriesItemListJsonLd} from "../../utils/structuredData";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../locales/directions";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface HomeProps {}
@@ -49,10 +50,13 @@ const Home: FunctionComponent<HomeProps> = () => {
 		}
 	}, [setUser]);
 
+	const dir = changeDirection()
+
 	return (
 		<>
 			<title>{t("home.tab")}</title>
 			<Box
+			dir={dir}
 				component={"main"}
 				sx={{
 					backgroundColor: "background.default",

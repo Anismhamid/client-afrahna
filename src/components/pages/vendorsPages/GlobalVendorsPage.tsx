@@ -11,6 +11,7 @@ import ServiceCard from "./ServiceCard";
 import useMetaDocument from "../../../hooks/useMetaDocunent";
 import {Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../../locales/directions";
 
 interface GlobalVendorsPageProps {
 	category: string;
@@ -112,7 +113,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 		};
 
 		fetchServices();
-	}, [category, sortBy, userLocation]);
+	}, [category, sortBy]);
 
 	const calculateDistance = (lat1: number, lon1: number, address: Address) => {
 		if (!address.lat || !address.lng) {
@@ -206,64 +207,74 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 		);
 	}
 
-	return (
-		<main>
-			<Typography
-				variant='h1'
-				sx={{color: "primary.main", fontSize: "3rem"}}
-				className='display-6 fw-bold text-center mb-3'
-			>
-				{t(pageTitle)}
-			</Typography>
-			<HorizontalDevider />
-			<div className='text-center mb-5 p-3'>
-				<JsonLd
-					data={generateServiceJsonLd({
-						serviceType: category,
-						serviceUrl:
-							services.length > 0
-								? `https://client-afrahna.vercel.app/${services[0].vendorId}`
-								: "",
-					})}
-				/>
-				<Typography
-					variant='h2'
-					sx={{color: "primary.main", fontSize: "2rem"}}
-					className='lead'
-				>
-					{t(introText)}
-				</Typography>
-			</div>
+	const dir = changeDirection();
 
-			<ServiceFilters
-				searchTerm={searchTerm}
-				setSearchTerm={setSearchTerm}
-				sortBy={sortBy}
-				setSortBy={setSortBy}
-				priceRange={priceRange}
-				setPriceRange={setPriceRange}
+	return (
+		<>
+			<title>{t(category)}</title>
+			<meta
+				name='description'
+				content={t(`services.${category}.metaDescription`)}
 			/>
 
-			<div className='container'>
-				{filteredServices.length === 0 ? (
-					<div className='text-center py-5'>
-						<h4>{t("globalVendorsPage.noServices")}</h4>
-					</div>
-				) : (
-					<div className='row m-auto row-cols-1 row-cols-md-2 row-cols-xl-4 g-5'>
-						{filteredServices.map((service) => (
-							<ServiceCard
-								key={service.vendorId}
-								service={service}
-								onNavigate={() =>
-									navigate(`/service/${service.vendorId}`)
-								}
-							/>
-						))}
-					</div>
-				)}
-			</div>
-		</main>
+			<main dir={dir}>
+				<Typography
+					variant='h1'
+					sx={{color: "primary.main", fontSize: "3rem"}}
+					className='display-6 fw-bold text-center mb-3'
+				>
+					{t(pageTitle)}
+				</Typography>
+				<HorizontalDevider />
+				<div className='text-center mb-5 p-3'>
+					<JsonLd
+						data={generateServiceJsonLd({
+							serviceType: category,
+							serviceUrl:
+								services.length > 0
+									? `https://client-afrahna.vercel.app/${services[0].vendorId}`
+									: "",
+						})}
+					/>
+					<Typography
+						variant='h2'
+						sx={{color: "primary.main", fontSize: "2rem"}}
+						className='lead'
+					>
+						{t(introText)}
+					</Typography>
+				</div>
+
+				<ServiceFilters
+					searchTerm={searchTerm}
+					setSearchTerm={setSearchTerm}
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+					priceRange={priceRange}
+					setPriceRange={setPriceRange}
+				/>
+
+				<div className='container'>
+					{filteredServices.length === 0 ? (
+						<div className='text-center py-5'>
+							<h4>{t("globalVendorsPage.noServices")}</h4>
+						</div>
+					) : (
+						<div className='row m-auto row-cols-1 row-cols-md-2 row-cols-xl-4 g-5'>
+							{filteredServices.map((service) => (
+								<ServiceCard
+									key={service.vendorId}
+									service={service}
+									onNavigate={() =>
+										navigate(`/service/${service.vendorId}`)
+									}
+								/>
+							))}
+						</div>
+					)}
+				</div>
+			</main>
+		</>
 	);
 };
 

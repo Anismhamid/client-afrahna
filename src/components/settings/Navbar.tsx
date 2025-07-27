@@ -32,6 +32,7 @@ import TranslateButtons from "../../atoms/TranslateButtons";
 import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
+import changeDirection from "../../../locales/directions";
 
 const Navbar: FunctionComponent = () => {
 	const [open, setOpen] = useState(false);
@@ -77,8 +78,11 @@ const Navbar: FunctionComponent = () => {
 		</ListItem>
 	);
 
+	const dir = changeDirection();
+
 	return (
 		<Box
+			dir={dir}
 			sx={{
 				flexGrow: 1,
 				position: "sticky",
@@ -172,7 +176,7 @@ const Navbar: FunctionComponent = () => {
 			{/* side drawer */}
 			<Drawer
 				variant='persistent'
-				anchor={isMobile ? "top" : "right"}
+				anchor={isMobile ? "top" : dir === "rtl" ? "right" : "left"}
 				open={open}
 				onClose={toggleDrawer(false)}
 			>

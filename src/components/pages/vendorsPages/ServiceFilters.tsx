@@ -9,6 +9,7 @@ import {Form, InputGroup, ButtonGroup, Button, Badge} from "react-bootstrap";
 import {FunctionComponent} from "react";
 import {formatCurrency} from "../../../helpers/vendors";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../../locales/directions";
 
 interface ServiceFiltersProps {
 	searchTerm: string;
@@ -30,8 +31,11 @@ const ServiceFilters: FunctionComponent<ServiceFiltersProps> = ({
 	setPriceRange,
 }) => {
 	const {t} = useTranslation();
+
+	const dir = changeDirection();
+
 	return (
-		<div className='container mb-4'>
+		<div dir={dir} className='container mb-4'>
 			<div className='row g-3'>
 				<div className='col-md-6'>
 					<InputGroup>

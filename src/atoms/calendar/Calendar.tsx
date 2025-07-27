@@ -46,7 +46,7 @@ const Calendars: FunctionComponent<CalendarsProps> = ({
 				locale='ar'
 				next2Label={null}
 				prev2Label={null}
-				calendarType='hebrew'
+				calendarType='islamic'
 				tileClassName={({date, view}) => {
 					if (
 						view === "month" &&

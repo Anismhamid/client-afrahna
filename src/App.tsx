@@ -14,6 +14,7 @@ import {CssBaseline} from "@mui/material";
 import {useMemo, useState} from "react";
 import Theme from "./atoms/Theme";
 
+
 const cacheRtl = createCache({
 	key: "muirtl",
 	stylisPlugins: [prefixer, rtlPlugin],
@@ -24,6 +25,7 @@ function App() {
 		const stored = localStorage.getItem("theme");
 		return stored === "light" ? "light" : "dark";
 	};
+
 	const [mode, setMode] = useState<PaletteMode>(getInitialMode());
 
 	const theme = useMemo(
@@ -41,7 +43,6 @@ function App() {
 								background: {default: "#040f18"},
 						  }),
 				},
-				direction: "rtl",
 			}),
 		[mode],
 	);

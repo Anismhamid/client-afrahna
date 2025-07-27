@@ -17,6 +17,7 @@ import {
 	Email,
 } from "@mui/icons-material";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../locales/directions";
 
 const icons = [<Gavel />, <Rule />, <AccountCircle />, <Description />, <AccessTime />];
 
@@ -28,9 +29,12 @@ const TermsOfUse: FunctionComponent = () => {
 		items: string[];
 	}[];
 
+	const dir = changeDirection();
+
 	return (
 		<Container maxWidth='md' sx={{py: 5}}>
 			<Box
+				dir={dir}
 				sx={{
 					borderRadius: 4,
 					padding: {xs: 3, md: 4},

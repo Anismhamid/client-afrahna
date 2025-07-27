@@ -36,7 +36,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 	};
 
 	return (
-		<div className='col'>
+		<div  className='col'>
 			<div
 				className='card border-0 shadow-lg h-100 hover-zoom'
 				style={{transition: "transform 0.3s ease"}}

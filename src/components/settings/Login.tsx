@@ -8,6 +8,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {userLogin} from "../../services/usersServices";
 import {errorToast, successToast} from "../../atoms/notifications/Toasts";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../locales/directions";
 
 interface LoginProps {}
 
@@ -38,8 +39,11 @@ const Login: FunctionComponent<LoginProps> = () => {
 		},
 	});
 
+	const dir = changeDirection();
+
 	return (
 		<main
+			dir={dir}
 			style={{
 				display: "flex",
 				justifyContent: "center",
@@ -58,7 +62,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 					flexDirection: "column",
 					gap: 2,
 					maxWidth: "400px",
-					direction: "rtl",
+					direction: dir,
 					color: "primary.main",
 				}}
 			>

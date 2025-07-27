@@ -22,6 +22,7 @@ import zxcvbn from "zxcvbn";
 import LinearProgress from "@mui/material/LinearProgress";
 import {getStrengthColor, getPasswordStrengthLabel} from "../../helpers/passwordChecker";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../locales/directions";
 
 const BusinessRegister: FunctionComponent = () => {
 	const navigate = useNavigate();
@@ -71,8 +72,12 @@ const BusinessRegister: FunctionComponent = () => {
 		},
 	});
 
+		const dir = changeDirection();
+
+
 	return (
 		<main
+		dir={dir}
 			style={{
 				display: "flex",
 				justifyContent: "center",

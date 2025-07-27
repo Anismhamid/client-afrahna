@@ -16,9 +16,9 @@ i18n.use(LanguageDetector) // מזהה אוטומטית את שפת הדפדפן
 	.use(initReactI18next) // מחבר ל-React
 	.init({
 		resources,
-		fallbackLng: "en",
+		fallbackLng: "he",
 		interpolation: {
-			escapeValue: false, // לא נדרש ב-React
+			escapeValue: false,
 		},
 	});
 

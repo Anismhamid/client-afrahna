@@ -14,10 +14,11 @@ import {
 } from "recharts";
 
 import {Download} from "lucide-react";
+import {useTranslation} from "react-i18next";
 
 interface VendorsAnalyticsDashboardProps {}
 
-// بيانات وهمية
+// fake data
 const trafficData = [
 	{day: "01", visits: 120},
 	{day: "02", visits: 180},
@@ -40,10 +41,12 @@ const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042"];
 const VendorsAnalyticsDashboard: FunctionComponent<
 	VendorsAnalyticsDashboardProps
 > = () => {
+	const {t} = useTranslation();
+
 	return (
 		<Box my={5} textAlign='center'>
 			<Typography variant='h4' gutterBottom color='primary'>
-				تحليلات شهرية متقدمة لأداء الصفحة
+				{t("")}
 			</Typography>
 
 			{/* KPIs */}

@@ -11,6 +11,7 @@ import {successToast} from "../../atoms/notifications/Toasts";
 import {getStrengthColor, getPasswordStrengthLabel} from "../../helpers/passwordChecker";
 import zxcvbn from "zxcvbn";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../locales/directions";
 
 interface RegisterProps {}
 
@@ -68,8 +69,12 @@ const Register: FunctionComponent<RegisterProps> = () => {
 		},
 	});
 
+		const dir = changeDirection();
+
+
 	return (
 		<main
+		dir={dir}
 			style={{
 				display: "flex",
 				justifyContent: "center",

@@ -31,6 +31,7 @@ import LeafletMap from "../../atoms/map/LeafletMap";
 import {Paper} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import i18n from "../../../locales/i18n";
+import changeDirection from "../../../locales/directions";
 
 interface SingleServicePageProps {}
 
@@ -57,7 +58,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 	} = useServiceData(vendorId);
 
 	const {t} = useTranslation();
-
+	const dir = changeDirection();
 	const reload = () => setRefresh(!refresh);
 
 	const descriptionPoints = service?.description
@@ -225,6 +226,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 
 	return (
 		<Box
+		dir={dir}
 			component={"main"}
 			sx={{
 				textAlign: "center",
