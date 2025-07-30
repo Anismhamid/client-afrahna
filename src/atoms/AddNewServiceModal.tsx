@@ -12,6 +12,8 @@ import * as yup from "yup";
 import {addVendorService} from "../services/vendorServices";
 import {errorToast, successToast} from "./notifications/Toasts";
 import {forwardRef, FunctionComponent, ReactElement, Ref} from "react";
+import {useTranslation} from "react-i18next";
+import changeDirection from "../../locales/directions";
 
 const Transition = forwardRef(function Transition(
 	props: TransitionProps & {
@@ -35,14 +37,21 @@ const AlertDialogSlide: FunctionComponent<AlertDialogSlideProps> = ({
 	userId,
 	refresh,
 }) => {
+	const {t} = useTranslation();
+
 	const formik = useFormik({
 		initialValues: {
 			featureName: "",
 			price: 0,
 		},
 		validationSchema: yup.object({
-			featureName: yup.string().required("الخدمة مطلوبة"), // Changed from newService
-			price: yup.number().required("سعر الخدمة مطلوب").positive(),
+			featureName: yup
+				.string()
+				.required(t("addNewService.validation.nameRequired")),
+			price: yup
+				.number()
+				.required(t("addNewService.validation.priceRequired"))
+				.positive(),
 		}),
 		onSubmit: (values) => {
 			addVendorService(userId, {
@@ -50,35 +59,38 @@ const AlertDialogSlide: FunctionComponent<AlertDialogSlideProps> = ({
 				price: values.price,
 			})
 				.then(() => {
-					successToast(`تمت إضافة الخدمة "${values.featureName}" بنجاح`); // Show specific value
+          successToast(t("addNewService.toasts.success", {name: values.featureName}));
 					handleClose();
 					formik.resetForm();
 					refresh();
 				})
 				.catch((err) => {
-					errorToast(err.message || "حدث خطأ أثناء إضافة الخدمة");
+          errorToast(err.message || t("addNewService.toasts.error"));
 				});
 		},
 	});
 
+	const dir = changeDirection()
+
 	return (
 		<Dialog
+		dir={dir}
 			open={open}
 			TransitionComponent={Transition}
 			keepMounted
 			onClose={handleClose}
 			aria-describedby='alert-dialog-slide-description'
 		>
-			<DialogTitle>{"خدمة جديدة"}</DialogTitle>
+			<DialogTitle>{t("addNewService.dialogTitle")}</DialogTitle>
 			<form onSubmit={formik.handleSubmit}>
 				<DialogContent>
 					<DialogContentText id='alert-dialog-slide-description'>
-						ما هي الخدمة الجديدة التي تريد إضافتها؟
+						{t("addNewService.description")}
 					</DialogContentText>
 					<TextField
 						fullWidth
 						autoFocus
-						label='الخدمة الجديدة'
+						label={t("addNewService.labels.featureName")}
 						name='featureName'
 						variant='outlined'
 						value={formik.values.featureName}
@@ -97,7 +109,7 @@ const AlertDialogSlide: FunctionComponent<AlertDialogSlideProps> = ({
 					/>
 					<TextField
 						fullWidth
-						label='سعر الخدمة'
+						label={t("addNewService.labels.price")}
 						name='price'
 						type='number'
 						variant='outlined'
@@ -110,13 +122,19 @@ const AlertDialogSlide: FunctionComponent<AlertDialogSlideProps> = ({
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>إغلاق</Button>
+					<Button onClick={handleClose}>
+						{t("addNewService.buttons.close")}
+					</Button>
 					<Button
 						type='submit'
 						variant='contained'
 						disabled={formik.isSubmitting}
 					>
-						{formik.isSubmitting ? "جاري الإضافة..." : "إضافة"}
+						<Button onClick={handleClose}>
+							{formik.isSubmitting
+								? t("addNewService.buttons.adding")
+								: t("addNewService.buttons.add")}{" "}
+						</Button>
 					</Button>
 				</DialogActions>
 			</form>

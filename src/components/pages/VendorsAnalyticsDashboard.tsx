@@ -46,15 +46,15 @@ const VendorsAnalyticsDashboard: FunctionComponent<
 	return (
 		<Box my={5} textAlign='center'>
 			<Typography variant='h4' gutterBottom color='primary'>
-				{t("")}
+				{t("analytics.title")}
 			</Typography>
 
 			{/* KPIs */}
 			<Grid container spacing={3} mb={4}>
 				{[
-					{label: "عدد الزوار", value: "4,320"},
-					{label: "المدة المتوسطة (دقائق)", value: "3.8"},
-					{label: "معدل الارتداد", value: "28%"},
+					{label: t("analytics.numberOfVisitors"), value: "4,320"},
+					{label: t("analytics.averageDuration"), value: "3.8"},
+					{label: t("analytics.bounceRate"), value: "28%"},
 				].map((item, index) => (
 					<Grid size={{xs: 12, md: 4}} key={index}>
 						<Card>
@@ -67,13 +67,13 @@ const VendorsAnalyticsDashboard: FunctionComponent<
 				))}
 			</Grid>
 
-			{/* المخطط البياني */}
+			{/* Chart */}
 			<Grid container spacing={4}>
 				<Grid size={{xs: 12, md: 8}}>
 					<Card>
 						<CardContent>
 							<Typography variant='h6' mb={2}>
-								زيارات الصفحة خلال الأسبوع
+								{t("analytics.Chart")}
 							</Typography>
 							<ResponsiveContainer width='100%' height={250}>
 								<LineChart data={trafficData}>
@@ -98,7 +98,7 @@ const VendorsAnalyticsDashboard: FunctionComponent<
 					<Card>
 						<CardContent>
 							<Typography variant='h6' mb={2}>
-								مصادر الزيارات
+								{t("analytics.PieChart")}
 							</Typography>
 							<ResponsiveContainer width='100%' height={250}>
 								<PieChart>
@@ -126,10 +126,10 @@ const VendorsAnalyticsDashboard: FunctionComponent<
 				</Grid>
 			</Grid>
 
-			{/* زر التقرير الشهري */}
+			{/* Monthly Report Button */}
 			<Box textAlign='center' mt={5}>
 				<Button variant='contained' color='primary' startIcon={<Download />}>
-					تنزيل التقرير الشهري (PDF)
+					{t("analytics.button")}(PDF)
 				</Button>
 			</Box>
 		</Box>

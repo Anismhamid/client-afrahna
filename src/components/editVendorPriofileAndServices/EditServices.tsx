@@ -148,7 +148,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 		<Box component={"main"}>
 			<Box className='container'>
 				<Typography variant='h4' gutterBottom sx={{textAlign: "center", py: 5}}>
-					تعديل بيانات مزود الخدمة
+					{t("editServices.title")}
 				</Typography>
 
 				<Button
@@ -168,14 +168,14 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label={t('editServices.businessName')}
+										label={t("editServices.businessName")}
 										name='businessName'
 									/>
 								</Grid>
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label={t('registerPage.phone')}
+										label={t("registerPage.phoneNum")}
 										name='phone'
 									/>
 								</Grid>
@@ -202,7 +202,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='الفئة'
+										label={t("registerPage.category")}
 										name='category'
 									/>
 								</Grid>
@@ -218,14 +218,14 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 											id='priceType-label'
 											sx={{textAlign: "right"}}
 										>
-											نوع السعر
+											{t("editServices.priceType")}
 										</InputLabel>
 										<Select
 											labelId='priceType-label'
 											id='priceType'
 											name='priceType'
 											value={formik.values.priceType}
-											label='نوع السعر'
+											label={t("editServices.priceType")}
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 											sx={{textAlign: "right"}}
@@ -251,7 +251,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='السعر الأدنى'
+										label={t("editServices.minPrice")}
 										name='price.min'
 										type='number'
 									/>
@@ -259,7 +259,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='السعر الأقصى'
+										label={t("editServices.maxPrice")}
 										name='price.max'
 										type='number'
 									/>
@@ -270,14 +270,14 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								variant='h5'
 								sx={{textAlign: "center", mt: 5, mb: 1}}
 							>
-								تخصيص نوع الحجز
+								{t("editServices.bookingTypeSection")}{" "}
 							</Typography>
 							<HorizontalDevider />
 							<Grid container>
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='أقصى عدد حجوزات في اليوم'
+										label={t("editServices.maxBookingsPerDay")}
 										name='maxBookingsPerDay'
 										type='number'
 									/>
@@ -295,7 +295,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 												onBlur={formik.handleBlur}
 											/>
 										}
-										label='السماح بحجوزات متداخلة'
+										label={t("editServices.allowOverlapping")}
 										sx={{justifyContent: "end", my: 1}}
 									/>
 								</Grid>
@@ -304,7 +304,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								<Grid m={"auto"} mt={3} size={{xs: 12, md: 5}}>
 									<CustomTextFiled
 										formik={formik}
-										label='مدة الحجز (بالساعات)'
+										label={t("editServices.bookingDurationInHours")}
 										name='bookingDurationInHours'
 										type='number'
 									/>
@@ -321,25 +321,29 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 											id='bookingType-label'
 											sx={{textAlign: "right"}}
 										>
-											نوع الحجز
+											{t("editServices.bookingType")}
 										</InputLabel>
 										<Select
 											labelId='bookingType-label'
 											id='bookingType'
 											name='bookingType'
 											value={formik.values.bookingType}
-											label='نوع الحجز'
+											label={t("editServices.bookingType")}
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 											sx={{textAlign: "right"}}
 										>
 											<MenuItem value='' disabled>
-												اختر نوع الحجز
+												{t("editServices.bookingType")}
 											</MenuItem>
-											<MenuItem value='daily'>يومي</MenuItem>
-											<MenuItem value='hourly'>بالساعة</MenuItem>
+											<MenuItem value='daily'>
+												{t("editServices.daily")}
+											</MenuItem>
+											<MenuItem value='hourly'>
+												{t("editServices.hourly")}
+											</MenuItem>
 											<MenuItem value='multi-booking'>
-												متعدد
+												{t("editServices.multiBooking")}
 											</MenuItem>
 										</Select>
 										{formik.touched.bookingType &&
@@ -353,18 +357,17 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 							</Grid>
 							{/* work hours section */}
 							<Typography variant='h5' sx={{textAlign: "center", my: 5}}>
-								تخصيص ساعات الدوام
+								{t("editServices.workingHoursSection")}
 							</Typography>
-							<HorizontalDevider />
-							{days.map(({key, label}) => (
-								<Box alignItems='center' marginBlock={"auto"}>
-									<Grid container spacing={2} key={key}>
-										<Grid
-											size={{xs: 6, md: 2, lg: 3}}
-											alignItems='center'
-										>
+							<HorizontalDevider />{" "}
+							<Box alignItems='center' mx={"auto"}>
+								{days.map(({key, label}) => (
+									<Grid container key={key}>
+										<Grid size={{xs: 12, md: 6}}>
 											<TimeClockPicker
-												label={`وقت البدء (${label})`}
+												label={`${t(
+													"editServices.startTime",
+												)}-(${label})`}
 												value={
 													formik.values.workingHours[key]
 														?.from || ""
@@ -381,9 +384,11 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 												}
 											/>
 										</Grid>
-										<Grid size={{xs: 6, md: 6}}>
+										<Grid size={{xs: 12, md: 6}}>
 											<TimeClockPicker
-												label={`وقت الانتهاء (${label})`}
+												label={`${t(
+													"editServices.endTime",
+												)}-(${label})`}
 												value={
 													formik.values.workingHours[key]?.to ||
 													""
@@ -400,7 +405,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 												}
 											/>
 										</Grid>
-										<Grid size={{xs: 6, md: 6}}>
+										<Grid size={{xs: 12, md: 6}}>
 											<FormControlLabel
 												control={
 													<Checkbox
@@ -418,19 +423,17 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 														color='primary'
 													/>
 												}
-												label='مغلق'
+												label={t("editServices.closed")}
 												sx={{justifyContent: "flex-end"}}
 											/>
 										</Grid>
 									</Grid>
-								</Box>
-							))}
-
+								))}
+							</Box>
 							{/* note section */}
 							<Box
 								component='ul'
 								sx={{
-									bgcolor: "#ffffffeb",
 									fontFamily: "monospace",
 									borderRadius: 2,
 									p: 3,
@@ -440,7 +443,6 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 									listStyle: "none",
 									"&:hover": {
 										boxShadow: 3,
-										bgcolor: "#fffffff2",
 									},
 									"& li": {
 										position: "relative",
@@ -457,27 +459,26 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 								}}
 							>
 								<Typography variant='h6' sx={{fontWeight: "bold", mb: 2}}>
-									التعليمات:
+									{t("editServices.instructions.title")}
 								</Typography>
 								<Typography component='li' sx={{lineHeight: 1.8}}>
-									إذا أردت إضافة سطر جديد، يمكنك إضافة علامة الناقص (-)
-									في أول السطر
+									{t("editServices.instructions.tip1")}
 								</Typography>
 								<Typography
 									component='li'
 									sx={{
-										bgcolor: "#F3B63F",
+										bgcolor: "#9e7218",
 										p: 1.5,
 										borderRadius: 1,
 										lineHeight: 1.8,
 									}}
 								>
-									-هذا سطر جديد مع علامة الناقص
+									-{t("editServices.instructions.tip2")}
 								</Typography>
 							</Box>
 							<TextareaAutosize
 								name='description'
-								aria-label='الوصف'
+								aria-label={t("editServices.descriptionLabel")}
 								minRows={4}
 								maxLength={500}
 								value={formik.values.description}
@@ -519,7 +520,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 									{loading ? (
 										<CircularProgress size={24} />
 									) : (
-										"حفظ التغييرات"
+										t("editServices.saveChanges")
 									)}
 								</Button>
 							</Box>
@@ -532,12 +533,11 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 				{/* Images view */}
 				<Box
 					sx={{
-						backgroundColor: "#681025ea",
 						backdropFilter: "blur(80px)",
 						boxShadow: 1,
 						borderRadius: 2,
-						p: 3,
-						width: "90%",
+						height: "100%",
+						width: "100%",
 						m: "auto",
 					}}
 				>
@@ -548,7 +548,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 						startIcon={<AddIcon />}
 						onClick={handleClickOpenAddImage}
 					>
-						إضافة صورة جديدة
+						{t("editServices.addImageButton")}
 					</Button>
 
 					{vendor.length > 0 && <ReactSlick images={vendor[0].images as any} />}

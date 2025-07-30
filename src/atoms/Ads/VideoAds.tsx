@@ -20,7 +20,6 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 	const [isLoading, setIsLoading] = useState(true);
 	const intervalRef = useRef<NodeJS.Timeout | null>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
-
 	// Handle video cycling and visibility
 	useEffect(() => {
 		if (videos.length <= 1) return;
@@ -70,16 +69,17 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 	const handleError = (e: React.SyntheticEvent<HTMLVideoElement>) => {
 		const error = e.currentTarget.error;
 		const errorMessages: Record<number, string> = {
-			1: "تم إيقاف الفيديو",
-			2: "خطأ في الشبكة",
-			3: "خطأ في فك التشفير",
-			4: "تنسيق غير مدعوم",
+			1: t("ads.videoAds.videoHasBeenPaused"),
+			2: t("ads.videoAds.networkError"),
+			3: t("ads.videoAds.decodingError"),
+			4: t("ads.videoAds.unsupportedFormat"),
 		};
-
+		// ${error.code}
 		setError(
 			error
-				? errorMessages[error.code] || `خطأ في التشغيل (كود ${error.code})`
-				: "فشل تشغيل الفيديو",
+				? errorMessages[error.code] ||
+						t(`ads.videoAds.operationalError ${error.code}`)
+				: t("ads.videoAds.playbackFailed"),
 		);
 		setIsLoading(false);
 
@@ -141,7 +141,7 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 					autoPlay
 					playsInline
 					controls={true}
-					aria-label='فيديو دعائي'
+					aria-label={t("ads.videoAds.promotionalVideo")}
 					preload='auto'
 					style={{
 						position: "absolute",

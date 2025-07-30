@@ -12,6 +12,7 @@ import {
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CloseIcon from "@mui/icons-material/Close";
 import {styled} from "@mui/material/styles";
+import {useTranslation} from "react-i18next";
 
 const VisuallyHiddenInput = styled("input")({
 	clip: "rect(0 0 0 0)",
@@ -40,7 +41,7 @@ const VideoUpload: FunctionComponent = () => {
 	} | null>(null);
 	const [uploadProgress, setUploadProgress] = useState(0);
 	const [isUploading, setIsUploading] = useState(false);
-
+	const {t} = useTranslation();
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (!e.target.files || e.target.files.length === 0) return;
 
@@ -52,22 +53,28 @@ const VideoUpload: FunctionComponent = () => {
 
 		// Validate file
 		if (selectedFile.size > MAX_FILE_SIZE) {
-			setMessage({text: "File is too large (max 100MB)", severity: "error"});
+			setMessage({
+				text: t("ads.videoUpload.errors.fileTooLarge"),
+				severity: "error",
+			});
 			return;
 		}
 
 		if (!ALLOWED_FILE_TYPES.includes(selectedFile.type)) {
 			setMessage({
-				text: `Only ${ALLOWED_FILE_TYPES.map((t) => t.split("/")[1]).join(
-					", ",
-				)} files are allowed`,
+				text: t("ads.videoUpload.errors.unsupportedType", {
+					types: ALLOWED_FILE_TYPES.map((t) => t.split("/")[1]).join(", "),
+				}),
 				severity: "error",
 			});
 			return;
 		}
 
 		setFile(selectedFile);
-		setMessage({text: "File selected and ready for upload", severity: "info"});
+		setMessage({
+			text: t("ads.videoUpload.info.fileReady"),
+			severity: "info",
+		});
 	};
 
 	const handleUpload = async () => {
@@ -78,21 +85,29 @@ const VideoUpload: FunctionComponent = () => {
 		setMessage(null);
 
 		try {
-			const data = await uploadVideo(file, (progressEvent: { loaded: number; total: any; }) => {
-				const progress = Math.round(
-					(progressEvent.loaded * 100) / (progressEvent.total || 1),
-				);
-				setUploadProgress(progress);
-			});
+			const data = await uploadVideo(
+				file,
+				(progressEvent: {loaded: number; total: any}) => {
+					const progress = Math.round(
+						(progressEvent.loaded * 100) / (progressEvent.total || 1),
+					);
+					setUploadProgress(progress);
+				},
+			);
 
 			setMessage({
-				text: `Upload successful! File ID: ${data.fileId}`,
+				text: t("ads.videoUpload.errors.uploadSuccess", {
+					fileId: data.fileId,
+				}),
 				severity: "success",
 			});
 			setFile(null);
 		} catch (error) {
 			setMessage({
-				text: error instanceof Error ? error.message : "Upload failed",
+				text:
+					error instanceof Error
+						? error.message
+						: t("ads.videoUpload.errors.uploadFailed"),
 				severity: "error",
 			});
 		} finally {
@@ -109,19 +124,21 @@ const VideoUpload: FunctionComponent = () => {
 
 	return (
 		<Box
+			component={"aside"}
 			sx={{
 				width: "100%",
 				display: "flex",
 				flexDirection: "column",
 				gap: 2,
 				p: 3,
+				mb: 20,
 				border: "1px dashed",
 				borderColor: "divider",
 				borderRadius: 2,
 			}}
 		>
 			<Typography variant='h6' component='h2' gutterBottom>
-				Upload Video
+				{t("ads.videoUpload.title")}
 			</Typography>
 
 			<Box sx={{display: "flex", gap: 2, flexWrap: "wrap"}}>
@@ -132,7 +149,7 @@ const VideoUpload: FunctionComponent = () => {
 					startIcon={<CloudUploadIcon />}
 					disabled={isUploading}
 				>
-					Select Video
+					{t("ads.videoUpload.selectButton")}
 					<VisuallyHiddenInput
 						type='file'
 						accept={ALLOWED_FILE_TYPES.join(",")}
@@ -151,7 +168,9 @@ const VideoUpload: FunctionComponent = () => {
 					onClick={handleUpload}
 					disabled={!file || isUploading}
 				>
-					{isUploading ? "Uploading..." : "Upload Video"}
+					{isUploading
+						? t("ads.videoUpload.uploading")
+						: t("ads.videoUpload.uploadButton")}
 				</Button>
 
 				{file && (
@@ -181,7 +200,7 @@ const VideoUpload: FunctionComponent = () => {
 				<Box sx={{width: "100%", mt: 2}}>
 					<LinearProgress variant='determinate' value={uploadProgress} />
 					<Typography variant='body2' textAlign='center' mt={1}>
-						{uploadProgress}% uploaded
+						{t("videoUpload.uploaded", {progress: uploadProgress})}
 					</Typography>
 				</Box>
 			)}

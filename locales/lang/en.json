@@ -10,12 +10,47 @@
 		"images": "Images",
 		"contactInfo": "Contact information",
 		"title": "Afrahna",
-		"services": "Afrahna Platform Services"
+		"services": "Afrahna Platform Services",
+		"user": {
+			"name": "User name",
+			"image": "User image",
+			"info": "Personal information",
+			"userRole": "Role",
+			"subscriptionPlan": "Subscription plan",
+			"boogings": "Bookings"
+		}
 	},
 
 	"ads": {
 		"noVideo": "No ad videos available",
-		"video": {}
+		"videoAds": {
+			"videoHasBeenPaused": "The video has been paused",
+			"networkError": "Network error",
+			"decodingError": "Decoding error",
+			"unsupportedFormat": "Unsupported format",
+			"playbackFailed": "Video playback failed",
+			"operationalError": "Operational error (code)",
+			"promotionalVideo": "Promotional Video"
+		},
+		"videoUpload": {
+			"title": "Upload Video",
+			"selectButton": "Select Video",
+			"uploadButton": "Upload Video",
+			"uploading": "Uploading...",
+			"cancelButton": "Cancel",
+			"selectedFile": "Selected file:",
+			"size": "Size:",
+			"uploaded": "{{progress}}% uploaded",
+			"errors": {
+				"fileTooLarge": "File is too large (max 100MB)",
+				"unsupportedType": "Only {{types}} files are allowed",
+				"uploadFailed": "Upload failed",
+				"uploadSuccess": "Upload successful! File ID: {{fileId}}"
+			},
+			"info": {
+				"fileReady": "File selected and ready for upload"
+			}
+		}
 	},
 
 	"footer": {
@@ -233,7 +268,8 @@
 		"subtitle": "Join our platform now and enjoy services tailored for weddings and special occasions",
 		"joinToAfrahnaVendor": "Join Afrahna now and enjoy the best services for your business",
 		"joinToAfrahnaUser": "Join Afrahna now and enjoy the best services for your wedding",
-		"wellcomeMessage": "Welcome afrahna platform"
+		"wellcomeMessage": "Welcome afrahna platform",
+		"loginToSeeYours": "You must log in to view the profile."
 	},
 
 	"registerPage": {
@@ -301,6 +337,17 @@
 		"AddFuture": "Add your premium services",
 		"AllYorFuturesPrice": "Total price for selected services",
 		"note": "Additional notes (optional)",
+		"cancelingError": "An error occurred while canceling the reservation.",
+		"BusinessName": "Business Name",
+		"BookingDate": "Date",
+		"status": "Status",
+		"requiredServices": "Required services",
+		"procedure": "Procedure",
+		"vendorReservation": "Someone has made a reservation with you",
+		"serviceApplicant": "Service applicant",
+		"cancel": "Cancel",
+		"noHaveBooks": "You have not booked yet",
+		"Important": "Important",
 		"gallery": {
 			"noImages": "No images available for this service at the moment."
 		},
@@ -387,15 +434,125 @@
 		"lastUpdate": "This policy was last updated on 27.5.2025. We reserve the right to amend this policy and will post any changes on this page with an updated review date."
 	},
 
-	"analytics": {},
-	"pnf": {},
-	"contactUs": {},
-	
-	"payment": {},
+	"analytics": {
+		"title": "Advanced monthly page performance analytics",
+		"Chart": "Page visits during the week",
+		"PieChart": "Sources of visits",
+		"button": "Sources of visits",
+		"numberOfVisitors": "Number of visitors",
+		"averageDuration": "Average duration (minutes)",
+		"bounceRate": "Bounce rate"
+	},
+	"pnf": {
+		"title": "Page Not Found",
+		"description": "Sorry, the page you are looking for does not exist or might have been moved.",
+		"backHome": "Back to Homepage"
+	},
+	"contactUs": {
+		"title": "Contact Us",
+		"subtitle": "We’re happy to answer your questions and suggestions",
+		"fields": {
+			"name": "Full Name",
+			"email": "Email",
+			"subject": "Subject",
+			"message": "Your Message"
+		},
+		"submit": "Send",
+		"successMessage": "Your message has been sent successfully!",
+		"validation": {
+			"nameRequired": "Full name is required",
+			"emailRequired": "Email is required",
+			"invalidEmail": "Invalid email",
+			"subjectRequired": "Subject is required",
+			"messageRequired": "Message is required",
+			"messageMax": "Message must be less than 500 characters"
+		}
+	},
+
+	"payment": {
+		"paymentForm": {},
+		"paymentTerms": {}
+	},
 	"atoms": {},
-	"testimonialsSlider": {},
-	"addNewServiceModal": {},
-	"addNewPicture": {},
+	"addNewService": {
+		"dialogTitle": "New Service",
+		"description": "What new service would you like to add?",
+		"labels": {
+			"featureName": "New Service",
+			"price": "Service Price"
+		},
+		"buttons": {
+			"close": "Close",
+			"add": "Add",
+			"adding": "Adding..."
+		},
+		"validation": {
+			"featureNameRequired": "Service name is required",
+			"priceRequired": "Service price is required",
+			"pricePositive": "Price must be a positive number"
+		},
+		"toasts": {
+			"success": "Service \"{{featureName}}\" added successfully",
+			"error": "An error occurred while adding the service"
+		}
+	},
+	"addNewPicture": {
+		"dialogTitle": "New Service",
+		"description": "Enter the image title",
+		"labels": {
+			"imageUrl": "Image URL",
+			"imageAlt": "Image title"
+		},
+		"buttons": {
+			"close": "Close",
+			"add": "Add",
+			"adding": "Adding..."
+		},
+		"validation": {
+			"urlRequired": "Please enter a URL",
+			"urlInvalid": "Please enter a valid URL",
+			"altRequired": "Please enter the image title"
+		},
+		"toasts": {
+			"success": "Image added successfully!",
+			"error": "An error occurred while adding the image"
+		}
+	},
+	"servicesSettings": {},
+	"servicesFormik": {},
+	"editServices": {
+		"title": "Edit Service Provider Details",
+		"myservicesPage": "My Services Page",
+		"tryAgain": "Try Again",
+		"businessName": "Business Name",
+		"priceType": "Price Type",
+		"priceFixed": "Fixed Price",
+		"priceRange": "Flexible Price",
+		"maxPrice": "Max Price",
+		"minPrice": "Min Price",
+		"maxBookingsPerDay": "Max Bookings Per Day",
+		"bookingDurationInHours": "Booking Duration (hours)",
+		"bookingType": "Booking Type",
+		"daily": "Daily",
+		"hourly": "Hourly",
+		"multiBooking": "MultiBooking",
+		"startTime": "Start time",
+		"endTime": "End time",
+		"bookingTypeSection": "Customize Booking Type",
+		"workingHoursSection": "Customize Working Hours",
+		"saveChanges": "Save Changes",
+		"addImageButton": "Add New Image",
+		"allowOverlapping": "Allow Overlapping Bookings",
+		"closed": "Closed",
+		"descriptionLabel": "Description",
+		"instructions": {
+			"title": "Instructions:",
+			"tip1": "To add a new line, use a dash (-) at the beginning of the line",
+			"tip2": "-This is a new line with a dash"
+		}
+	},
+	"spicialLogo": {},
+	"videoUpload": {},
 
 	"termsOfUse": "Terms of Use",
 

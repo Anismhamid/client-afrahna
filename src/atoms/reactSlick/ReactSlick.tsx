@@ -16,28 +16,27 @@ interface ReactSlickProps {
 const ReactSlick: FunctionComponent<ReactSlickProps> = ({images}) => {
 	const {t} = useTranslation();
 	const sliderSettings = {
-		dots: true,
+		dots: false,
 		infinite: true,
-		speed: 500,
+		speed: 1200,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		autoplay: true,
 		autoplaySpeed: 3000,
-		fade: false,
 		arrows: true,
 		responsive: [
 			{
 				breakpoint: 1200,
 				settings: {
-					arrows: true,
-					dots: true,
+					arrows: false,
+					dots: false,
 				},
 			},
 			{
 				breakpoint: 768,
 				settings: {
 					arrows: false,
-					dots: true,
+					dots: false,
 				},
 			},
 		],

@@ -6,18 +6,51 @@
 	},
 	"afrahna": {
 		"main": "ראשי",
-		"vedios": "וידאו",
+		"vedios": "סרטונים",
 		"images": "תמונות",
 		"contactInfo": "פרטי קשר",
-
-		"title": "Afrahna",
-		"services": "שירותי פלטפורמת Afrahna"
+		"title": "אפרחנא",
+		"services": "שירותי פלטפורמת אפרחנא",
+		"user": {
+			"name": "שם משתמש",
+			"image": "תמונת משתמש",
+			"info": "מידע אישי",
+			"userRole": "תפקיד",
+			"subscriptionPlan": "תוכנית מנוי",
+			"boogings": "הזמנות"
+		}
 	},
-
 	"ads": {
-		"noVideo": "אין סרטונים זמינים להצגה"
+		"noVideo": "אין סרטוני פרסומת זמינים",
+		"videoAds": {
+			"videoHasBeenPaused": "הווידאו נעצר",
+			"networkError": "שגיאת רשת",
+			"decodingError": "שגיאת דקודינג",
+			"unsupportedFormat": "פורמט לא נתמך",
+			"playbackFailed": "הניגון נכשל",
+			"operationalError": "שגיאה תפעולית (קוד)",
+			"promotionalVideo": "סרטון פרסומי"
+		},
+		"videoUpload": {
+			"title": "העלאת וידאו",
+			"selectButton": "בחר וידאו",
+			"uploadButton": "העלה וידאו",
+			"uploading": "מעלה...",
+			"cancelButton": "ביטול",
+			"selectedFile": "הקובץ שנבחר:",
+			"size": "גודל:",
+			"uploaded": "הועלה {{progress}}%",
+			"errors": {
+				"fileTooLarge": "הקובץ גדול מדי (מקסימום 100 מגה-בייט)",
+				"unsupportedType": "רק קבצים מסוג {{types}} נתמכים",
+				"uploadFailed": "העלאה נכשלה",
+				"uploadSuccess": "ההעלאה הצליחה! מזהה הקובץ: {{fileId}}"
+			},
+			"info": {
+				"fileReady": "הקובץ נבחר ומוכן להעלאה"
+			}
+		}
 	},
-
 	"footer": {
 		"copyRight": "כל הזכויות שמורות - אתר Afrahna"
 	},
@@ -220,7 +253,8 @@
 		"subtitle": "הצטרף לפלטפורמה שלנו ותהנה משירותים המותאמים ליום חתונה ואירועים מיוחדים",
 		"joinToAfrahnaVendor": "הצטרף עכשיו לפלטפורמת Afrahna ותהנה מהשירותים הטובים ביותר לעסק שלך",
 		"joinToAfrahnaUser": "הצטרף עכשיו לפלטפורמת Afrahna ותהנה מהשירותים הטובים ביותר לחתונה שלך",
-		"wellcomeMessage": "ברוכים הבאים לפלטפורמת Afrahna"
+		"wellcomeMessage": "ברוכים הבאים לפלטפורמת Afrahna",
+		"loginToSeeYours": "יש להתחבר כדי לצפות בפרופיל"
 	},
 
 	"registerPage": {
@@ -288,6 +322,17 @@
 		"AddFuture": "הוסף את השירותים המיוחדים שלך",
 		"AllYorFuturesPrice": "מחיר כולל של השירותים שנבחרו",
 		"note": "הערות נוספות (לא חובה)",
+		"cancelingError": "אירעה שגיאה בעת ביטול ההזמנה.",
+		"BusinessName": "שם העסק",
+		"BookingDate": "תאריך",
+		"status": "סטטוס",
+		"requiredServices": "שירותים נדרשים",
+		"procedure": "פעולה",
+		"vendorReservation": "מישהו הזמין אצלך",
+		"serviceApplicant": "מבקש השירות",
+		"cancel": "בטל",
+		"noHaveBooks": "עדיין לא הזמנת",
+		"Important": "חשוב",
 		"gallery": {
 			"noImages": "אין תמונות זמינות כרגע לשירות זה"
 		},
@@ -373,6 +418,124 @@
 		},
 		"lastUpdate": "מדיניות זו עודכנה לאחרונה בתאריך 27.5.2025. אנו שומרים לעצמנו את הזכות לעדכן מדיניות זו ונפרסם שינויים בדף זה עם תאריך עדכון מעודכן."
 	},
+	"analytics": {
+		"title": "ניתוחים מתקדמים של ביצועי הדף החודשי",
+		"Chart": "ביקורי דף במהלך השבוע",
+		"PieChart": "מקורות ביקורים",
+		"button": "מקורות ביקורים",
+		"numberOfVisitors": "מספר מבקרים",
+		"averageDuration": "משך ממוצע (דקות)",
+		"bounceRate": "שיעור נטישה"
+	},
+	"pnf": {
+		"title": "הדף לא נמצא",
+		"description": "מצטערים, הדף שאתה מחפש לא קיים או הועבר למקום אחר.",
+		"backHome": "חזרה לדף הבית"
+	},
+	"contactUs": {
+		"title": "צור קשר",
+		"subtitle": "נשמח לענות על שאלותיך והצעותיך",
+		"fields": {
+			"name": "שם מלא",
+			"email": "אימייל",
+			"subject": "נושא",
+			"message": "ההודעה שלך"
+		},
+		"submit": "שלח",
+		"successMessage": "ההודעה נשלחה בהצלחה!",
+		"validation": {
+			"nameRequired": "שם מלא הוא שדה חובה",
+			"emailRequired": "אימייל הוא שדה חובה",
+			"invalidEmail": "אימייל לא תקין",
+			"subjectRequired": "נושא הוא שדה חובה",
+			"messageRequired": "הודעה היא שדה חובה",
+			"messageMax": "ההודעה חייבת להכיל פחות מ־500 תווים"
+		}
+	},
+	"payment": {
+		"paymentForm": {},
+		"paymentTerms": {}
+	},
+	"atoms": {},
+	"addNewService": {
+		"dialogTitle": "שירות חדש",
+		"description": "איזה שירות חדש ברצונך להוסיף?",
+		"labels": {
+			"featureName": "השירות החדש",
+			"price": "מחיר השירות"
+		},
+		"buttons": {
+			"close": "סגור",
+			"add": "הוסף",
+			"adding": "מוסיף..."
+		},
+		"validation": {
+			"featureNameRequired": "נדרש שם לשירות",
+			"priceRequired": "נדרש מחיר לשירות",
+			"pricePositive": "המחיר חייב להיות מספר חיובי"
+		},
+		"toasts": {
+			"success": "השירות \"{{featureName}}\" נוסף בהצלחה",
+			"error": "אירעה שגיאה בעת הוספת השירות"
+		}
+	},
+	"addNewPicture": {
+		"dialogTitle": "שירות חדש",
+		"description": "הזן כותרת לתמונה",
+		"labels": {
+			"imageUrl": "קישור לתמונה",
+			"imageAlt": "כותרת התמונה"
+		},
+		"buttons": {
+			"close": "סגור",
+			"add": "הוסף",
+			"adding": "מוסיף..."
+		},
+		"validation": {
+			"urlRequired": "נא להזין קישור",
+			"urlInvalid": "נא להזין קישור תקין",
+			"altRequired": "נא להזין כותרת לתמונה"
+		},
+		"toasts": {
+			"success": "התמונה נוספה בהצלחה!",
+			"error": "אירעה שגיאה בעת הוספת התמונה"
+		}
+	},
+	"servicesSettings": {},
+	"servicesFormik": {},
+	"editServices": {
+		"title": "עריכת פרטי ספק השירות",
+		"myservicesPage": "עמוד השירותים שלי",
+		"tryAgain": "נסה שוב",
+		"businessName": "שם העסק",
+		"priceType": "סוג מחיר",
+		"priceFixed": "מחיר קבוע",
+		"priceRange": "מחיר משתנה",
+		"maxPrice": "מחיר מקסימלי",
+		"minPrice": "מחיר מינימלי",
+		"maxBookingsPerDay": "מקסימום הזמנות ביום",
+		"bookingDurationInHours": "משך ההזמנה (בשעות)",
+		"bookingType": "סוג הזמנה",
+		"daily": "יומי",
+		"hourly": "לפי שעה",
+		"multiBooking": "מרובה",
+		"startTime": "שעת התחלה",
+		"endTime": "שעת סיום",
+		"bookingTypeSection": "התאמת סוג ההזמנה",
+		"workingHoursSection": "התאמת שעות פעילות",
+		"saveChanges": "שמור שינויים",
+		"addImageButton": "הוסף תמונה חדשה",
+		"allowOverlapping": "אפשר הזמנות חופפות",
+		"closed": "סגור",
+		"descriptionLabel": "תיאור",
+		"instructions": {
+			"title": "הוראות:",
+			"tip1": "כדי להוסיף שורה חדשה, יש להוסיף מקף (-) בתחילת השורה",
+			"tip2": "-זו שורה חדשה עם מקף"
+		}
+	},
+	"spicialLogo": {},
+	"videoUpload": {},
 	"termsOfUse": "תנאי שימוש",
 	"terms": {
 		"title": "תנאי השימוש בפלטפורמת Afrahna",
@@ -473,7 +636,6 @@
 		},
 		"footer": "🌐 אפרחנה - הפלטפורמה המובילה לתכנון חתונות ואירועים במזרח התיכון!"
 	},
-	"payment": {},
 	"recommendedVendors": {
 		"title": "ספקים מומלצים",
 		"noServices": "אין שירותים מומלצים זמינים כרגע",
@@ -497,6 +659,7 @@
 	},
 	"plans": {
 		"subscriptionPlans": "תכניות מנוי",
-		"choosePlan": "בחר את התכנית שמתאימה לך"
+		"choosePlan": "בחר את התכנית שמתאימה לך",
+		"subscriptionPage": {}
 	}
 }

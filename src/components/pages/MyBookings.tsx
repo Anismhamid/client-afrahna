@@ -10,6 +10,8 @@ import {Link, useNavigate} from "react-router-dom";
 import {handleDeletBook} from "../../helpers/vendors";
 import {handleDeletCustomerBook} from "../../helpers/customers";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
+import {useTranslation} from "react-i18next";
+import changeDirection from "../../../locales/directions";
 
 interface MyBookingsProps {}
 
@@ -20,6 +22,8 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const navigate = useNavigate();
 	const {user} = useUser();
+
+	const {t} = useTranslation();
 
 	useEffect(() => {
 		if (!user) {
@@ -86,7 +90,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 				setBooks((prev) => prev.filter((b) => b._id !== bookToDelete._id));
 			}
 		} catch (error) {
-			errorToast("حدث خطا اثناء الغاء الحجز");
+			errorToast(t("booking.cancelingError"));
 		}
 	};
 
@@ -94,9 +98,11 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
 	);
 
+	const dir = changeDirection()
+
 	return (
-		<div className='container'>
-			<h1 className='text-center'>الحجوزات</h1>
+		<div className='container' dir={dir}>
+			<h1 className='text-center'>{t("afrahna.user.boogings")}</h1>
 			<HorizontalDevider />
 			<div className='my-5'>
 				{books.length ? (
@@ -110,11 +116,17 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 								<table className='table fw-bold table-striped text-end table-bordered'>
 									<thead>
 										<tr>
-											<th colSpan={2}>الاسم التجاري</th>
-											<th colSpan={2}>التاريخ</th>
-											<th colSpan={2}>الحالة</th>
-											<th colSpan={4}>الخدمات</th>
-											<th colSpan={2}>إجراء</th>
+											<th colSpan={2}>
+												{t("booking.BusinessName")}
+											</th>
+											<th colSpan={2}>
+												{t("booking.BookingDate")}
+											</th>
+											<th colSpan={2}>{t("booking.status")}</th>
+											<th colSpan={4}>
+												{t("booking.requiredServices")}
+											</th>
+											<th colSpan={2}>{t("booking.procedure")}</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -154,10 +166,10 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 													variant='outlined'
 													className='btn btn-danger'
 													onClick={() => {
-														handleDeleteBooking(book, true);
+														handleDeleteBooking(book, false);
 													}}
 												>
-													الغاء الطلب
+													{t("booking.cancel")}
 												</Button>
 											</td>
 										</tr>
@@ -174,7 +186,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 										}}
 									>
 										<Typography color='success' variant='body1'>
-											ملاحظة
+											{t("booking.note")}
 										</Typography>
 										{book.note}
 									</Typography>
@@ -195,8 +207,10 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 												"he-IL",
 											)}
 										</p>
-										<p className='card-text'>الحالة: {book.status}</p>
-										الخدمات:
+										<p className='card-text'>
+											{t("booking.status")}: {book.status}
+										</p>
+										{t("booking.requiredServices")}:
 										<ul className='list-unstyled'>
 											{book.services?.map((f, i) => (
 												<li key={i}>- {f.featureName}</li>
@@ -216,7 +230,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 													color='success'
 													variant='body1'
 												>
-													ملاحظة
+													{t("booking.note")}
 												</Typography>
 												{book.note}
 											</Typography>
@@ -228,7 +242,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 												handleDeleteBooking(book, false)
 											}
 										>
-											الغاء
+											{t("booking.cancel")}
 										</Button>
 									</div>
 								</div>
@@ -237,7 +251,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 					</>
 				) : (
 					<div className='text-center mt-4 w-100'>
-						<Typography>لم تقم بالحجز حتى الآن</Typography>
+						<Typography>{t("booking.noHaveBooks")}</Typography>
 						<Button
 							type='button'
 							color='success'
@@ -254,8 +268,8 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 				{/* booking for vindor users */}
 				{vendorBookings.length > 0 && (
 					<>
-						<h1 className='blink text-center'>مهم</h1>
-						<h2>لقد قام احدهم بالحجز لديك</h2>
+						<h1 className='blink text-center'>{t("booking.Important")}</h1>
+						<h2>{t("booking.vendorReservation")}</h2>
 						<hr />
 					</>
 				)}
@@ -271,10 +285,18 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 									<table className='table table-bordered rounded mb-5'>
 										<thead>
 											<tr>
-												<th colSpan={4}>طالب الخدمه</th>
-												<th colSpan={3}>تاريخ الحجز</th>
-												<th colSpan={4}>الهاتف</th>
-												<th colSpan={2}>اجراء</th>
+												<th colSpan={4}>
+													{t("booking.serviceApplicant")}
+												</th>
+												<th colSpan={3}>
+													{t("booking.BookingDate")}
+												</th>
+												<th colSpan={4}>
+													{t("usersManagement.phone")}
+												</th>
+												<th colSpan={2}>
+													{t("booking.procedure")}
+												</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -309,14 +331,16 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 																)
 															}
 														>
-															الغاء الطلب
+															{t("booking.cancel")}
 														</Button>
 													)}
 												</td>
 											</tr>
 											<tr>
 												<td colSpan={12}>
-													<strong>الخدمات المطلوبة:</strong>
+													<strong>
+														{t("booking.requiredServices")}:
+													</strong>
 													<ul className='list-unstyled text-end'>
 														{v.services.map((s, idx) => (
 															<li key={idx}>
@@ -341,7 +365,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 											}}
 										>
 											<Typography color='success' variant='body1'>
-												ملاحظة
+												{t("booking.note")}
 											</Typography>
 											{v.note}
 										</Typography>
@@ -353,7 +377,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 						<Box>
 							{user?.role === "isVendor" && (
 								<Typography variant='h5' color='textSecondary'>
-									لم يتم حجز خدماتك حتى الان
+									{t("booking.noHaveBooks")}
 								</Typography>
 							)}
 						</Box>

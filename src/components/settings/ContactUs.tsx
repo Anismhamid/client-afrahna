@@ -3,12 +3,14 @@ import {FunctionComponent} from "react";
 import {FormikValues, useFormik} from "formik";
 import * as yup from "yup";
 import {successToast} from "../../atoms/notifications/Toasts";
-import {usersMessages} from "../../interfaces/userSchema";
+import {UserMessage} from "../../interfaces/userSchema";
+import {useTranslation} from "react-i18next";
 
 interface ContactUsProps {}
 
 const ContactUs: FunctionComponent<ContactUsProps> = () => {
-	const formik: FormikValues = useFormik<usersMessages>({
+	const {t} = useTranslation();
+	const formik: FormikValues = useFormik<UserMessage>({
 		initialValues: {
 			name: "",
 			email: "",
@@ -16,16 +18,16 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 			message: "",
 		},
 		validationSchema: yup.object({
-			name: yup.string().required("الاسم الكامل مطلوب"),
+			name: yup.string().required(t("contactUs.validation.nameRequired")),
 			email: yup
 				.string()
-				.email("بريد إلكتروني غير صالح")
-				.required("البريد الإلكتروني مطلوب"),
-			subject: yup.string().required("الموضوع مطلوب"),
+				.email(t("contactUs.validation.invalidEmail"))
+				.required(t("contactUs.validation.emailRequired")),
+			subject: yup.string().required(t("validation.subjectRequired")),
 			message: yup
 				.string()
-				.required("الرسالة مطلوبة")
-				.max(500, "يجب أن تكون الرسالة أقل من 500 حرف"),
+				.required(t("contactUs.validation.messageRequired"))
+				.max(500, t("contactUs.validation.messageMax")),
 		}),
 		onSubmit: (values, {resetForm}) => {
 			console.log("Form submitted:", values);
@@ -38,7 +40,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 		<Box component='main' sx={{py: 4}}>
 			<Box sx={{maxWidth: "600px", mx: "auto", px: 2}}>
 				<Typography variant='h4' textAlign='center' mb={3} fontWeight='bold'>
-					اتصل بنا
+					{t("contactUs.title")}
 				</Typography>
 
 				<Typography
@@ -47,7 +49,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 					mb={4}
 					color='text.secondary'
 				>
-					نسعد بالإجابة على استفساراتكم واقتراحاتكم
+					{t("contactUs.subtitle")}
 				</Typography>
 
 				<Box
@@ -62,7 +64,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 				>
 					<TextField
 						fullWidth
-						label='الاسم الكامل'
+						label={t("contactUs.fields.name")}
 						name='name'
 						value={formik.values.name}
 						onChange={formik.handleChange}
@@ -74,7 +76,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 
 					<TextField
 						fullWidth
-						label='البريد الإلكتروني'
+						label={t("contactUs.fields.email")}
 						name='email'
 						type='email'
 						value={formik.values.email}
@@ -87,7 +89,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 
 					<TextField
 						fullWidth
-						label='الموضوع'
+						label={t("contactUs.fields.subject")}
 						name='subject'
 						value={formik.values.subject}
 						onChange={formik.handleChange}
@@ -99,7 +101,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 
 					<TextField
 						fullWidth
-						label='رسالتك'
+						label={t("contactUs.fields.message")}
 						name='message'
 						multiline
 						rows={4}
@@ -119,7 +121,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 						size='large'
 						disabled={formik.isSubmitting}
 					>
-						إرسال
+						{t("contactUs.submit")}
 					</Button>
 				</Box>
 			</Box>

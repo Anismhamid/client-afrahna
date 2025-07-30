@@ -209,13 +209,22 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 
 	const dir = changeDirection();
 
+	var cate = category;
+	// if (cate === ) ;
+	switch (category) {
+		case cate:
+			"قاعات";
+			cate = "hals";
+			break;
+
+		default:
+			break;
+	}
+
 	return (
 		<>
-			<title>{t(category)}</title>
-			<meta
-				name='description'
-				content={t(`services.${category}.metaDescription`)}
-			/>
+			<title>{t(`services.${cate}.category`)}</title>
+			<meta name='description' content={t(`services.${cate}.metaDescription`)} />
 
 			<main dir={dir}>
 				<Typography
@@ -223,7 +232,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 					sx={{color: "primary.main", fontSize: "3rem"}}
 					className='display-6 fw-bold text-center mb-3'
 				>
-					{t(pageTitle)}
+					{t(`services.${cate}.pageTitle`)}
 				</Typography>
 				<HorizontalDevider />
 				<div className='text-center mb-5 p-3'>

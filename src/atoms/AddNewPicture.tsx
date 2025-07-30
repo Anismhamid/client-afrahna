@@ -12,6 +12,7 @@ import * as yup from "yup";
 import {errorToast, successToast} from "./notifications/Toasts";
 import {forwardRef, FunctionComponent, ReactElement, Ref} from "react";
 import {addVendorPicture} from "../services/vendorsServices";
+import {useTranslation} from "react-i18next";
 
 const Transition = forwardRef(function Transition(
 	props: TransitionProps & {
@@ -35,6 +36,8 @@ const AddNewPicture: FunctionComponent<AddNewPictureProps> = ({
 	userId,
 	refresh,
 }) => {
+	const {t} = useTranslation();
+	
 	const formik = useFormik({
 		initialValues: {
 			image: {
@@ -46,21 +49,21 @@ const AddNewPicture: FunctionComponent<AddNewPictureProps> = ({
 			image: yup.object({
 				url: yup
 					.string()
-					.url("الرجاء إدخال رابط صالح")
-					.required("الرجاء إدخال إدخال رابط"),
-				alt: yup.string().required("الرجاء إدخال عنوان الصورة"),
+					.url(t("addNewPicture.validation.urlInvalid"))
+					.required(t("addNewPicture.validation.urlRequired")),
+				alt: yup.string().required(t("addNewPicture.validation.altRequired")),
 			}),
 		}),
 		onSubmit: (values) => {
 			addVendorPicture(userId, values.image)
 				.then(() => {
-					successToast(`تمت إضافة الخدمة "${values.image}" بنجاح`); // Show specific value
+					successToast(t("addNewPicture.toasts.success"));
 					handleClose();
 					formik.resetForm();
 					refresh();
 				})
 				.catch((err) => {
-					errorToast(err.message || "حدث خطأ أثناء إضافة الصورة");
+					errorToast(err.message || t("addNewPicture.toasts.error"));
 				});
 		},
 	});
@@ -74,16 +77,16 @@ const AddNewPicture: FunctionComponent<AddNewPictureProps> = ({
 			onClose={handleClose}
 			aria-describedby='alert-dialog-slide-description'
 		>
-			<DialogTitle>{"خدمة جديدة"}</DialogTitle>
+			<DialogTitle>{t("addNewPicture.dialogTitle")}</DialogTitle>
 			<form onSubmit={formik.handleSubmit}>
 				<DialogContent>
 					<DialogContentText id='alert-dialog-slide-description'>
-						ادخل عنوان الصورة
+						{t("addNewPicture.description")}
 					</DialogContentText>
 					<TextField
 						fullWidth
 						autoFocus
-						label='رابط الصورة'
+						label={t("addNewPicture.labels.imageUrl")}
 						name='image.url'
 						variant='outlined'
 						value={formik.values.image.url}
@@ -100,7 +103,7 @@ const AddNewPicture: FunctionComponent<AddNewPictureProps> = ({
 					<TextField
 						fullWidth
 						autoFocus
-						label='عنوان الصورة'
+						label={t("addNewPicture.labels.imageAlt")}
 						name='image.alt'
 						variant='outlined'
 						value={formik.values.image.alt}
@@ -117,13 +120,17 @@ const AddNewPicture: FunctionComponent<AddNewPictureProps> = ({
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>إغلاق</Button>
+					<Button onClick={handleClose}>
+						{t("addNewPicture.buttons.close")}
+					</Button>
 					<Button
 						type='submit'
 						variant='contained'
 						disabled={formik.isSubmitting}
 					>
-						{formik.isSubmitting ? "جاري الإضافة..." : "إضافة"}
+						{formik.isSubmitting
+							? t("addNewPicture.buttons.adding")
+							: t("addNewPicture.buttons.add")}{" "}
 					</Button>
 				</DialogActions>
 			</form>

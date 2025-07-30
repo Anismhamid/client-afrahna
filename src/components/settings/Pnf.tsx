@@ -1,9 +1,11 @@
 import {Box, Button, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {FunctionComponent} from "react";
+import {useTranslation} from "react-i18next";
 
 const Pnf: FunctionComponent = () => {
 	const navigate = useNavigate();
+	const {t} = useTranslation();
 
 	return (
 		<Box
@@ -19,13 +21,13 @@ const Pnf: FunctionComponent = () => {
 				404
 			</Typography>
 			<Typography variant='h4' gutterBottom>
-				الصفحة غير موجودة
+				{t("pnf.title")}
 			</Typography>
 			<Typography variant='body1' mb={3}>
-				عذرًا، الصفحة التي تبحث عنها غير موجودة أو ربما تم نقلها.
+				{t("pnf.description")}
 			</Typography>
 			<Button variant='contained' color='primary' onClick={() => navigate("/")}>
-				الرجوع إلى الصفحة الرئيسية
+				{t("pnf.backHome")}
 			</Button>
 		</Box>
 	);

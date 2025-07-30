@@ -19,6 +19,7 @@ import VendorsAnalyticsDashboard from "./VendorsAnalyticsDashboard";
 import {useServiceData} from "../../hooks/useServiceData";
 import {subscriptionPlans} from "../../subscribes/subscribtionTypes/subscriptionPlans";
 import {subscriptionColor} from "../../subscribes/subscribtionTypes/subscriptionUtils";
+import {useTranslation} from "react-i18next";
 
 interface ProfileProps {}
 
@@ -47,12 +48,9 @@ interface User {
 
 const Profile: FunctionComponent<ProfileProps> = () => {
 	const {user} = useUser() as {user: User | null};
+	const {t} = useTranslation();
 	const navigate = useNavigate();
-	const {
-		planId,
-		loading: serviceLoading,
-		error: serviceError,
-	} = useServiceData(user?._id || "");
+	const {planId, loading: serviceLoading} = useServiceData(user?._id || "");
 
 	// Safely get user display name
 	const currentUser =
@@ -97,7 +95,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 		return (
 			<Box sx={{textAlign: "center", mt: 5, mx: "auto", maxWidth: 500}}>
 				<Typography variant='h5' gutterBottom>
-					يجب تسجيل الدخول لرؤية الملف الشخصي
+					{t("login.loginToSeeYours")}
 				</Typography>
 				<Button
 					variant='contained'
@@ -105,7 +103,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					size='large'
 					sx={{mt: 2}}
 				>
-					تسجيل الدخول
+					{t("login.login")}
 				</Button>
 			</Box>
 		);
@@ -119,14 +117,14 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 				gutterBottom
 				sx={{mb: 4, fontWeight: "bold"}}
 			>
-				الملف الشخصي
+				{t("navbar.profile")}
 			</Typography>
 
 			{user.profileImage?.url && (
 				<CardMedia
 					component='img'
 					image={user.profileImage.url}
-					alt='صورة المستخدم'
+					alt={t("afrahna.user.image")}
 					sx={{
 						maxWidth: 200,
 						mx: "auto",
@@ -155,27 +153,27 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					gutterBottom
 					sx={{mb: 3, display: "flex", alignItems: "center"}}
 				>
-					<Person sx={{ml: 1}} /> معلومات شخصية
+					<Person sx={{ml: 1}} /> {t("afrahna.user.info")}
 				</Typography>
 
 				<Stack spacing={3} sx={{mb: 3}}>
 					<Box>
 						<Typography variant='subtitle1' color='text.secondary'>
-							الاسم
+							{t("afrahna.user.name")}
 						</Typography>
 						<Typography variant='h6'>{currentUser}</Typography>
 					</Box>
 
 					<Box>
 						<Typography variant='subtitle1' color='text.secondary'>
-							البريد الإلكتروني
+							{t("registerPage.email")}
 						</Typography>
 						<Typography variant='h6'>{user.email || "غير متوفر"}</Typography>
 					</Box>
 
 					<Box>
 						<Typography variant='subtitle1' color='text.secondary'>
-							نوع الحساب
+							{t("afrahna.user.userRole")}
 						</Typography>
 						<Chip
 							label={user.role === "customer" ? "مستخدم" : "مزود خدمات"}
@@ -187,7 +185,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					{currentPlan && (
 						<Box>
 							<Typography variant='subtitle1' color='text.secondary'>
-								خطة الاشتراك
+								{t("afrahna.user.subscriptionPlan")}
 							</Typography>
 							<Chip
 								label={currentPlan.name}
@@ -203,10 +201,6 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 			</Paper>
 
 			<Paper elevation={3} sx={{p: 3}}>
-				<Typography textAlign={"center"} variant='h4' gutterBottom sx={{mb: 2}}>
-					الحجوزات
-				</Typography>
-				<Divider sx={{mb: 3}} />
 				<MyBookings />
 			</Paper>
 		</Box>

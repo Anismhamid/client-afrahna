@@ -1,4 +1,4 @@
-import {FunctionComponent} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import Calendar from "react-calendar";
 import styles from "./calendar.module.css";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
@@ -20,6 +20,11 @@ const Calendars: FunctionComponent<CalendarsProps> = ({
 		date1.getMonth() === date2.getMonth() &&
 		date1.getDate() === date2.getDate();
 	const {t} = useTranslation();
+	const [lang, setLang] = useState<string | null>(null);
+
+	useEffect(() => {
+		return setLang(localStorage.getItem("i18nextLng"));
+	}, [t]);
 
 	return (
 		<article
@@ -43,10 +48,10 @@ const Calendars: FunctionComponent<CalendarsProps> = ({
 				minDate={new Date()}
 				maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 5))}
 				view='month'
-				locale='ar'
+				locale={lang || ""}
 				next2Label={null}
 				prev2Label={null}
-				calendarType='islamic'
+				calendarType='hebrew'
 				tileClassName={({date, view}) => {
 					if (
 						view === "month" &&
