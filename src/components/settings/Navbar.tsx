@@ -175,6 +175,7 @@ const Navbar: FunctionComponent = () => {
 
 			{/* side drawer */}
 			<Drawer
+			
 				variant='persistent'
 				anchor={isMobile ? "top" : dir === "rtl" ? "right" : "left"}
 				open={open}
@@ -221,7 +222,7 @@ const Navbar: FunctionComponent = () => {
 					</Typography>
 				)}
 
-				<Box
+				<Box 
 					role='presentation'
 					onClick={toggleDrawer(false)}
 					onKeyDown={toggleDrawer(false)}

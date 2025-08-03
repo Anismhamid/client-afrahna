@@ -1,6 +1,10 @@
-import {getVendorData, updateVendorServices} from "../../services/vendorServices";
+import {
+	addSocialMediaLinks,
+	getVendorData,
+	updateVendorServices,
+} from "../../services/vendorServices";
 import {useUser} from "../../contextApi/useUserData";
-import {FunctionComponent, useState, useEffect} from "react";
+import {FunctionComponent, useState, useEffect, SetStateAction} from "react";
 import {useFormik} from "formik";
 import {Services, vendorsServicesInitionalData} from "../../interfaces/services";
 import {
@@ -18,6 +22,8 @@ import {
 	FormControlLabel,
 	Checkbox,
 	Grid,
+	Paper,
+	TextField,
 } from "@mui/material";
 import {successToast} from "../../atoms/notifications/Toasts";
 import AddIcon from "@mui/icons-material/Add";
@@ -31,6 +37,8 @@ import {days, vendorsvalidationSchema} from "./servicesFormik";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
 import {TimeClockPicker} from "./WorkingTimePicker";
 import {useTranslation} from "react-i18next";
+import changeDirection from "../../../locales/directions";
+import AddVendorSocialMeda from "../../atoms/socialMediaLinks/AddVendorSocialMedia";
 
 interface EditServicesProps {}
 
@@ -47,24 +55,6 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 
 	const handleClickOpenAddImage = () => setOpenAddImage(!openAddImage);
 	const handleCloseAddImage = () => setOpenAddImage(!openAddImage);
-
-	useEffect(() => {
-		const fetchVendorData = async () => {
-			if ((user && user._id === vendorId) || (user && user.role === "admin")) {
-				try {
-					setLoading(true);
-					setError(null);
-					const data = await getVendorData(vendorId as string);
-					setVendor(data);
-				} catch (err) {
-					setError("فشل في تحميل بيانات مزود الخدمة. يرجى المحاولة مرة أخرى.");
-				} finally {
-					setLoading(false);
-				}
-			}
-		};
-		fetchVendorData();
-	}, [user, refresh]);
 
 	const initialValues =
 		vendor.length > 0
@@ -108,6 +98,26 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 		},
 	});
 
+	useEffect(() => {
+		const fetchVendorData = async () => {
+			if ((user && user._id === vendorId) || (user && user.role === "admin")) {
+				try {
+					setLoading(true);
+					setError(null);
+					const data = await getVendorData(vendorId as string);
+					setVendor(data);
+				} catch (err) {
+					setError("فشل في تحميل بيانات مزود الخدمة. يرجى المحاولة مرة أخرى.");
+				} finally {
+					setLoading(false);
+				}
+			}
+		};
+		fetchVendorData();
+	}, [user, refresh]);
+
+	const dir = changeDirection();
+
 	if (loading && vendor.length === 0) {
 		return (
 			<Box
@@ -123,42 +133,44 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 		);
 	}
 
-	if (error) {
-		return (
-			<Box
-				component={"main"}
-				sx={{
-					textAlign: "center",
-					p: 4,
-				}}
-			>
-				<Typography color='error'>{error}</Typography>
-				<Button
-					variant='contained'
-					onClick={() => window.location.reload()}
-					sx={{mt: 2}}
-				>
-					{t("editServices.tryAgain")}
-				</Button>
-			</Box>
-		);
-	}
+	// if (error) {
+	// 	return (
+	// 		<Box
+	// 			component={"main"}
+	// 			sx={{
+	// 				textAlign: "center",
+	// 				p: 4,
+	// 			}}
+	// 		>
+	// 			<Typography color='error'>{error}</Typography>
+	// 			<Button
+	// 				variant='contained'
+	// 				onClick={() => window.location.reload()}
+	// 				sx={{mt: 2}}
+	// 			>
+	// 				{t("editServices.tryAgain")}
+	// 			</Button>
+	// 		</Box>
+	// 	);
+	// }
 
 	return (
 		<Box component={"main"}>
-			<Box className='container'>
+			<Box dir={dir}>
 				<Typography variant='h4' gutterBottom sx={{textAlign: "center", py: 5}}>
 					{t("editServices.title")}
 				</Typography>
 
-				<Button
-					size='small'
-					variant='contained'
-					sx={{mb: 2, position: "sticky", top: 80, left: 20, zIndex: 2}}
-					onClick={() => navigate(`/service/${vendorId}`)}
-				>
-					{t("editServices.myservicesPage")}
-				</Button>
+				{/* Add social media links */}
+				<AddVendorSocialMeda
+					setLoading={setLoading}
+					setRefresh={setRefresh}
+					navigate={navigate}
+					refresh={refresh}
+					loading={loading}
+					vendorId={vendorId as string}
+				/>
+
 				{/* edit section */}
 				<Box component='form' onSubmit={formik.handleSubmit} noValidate>
 					<Grid container>

@@ -76,3 +76,28 @@ export const getVendorbyId = async (vendorId: string) => {
 		console.log(error);
 	}
 };
+
+// שירות API
+export const addSocialMediaLinks = async (
+	vendorId:string,
+	socialMediaLinks: {
+		facebook: string;
+		instagram: string;
+		tikTok: string;
+		x: string;
+		youtube: string;
+	},
+) => {
+	try {
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("No token available");
+
+		const response = await axios.put(
+			`${api}/services/social-links/${vendorId}`,
+			{socialMediaLinks},
+		);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};

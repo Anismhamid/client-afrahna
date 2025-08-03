@@ -470,10 +470,51 @@
 	},
 
 	"payment": {
-		"paymentForm": {},
-		"paymentTerms": {}
+		"paymentForm": {
+			"title": "Payment Information",
+			"cardNumber": "Card Number",
+			"expiryDate": "Expiry Date",
+			"cvv": "CVV",
+			"cardHolderName": "Cardholder Name",
+			"saveCard": "Save card info for next time",
+			"submit": "Confirm Payment",
+			"termsLink": "Payment Terms & Conditions"
+		},
+		"paymentTerms": {
+			"title": "Afrahna Platform Payment Terms and Conditions",
+			"lastUpdated": "Last updated: {{date}}",
+			"note": "Note: These terms are subject to change. Please check this page periodically for updates.",
+			"moreInfo": "For more information, please refer to our",
+			"privacyPolicy": "Privacy Policy",
+			"items": [
+				{
+					"title": "Accepted Payment Methods",
+					"content": "We accept the following payment methods: Credit cards (Visa, MasterCard, Mada), digital wallets (Apple Pay, STC Pay), and bank transfer upon request."
+				},
+				{
+					"title": "Subscriptions",
+					"content": "Subscriptions are automatically renewed at the end of each period unless canceled at least 24 hours before the renewal date. You can cancel anytime via your account page."
+				},
+				{
+					"title": "Refund Policy",
+					"content": "No refunds will be issued after the subscription period begins. Please contact us within 7 days in case of a payment error. Refunds are processed within 14 business days."
+				},
+				{
+					"title": "Payment Information Security",
+					"content": "We use advanced encryption technologies (PCI DSS) to ensure the security of your payment information. Credit card data is not stored on our servers, and we use certified payment gateways."
+				},
+				{
+					"title": "Taxes and Modifications",
+					"content": "Value Added Tax (15%) is added according to the Kingdom’s regulations. We reserve the right to adjust prices with prior notice of 30 days before implementation."
+				},
+				{
+					"title": "Technical Support",
+					"content": "For inquiries, contact us at support@yourdomain.com or call 920000000 from 8:00 AM to 8:00 PM (israel time)."
+				}
+			]
+		}
 	},
-	"atoms": {},
+
 	"addNewService": {
 		"dialogTitle": "New Service",
 		"description": "What new service would you like to add?",
@@ -518,9 +559,24 @@
 			"error": "An error occurred while adding the image"
 		}
 	},
-	"servicesSettings": {},
+	"servicesSettings": {
+		"availableServices": "Available Services",
+		"addNewService": "Add New Service",
+		"noServicesAvailable": "No services available",
+		"priceRange": "Price Range",
+		"fixed": "Fixed",
+		"from": "From",
+		"to": "To",
+		"services": "Services",
+		"noServices": "No services",
+		"businessName": "Business Name",
+		"unnamedService": "Unnamed Service"
+	},
 	"servicesFormik": {},
 	"editServices": {
+		    "invalidUrl": "The provided URL is not valid"
+,    "socialLinksUpdateError": "Failed to update social media links"
+,
 		"title": "Edit Service Provider Details",
 		"myservicesPage": "My Services Page",
 		"tryAgain": "Try Again",

@@ -15,7 +15,7 @@ export const getServiceByVendorId = async (vendorId: string) => {
 	try {
 		const res = await axios.get(`${api}/services/vendor/${vendorId}`);
 
-		// הגנה: אם מחזיר מערך ריק, תחזיר null
+		// הגנה: אם מחזיר מערך ריק, מחזיר null
 		if (Array.isArray(res.data) && res.data.length === 0) {
 			return null;
 		}
@@ -23,7 +23,7 @@ export const getServiceByVendorId = async (vendorId: string) => {
 		return res.data;
 	} catch (error) {
 		console.error("Error in getServiceByVendorId:", error);
-		return null; // מומלץ תמיד להחזיר משהו קבוע במקרה של שגיאה
+		return null;
 	}
 };
 

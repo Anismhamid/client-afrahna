@@ -9,16 +9,21 @@ import {
 } from "@mui/material";
 import {FormikValues} from "formik";
 import {FunctionComponent} from "react";
+import {useTranslation} from "react-i18next";
 import {FaCcVisa, FaCcMastercard, FaCcAmex} from "react-icons/fa";
 import {Link} from "react-router-dom";
+import changeDirection from "../../../locales/directions";
 
 interface PaymentFormProps {
 	formik: FormikValues;
 }
 
 const PaymentForm: FunctionComponent<PaymentFormProps> = ({formik}) => {
+	const {t} = useTranslation();
+	const dir = changeDirection();
 	return (
 		<Paper
+			dir={dir}
 			elevation={3}
 			sx={{
 				p: 2,
@@ -29,7 +34,7 @@ const PaymentForm: FunctionComponent<PaymentFormProps> = ({formik}) => {
 			}}
 		>
 			<Typography textAlign={"center"} variant='h5' gutterBottom sx={{mb: 3}}>
-				معلومات الدفع
+				{t("payment.paymentForm.title")}
 			</Typography>
 
 			<form style={{padding: 10}} onSubmit={formik.handleSubmit}>
@@ -50,7 +55,7 @@ const PaymentForm: FunctionComponent<PaymentFormProps> = ({formik}) => {
 				{/* Card Number Field */}
 				<TextField
 					name='cardNumber'
-					label='رقم البطاقة'
+					label={t("payment.paymentForm.cardNumber")}
 					fullWidth
 					margin='normal'
 					variant='outlined'
@@ -71,7 +76,7 @@ const PaymentForm: FunctionComponent<PaymentFormProps> = ({formik}) => {
 					{/* Expiry Date Field */}
 					<TextField
 						name='expiryDate'
-						label='تاريخ الانتهاء'
+						label={t("payment.paymentForm.expiryDate")}
 						fullWidth
 						margin='normal'
 						variant='outlined'
@@ -118,7 +123,7 @@ const PaymentForm: FunctionComponent<PaymentFormProps> = ({formik}) => {
 				{/* Cardholder Name Field - Fixed */}
 				<TextField
 					name='cardHolderName'
-					label='اسم حامل البطاقة'
+					label={t("payment.paymentForm.cardHolderName")}
 					fullWidth
 					margin='normal'
 					variant='outlined'
@@ -150,7 +155,7 @@ const PaymentForm: FunctionComponent<PaymentFormProps> = ({formik}) => {
 					}
 					label={
 						<Typography variant='body2'>
-							حفظ معلومات البطاقة للمرة القادمة
+							{t("payment.paymentForm.saveCard")}
 						</Typography>
 					}
 					sx={{mt: 2}}
@@ -165,11 +170,11 @@ const PaymentForm: FunctionComponent<PaymentFormProps> = ({formik}) => {
 					sx={{mt: 3}}
 					disabled={formik.isSubmitting}
 				>
-					تأكيد الدفع
+					{t("payment.paymentForm.submit")}
 				</Button>
 
 				<Typography variant='body2' align='center' sx={{mt: 2}}>
-					<Link to='/payment-terms'>شروط وأحكام الدفع</Link>
+					<Link to='/payment-terms'>{t("payment.paymentForm.termsLink")}</Link>
 				</Typography>
 			</form>
 		</Paper>
