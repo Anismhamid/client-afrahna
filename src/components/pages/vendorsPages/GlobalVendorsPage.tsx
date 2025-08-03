@@ -209,15 +209,74 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 
 	const dir = changeDirection();
 
-	var cate = category;
-	// if (cate === ) ;
-	switch (category) {
-		case cate:
-			"قاعات";
+	let cate = category;
+	switch (cate) {
+		case "قاعات":
 			cate = "hals";
+			break;
+		case "تزيين قاعات":
+			cate = "halsDecoration";
+			break;
+		case "صالونات تجميل":
+			cate = "cosmatics";
+			break;
+		case "تزيين سيارات":
+			cate = "carsDecoration";
+			break;
+		case "كراسي":
+			cate = "chairs";
+			break;
+		case "حلويات":
+			cate = "pastry";
+			break;
+		case "تأجير برادات":
+			cate = "frezzer";
+			break;
+		case "تصوير":
+			cate = "photography";
+			break;
+		case "ستيريو":
+			cate = "stereo";
+			break;
+		case "طباخين":
+			cate = "coocks";
+			break;
+		case "مطاعم للأعراس":
+			cate = "restaurants";
+			break;
+		case "نادلين":
+			cate = "witress";
+			break;
+		case "العاب نارية":
+			cate = "fireWorks";
+			break;
+		case "بطاقات دعوة":
+			cate = "invitationCards";
+			break;
+		case "مكسرات":
+			cate = "nuts";
+			break;
+		case "فرق دينية":
+			cate = "religiousband";
+			break;
+		case "الهاء الأطفال":
+			cate = "kidsEntertainment";
+			break;
+		case "تزيين فاكهة":
+			cate = "fruitDecoration";
+			break;
+		case "تنسيق هدايا للعرسان":
+			cate = "weddinggifts";
+			break;
+		case "تأجير سيارات فخمة":
+			cate = "luxuryCars";
+			break;
+		case "منصات دبكة":
+			cate = "dapkaPlatform";
 			break;
 
 		default:
+			cate = category;
 			break;
 	}
 
@@ -235,7 +294,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 					{t(`services.${cate}.pageTitle`)}
 				</Typography>
 				<HorizontalDevider />
-				<div className='text-center mb-5 p-3'>
+				<div className='text-center mb-5 '>
 					<JsonLd
 						data={generateServiceJsonLd({
 							serviceType: category,
@@ -250,7 +309,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 						sx={{color: "primary.main", fontSize: "2rem"}}
 						className='lead'
 					>
-						{t(introText)}
+						{t(`services.${cate}.introText`)}
 					</Typography>
 				</div>
 

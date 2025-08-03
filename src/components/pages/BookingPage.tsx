@@ -226,7 +226,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 
 	return (
 		<Box
-		dir={dir}
+			dir={dir}
 			component={"main"}
 			sx={{
 				textAlign: "center",
@@ -290,9 +290,11 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 			</Paper>
 			{/* social media links */}
 			<SocialMediaLinks
-				instagram={"https://instagram.com"}
-				facebook={"https://facebook.com"}
-				twitter={"https://x.com"}
+				facebook={service.socialMediaLinks.facbook}
+				instagram={service.socialMediaLinks.instagram}
+				tikTok={service.socialMediaLinks.tikTok}
+				twitter={service.socialMediaLinks.x}
+				youtube={service.socialMediaLinks.youtube}
 			/>
 
 			<HorizontalDevider />

@@ -1,10 +1,12 @@
 import {Box, IconButton, Tooltip} from "@mui/material";
-import {Instagram, Facebook, Twitter} from "@mui/icons-material";
+import {Instagram, Facebook, Twitter, YouTube} from "@mui/icons-material";
 
 interface SocialMediaLinksProps {
-	instagram?: string;
 	facebook?: string;
+	instagram?: string;
+	tikTok?: string;
 	twitter?: string;
+	youtube?: string;
 	color?:
 		| "primary"
 		| "secondary"
@@ -20,9 +22,11 @@ interface SocialMediaLinksProps {
 }
 
 export default function SocialMediaLinks({
-	instagram,
 	facebook,
+	instagram,
+	tikTok,
 	twitter,
+	youtube,
 	color = "primary",
 	size = "large",
 	iconSize,
@@ -38,11 +42,11 @@ export default function SocialMediaLinks({
 	};
 
 	const platforms = [
-		{name: "Instagram", url: instagram, icon: Instagram, color},
-		{name: "Facebook", url: facebook, icon: Facebook, color},
-		{name: "X", url: twitter, icon: Twitter, color},
+		{name: "Facebook", url: facebook, icon: <Facebook fontSize='inherit' />},
+		{name: "Instagram", url: instagram, icon: <Instagram fontSize='inherit' />},
+		{name: "Twitter", url: twitter, icon: <Twitter fontSize='inherit' />},
+		{name: "YouTube", url: youtube, icon: <YouTube fontSize='inherit' />},
 	];
-
 	return (
 		<Box
 			display='flex'
@@ -52,17 +56,17 @@ export default function SocialMediaLinks({
 			{...props}
 		>
 			{platforms.map(
-				(platform) =>
-					platform.url && (
-						<Tooltip key={platform.name} title={platform.name} arrow>
+				({name, url, icon}) =>
+					url && (
+						<Tooltip key={name} title={name} arrow>
 							<IconButton
 								component='a'
-								href={platform.url}
+								href={url}
 								target='_blank'
 								rel='noopener noreferrer'
-								color={platform.color as any}
+								color={color}
 								size={size}
-								aria-label={platform.name}
+								aria-label={name}
 								sx={{
 									width: sizeMap[size],
 									height: sizeMap[size],
@@ -71,10 +75,37 @@ export default function SocialMediaLinks({
 									},
 								}}
 							>
-								<platform.icon fontSize='inherit' />
+								{icon}
 							</IconButton>
 						</Tooltip>
 					),
+			)}
+			{tikTok && (
+				<Tooltip title='TikTok' arrow>
+					<IconButton
+						component='a'
+						href={tikTok}
+						target='_blank'
+						rel='noopener noreferrer'
+						color={color}
+						size={size}
+						aria-label='TikTok'
+						sx={{
+							width: sizeMap[size],
+							height: sizeMap[size],
+							padding: 1,
+							borderRadius: "50%",
+							bgcolor: "white",
+						}}
+					>
+						<img
+							src='/tiktok-brands-solid-full.svg'
+							alt='TikTok'
+							width={sizeMap[size]}
+							height={sizeMap[size]}
+						/>
+					</IconButton>
+				</Tooltip>
 			)}
 		</Box>
 	);

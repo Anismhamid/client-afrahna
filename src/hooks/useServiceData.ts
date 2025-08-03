@@ -38,6 +38,13 @@ export interface VendorService {
 	phone: string;
 	category: string;
 	images: {url: string; alt: string}[];
+	socialMediaLinks: {
+		facbook: string;
+		instagram: string;
+		tikTok: string;
+		x: string;
+		youtube: string;
+	};
 	description: string;
 	priceType: string;
 	price: {min: number; max: number};
@@ -74,6 +81,13 @@ const initialServiceData: ServiceData = {
 		phone: "",
 		category: "",
 		images: [],
+		socialMediaLinks: {
+			facbook: "",
+			instagram: "",
+			tikTok: "",
+			x: "",
+			youtube: "",
+		},
 		description: "",
 		priceType: "",
 		price: {min: 0, max: 0},
