@@ -3,9 +3,10 @@ import {Badge} from "react-bootstrap";
 import {FunctionComponent, useMemo} from "react";
 import {Services} from "../../../interfaces/services";
 import {formatCurrency} from "../../../helpers/vendors";
-import {Button} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import WazeIcon from "/wazeIcon.png";
 import {useTranslation} from "react-i18next";
+import SocialMediaLinks from "../../../atoms/socialMediaLinks/SocialMediaLinks";
 
 interface ServiceCardProps {
 	service: Services & {rating?: number};
@@ -80,7 +81,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 						borderRadius: "0 0 0 20px",
 						minWidth: "auto",
 						boxShadow: 2,
-						direction:"rtl",
+						direction: "rtl",
 						"& img": {marginInlineEnd: "6px"},
 					}}
 				>
@@ -104,7 +105,21 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 							</div>
 						)}
 					</div>
-
+					{service.socialMediaLinks && (
+						<Box mt={2} sx={{backgroundColor:"InactiveCaption"}}>
+							<SocialMediaLinks
+								facebook={service.socialMediaLinks.facebook}
+								instagram={service.socialMediaLinks.instagram}
+								twitter={service.socialMediaLinks.x}
+								youtube={service.socialMediaLinks.youtube}
+								tikTok={service.socialMediaLinks.tikTok}
+								color='inherit'
+								size='small'
+								iconSize={24}
+								spacing={2}
+							/>
+						</Box>
+					)}
 					<div className='mb-2'>
 						<FaMapMarkerAlt className='text-primary me-1' />
 						<span className='text-muted'>
@@ -113,14 +128,24 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 					</div>
 
 					{service.description && (
-						<p className='card-text text-muted small mb-2'>
+						<p
+							className='text-muted small mb-2'
+							style={{
+								display: "-webkit-box",
+								WebkitLineClamp: 2,
+								WebkitBoxOrient: "vertical",
+								overflow: "hidden",
+							}}
+						>
 							{service.description}
 						</p>
 					)}
 
 					{service.services?.length > 0 && (
 						<div className='mb-2'>
-							<strong>{t("globalVendorsPage.AvailableServices")}:</strong>
+							<strong className='small'>
+								{t("globalVendorsPage.AvailableServices")}:
+							</strong>
 							<ul className='list-unstyled small'>
 								{service.services.slice(0, 1).map((s, index: number) => (
 									<li key={index} className='text-muted'>
@@ -140,7 +165,11 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 					<div className='d-flex justify-content-between align-items-center mt-auto'>
 						<div>
 							{priceRange.min !== priceRange.max ? (
-								<Badge bg='light' text='dark' className='fs-6'>
+								<Badge
+									bg='light'
+									text='dark'
+									className='fs-6 px-3 py-1 rounded-pill'
+								>
 									{priceRange.min} - {formatCurrency(priceRange.max)}
 								</Badge>
 							) : (
@@ -149,7 +178,10 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 								</Badge>
 							)}
 						</div>
-						<button onClick={onNavigate} className='btn btn-outline-success'>
+						<button
+							onClick={onNavigate}
+							className='btn btn-outline-success btn-sm'
+						>
 							{t("globalVendorsPage.bookNow")}
 						</button>
 					</div>

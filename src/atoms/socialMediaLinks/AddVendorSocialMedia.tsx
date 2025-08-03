@@ -13,26 +13,35 @@ interface AddVendorSocialMedaProps {
 	refresh: boolean;
 	loading: boolean;
 	vendorId: string;
+	socialMedia: {
+		facebook:string
+		instagram:string
+		tikTok:string
+		x:string
+		youtube:string
+	};
 }
 
 const AddVendorSocialMeda: FunctionComponent<AddVendorSocialMedaProps> = ({
 	setLoading,
 	setRefresh,
-  navigate,
+	navigate,
 	refresh = false,
 	loading = false,
 	vendorId,
+	socialMedia,
 }) => {
 	const {t} = useTranslation();
 
 	const editSocialMediaLinks = useFormik({
+		enableReinitialize: true,
 		initialValues: {
 			socialMediaLinks: {
-				facebook: "",
-				instagram: "",
-				tikTok: "",
-				x: "",
-				youtube: "",
+				facebook: socialMedia?.facebook,
+				instagram: socialMedia?.instagram,
+				tikTok: socialMedia?.tikTok,
+				x: socialMedia?.x,
+				youtube: socialMedia?.youtube,
 			},
 		},
 		validationSchema: yup.object({

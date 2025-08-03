@@ -1,10 +1,9 @@
 import {
-	addSocialMediaLinks,
 	getVendorData,
 	updateVendorServices,
 } from "../../services/vendorServices";
 import {useUser} from "../../contextApi/useUserData";
-import {FunctionComponent, useState, useEffect, SetStateAction} from "react";
+import {FunctionComponent, useState, useEffect} from "react";
 import {useFormik} from "formik";
 import {Services, vendorsServicesInitionalData} from "../../interfaces/services";
 import {
@@ -22,8 +21,6 @@ import {
 	FormControlLabel,
 	Checkbox,
 	Grid,
-	Paper,
-	TextField,
 } from "@mui/material";
 import {successToast} from "../../atoms/notifications/Toasts";
 import AddIcon from "@mui/icons-material/Add";
@@ -133,26 +130,26 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 		);
 	}
 
-	// if (error) {
-	// 	return (
-	// 		<Box
-	// 			component={"main"}
-	// 			sx={{
-	// 				textAlign: "center",
-	// 				p: 4,
-	// 			}}
-	// 		>
-	// 			<Typography color='error'>{error}</Typography>
-	// 			<Button
-	// 				variant='contained'
-	// 				onClick={() => window.location.reload()}
-	// 				sx={{mt: 2}}
-	// 			>
-	// 				{t("editServices.tryAgain")}
-	// 			</Button>
-	// 		</Box>
-	// 	);
-	// }
+	if (error) {
+		return (
+			<Box
+				component={"main"}
+				sx={{
+					textAlign: "center",
+					p: 4,
+				}}
+			>
+				<Typography color='error'>{error}</Typography>
+				<Button
+					variant='contained'
+					onClick={() => window.location.reload()}
+					sx={{mt: 2}}
+				>
+					{t("editServices.tryAgain")}
+				</Button>
+			</Box>
+		);
+	}
 
 	return (
 		<Box component={"main"}>
@@ -168,6 +165,7 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 					navigate={navigate}
 					refresh={refresh}
 					loading={loading}
+					socialMedia={vendor[0]?.socialMediaLinks}
 					vendorId={vendorId as string}
 				/>
 

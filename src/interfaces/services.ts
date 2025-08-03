@@ -11,6 +11,13 @@ export interface Services {
 	phone: string;
 	category: string;
 	images?: {url: string; alt: string; _id?: string}[];
+	socialMediaLinks: {
+		facebook: string;
+		instagram: string;
+		tikTok: string;
+		x: string;
+		youtube: string;
+	};
 	description: string;
 	priceType: string;
 	price: {min: number; max: number};
@@ -45,6 +52,13 @@ export const vendorsServicesInitionalData = {
 	phone: "",
 	category: "",
 	images: [],
+		socialMediaLinks: {
+		facebook: "",
+		instagram: "",
+		tikTok: "",
+		x: "",
+		youtube: "",
+	},
 	description: "",
 	priceType: "",
 	price: {

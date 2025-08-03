@@ -290,7 +290,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 			</Paper>
 			{/* social media links */}
 			<SocialMediaLinks
-				facebook={service.socialMediaLinks.facbook}
+				facebook={service.socialMediaLinks.facebook}
 				instagram={service.socialMediaLinks.instagram}
 				tikTok={service.socialMediaLinks.tikTok}
 				twitter={service.socialMediaLinks.x}

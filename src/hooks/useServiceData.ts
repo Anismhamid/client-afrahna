@@ -39,7 +39,7 @@ export interface VendorService {
 	category: string;
 	images: {url: string; alt: string}[];
 	socialMediaLinks: {
-		facbook: string;
+		facebook: string;
 		instagram: string;
 		tikTok: string;
 		x: string;
@@ -82,7 +82,7 @@ const initialServiceData: ServiceData = {
 		category: "",
 		images: [],
 		socialMediaLinks: {
-			facbook: "",
+			facebook: "",
 			instagram: "",
 			tikTok: "",
 			x: "",
