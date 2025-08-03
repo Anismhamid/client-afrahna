@@ -4,6 +4,7 @@
 		"title": "Afrahna Platform",
 		"subTitle": "We have all the services you need for your wedding day"
 	},
+	"waze": "Navigate",
 	"afrahna": {
 		"main": "Main",
 		"vedios": "Vedios",
@@ -574,9 +575,8 @@
 	},
 	"servicesFormik": {},
 	"editServices": {
-		    "invalidUrl": "The provided URL is not valid"
-,    "socialLinksUpdateError": "Failed to update social media links"
-,
+		"invalidUrl": "The provided URL is not valid",
+		"socialLinksUpdateError": "Failed to update social media links",
 		"title": "Edit Service Provider Details",
 		"myservicesPage": "My Services Page",
 		"tryAgain": "Try Again",

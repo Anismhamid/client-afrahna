@@ -25,7 +25,6 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 	category,
 	pageTitle,
 	metaDescription,
-	introText,
 }) => {
 	const {t} = useTranslation();
 	const [services, setServices] = useState<Services[]>([]);
@@ -113,7 +112,7 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 		};
 
 		fetchServices();
-	}, [category, sortBy]);
+	}, [category, sortBy, userLocation]);
 
 	const calculateDistance = (lat1: number, lon1: number, address: Address) => {
 		if (!address.lat || !address.lng) {

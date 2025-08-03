@@ -36,10 +36,10 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 	};
 
 	return (
-		<div  className='col'>
+		<div className='col'>
 			<div
-				className='card border-0 shadow-lg h-100 hover-zoom'
-				style={{transition: "transform 0.3s ease"}}
+				className='card border-0 shadow-sm h-100 position-relative hover-zoom'
+				style={{transition: "transform 0.3s ease", borderRadius: "12px"}}
 			>
 				{isDefaultLocation && (
 					<div className='alert alert-warning small mb-0'>
@@ -65,16 +65,31 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({service, onNavigate})
 				{/* כפתור ניווט ל-Waze */}
 				<Button
 					variant='outlined'
-					color='primary'
+					size='small'
+					color='info'
 					onClick={openWaze}
-					sx={{display: "flex", alignItems: "center"}}
+					sx={{
+						position: "absolute",
+						top: 0,
+						right: 0,
+						backgroundColor: "#2D9CDB",
+						color: "#fff",
+						fontWeight: "bold",
+						textTransform: "none",
+						padding: "4px 8px",
+						borderRadius: "0 0 0 20px",
+						minWidth: "auto",
+						boxShadow: 2,
+						direction:"rtl",
+						"& img": {marginInlineEnd: "6px"},
+					}}
 				>
 					<img
 						src={WazeIcon}
 						alt='Waze'
 						style={{width: 30, height: 30, marginInline: 8}}
 					/>
-					Waze
+					{t("waze")}
 				</Button>
 
 				<div className='card-body d-flex flex-column'>

@@ -4,6 +4,7 @@
 		"title": "פלטפורמת Afrahna",
 		"subTitle": "כל השירותים שאתם צריכים ליום החתונה שלכם"
 	},
+	"waze": "ניווט",
 	"afrahna": {
 		"main": "ראשי",
 		"vedios": "סרטונים",
@@ -559,9 +560,9 @@
 
 	"servicesFormik": {},
 	"editServices": {
-    "invalidUrl": "הכתובת שסופקה אינה תקינה"
-,    "socialLinksUpdateError": "עדכון קישורי הרשתות החברתיות נכשל"
-,		"title": "עריכת פרטי ספק השירות",
+		"invalidUrl": "הכתובת שסופקה אינה תקינה",
+		"socialLinksUpdateError": "עדכון קישורי הרשתות החברתיות נכשל",
+		"title": "עריכת פרטי ספק השירות",
 		"myservicesPage": "עמוד השירותים שלי",
 		"tryAgain": "נסה שוב",
 		"businessName": "שם העסק",
