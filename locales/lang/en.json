@@ -18,6 +18,164 @@
 			"info": "Personal information",
 			"userRole": "Role",
 			"subscriptionPlan": "Subscription plan",
+
+			"subscriptionPlans": [
+				{
+					"id": "free",
+					"name": "Trial Plan",
+					"price": "Free Forever",
+					"description": "The perfect solution to start showcasing your service basically",
+					"features": [
+						{"text": "Introductory page", "included": true},
+						{"text": "Display one image", "included": true},
+						{"text": "Display one sub-service", "included": true},
+						{"text": "Listing in service directory", "included": true},
+						{
+							"text": "Statistics or analytics",
+							"included": false,
+							"tooltip": "Available only in paid plans"
+						},
+						{
+							"text": "Live technical support",
+							"included": false,
+							"tooltip": "Available only in paid plans"
+						}
+					]
+				},
+				{
+					"id": "basic",
+					"name": "Silver Plan",
+					"price": "59 ILS/month",
+					"description": "For small businesses looking to develop their digital presence",
+					"features": [
+						{"text": "Display 5 high-quality images", "included": true},
+						{"text": "Display 6 detailed sub-services", "included": true},
+						{
+							"text": "Enhanced appearance in search results",
+							"included": true
+						},
+						{
+							"text": "Customer inquiries via phone and email",
+							"included": true
+						},
+						{"text": "Basic view statistics", "included": true},
+						{"text": "Email support during working days", "included": true},
+						{
+							"text": "Appointment booking system",
+							"included": false,
+							"tooltip": "Available in Gold Plan and above"
+						}
+					]
+				},
+				{
+					"id": "gold",
+					"name": "Gold Plan",
+					"price": "99 ILS/month",
+					"description": "Comprehensive solution for professional presentations and market distinction",
+					"features": [
+						{"text": "Custom professional page with logo", "included": true},
+						{"text": "Unlimited images", "included": true},
+						{"text": "Add up to 40 videos", "included": true},
+						{"text": "Unlimited sub-services", "included": true},
+						{"text": "'Recommended' badge", "included": true},
+						{"text": "Multiple communication channels", "included": true},
+						{"text": "Advanced page performance analytics", "included": true},
+						{
+							"text": "Integrated appointment management system",
+							"included": true
+						},
+						{"text": "Fast support via phone and email", "included": true},
+						{"text": "Embed Instagram and TikTok clips", "included": true},
+						{
+							"text": "Automatic ads",
+							"included": false,
+							"tooltip": "Available in Premium Plan"
+						}
+					],
+					"recommended": true
+				},
+				{
+					"id": "premium",
+					"name": "Premium Plan",
+					"price": "189 ILS/month",
+					"description": "For leading businesses seeking excellence and constant visibility",
+					"features": [
+						{"text": "Custom professional page with logo", "included": true},
+						{"text": "Unlimited images", "included": true},
+						{"text": "Add up to 60 videos", "included": true},
+						{"text": "Unlimited sub-services", "included": true},
+						{"text": "'Recommended' badge", "included": true},
+						{"text": "Multiple communication channels", "included": true},
+						{"text": "Advanced page performance analytics", "included": true},
+						{
+							"text": "Integrated appointment management system",
+							"included": true
+						},
+						{"text": "Fast support via phone and email", "included": true},
+						{"text": "Embed Instagram and TikTok clips", "included": true},
+						{"text": "Automatic ads on homepage", "included": true},
+						{"text": "Permanent appearance on homepage", "included": true},
+						{"text": "Custom monthly performance reports", "included": true},
+						{
+							"text": "Priority immediate technical support",
+							"included": true
+						},
+						{
+							"text": "'Trusted Provider' certificate and excellence badge",
+							"included": true
+						},
+						{
+							"text": "Multiple account management",
+							"included": false,
+							"tooltip": "Available in Enterprise Plan"
+						}
+					]
+				},
+				{
+					"id": "enterprise",
+					"name": "Enterprise & Agency Plan 🌐",
+					"price": "Contact Us",
+					"description": "Comprehensive solutions for large companies and agencies",
+					"features": [
+						{"text": "Custom professional page with logo", "included": true},
+						{"text": "Unlimited images", "included": true},
+						{"text": "Add up to 20 videos", "included": true},
+						{"text": "Unlimited sub-services", "included": true},
+						{"text": "'Recommended' badge", "included": true},
+						{"text": "Multiple communication channels", "included": true},
+						{"text": "Advanced page performance analytics", "included": true},
+						{
+							"text": "Integrated appointment management system",
+							"included": true
+						},
+						{"text": "Fast support via phone and email", "included": true},
+						{"text": "Embed Instagram and TikTok clips", "included": true},
+						{"text": "Automatic ads on homepage", "included": true},
+						{"text": "Permanent appearance on homepage", "included": true},
+						{"text": "Custom monthly performance reports", "included": true},
+						{
+							"text": "Priority immediate technical support",
+							"included": true
+						},
+						{
+							"text": "'Trusted Provider' certificate and excellence badge",
+							"included": true
+						},
+						{
+							"text": "Multiple account and site management",
+							"included": true
+						},
+						{
+							"text": "Custom integration with external systems",
+							"included": true
+						},
+						{"text": "Dedicated account manager", "included": true},
+						{"text": "24/7 live technical support", "included": true},
+						{"text": "Team training and workshops", "included": true},
+						{"text": "Custom marketing strategies", "included": true}
+					]
+				}
+			],
 			"boogings": "Bookings"
 		}
 	},

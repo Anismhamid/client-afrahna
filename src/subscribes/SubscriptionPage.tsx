@@ -1,4 +1,4 @@
-import {Box, Typography, Button, Paper, Tooltip, Chip, Divider} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {useFormik} from "formik";
 import {FunctionComponent, useState} from "react";
 import * as Yup from "yup";
@@ -8,8 +8,9 @@ import {useUser} from "../contextApi/useUserData";
 import {subscriptionToPlans} from "../services/subscription";
 import {useNavigate} from "react-router-dom";
 import {JwtPayload} from "../interfaces/userSchema";
-import {CheckCircleOutline, HighlightOff, Star} from "@mui/icons-material";
 import {subscriptionPlans} from "./subscribtionTypes/subscriptionPlans";
+import {useTranslation} from "react-i18next";
+import {SubscriptionPlansList} from "./subscribtionTypes/SubscriptionPlansList";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface SubscriptionPageProps {}
@@ -18,6 +19,7 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 	const [selectedPlanId, setSelectedPlanId] = useState<string>("");
 	const navigate = useNavigate();
 	const {user, setUser} = useUser();
+	const {t} = useTranslation();
 
 	const formik = useFormik({
 		initialValues: {
@@ -29,28 +31,36 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 		},
 		validationSchema: Yup.object().shape({
 			cardNumber: Yup.string()
-				.required("رقم البطاقة مطلوب")
-				.matches(/^(\d{4}\s){3}\d{4}$/, "رقم البطاقة غير صالح"),
+				.required(t("subscription.errors.cardNumberRequired"))
+				.matches(
+					/^(\d{4}\s){3}\d{4}$/,
+					t("subscription.errors.invalidCardNumber"),
+				),
 			expiryDate: Yup.string()
 				.required("تاريخ الانتهاء مطلوب")
-				.matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/, "تاريخ انتهاء غير صالح"),
+				.required(t("subscription.errors.expiryDateRequired"))
+				.matches(
+					/^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
+					t("subscription.errors.invalidExpiryDate"),
+				),
 			cvv: Yup.string()
-				.required("CVV مطلوب")
-				.matches(/^\d{3}$/, "CVV غير صالح"),
-			cardHolderName: Yup.string().required("اسم حامل البطاقة مطلوب"),
+				.required(t("subscription.errors.cvvRequired"))
+				.matches(/^\d{3}$/, t("subscription.errors.invalidCvv")),
+			cardHolderName: Yup.string().required(
+				t("subscription.errors.cardHolderNameRequired"),
+			),
 		}),
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		onSubmit: async (_) => {
 			if (!user?._id) {
-				errorToast("يجب تسجيل الدخول لإتمام عملية الاشتراك");
+				errorToast(t("subscription.errors.mustLogin"));
 				return;
 			}
 
 			if (!selectedPlanId) {
-				errorToast("الرجاء اختيار باقة اشتراك قبل الدفع");
+				errorToast(t("subscription.errors.mustSelectPlan"));
 				return;
 			}
-
 
 			try {
 				const sub = await subscriptionToPlans(user._id, {
@@ -67,7 +77,7 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 					localStorage.setItem("token", sub.token);
 					setUser(() => sub.token as JwtPayload);
 					successToast(
-						`تم الاشتراك بنجاح في الباقة ${
+						`${t("subscription.success.subscribed")},${
 							subscriptionPlans.find((p) => p.id === selectedPlanId)?.name
 						}`,
 					);
@@ -75,7 +85,7 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 				}
 			} catch (error) {
 				console.error("Error:", error);
-				errorToast("حدث خطأ أثناء عملية الدفع");
+				errorToast(t("subscription.errors.paymentFailed"));
 			}
 		},
 	});
@@ -98,15 +108,15 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 				align='center'
 				sx={{fontWeight: "bold", mb: 4, color: "primary.main"}}
 			>
-				خطط اشتراك منصة أفراحنا
+				{/* */}
+				{t("subscription.title")}
 			</Typography>
-
 			<Typography variant='h6' align='center' sx={{mb: 4, color: "text.secondary"}}>
-				اختر الباقة المناسبة لاحتياجاتك واستمتع بمزايا حصرية
+				{/* */}
+				{t("subscription.subtitle")}
 			</Typography>
-
 			{/* Subscription Plans Section */}
-			<Box>
+			{/* <Box>
 				<Box
 					sx={{
 						display: "flex",
@@ -147,6 +157,45 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 									backgroundColor: "background.paper",
 								}}
 							>
+								<div>
+									{subscriptionPlans.map((plan) => (
+										<div key={plan.id}>
+											<h2>{t(plan.name)}</h2>
+											<p>{t(plan.price)}</p>
+											<p>{t(plan.description)}</p>
+											<ul>
+												{plan.features.map((feature, i) => (
+													<li
+														key={i}
+														style={{
+															opacity: feature.included
+																? 1
+																: 0.5,
+														}}
+													>
+														{t(feature.text)}
+														{feature.tooltip && (
+															<span
+																title={t(
+																	feature.tooltip,
+																)}
+																style={{
+																	marginLeft: 5,
+																	cursor: "help",
+																}}
+															>
+																(?)
+															</span>
+														)}
+													</li>
+												))}
+											</ul>
+											{plan.recommended && (
+												<strong>{t("mostChosen")}</strong>
+											)}
+										</div>
+									))}
+								</div>
 								{isRecommended && (
 									<Chip
 										icon={<Star />}
@@ -314,8 +363,12 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 						);
 					})}
 				</Box>
-			</Box>
-
+			</Box> */}
+			<SubscriptionPlansList
+				plans={subscriptionPlans}
+				selectedPlanId={selectedPlanId}
+				onSelectPlan={setSelectedPlanId}
+			/>
 			{/* Payment Information Section - Only shown when a plan is selected */}
 			{selectedPlanId &&
 				!subscriptionPlans

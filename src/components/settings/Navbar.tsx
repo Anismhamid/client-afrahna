@@ -64,8 +64,12 @@ const Navbar: FunctionComponent = () => {
 		);
 	}, [user]);
 
-	const navLinkItem = (path: string, icon: JSX.Element, text: string) => (
-		<ListItem disablePadding>
+	const navLinkItem = (
+		path: string,
+		icon: JSX.Element,
+		text: string,
+	) => (
+		<ListItem disablePadding key={path}>
 			<NavLink
 				to={path}
 				style={{width: "100%", textDecoration: "none", color: "inherit"}}
@@ -175,7 +179,6 @@ const Navbar: FunctionComponent = () => {
 
 			{/* side drawer */}
 			<Drawer
-			
 				variant='persistent'
 				anchor={isMobile ? "top" : dir === "rtl" ? "right" : "left"}
 				open={open}
@@ -222,7 +225,7 @@ const Navbar: FunctionComponent = () => {
 					</Typography>
 				)}
 
-				<Box 
+				<Box
 					role='presentation'
 					onClick={toggleDrawer(false)}
 					onKeyDown={toggleDrawer(false)}
