@@ -333,7 +333,7 @@ const BusinessRegister: FunctionComponent = () => {
 								variant='filled'
 							>
 								{mainMenu.map((category, index) => (
-									<MenuItem key={index} value={category.label}>
+									<MenuItem key={index} value={category.category}>
 										<ListItemIcon>{category.icon}</ListItemIcon>
 										<ListItemText primary={t(category.label)} />
 									</MenuItem>

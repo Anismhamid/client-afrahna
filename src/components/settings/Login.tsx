@@ -46,7 +46,6 @@ const Login: FunctionComponent<LoginProps> = () => {
 			dir={dir}
 			style={{
 				display: "flex",
-				justifyContent: "center",
 				alignItems: "center",
 				flexDirection: "column",
 			}}
@@ -56,7 +55,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 				component='form'
 				onSubmit={formik.handleSubmit}
 				sx={{
-					padding: 3,
+					padding: 2,
 					borderRadius: 2,
 					display: "flex",
 					flexDirection: "column",
@@ -64,6 +63,8 @@ const Login: FunctionComponent<LoginProps> = () => {
 					maxWidth: "400px",
 					direction: dir,
 					color: "primary.main",
+					border: 1,
+					boxShadow:8
 				}}
 			>
 				<Typography

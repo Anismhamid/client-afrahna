@@ -26,6 +26,7 @@ export const getVendorData = async (vendorId: string) => {
 		return service.data;
 	} catch (error) {
 		console.log(error);
+		throw error;
 	}
 };
 
@@ -38,6 +39,7 @@ export const updateVendorServices = async (vendorId: string, newService: any) =>
 		return service.data;
 	} catch (error) {
 		console.log(error);
+		throw error;
 	}
 };
 
@@ -79,7 +81,7 @@ export const getVendorbyId = async (vendorId: string) => {
 
 // שירות API
 export const addSocialMediaLinks = async (
-	vendorId:string,
+	vendorId: string,
 	socialMediaLinks: {
 		facebook: string;
 		instagram: string;
@@ -92,10 +94,9 @@ export const addSocialMediaLinks = async (
 		const token = localStorage.getItem("token");
 		if (!token) throw new Error("No token available");
 
-		const response = await axios.put(
-			`${api}/services/social-links/${vendorId}`,
-			{socialMediaLinks},
-		);
+		const response = await axios.put(`${api}/services/social-links/${vendorId}`, {
+			socialMediaLinks,
+		});
 		return response.data;
 	} catch (error) {
 		console.log(error);
