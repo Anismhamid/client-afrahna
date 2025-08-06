@@ -260,7 +260,7 @@ const MyBookings: FunctionComponent<MyBookingsProps> = () => {
 							className='mt-2'
 							onClick={() => navigate("/")}
 						>
-							احجز الآن
+							{t("globalVendorsPage.bookNow")}
 						</Button>
 					</div>
 				)}

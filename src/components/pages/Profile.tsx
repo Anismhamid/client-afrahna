@@ -2,19 +2,17 @@ import {FunctionComponent} from "react";
 import {useUser} from "../../contextApi/useUserData";
 import {
 	Box,
-	Button,
-	Divider,
 	Typography,
 	CircularProgress,
 	Paper,
 	Chip,
 	Stack,
 	CardMedia,
-	Alert,
+	Button,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import MyBookings from "./MyBookings";
-import {ErrorOutline, Person} from "@mui/icons-material";
+import {Person} from "@mui/icons-material";
 import VendorsAnalyticsDashboard from "./VendorsAnalyticsDashboard";
 import {useServiceData} from "../../hooks/useServiceData";
 import {subscriptionPlans} from "../../subscribes/subscribtionTypes/subscriptionPlans";
