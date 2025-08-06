@@ -46,8 +46,10 @@ const Login: FunctionComponent<LoginProps> = () => {
 			dir={dir}
 			style={{
 				display: "flex",
+				justifyContent: "center",
 				alignItems: "center",
 				flexDirection: "column",
+				paddingTop: 0,
 			}}
 		>
 			<Box
@@ -55,7 +57,6 @@ const Login: FunctionComponent<LoginProps> = () => {
 				component='form'
 				onSubmit={formik.handleSubmit}
 				sx={{
-					padding: 2,
 					borderRadius: 2,
 					display: "flex",
 					flexDirection: "column",
@@ -64,7 +65,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 					direction: dir,
 					color: "primary.main",
 					border: 1,
-					boxShadow:8
+					boxShadow: 8,
 				}}
 			>
 				<Typography
@@ -73,7 +74,6 @@ const Login: FunctionComponent<LoginProps> = () => {
 					gutterBottom
 					sx={{
 						fontWeight: "bold",
-						paddingTop: "60px",
 						color: "primary.main",
 					}}
 				>

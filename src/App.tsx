@@ -14,7 +14,6 @@ import {CssBaseline} from "@mui/material";
 import {useMemo, useState} from "react";
 import Theme from "./atoms/Theme";
 
-
 const cacheRtl = createCache({
 	key: "muirtl",
 	stylisPlugins: [prefixer, rtlPlugin],
@@ -48,10 +47,9 @@ function App() {
 	);
 	return (
 		<Router>
-			<Navbar />
+			<Navbar mode={mode} setMode={setMode} />
 			<CacheProvider value={cacheRtl}>
 				<ThemeProvider theme={theme}>
-					<Theme mode={mode} setMode={setMode} />
 					<CssBaseline />
 					<Toaster position='top-center' reverseOrder={false} />
 					<AppRoutes />

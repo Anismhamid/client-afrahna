@@ -1,4 +1,4 @@
-import {FunctionComponent, JSX, useEffect, useMemo, useState} from "react";
+import {Dispatch, FunctionComponent, JSX, SetStateAction, useEffect, useMemo, useState} from "react";
 import {
 	AppBar,
 	Box,
@@ -16,6 +16,7 @@ import {
 	useMediaQuery,
 	useTheme,
 	Grid,
+	PaletteMode,
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -33,8 +34,14 @@ import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import changeDirection from "../../../locales/directions";
+import Theme from "../../atoms/Theme";
 
-const Navbar: FunctionComponent = () => {
+interface NavbarProps {
+	mode: PaletteMode;
+	setMode: Dispatch<SetStateAction<PaletteMode>>;
+}
+
+const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 	const [open, setOpen] = useState(false);
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -64,11 +71,7 @@ const Navbar: FunctionComponent = () => {
 		);
 	}, [user]);
 
-	const navLinkItem = (
-		path: string,
-		icon: JSX.Element,
-		text: string,
-	) => (
+	const navLinkItem = (path: string, icon: JSX.Element, text: string) => (
 		<ListItem disablePadding key={path}>
 			<NavLink
 				to={path}
@@ -89,14 +92,16 @@ const Navbar: FunctionComponent = () => {
 			dir={dir}
 			sx={{
 				flexGrow: 1,
-				position: "sticky",
+				position: "static",
 				top: 0,
 				zIndex: 1001,
-				p: 1,
+				
 				margin: "auto",
 			}}
 			width={isMobile ? "100%" : "90%"}
 		>
+			<Theme mode={mode} setMode={setMode} />
+
 			{/* Translate buttons */}
 			<TranslateButtons />
 			<AppBar

@@ -10,13 +10,13 @@ const Footer: FunctionComponent<FooterProps> = () => {
 		<Box
 			component='footer'
 			sx={{
-				color: "white",
+				backgroundColor: "#25628F",
 				textAlign: "center",
 				py: 2,
 				mt: 5,
 			}}
 		>
-			<Typography color='#ED6C03' dir='ltr' variant='body1'>
+			<Typography color='primary.main' dir='ltr' variant='h6'>
 				© {t("footer.copyRight")} 2025
 			</Typography>
 		</Box>

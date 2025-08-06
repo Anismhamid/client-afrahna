@@ -65,13 +65,6 @@ const BusinessRegister: FunctionComponent = () => {
 			category: Yup.string().required(t("registerPage.categoryValidation")),
 		}),
 
-		// onSubmit: (values) => {
-		// 	newBusinessRegisterUser(values).then((userData) => {
-		// 		localStorage.setItem("token", userData);
-		// 		navigate("/");
-		// 		successToast(t("login.wellcomeMessage"));
-		// 	});
-		// },
 		onSubmit: (values, {setSubmitting, setErrors}) => {
 			newBusinessRegisterUser(values)
 				.then((userData) => {

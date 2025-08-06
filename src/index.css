@@ -51,10 +51,10 @@ body {
 main {
   min-height: 100lvh;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  box-shadow: 0 0 8px 1px #311701 inset;
-  padding: 2rem;
-  margin: 50px auto;
-  border-radius: 5px;
+  padding: 0.5rem;
+  border: 1px solid #E55101;
+  margin:10px auto;
+  border-radius: 3px;
   width: 99%;
 }
 

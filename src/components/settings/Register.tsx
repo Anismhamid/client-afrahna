@@ -69,12 +69,11 @@ const Register: FunctionComponent<RegisterProps> = () => {
 		},
 	});
 
-		const dir = changeDirection();
-
+	const dir = changeDirection();
 
 	return (
 		<main
-		dir={dir}
+			dir={dir}
 			style={{
 				display: "flex",
 				justifyContent: "center",
@@ -86,12 +85,12 @@ const Register: FunctionComponent<RegisterProps> = () => {
 				component='form'
 				onSubmit={formik.handleSubmit}
 				sx={{
-					padding: 3,
 					borderRadius: 2,
 					display: "flex",
 					flexDirection: "column",
 					gap: 2,
 					maxWidth: "600px",
+					border: 1,
 				}}
 			>
 				<Box>
@@ -116,7 +115,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					</Typography>
 
 					<Typography
-						variant='body2'
+						variant='body1'
 						sx={{
 							color: "#0F2D44",
 							fontWeight: "bold",
@@ -131,9 +130,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					align='center'
 					gutterBottom
 					sx={{
-						color: "#0F2D44",
+						color: "primary.main",
 						fontWeight: "bold",
-						paddingTop: "60px",
+						paddingTop: "20px",
 					}}
 				>
 					{t("login.joinToAfrahnaUser")}
@@ -345,17 +344,17 @@ const Register: FunctionComponent<RegisterProps> = () => {
 				>
 					{t("registerPage.newVendor")}
 				</Button>
-			</Box>
-			<Box display='flex' justifyContent='center' gap={2}>
-				<Typography sx={{color: "warning.main"}} variant='body2'>
-					<Link to='/privacy-policy'>{t("privacyPolicy")}</Link>
-				</Typography>
-				<Typography sx={{color: "warning.main"}} variant='body2'>
-					|
-				</Typography>
-				<Typography sx={{color: "warning.main"}} variant='body2'>
-					<Link to='/terms-of-use'>{t("termsOfUse")}</Link>
-				</Typography>
+				<Box display='flex' justifyContent='center' gap={2}>
+					<Typography sx={{color: "warning.main"}} variant='body2'>
+						<Link to='/privacy-policy'>{t("privacyPolicy")}</Link>
+					</Typography>
+					<Typography sx={{color: "warning.main"}} variant='body2'>
+						|
+					</Typography>
+					<Typography sx={{color: "warning.main"}} variant='body2'>
+						<Link to='/terms-of-use'>{t("termsOfUse")}</Link>
+					</Typography>
+				</Box>
 			</Box>
 		</main>
 	);
