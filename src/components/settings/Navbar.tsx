@@ -1,4 +1,12 @@
-import {Dispatch, FunctionComponent, JSX, SetStateAction, useEffect, useMemo, useState} from "react";
+import {
+	Dispatch,
+	FunctionComponent,
+	JSX,
+	SetStateAction,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 import {
 	AppBar,
 	Box,
@@ -30,9 +38,6 @@ import {mainMenu, navbarItems} from "../../config/mainMenu";
 import {CloseButton} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import TranslateButtons from "../../atoms/TranslateButtons";
-import Tabs from "@mui/joy/Tabs";
-import TabList from "@mui/joy/TabList";
-import Tab from "@mui/joy/Tab";
 import changeDirection from "../../../locales/directions";
 import Theme from "../../atoms/Theme";
 
@@ -49,7 +54,6 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 	const location = useLocation();
 	const {user, setUser} = useUser();
 	const {t} = useTranslation();
-	const [index, setIndex] = useState<number>(0);
 
 	const toggleDrawer = (open: boolean) => () => {
 		setOpen(open);
@@ -95,7 +99,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 				position: "static",
 				top: 0,
 				zIndex: 1001,
-				
+
 				margin: "auto",
 			}}
 			width={isMobile ? "100%" : "90%"}
@@ -289,36 +293,6 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 								</Box>
 							)}
 						<Divider color='error' variant='fullWidth' />
-
-						{/* navigate menu */}
-						<Grid container spacing={0}>
-							{mainMenu.map((item, i) => (
-								<Grid size={{xs: 12}} key={i}>
-									<Tabs
-										aria-label='main menu tabs'
-										value={i}
-										onChange={(_, value) => setIndex(value as number)}
-										variant='plain'
-									>
-										<TabList>
-											<Tab
-												key={item.label}
-												variant={index === i ? "solid" : "plain"}
-												color={
-													index === i ? "primary" : "neutral"
-												}
-												component={Link}
-												to={item.link}
-												value={i}
-												sx={{width: "100%"}}
-											>
-												{t(item.label)}
-											</Tab>
-										</TabList>
-									</Tabs>
-								</Grid>
-							))}
-						</Grid>
 						{user?._id ? (
 							<Box
 								sx={{position: "relative", right: 0, left: 0, bottom: 0}}
@@ -343,6 +317,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 									sx={{
 										width: "100%",
 										display: "flex",
+										marginBlock:"10px",
 										justifyContent: "space-around",
 									}}
 									color='error'

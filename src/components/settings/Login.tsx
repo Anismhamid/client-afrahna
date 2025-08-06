@@ -1,20 +1,37 @@
 import {useFormik} from "formik";
-import {FunctionComponent} from "react";
+import {FunctionComponent, useState} from "react";
 import {LoginSchema} from "../../interfaces/userSchema";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
-import {Button, Box, Typography} from "@mui/material";
+import {
+	Box,
+	Typography,
+	IconButton,
+	OutlinedInput,
+	InputLabel,
+	FormControl,
+	InputAdornment,
+	FormHelperText,
+} from "@mui/material";
+import Button from "@mui/material/Button";
 import {Link, useNavigate} from "react-router-dom";
 import {userLogin} from "../../services/usersServices";
 import {errorToast, successToast} from "../../atoms/notifications/Toasts";
 import {useTranslation} from "react-i18next";
 import changeDirection from "../../../locales/directions";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+import {LoadingButton} from "@mui/lab";
 
 interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
+	const [showPassword, setShowPassword] = useState<boolean>(false);
+
 	const navigate = useNavigate();
 	const {t} = useTranslation();
+
+	const handleClickShowPassword = () => setShowPassword((show) => !show);
+
 	const formik = useFormik<LoginSchema>({
 		initialValues: {
 			email: "",
@@ -96,26 +113,51 @@ const Login: FunctionComponent<LoginProps> = () => {
 					onBlur={formik.handleBlur}
 					error={formik.touched.email && Boolean(formik.errors.email)}
 					helperText={formik.touched.email && formik.errors.email}
-					variant='filled'
+					variant='outlined'
 				/>
-				<TextField
-					label={t("registerPage.password")}
-					name='password'
-					type='password'
-					value={formik.values.password}
-					onChange={formik.handleChange}
-					onBlur={formik.handleBlur}
-					error={formik.touched.password && Boolean(formik.errors.password)}
-					helperText={formik.touched.password && formik.errors.password}
-					variant='filled'
-				/>
-				<Button
+				<FormControl fullWidth variant='outlined'>
+					<InputLabel htmlFor='password'>
+						{t("registerPage.password")}
+					</InputLabel>
+					<OutlinedInput
+						dir={dir}
+						name='password'
+						id='password'
+						type={showPassword ? "text" : "password"}
+						endAdornment={
+							<InputAdornment position='start'>
+								<IconButton
+									aria-label={
+										showPassword
+											? "hide the password"
+											: "display the password"
+									}
+									onClick={handleClickShowPassword}
+									edge='end'
+								>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
+							</InputAdornment>
+						}
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						error={formik.touched.password && Boolean(formik.errors.password)}
+						label={t("registerPage.password")}
+					/>
+					{formik.touched.password && formik.errors.password && (
+						<FormHelperText sx={{color: "red"}}>
+							{formik.errors.password}
+						</FormHelperText>
+					)}
+				</FormControl>
+				<LoadingButton
+					loading={formik.isSubmitting}
 					sx={{backgroundColor: "primary.main"}}
 					type='submit'
 					variant='contained'
 				>
 					{t("login.login")}
-				</Button>
+				</LoadingButton>
 				<Button
 					sx={{backgroundColor: "primary.main"}}
 					onClick={() => navigate("/register")}

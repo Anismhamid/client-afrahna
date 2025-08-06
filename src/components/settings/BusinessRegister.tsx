@@ -83,12 +83,11 @@ const BusinessRegister: FunctionComponent = () => {
 		},
 	});
 
-		const dir = changeDirection();
-
+	const dir = changeDirection();
 
 	return (
 		<main
-		dir={dir}
+			dir={dir}
 			style={{
 				display: "flex",
 				justifyContent: "center",
@@ -100,14 +99,13 @@ const BusinessRegister: FunctionComponent = () => {
 				component='form'
 				onSubmit={formik.handleSubmit}
 				sx={{
-					borderRadius: 2,
 					display: "flex",
 					flexDirection: "column",
 					gap: 2,
 					maxWidth: "600px",
 				}}
 			>
-				<Box>
+				<Box display={"flex"} justifyContent={"space-around"}>
 					<Button
 						variant='contained'
 						sx={{fontSize: "18"}}
@@ -115,29 +113,31 @@ const BusinessRegister: FunctionComponent = () => {
 					>
 						{t("registerPage.back")}
 					</Button>
-				</Box>
-				<Box display={"flex"} alignContent={"center"} alignItems={"center"}>
-					<Typography
-						variant='h5'
-						sx={{
-							color: "#804e16",
-							fontWeight: "bold",
-							pr: 1,
-						}}
-					>
-						{t("registerPage.registerType.title")} |
-					</Typography>
+					<Box display={"flex"} alignContent={"center"} alignItems={"center"}>
+						<Typography
+							variant='h5'
+							sx={{
+								color: "#804e16",
+								fontWeight: "bold",
+								pr: 1,
+							}}
+						>
+							{t("registerPage.registerType.title")} |
+						</Typography>
 
-					<Typography
-						variant='body2'
-						sx={{
-							color: "#1d812a",
-							fontWeight: "bold",
-						}}
-					>
-						{t("registerPage.registerType.newVendor")}
-					</Typography>
+						<Typography
+							variant='body1'
+							sx={{
+								mx:1,
+								color: "main.primary",
+								fontWeight: "bold",
+							}}
+						>
+							{t("registerPage.registerType.newVendor")}
+						</Typography>
+					</Box>
 				</Box>
+
 				<Typography
 					variant='h4'
 					align='center'
@@ -349,7 +349,7 @@ const BusinessRegister: FunctionComponent = () => {
 					{t("registerPage.create")}
 				</LoadingButton>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					sx={{backgroundColor: "primary.main"}}
 					type='button'
 					variant='contained'
 					onClick={() => navigate("/login")}
@@ -357,7 +357,7 @@ const BusinessRegister: FunctionComponent = () => {
 					{t("login.login")}
 				</Button>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					sx={{backgroundColor: "primary.main"}}
 					onClick={() => navigate("/register")}
 					type='button'
 					variant='contained'
@@ -365,7 +365,7 @@ const BusinessRegister: FunctionComponent = () => {
 					{t("registerPage.newUser")}
 				</Button>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					sx={{backgroundColor: "primary.main"}}
 					onClick={() => navigate("/business-register")}
 					variant='contained'
 				>

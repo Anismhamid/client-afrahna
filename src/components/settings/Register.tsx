@@ -4,7 +4,18 @@ import {UserSchema} from "../../interfaces/userSchema";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
 
-import {Button, Box, Typography, LinearProgress} from "@mui/material";
+import {
+	Button,
+	Box,
+	Typography,
+	LinearProgress,
+	FormControl,
+	InputLabel,
+	OutlinedInput,
+	InputAdornment,
+	IconButton,
+	FormHelperText,
+} from "@mui/material";
 import {registerNewUser} from "../../services/usersServices";
 import {Link, useNavigate} from "react-router-dom";
 import {successToast} from "../../atoms/notifications/Toasts";
@@ -12,15 +23,19 @@ import {getStrengthColor, getPasswordStrengthLabel} from "../../helpers/password
 import zxcvbn from "zxcvbn";
 import {useTranslation} from "react-i18next";
 import changeDirection from "../../../locales/directions";
+import {LoadingButton} from "@mui/lab";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 interface RegisterProps {}
 
 const Register: FunctionComponent<RegisterProps> = () => {
 	const navigate = useNavigate();
 	const {t} = useTranslation();
-
+	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [passwordScore, setPasswordScore] = useState(0);
 	const [passwordFeedback, setPasswordFeedback] = useState<string[]>([]);
+
+	const handleClickShowPassword = () => setShowPassword((show) => !show);
 
 	const formik = useFormik<UserSchema>({
 		initialValues: {
@@ -93,7 +108,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					border: 1,
 				}}
 			>
-				<Box>
+				<Box display={"flex"} justifyContent={"space-around"}>
 					<Button
 						variant='contained'
 						sx={{fontSize: "18"}}
@@ -101,28 +116,29 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					>
 						{t("registerPage.back")}
 					</Button>
-				</Box>
-				<Box display={"flex"} alignContent={"center"} alignItems={"center"}>
-					<Typography
-						variant='h5'
-						sx={{
-							color: "#804e16",
-							fontWeight: "bold",
-							pr: 1,
-						}}
-					>
-						{t("registerPage.registerType.title")} |
-					</Typography>
+					<Box display={"flex"} alignContent={"center"} alignItems={"center"}>
+						<Typography
+							variant='h5'
+							sx={{
+								color: "#804e16",
+								fontWeight: "bold",
+								pr: 1,
+							}}
+						>
+							{t("registerPage.registerType.title")} |
+						</Typography>
 
-					<Typography
-						variant='body1'
-						sx={{
-							color: "#0F2D44",
-							fontWeight: "bold",
-						}}
-					>
-						{t("registerPage.newUser")}
-					</Typography>
+						<Typography
+							variant='body1'
+							sx={{
+								mx: 1,
+								color: "main.primary",
+								fontWeight: "bold",
+							}}
+						>
+							{t("registerPage.newUser")}
+						</Typography>
+					</Box>
 				</Box>
 
 				<Typography
@@ -196,11 +212,15 @@ const Register: FunctionComponent<RegisterProps> = () => {
 							fullWidth
 						/>
 					</Box>
-					<Box>
-						<TextField
-							label={t("registerPage.password")}
+					<FormControl variant='outlined'>
+						<InputLabel htmlFor='password'>
+							{t("registerPage.password")}
+						</InputLabel>
+						<OutlinedInput
+							dir={dir}
 							name='password'
-							type='password'
+							id='password'
+							type={showPassword ? "text" : "password"}
 							value={formik.values.password}
 							onChange={(e) => {
 								formik.handleChange(e);
@@ -209,13 +229,37 @@ const Register: FunctionComponent<RegisterProps> = () => {
 								setPasswordFeedback(result.feedback.suggestions || []);
 							}}
 							onBlur={formik.handleBlur}
+							endAdornment={
+								<InputAdornment position='start'>
+									<IconButton
+										aria-label={
+											showPassword
+												? "hide password"
+												: "show password"
+										}
+										onClick={handleClickShowPassword}
+										edge='end'
+									>
+										{showPassword ? (
+											<VisibilityOff />
+										) : (
+											<Visibility />
+										)}
+									</IconButton>
+								</InputAdornment>
+							}
 							error={
 								formik.touched.password && Boolean(formik.errors.password)
 							}
-							helperText={formik.touched.password && formik.errors.password}
-							variant='filled'
-							fullWidth
+							label={t("registerPage.password")}
 						/>
+						{formik.touched.password && formik.errors.password && (
+							<FormHelperText sx={{color: "red"}}>
+								{formik.errors.password}
+							</FormHelperText>
+						)}
+
+						{/* قوة كلمة المرور */}
 						{passwordFeedback.length > 0 && (
 							<ul
 								style={{
@@ -231,35 +275,32 @@ const Register: FunctionComponent<RegisterProps> = () => {
 								))}
 							</ul>
 						)}
+
 						{formik.values.password && (
-							<>
-								<Box sx={{mt: 1}}>
-									<LinearProgress
-										variant='determinate'
-										value={(passwordScore + 1) * 20}
-										sx={{
-											height: 8,
-											borderRadius: 2,
-											backgroundColor: "#eee",
-											"& .MuiLinearProgress-bar": {
-												backgroundColor:
-													getStrengthColor(passwordScore),
-											},
-										}}
-									/>
-									<Typography
-										variant='body2'
-										sx={{
-											color: getStrengthColor(passwordScore),
-											mt: 0.5,
-										}}
-									>
-										{getPasswordStrengthLabel(passwordScore)}
-									</Typography>
-								</Box>
-							</>
+							<Box sx={{mt: 1}}>
+								<LinearProgress
+									variant='determinate'
+									value={(passwordScore + 1) * 20}
+									sx={{
+										height: 8,
+										borderRadius: 2,
+										backgroundColor: "#eee",
+										"& .MuiLinearProgress-bar": {
+											backgroundColor:
+												getStrengthColor(passwordScore),
+										},
+									}}
+								/>
+								<Typography
+									variant='body2'
+									sx={{color: getStrengthColor(passwordScore), mt: 0.5}}
+								>
+									{getPasswordStrengthLabel(passwordScore)}
+								</Typography>
+							</Box>
 						)}
-					</Box>
+					</FormControl>
+
 					<Box className=' mb-3'>
 						<TextField
 							label={t("registerPage.phoneNum")}
@@ -312,7 +353,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 						/>
 					</Box>
 				</Box>
-				<Button
+				<LoadingButton
 					loading={formik.isSubmitting}
 					sx={{backgroundColor: "success.main"}}
 					type='submit'
@@ -320,9 +361,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					fullWidth
 				>
 					{t("registerPage.create")}
-				</Button>
+				</LoadingButton>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					sx={{backgroundColor: "primary.main"}}
 					type='button'
 					variant='contained'
 					onClick={() => navigate("/login")}
@@ -330,7 +371,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					{t("login.login")}
 				</Button>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					sx={{backgroundColor: "primary.main"}}
 					onClick={() => navigate("/register")}
 					type='button'
 					variant='contained'
@@ -338,7 +379,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 					{t("registerPage.newUser")}
 				</Button>
 				<Button
-					sx={{backgroundColor: "#0F2D44"}}
+					sx={{backgroundColor: "primary.main"}}
 					onClick={() => navigate("/business-register")}
 					variant='contained'
 				>
