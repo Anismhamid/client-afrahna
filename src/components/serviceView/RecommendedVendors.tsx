@@ -36,7 +36,6 @@ interface ServiceCardProps {
 const ServiceCard = memo(({service, isFavorite, onToggleFavorite}: ServiceCardProps) => {
 	const theme = useTheme();
 	const [imageLoaded, setImageLoaded] = useState(false);
-console.log(service._id);
 
 	const imageUrl =
 		Array.isArray(service.images) && service.images.length > 0

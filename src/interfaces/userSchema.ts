@@ -68,7 +68,7 @@ export interface VendorDataResponse {
 	phone: string;
 	email: string;
 	role: string;
-	pictures: {
+	pictures?: {
 		url: string;
 		alt: string;
 	}[];

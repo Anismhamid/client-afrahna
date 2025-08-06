@@ -15,6 +15,8 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
+import {LoadingButton} from "@mui/lab";
+
 import {mainMenu} from "../../config/mainMenu";
 import {newBusinessRegisterUser} from "../../services/usersServices";
 import {successToast} from "../../atoms/notifications/Toasts";
@@ -63,12 +65,28 @@ const BusinessRegister: FunctionComponent = () => {
 			category: Yup.string().required(t("registerPage.categoryValidation")),
 		}),
 
-		onSubmit: (values) => {
-			newBusinessRegisterUser(values).then((userData) => {
-				localStorage.setItem("token", userData);
-				navigate("/");
-				successToast(t("login.wellcomeMessage"));
-			});
+		// onSubmit: (values) => {
+		// 	newBusinessRegisterUser(values).then((userData) => {
+		// 		localStorage.setItem("token", userData);
+		// 		navigate("/");
+		// 		successToast(t("login.wellcomeMessage"));
+		// 	});
+		// },
+		onSubmit: (values, {setSubmitting, setErrors}) => {
+			newBusinessRegisterUser(values)
+				.then((userData) => {
+					localStorage.setItem("token", userData);
+					navigate("/");
+					successToast(t("login.wellcomeMessage"));
+				})
+				.catch((error) => {
+					if (error.response?.status === 400) {
+						setErrors({email: error.response.data});
+					} else {
+						alert(t("errors.unexpectedError"));
+					}
+				})
+				.finally(() => setSubmitting(false));
 		},
 	});
 
@@ -89,7 +107,6 @@ const BusinessRegister: FunctionComponent = () => {
 				component='form'
 				onSubmit={formik.handleSubmit}
 				sx={{
-					padding: 3,
 					borderRadius: 2,
 					display: "flex",
 					flexDirection: "column",
@@ -330,14 +347,14 @@ const BusinessRegister: FunctionComponent = () => {
 						</FormControl>
 					</div>
 				</div>
-				<Button
+				<LoadingButton
 					loading={formik.isSubmitting}
 					sx={{backgroundColor: "success.main"}}
 					type='submit'
 					variant='contained'
 				>
 					{t("registerPage.create")}
-				</Button>
+				</LoadingButton>
 				<Button
 					sx={{backgroundColor: "#0F2D44"}}
 					type='button'
