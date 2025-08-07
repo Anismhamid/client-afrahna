@@ -1,4 +1,4 @@
-import {FunctionComponent, useState} from "react";
+import {FunctionComponent, useCallback, useEffect, useState} from "react";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
@@ -33,33 +33,36 @@ import changeDirection from "../../../locales/directions";
 interface ServicesSettingsProps {
 	vendorServices: Services[];
 	user: JwtPayload;
+	refresh: () => void;
 }
 
 const ServicesSettings: FunctionComponent<ServicesSettingsProps> = ({
 	vendorServices,
 	user,
+	refresh,
 }) => {
 	const dir = changeDirection();
 	const {t} = useTranslation();
 	const [loading, setLoading] = useState<boolean>(false);
-	const [refresh, setRefresh] = useState<boolean>(false);
 	const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
 	const [open, setOpen] = useState<boolean>(false);
 
-	const handleClickOpen = () => setOpen(!open);
-	const handleClose = () => setOpen(!open);
+	const handleClickOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 
-	const handleRemoveVendorService = async (vid: string, servName: string) => {
-		setLoading(true);
-		try {
-			await removeVendorService(vid, servName);
-
-			setRefresh(!refresh);
-		} finally {
-			setLoading(false);
-		}
-	};
+	const handleRemoveVendorService = useCallback(
+		async (vid: string, servName: string) => {
+			setLoading(true);
+			try {
+				await removeVendorService(vid, servName);
+				refresh();
+			} finally {
+				setLoading(false);
+			}
+		},
+		[],
+	);
 
 	return (
 		<Paper
@@ -76,6 +79,34 @@ const ServicesSettings: FunctionComponent<ServicesSettingsProps> = ({
 			<Typography variant='h5' gutterBottom sx={{textAlign: "center", mb: 3}}>
 				{t("servicesSettings.availableServices")}
 			</Typography>
+			<>
+				{vendorServices[0]?.services.length === 0 && (
+					<>
+						<Typography
+							variant='body1'
+							color='error'
+							sx={{
+								fontWeight: "bold",
+								gridColumn: "1 / -1",
+								textAlign: "center",
+							}}
+						>
+							{t("booking.noServiceToChoose")}
+						</Typography>
+						<Typography
+							variant='body1'
+							color='error'
+							sx={{
+								fontWeight: "bold",
+								gridColumn: "1 / -1",
+								textAlign: "center",
+							}}
+						>
+							{t("booking.haveToAddOneFuture")}
+						</Typography>
+					</>
+				)}
+			</>
 
 			<Box sx={{display: "flex", justifyContent: "flex-start", mb: 2}}>
 				<Button
@@ -306,7 +337,7 @@ const ServicesSettings: FunctionComponent<ServicesSettingsProps> = ({
 				userId={user?._id as string}
 				handleClose={handleClose}
 				open={open}
-				refresh={() => setRefresh(!refresh)}
+				refresh={refresh}
 			/>
 		</Paper>
 	);

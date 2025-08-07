@@ -111,6 +111,8 @@ const initialServiceData: ServiceData = {
 	SubscriptionData: {
 		isSubscribed: false,
 		planId: "free",
+		subscriptionDate: null,
+		expiryDate: null,
 		recommendedServices: false,
 	},
 	vendorProfile: null,
@@ -142,9 +144,7 @@ export const useServiceData = (vendorId: string): ServiceData => {
 					getServiceByVendorId(vendorId).catch(() => null),
 					getUnavailableDates(vendorId).catch(() => ({unavailableDates: []})),
 					getVendorData(vendorId).catch(() => null),
-					getVendorSubscriptionPlan(vendorId).catch(() => ({
-						subscriptionData: {planId: "free", isSubscribed: false},
-					})),
+					getVendorSubscriptionPlan(),
 				]);
 
 				// Normalize in case response is array
@@ -176,16 +176,9 @@ export const useServiceData = (vendorId: string): ServiceData => {
 					throw new Error("Vendor profile not found");
 				}
 
-				// Merge subscription data
-				const subscriptionData: SubscriptionData = {
-					isSubscribed: false,
-					planId: "free",
-					recommendedServices: false,
-					...(subscriptionResponse?.subscriptionData || {}),
-					...(vendorProfile?.subscriptionData || {}),
-				};
-
-				const effectivePlanId = subscriptionData.planId || "free";
+				// // Merge subscription data
+				const subscriptionData= subscriptionResponse
+				const effectivePlanId = subscriptionData.planId;
 
 				// Get coordinates with fallback
 				const coordinates = await getCoordinates(

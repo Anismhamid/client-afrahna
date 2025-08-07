@@ -14,6 +14,7 @@ export const addVendorService = async (
 		return service.data;
 	} catch (error) {
 		console.log(error);
+		throw error;
 	}
 };
 
@@ -64,6 +65,7 @@ export const getAllVendors = async () => {
 		return response.data;
 	} catch (error) {
 		console.log(error);
+		throw error;
 	}
 };
 
@@ -100,5 +102,6 @@ export const addSocialMediaLinks = async (
 		return response.data;
 	} catch (error) {
 		console.log(error);
+		throw error;
 	}
 };

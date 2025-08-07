@@ -33,7 +33,7 @@ interface AlertDialogSlideProps {
 
 const AlertDialogSlide: FunctionComponent<AlertDialogSlideProps> = ({
 	handleClose,
-	open,
+	open = false,
 	userId,
 	refresh,
 }) => {
@@ -59,22 +59,22 @@ const AlertDialogSlide: FunctionComponent<AlertDialogSlideProps> = ({
 				price: values.price,
 			})
 				.then(() => {
-          successToast(t("addNewService.toasts.success", {name: values.featureName}));
+					successToast(t("addNewService.toasts.success"));
 					handleClose();
 					formik.resetForm();
 					refresh();
 				})
 				.catch((err) => {
-          errorToast(err.message || t("addNewService.toasts.error"));
+					errorToast(err.message || t("addNewService.toasts.error"));
 				});
 		},
 	});
 
-	const dir = changeDirection()
+	const dir = changeDirection();
 
 	return (
 		<Dialog
-		dir={dir}
+			dir={dir}
 			open={open}
 			TransitionComponent={Transition}
 			keepMounted

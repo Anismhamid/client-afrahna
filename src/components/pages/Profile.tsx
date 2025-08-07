@@ -18,15 +18,9 @@ import {useServiceData} from "../../hooks/useServiceData";
 import {subscriptionPlans} from "../../subscribes/subscribtionTypes/subscriptionPlans";
 import {subscriptionColor} from "../../subscribes/subscribtionTypes/subscriptionUtils";
 import {useTranslation} from "react-i18next";
+import {SubscriptionData} from "../../interfaces/userSchema";
 
 interface ProfileProps {}
-
-interface UserSubscriptionData {
-	planId?: string;
-	isSubscribed?: boolean;
-	subscriptionDate?: Date | string | null;
-	expiryDate?: Date | string | null;
-}
 
 interface User {
 	_id?: string;
@@ -40,7 +34,7 @@ interface User {
 	profileImage?: {
 		url?: string;
 	};
-	subscriptionData?: UserSubscriptionData;
+	subscriptionData?: SubscriptionData;
 	vendorId?: string;
 }
 
@@ -48,7 +42,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 	const {user} = useUser() as {user: User | null};
 	const {t} = useTranslation();
 	const navigate = useNavigate();
-	const {planId, loading: serviceLoading} = useServiceData(user?._id || "");
+	const {SubscriptionData, loading: serviceLoading} = useServiceData(user?._id || "");
 
 	// Safely get user display name
 	const currentUser =
@@ -58,7 +52,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 
 	// Safely get current plan
 	const currentPlan = subscriptionPlans.find(
-		(plan) => plan.id === (planId || user?.subscriptionData?.planId),
+		(plan) => plan.id === (SubscriptionData.planId || user?.subscriptionData?.planId),
 	);
 
 	// Loading state
@@ -142,7 +136,8 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					p: 4,
 					mb: 4,
 					borderLeft: `4px solid ${subscriptionColor(
-						planId || user.subscriptionData?.planId || "free",
+						SubscriptionData.planId || "free",
+					)},
 					)}`,
 				}}
 			>
@@ -186,10 +181,12 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 								{t("afrahna.user.subscriptionPlan")}
 							</Typography>
 							<Chip
-								label={currentPlan.name}
+								label={SubscriptionData.planId}
 								sx={{
-									backgroundColor: subscriptionColor(currentPlan.id),
-									color: "white",
+									backgroundColor: subscriptionColor(
+										SubscriptionData.planId,
+									),
+									color: "main.primary",
 									mt: 1,
 								}}
 							/>

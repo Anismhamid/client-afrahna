@@ -17,9 +17,9 @@ interface ProfileImage {
 
 export interface SubscriptionData {
 	isSubscribed: boolean;
-	planId?: string;
-	subscriptionDate?: Date | null;
-	expiryDate?: Date | null;
+	planId: string;
+	subscriptionDate: Date | null;
+	expiryDate: Date | null;
 	recommendedServices: boolean;
 }
 

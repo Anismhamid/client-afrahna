@@ -1,5 +1,10 @@
 import axios from "axios";
-import {BusinessUserSchema, LoginSchema, UserSchema} from "../interfaces/userSchema";
+import {
+	BusinessUserSchema,
+	LoginSchema,
+	SubscriptionData,
+	UserSchema,
+} from "../interfaces/userSchema";
 
 const api = `${import.meta.env.VITE_API_URI}`;
 
@@ -18,14 +23,20 @@ export const registerNewUser = async (userData: UserSchema) => {
 };
 
 // Register business users
-export const newBusinessRegisterUser = async (userData: BusinessUserSchema) => {
+export const newBusinessRegisterUser = async (
+	userData: BusinessUserSchema,
+): Promise<string> => {
 	try {
 		const response = await axios.post(`${api}/business`, userData, {
 			headers: {"Content-Type": "application/json"},
 		});
 		return response.data;
 	} catch (error) {
-		console.log(error);
+		if (axios.isAxiosError(error)) {
+			throw error;
+		} else {
+			throw new Error("An unexpected error occurred");
+		}
 	}
 };
 
@@ -45,24 +56,29 @@ export const getUserById = async (userId: string) => {
 	return data.data;
 };
 
-export const getVendorSubscriptionPlan = async (vendorId: string) => {
-  try {
-    const response = await axios.get(
-		`${api}/business/vendor/vendorSubscriptionData/${vendorId}`,
-	);
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response?.status === 404) {
-        return {
-          planId: "free",
-          isSubscribed: false,
-          recommendedServices: false
-        };
-      }
-    }
-    throw error;
-  }
+export const getVendorSubscriptionPlan = async (): Promise<SubscriptionData> => {
+	try {
+		const response = await axios.get(
+			`${api}/business/vendor/vendorSubscriptionData`,
+			{headers: {Authorization: localStorage.getItem("token")}},
+		);
+		return response.data;
+	} catch (error) {
+		if (axios.isAxiosError(error)) {
+			if (error.response?.status === 404) {
+				return {
+					planId: "free",
+					isSubscribed: false,
+					recommendedServices: false,
+					subscriptionDate: null,
+					expiryDate: null,
+				};
+			}
+		}
+		console.log(error);
+
+		throw error;
+	}
 };
 
 export const getAllUsers = async () => {

@@ -567,7 +567,11 @@ const EditServices: FunctionComponent<EditServicesProps> = () => {
 				<HorizontalDevider />
 
 				{/* Services Section */}
-				<ServicesSettings user={user as JwtPayload} vendorServices={vendor} />
+				<ServicesSettings
+					user={user as JwtPayload}
+					vendorServices={vendor}
+					refresh={() => setRefresh(!refresh)}
+				/>
 
 				<AddNewPicture
 					userId={user?._id as string}

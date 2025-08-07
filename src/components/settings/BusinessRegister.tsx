@@ -65,21 +65,22 @@ const BusinessRegister: FunctionComponent = () => {
 			category: Yup.string().required(t("registerPage.categoryValidation")),
 		}),
 
-		onSubmit: (values, {setSubmitting, setErrors}) => {
-			newBusinessRegisterUser(values)
-				.then((userData) => {
-					localStorage.setItem("token", userData);
-					navigate("/");
-					successToast(t("login.wellcomeMessage"));
-				})
-				.catch((error) => {
-					if (error.response?.status === 400) {
+		onSubmit: async (values, {setSubmitting, setErrors}) => {
+			try {
+				const userData = await newBusinessRegisterUser(values);
+				localStorage.setItem("token", userData);if (userData) {
+						navigate("/");
+						successToast(t("login.wellcomeMessage"))
+					}
+			} catch (error:any) {
+				if (error.response?.status === 400) {
 						setErrors({email: error.response.data});
 					} else {
 						alert(t("errors.unexpectedError"));
 					}
-				})
-				.finally(() => setSubmitting(false));
+			}finally{() => setSubmitting(false)}
+				
+				
 		},
 	});
 
@@ -128,7 +129,7 @@ const BusinessRegister: FunctionComponent = () => {
 						<Typography
 							variant='body1'
 							sx={{
-								mx:1,
+								mx: 1,
 								color: "main.primary",
 								fontWeight: "bold",
 							}}

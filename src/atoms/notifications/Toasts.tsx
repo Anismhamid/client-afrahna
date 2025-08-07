@@ -11,7 +11,7 @@ const baseStyle = {
 
 export const successToast = (msg: string) =>
 	toast.success(msg, {
-		duration: 1000,
+		duration: 5000,
 		position: "top-center",
 
 		// Styling
