@@ -50,13 +50,13 @@ const Home: FunctionComponent<HomeProps> = () => {
 		}
 	}, [setUser]);
 
-	const dir = changeDirection()
+	const dir = changeDirection();
 
 	return (
 		<>
 			<title>{t("home.tab")}</title>
 			<Box
-			dir={dir}
+				dir={dir}
 				component={"main"}
 				sx={{
 					backgroundColor: "background.default",

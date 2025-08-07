@@ -52,7 +52,7 @@ export interface VendorService {
 	availableDates: Date[];
 	services: Service[];
 	vendorId: string;
-	planeId?: string;
+	planId?: string;
 	maxBookingsPerDay: number;
 	allowOverlappingBookings: boolean;
 	bookingDurationInHours: number;
@@ -68,7 +68,6 @@ interface ServiceData {
 	visibleServices: Service[];
 	loading: boolean;
 	error: Error | null;
-	planId: string;
 	businessAddress: {lat: number; lng: number};
 	SubscriptionData: SubscriptionData;
 	vendorProfile: VendorDataResponse | null;
@@ -106,7 +105,6 @@ const initialServiceData: ServiceData = {
 	visibleServices: [],
 	loading: true,
 	error: null,
-	planId: "free",
 	businessAddress: {lat: 0, lng: 0},
 	SubscriptionData: {
 		isSubscribed: false,
@@ -144,7 +142,7 @@ export const useServiceData = (vendorId: string): ServiceData => {
 					getServiceByVendorId(vendorId).catch(() => null),
 					getUnavailableDates(vendorId).catch(() => ({unavailableDates: []})),
 					getVendorData(vendorId).catch(() => null),
-					getVendorSubscriptionPlan(),
+					getVendorSubscriptionPlan(vendorId),
 				]);
 
 				// Normalize in case response is array
@@ -176,9 +174,8 @@ export const useServiceData = (vendorId: string): ServiceData => {
 					throw new Error("Vendor profile not found");
 				}
 
-				// // Merge subscription data
-				const subscriptionData= subscriptionResponse
-				const effectivePlanId = subscriptionData.planId;
+				// subscription data
+				const subscriptionData = subscriptionResponse;
 
 				// Get coordinates with fallback
 				const coordinates = await getCoordinates(
@@ -188,8 +185,8 @@ export const useServiceData = (vendorId: string): ServiceData => {
 
 				// Handle visible services
 				const visibleServices = getVisibleServices(
-					effectivePlanId,
-					businessData.services || [],
+					subscriptionData.planId,
+					Array.isArray(businessData.services) ? businessData.services : [],
 				);
 
 				// Parse unavailable dates safely
@@ -211,7 +208,6 @@ export const useServiceData = (vendorId: string): ServiceData => {
 					visibleServices,
 					loading: false,
 					error: null,
-					planId: effectivePlanId,
 					businessAddress: coordinates,
 					SubscriptionData: subscriptionData,
 					vendorProfile,

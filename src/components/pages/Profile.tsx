@@ -1,4 +1,4 @@
-import {FunctionComponent} from "react";
+import {FunctionComponent, useEffect} from "react";
 import {useUser} from "../../contextApi/useUserData";
 import {
 	Box,
@@ -50,9 +50,12 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 		`${user?.name?.first || ""} ${user?.name?.last || ""}`.trim() ||
 		"غير متوفر";
 
+		console.log(SubscriptionData);
+		
+
 	// Safely get current plan
 	const currentPlan = subscriptionPlans.find(
-		(plan) => plan.id === (SubscriptionData.planId || user?.subscriptionData?.planId),
+		(plan) => plan.id === (SubscriptionData?.planId || "free"),
 	);
 
 	// Loading state
@@ -100,6 +103,10 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 			</Box>
 		);
 	}
+	// console.log("SubscriptionData from useServiceData:", SubscriptionData);
+	// console.log("User subscriptionData:", user?.subscriptionData);
+
+
 
 	return (
 		<Box component='main' sx={{maxWidth: 1200, mx: "auto", p: 2}}>
@@ -181,7 +188,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 								{t("afrahna.user.subscriptionPlan")}
 							</Typography>
 							<Chip
-								label={SubscriptionData.planId}
+								label={SubscriptionData?.planId || "free"}
 								sx={{
 									backgroundColor: subscriptionColor(
 										SubscriptionData.planId,
