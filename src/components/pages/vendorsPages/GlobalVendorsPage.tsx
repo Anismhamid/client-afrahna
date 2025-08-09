@@ -282,9 +282,16 @@ const GlobalVendorsPage: FunctionComponent<GlobalVendorsPageProps> = ({
 	return (
 		<>
 			<title>{t(`services.${cate}.category`)}</title>
-			<meta name='description' content={t(`services.${cate}.metaDescription`)} />
-
-			<main dir={dir}>
+			<meta property='og:title' content={t(`services.${cate}.pageTitle`)} />
+			<meta
+				property='og:description'
+				content={t(`services.${cate}.metaDescription`)}
+			/>
+			<meta
+				property='og:url'
+				content={`https://client-afrahna.vercel.app/services/${cate}`}
+			/>
+			<main dir={dir} aria-label={t(`services.${cate}.pageTitle`)}>
 				<Typography
 					variant='h1'
 					sx={{color: "primary.main", fontSize: "3rem"}}

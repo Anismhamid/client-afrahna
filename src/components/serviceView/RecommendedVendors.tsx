@@ -19,8 +19,6 @@ import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
 import {useTranslation} from "react-i18next";
 import ServiceCard from "./ServiceCard";
 
-
-
 interface RecommendedServicesProps {}
 
 const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
@@ -73,6 +71,7 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		try {
 			const res = await getRecommendedVendors();
 			setServices(res);
+			console.log(res);
 		} catch (err) {
 			console.error("Failed to fetch vendors:", err);
 			setError(t("recommendedVendors.fetchError"));
@@ -140,30 +139,30 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		);
 	}
 
-	if (error) {
-		return (
-			<Box sx={{p: 4, textAlign: "center"}}>
-				<Typography
-					variant='h4'
-					gutterBottom
-					sx={{
-						textAlign: "center",
-						fontWeight: "bold",
-						color: theme.palette.primary.main,
-						mt: 10,
-					}}
-				>
-					{t("recommendedVendors.title")}
-				</Typography>
-				<HorizontalDevider />
-				<Box sx={{textAlign: "center", py: 4}}>
-					<Typography variant='body1' color='error'>
-						{error}
-					</Typography>
-				</Box>
-			</Box>
-		);
-	}
+	// if (error) {
+	// 	return (
+	// 		<Box sx={{p: 4, textAlign: "center"}}>
+	// 			<Typography
+	// 				variant='h4'
+	// 				gutterBottom
+	// 				sx={{
+	// 					textAlign: "center",
+	// 					fontWeight: "bold",
+	// 					color: theme.palette.primary.main,
+	// 					mt: 10,
+	// 				}}
+	// 			>
+	// 				{t("recommendedVendors.title")}
+	// 			</Typography>
+	// 			<HorizontalDevider />
+	// 			<Box sx={{textAlign: "center", py: 4}}>
+	// 				<Typography variant='body1' color='error'>
+	// 					{error}
+	// 				</Typography>
+	// 			</Box>
+	// 		</Box>
+	// 	);
+	// }
 
 	return (
 		<Box

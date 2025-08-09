@@ -1,19 +1,37 @@
-import { Box, Card, CardContent, CardMedia, Chip, IconButton, Skeleton, Tooltip, Typography, useTheme } from "@mui/material";
-import { memo, useState } from "react";
-import { Link } from "react-router-dom";
+import {
+	Box,
+	Card,
+	CardContent,
+	CardMedia,
+	Chip,
+	IconButton,
+	Skeleton,
+	Tooltip,
+	Typography,
+	useTheme,
+} from "@mui/material";
+import {FunctionComponent, useState} from "react";
+import {Link} from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Services } from "../../interfaces/services";
-import { formatCurrency } from "../../helpers/vendors";
+import {Services} from "../../interfaces/services";
+import {formatCurrency} from "../../helpers/vendors";
+import {StarIcon} from "lucide-react";
 
 interface ServiceCardProps {
 	service: Services;
 	isFavorite: boolean;
 	onToggleFavorite: (id: string) => void;
+	isRecommended?: boolean;
 }
 
-const ServiceCard = memo(({service, isFavorite, onToggleFavorite}: ServiceCardProps) => {
+const ServiceCard: FunctionComponent<ServiceCardProps> = ({
+	service,
+	isFavorite,
+	isRecommended,
+	onToggleFavorite,
+}) => {
 	const theme = useTheme();
 	const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -35,7 +53,8 @@ const ServiceCard = memo(({service, isFavorite, onToggleFavorite}: ServiceCardPr
 					borderRadius: 2,
 					boxShadow: 1,
 					width: "100%",
-					height: "100%",
+					maxHeight: 300,
+					margin: 2,
 					transition: "transform 0.3s, box-shadow 0.3s",
 					"&:hover": {
 						transform: "translateY(-5px)",
@@ -49,6 +68,22 @@ const ServiceCard = memo(({service, isFavorite, onToggleFavorite}: ServiceCardPr
 					style={{textDecoration: "none"}}
 					aria-label={`View details for ${service.businessName}`}
 				>
+					<Box sx={{position: "relative"}}>
+						{isRecommended && (
+							<Chip
+								icon={<StarIcon />}
+								label='موصى به'
+								color='secondary'
+								sx={{
+									position: "absolute",
+									top: 16,
+									left: 100,
+									zIndex: 2,
+									fontWeight: "bold",
+								}}
+							/>
+						)}
+					</Box>
 					<Box sx={{position: "relative"}}>
 						{!imageLoaded && (
 							<Skeleton variant='rectangular' height={200} width='100%' />
@@ -160,6 +195,6 @@ const ServiceCard = memo(({service, isFavorite, onToggleFavorite}: ServiceCardPr
 			</Card>
 		</Box>
 	);
-});
+};
 
 export default ServiceCard;
