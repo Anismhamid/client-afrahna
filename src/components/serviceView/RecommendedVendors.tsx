@@ -40,7 +40,7 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 	const {t} = useTranslation();
 
 	const settings = {
-		slidesToShow: 6,
+		slidesToShow: 3,
 		slidesToScroll: 1,
 		cssEase: "cubic-bezier(0.645, 0.045, 0.355, 1)",
 		autoplay: true,
@@ -78,7 +78,7 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		} finally {
 			setLoading(false);
 		}
-	}, [t]);
+	}, []);
 
 	useEffect(() => {
 		fetchServices();

@@ -1,5 +1,5 @@
 import {FunctionComponent, useEffect, useState} from "react";
-import {Box, Typography, CardContent, CardActionArea, Card, Button} from "@mui/material";
+import {Box, Typography, CardContent, CardActionArea, Card} from "@mui/material";
 
 import {Link} from "react-router-dom";
 import {mainMenu} from "../../config/mainMenu";
@@ -17,6 +17,7 @@ import JsonLd from "../JsonLd";
 import {generateCategoriesItemListJsonLd} from "../../utils/structuredData";
 import {useTranslation} from "react-i18next";
 import changeDirection from "../../../locales/directions";
+import SearchComponent from "../../atoms/search/SearchComponent";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface HomeProps {}
@@ -117,6 +118,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 						{t("afrahna.services")}
 					</Typography>
 					<HorizontalDevider />
+					<SearchComponent />
 					<Box className='row row-cols-1 row-cols-2  row-cols-lg-6 '>
 						{mainMenu.map((cat) => (
 							<div className='my-2  text-center' key={cat.label}>

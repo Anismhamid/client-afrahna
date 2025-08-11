@@ -1,26 +1,36 @@
 import axios from "axios";
 
-const api = `${import.meta.env.VITE_API_URI}/services`;
+const api = `${import.meta.env.VITE_API_URI}/search`;
 
-export const fetchSearchResults = async (
-	businessName: string,
-	category: string,
-	city: string,
-	minPrice: number,
-	maxPrice: number,
-) => {
+
+interface SearchParams {
+	q?: string;
+	category?: string;
+	location?: string;
+	price?: string; // "100-500", "300+"
+	page?: number;
+	limit?: number;
+}
+
+interface SearchResult<T> {
+	success: boolean;
+	count: number;
+	total: number;
+	page: number;
+	pages: number;
+	data: T[];
+}
+
+export const searchServices = async (
+	params: SearchParams,
+): Promise<SearchResult<any>> => {
 	try {
-		const res = await axios.get(`${api}/search`, {
-			params: {
-				businessName: businessName,
-				category: category,
-				city: city,
-				minPrice: minPrice,
-				maxPrice: maxPrice,
-			},
+		const response = await axios.get<SearchResult<any>>(`${api}/search-service`, {
+			params,
 		});
-		console.log(res.data);
-	} catch (err) {
-		console.log(err);
+		return response.data;
+	} catch (error: any) {
+		console.error("API search error:", error);
+		throw new Error(error.response?.data?.message || "comming soon");
 	}
 };

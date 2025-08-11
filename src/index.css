@@ -52,8 +52,7 @@ main {
   min-height: 100lvh;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   padding: 0.5rem;
-  border: 1px solid #E55101;
-  margin:10px auto;
+  margin: 10px auto;
   border-radius: 3px;
   width: 99%;
 }
@@ -202,20 +201,23 @@ form {
 
 
 .slick-arrow {
-  width: 50px;
+  width: 20px;
   height: 50px;
   z-index: 1;
-  background: #246290 !important;
-  border-radius: 50%;
-  box-shadow: 0 2px 10px rgb(0, 0, 0);
   transition: all 0.3s ease;
 
   &::before {
     color: #fd7f19 !important;
     background-color: #ffffff !important;
     border-radius: 50%;
-    box-shadow: 0 2px 10px rgb(0, 0, 0);
+    box-shadow: 0 2px 10px rgb(109, 109, 109);
     transition: all 0.3s ease;
+  }
+
+  ;
+
+  &::hover {
+    width: 100px;
   }
 }
 
@@ -223,7 +225,7 @@ form {
 
 
 .slick-dots li button:before {
-  font-size: 10px;
+  font-size: 20px;
   color: #246290;
 }
 
