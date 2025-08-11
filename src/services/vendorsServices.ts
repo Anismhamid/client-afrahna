@@ -16,14 +16,14 @@ export const getServiceByVendorId = async (vendorId: string) => {
 		const res = await axios.get(`${api}/services/vendor/${vendorId}`);
 
 		// הגנה: אם מחזיר מערך ריק, מחזיר null
-		if (Array.isArray(res.data) && res.data.length === 0) {
-			return null;
-		}
+		// if (Array.isArray(res.data) && res.data.length === 0) {
+		// 	return null;
+		// }
 
 		return res.data;
 	} catch (error) {
 		console.error("Error in getServiceByVendorId:", error);
-		return null;
+		throw new Error
 	}
 };
 

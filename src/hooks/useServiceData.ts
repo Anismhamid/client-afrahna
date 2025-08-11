@@ -22,16 +22,6 @@ interface WorkingHoursType {
 	saturday: {from: string; to: string; closed: false};
 }
 
-const defaultWorkingHours: WorkingHoursType = {
-	sunday: {from: "", to: "", closed: false},
-	monday: {from: "", to: "", closed: false},
-	tuesday: {from: "", to: "", closed: false},
-	wednesday: {from: "", to: "", closed: false},
-	thursday: {from: "", to: "", closed: false},
-	friday: {from: "", to: "", closed: false},
-	saturday: {from: "", to: "", closed: false},
-};
-
 export interface VendorService {
 	businessName: string;
 	email: string;
@@ -58,61 +48,29 @@ export interface VendorService {
 	bookingDurationInHours: number;
 	bookingType: "single" | "multiple";
 	workingHours: WorkingHoursType;
-	//  Record<string, {from: string; to: string; closed: boolean}>;
 }
 
 interface ServiceData {
-	service: VendorService;
+	service: VendorService | null;
 	unavailableDates: Date[];
 	vendorId: string;
 	visibleServices: Service[];
 	loading: boolean;
 	error: Error | null;
 	businessAddress: {lat: number; lng: number};
-	SubscriptionData: SubscriptionData;
+	SubscriptionData: SubscriptionData | null;
 	vendorProfile: VendorDataResponse | null;
 }
 
 const initialServiceData: ServiceData = {
-	service: {
-		businessName: "",
-		email: "",
-		phone: "",
-		category: "",
-		images: [],
-		socialMediaLinks: {
-			facebook: "",
-			instagram: "",
-			tikTok: "",
-			x: "",
-			youtube: "",
-		},
-		description: "",
-		priceType: "",
-		price: {min: 0, max: 0},
-		address: {city: "", street: ""},
-		availableDates: [],
-		services: [],
-		vendorId: "",
-		maxBookingsPerDay: 0,
-		allowOverlappingBookings: false,
-		bookingDurationInHours: 1,
-		bookingType: "single",
-		workingHours: defaultWorkingHours,
-	},
+	service: null,
 	unavailableDates: [],
 	vendorId: "",
 	visibleServices: [],
 	loading: true,
 	error: null,
 	businessAddress: {lat: 0, lng: 0},
-	SubscriptionData: {
-		isSubscribed: false,
-		planId: "free",
-		subscriptionDate: null,
-		expiryDate: null,
-		recommendedServices: false,
-	},
+	SubscriptionData: null,
 	vendorProfile: null,
 };
 
@@ -121,11 +79,11 @@ export const useServiceData = (vendorId: string): ServiceData => {
 
 	useEffect(() => {
 		if (!vendorId) {
-			setData((prev) => ({
-				...prev,
+			setData({
+				...initialServiceData,
 				loading: false,
 				error: new Error("Vendor ID is required"),
-			}));
+			});
 			return;
 		}
 
@@ -141,31 +99,27 @@ export const useServiceData = (vendorId: string): ServiceData => {
 				] = await Promise.all([
 					getServiceByVendorId(vendorId).catch(() => null),
 					getUnavailableDates(vendorId).catch(() => ({unavailableDates: []})),
-					getVendorData(vendorId).catch(() => null),
-					getVendorSubscriptionPlan(vendorId),
+					getVendorData(vendorId).catch(() => {}),
+					getVendorSubscriptionPlan(vendorId).catch(() => null),
 				]);
 
-				// Normalize in case response is array
+				// تحقق من وجود بيانات الخدمة
 				const businessData =
 					Array.isArray(rawBusinessData) && rawBusinessData.length > 0
 						? rawBusinessData[0]
 						: rawBusinessData;
 
-				if (
-					!businessData ||
-					typeof businessData !== "object" ||
-					!businessData.vendorId
-				) {
+				if (!businessData) {
 					throw new Error("No service data found for this vendor");
 				}
 
-				// Normalize address data
+				// العنوان مع fallback آمن
 				const businessAddress = {
 					city: businessData.address?.city || "",
 					street: businessData.address?.street || "",
 				};
 
-				// Handle vendor profile data
+				// بيانات الملف الشخصي للبائع
 				const vendorProfile = Array.isArray(vendorProfileData)
 					? vendorProfileData[0]
 					: vendorProfileData;
@@ -174,22 +128,22 @@ export const useServiceData = (vendorId: string): ServiceData => {
 					throw new Error("Vendor profile not found");
 				}
 
-				// subscription data
+				// بيانات الاشتراك
 				const subscriptionData = subscriptionResponse;
 
-				// Get coordinates with fallback
+				// الحصول على الإحداثيات مع fallback
 				const coordinates = await getCoordinates(
 					businessAddress.city,
 					businessAddress.street,
 				).catch(() => ({lat: 0, lng: 0}));
 
-				// Handle visible services
+				// الخدمات المرئية حسب خطة الاشتراك
 				const visibleServices = getVisibleServices(
-					subscriptionData.planId,
+					subscriptionData?.planId || "free",
 					Array.isArray(businessData.services) ? businessData.services : [],
 				);
 
-				// Parse unavailable dates safely
+				// تحويل التواريخ غير المتاحة مع فحص صلاحية التاريخ
 				const parsedUnavailableDates = (
 					unavailableData?.unavailableDates || []
 				).map((date: string | Date) => {
@@ -199,7 +153,6 @@ export const useServiceData = (vendorId: string): ServiceData => {
 
 				setData({
 					service: {
-						...initialServiceData.service,
 						...businessData,
 						address: businessAddress,
 					},

@@ -139,30 +139,30 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		);
 	}
 
-	// if (error) {
-	// 	return (
-	// 		<Box sx={{p: 4, textAlign: "center"}}>
-	// 			<Typography
-	// 				variant='h4'
-	// 				gutterBottom
-	// 				sx={{
-	// 					textAlign: "center",
-	// 					fontWeight: "bold",
-	// 					color: theme.palette.primary.main,
-	// 					mt: 10,
-	// 				}}
-	// 			>
-	// 				{t("recommendedVendors.title")}
-	// 			</Typography>
-	// 			<HorizontalDevider />
-	// 			<Box sx={{textAlign: "center", py: 4}}>
-	// 				<Typography variant='body1' color='error'>
-	// 					{error}
-	// 				</Typography>
-	// 			</Box>
-	// 		</Box>
-	// 	);
-	// }
+	if (error) {
+		return (
+			<Box sx={{p: 4, textAlign: "center"}}>
+				<Typography
+					variant='h4'
+					gutterBottom
+					sx={{
+						textAlign: "center",
+						fontWeight: "bold",
+						color: theme.palette.primary.main,
+						mt: 10,
+					}}
+				>
+					{t("recommendedVendors.title")}
+				</Typography>
+				<HorizontalDevider />
+				<Box sx={{textAlign: "center", py: 4}}>
+					<Typography variant='body1' color='error'>
+						{error}
+					</Typography>
+				</Box>
+			</Box>
+		);
+	}
 
 	return (
 		<Box
@@ -184,12 +184,13 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 				{t("recommendedVendors.title")}
 			</Typography>
 			<HorizontalDevider />
-			{services.length ? (
+			{services.length <= settings.slidesToShow ? (
 				<Slider {...settings} aria-label='Recommended services carousel'>
 					{services.map((service) => (
-						<Box key={service._id} px={1}>
+						<Box key={service.vendorId} px={1} >
 							<ServiceCard
 								service={service}
+								vid={service.vendorId}
 								isFavorite={favorites.has(service.vendorId)}
 								onToggleFavorite={toggleFavorite}
 							/>

@@ -61,32 +61,27 @@ export const getVendorSubscriptionPlan = async (
 ): Promise<SubscriptionData> => {
 	try {
 		const response = await axios.get(
-			`${api}/business/vendorSubscriptionData/${vendorId}`,
-			{headers: {Authorization: localStorage.getItem("token")}},
+			`${api}/business/vendor/vendorSubscriptionData/${vendorId}`,
 		);
 		const subscriptionData = {
-			planId: response.data.subscriptionData?.planId || "free",
-			isSubscribed: response.data.subscriptionData?.isSubscribed || false,
-			subscriptionDate: response.data.subscriptionData?.subscriptionDate || null,
-			expiryDate: response.data.subscriptionData?.expiryDate || null,
-			recommendedServices:
-				response.data.subscriptionData?.recommendedServices || false,
+			planId: response.data?.planId || "free",
+			isSubscribed: response.data?.isSubscribed || false,
+			subscriptionDate: response.data?.subscriptionDate || null,
+			expiryDate: response.data?.expiryDate || null,
+			recommendedServices: response.data?.recommendedServices || false,
 		};
-		console.log(subscriptionData);
 
 		return subscriptionData;
 	} catch (error) {
-		if (axios.isAxiosError(error) && error.response?.status === 404) {
-			return {
-				planId: "free",
-				isSubscribed: false,
-				subscriptionDate: null,
-				expiryDate: null,
-				recommendedServices: false,
-			};
-		}
-		console.error("Error fetching vendor subscription:", error);
-		throw error;
+		console.log(error,vendorId);
+		
+		return {
+			planId: "free",
+			isSubscribed: false,
+			subscriptionDate: null,
+			expiryDate: null,
+			recommendedServices: false,
+		};
 	}
 };
 

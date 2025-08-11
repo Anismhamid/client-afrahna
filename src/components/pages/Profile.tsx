@@ -50,8 +50,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 		`${user?.name?.first || ""} ${user?.name?.last || ""}`.trim() ||
 		"غير متوفر";
 
-		console.log(SubscriptionData);
-		
+	console.log(SubscriptionData);
 
 	// Safely get current plan
 	const currentPlan = subscriptionPlans.find(
@@ -106,8 +105,6 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 	// console.log("SubscriptionData from useServiceData:", SubscriptionData);
 	// console.log("User subscriptionData:", user?.subscriptionData);
 
-
-
 	return (
 		<Box component='main' sx={{maxWidth: 1200, mx: "auto", p: 2}}>
 			<Typography
@@ -143,7 +140,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					p: 4,
 					mb: 4,
 					borderLeft: `4px solid ${subscriptionColor(
-						SubscriptionData.planId || "free",
+						SubscriptionData?.planId || "free",
 					)},
 					)}`,
 				}}
@@ -191,7 +188,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 								label={SubscriptionData?.planId || "free"}
 								sx={{
 									backgroundColor: subscriptionColor(
-										SubscriptionData.planId,
+										SubscriptionData?.planId || "free",
 									),
 									color: "main.primary",
 									mt: 1,

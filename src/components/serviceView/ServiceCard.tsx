@@ -11,7 +11,6 @@ import {
 	useTheme,
 } from "@mui/material";
 import {FunctionComponent, useState} from "react";
-import {Link} from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -24,6 +23,7 @@ interface ServiceCardProps {
 	isFavorite: boolean;
 	onToggleFavorite: (id: string) => void;
 	isRecommended?: boolean;
+	vid: string;
 }
 
 const ServiceCard: FunctionComponent<ServiceCardProps> = ({
@@ -56,18 +56,18 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({
 					maxHeight: 300,
 					margin: 2,
 					transition: "transform 0.3s, box-shadow 0.3s",
-					"&:hover": {
-						transform: "translateY(-5px)",
-						boxShadow: 8,
-					},
+					// "&:hover": {
+					// 	transform: "translateY(-5px)",
+					// 	boxShadow: 8,
+					// },
 				}}
 				aria-label={`Service card for ${service.businessName}`}
 			>
-				<Link
-					to={`/service/${service.vendorId}`}
+				{/* <Link
+					to={`/service/${vid}`}
 					style={{textDecoration: "none"}}
 					aria-label={`View details for ${service.businessName}`}
-				>
+				> */}
 					<Box sx={{position: "relative"}}>
 						{isRecommended && (
 							<Chip
@@ -191,7 +191,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({
 							</Box>
 						)}
 					</CardContent>
-				</Link>
+				{/* </Link> */}
 			</Card>
 		</Box>
 	);

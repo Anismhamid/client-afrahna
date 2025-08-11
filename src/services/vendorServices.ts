@@ -13,7 +13,6 @@ export const addVendorService = async (
 		});
 		return service.data;
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 };
@@ -26,7 +25,6 @@ export const getVendorData = async (vendorId: string) => {
 		});
 		return service.data;
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 };
@@ -81,7 +79,7 @@ export const getVendorbyId = async (vendorId: string) => {
 	}
 };
 
-// שירות API
+// add vendor social media links
 export const addSocialMediaLinks = async (
 	vendorId: string,
 	socialMediaLinks: {
