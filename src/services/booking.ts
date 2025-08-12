@@ -32,7 +32,6 @@ export const newbooking = async ({
 			{
 				headers: {
 					Authorization: token,
-					"Content-Type": "application/json",
 				},
 			},
 		);

@@ -71,7 +71,6 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		try {
 			const res = await getRecommendedVendors();
 			setServices(res);
-			console.log(res);
 		} catch (err) {
 			console.error("Failed to fetch vendors:", err);
 			setError(t("recommendedVendors.fetchError"));
@@ -83,6 +82,8 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 	useEffect(() => {
 		fetchServices();
 	}, [fetchServices]);
+
+
 
 	const toggleFavorite = useCallback((serviceId: string) => {
 		setFavorites((prev) => {
@@ -184,10 +185,10 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 				{t("recommendedVendors.title")}
 			</Typography>
 			<HorizontalDevider />
-			{services.length <= settings.slidesToShow ? (
+			{services.length > 0 ? (
 				<Slider {...settings} aria-label='Recommended services carousel'>
 					{services.map((service) => (
-						<Box key={service.vendorId} px={1} >
+						<Box key={service.vendorId} px={1}>
 							<ServiceCard
 								service={service}
 								vid={service.vendorId}

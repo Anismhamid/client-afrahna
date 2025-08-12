@@ -118,7 +118,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 						{t("afrahna.services")}
 					</Typography>
 					<HorizontalDevider />
-					<SearchComponent />
+					{/* <SearchComponent /> */}
 					<Box className='row row-cols-1 row-cols-2  row-cols-lg-6 '>
 						{mainMenu.map((cat) => (
 							<div className='my-2  text-center' key={cat.label}>

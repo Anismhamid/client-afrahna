@@ -17,6 +17,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import {Services} from "../../interfaces/services";
 import {formatCurrency} from "../../helpers/vendors";
 import {StarIcon} from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ServiceCardProps {
 	service: Services;
@@ -63,11 +64,11 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({
 				}}
 				aria-label={`Service card for ${service.businessName}`}
 			>
-				{/* <Link
-					to={`/service/${vid}`}
+				<Link
+					to={`/service/${service.vendorId}`}
 					style={{textDecoration: "none"}}
 					aria-label={`View details for ${service.businessName}`}
-				> */}
+				>
 				<Box sx={{position: "relative"}}>
 					{isRecommended && (
 						<Chip
@@ -187,7 +188,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = ({
 						</Box>
 					)}
 				</CardContent>
-				{/* </Link> */}
+				</Link>
 			</Card>
 		</Box>
 	);
