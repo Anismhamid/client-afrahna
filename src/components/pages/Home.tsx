@@ -17,7 +17,7 @@ import JsonLd from "../JsonLd";
 import {generateCategoriesItemListJsonLd} from "../../utils/structuredData";
 import {useTranslation} from "react-i18next";
 import changeDirection from "../../../locales/directions";
-import SearchComponent from "../../atoms/search/SearchComponent";
+// import SearchComponent from "../../atoms/search/SearchComponent";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface HomeProps {}
@@ -31,9 +31,8 @@ const Home: FunctionComponent<HomeProps> = () => {
 	useEffect(() => {
 		const fetchVideos = async () => {
 			const videos = await getAdsVideos();
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const urls = videos.map((v: any) => `${api}/${v._id}`);
-			setVideos(urls);
+				const urls = videos.map((v: any) => `${api}/${v._id}`);
+				setVideos(urls);
 		};
 		fetchVideos();
 	}, [api]);

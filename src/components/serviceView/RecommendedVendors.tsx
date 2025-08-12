@@ -65,25 +65,24 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		],
 	};
 
-	const fetchServices = useCallback(async () => {
+	const fetchServices = async () => {
 		setLoading(true);
 		setError(null);
 		try {
 			const res = await getRecommendedVendors();
 			setServices(res);
+			console.log(res);
 		} catch (err) {
 			console.error("Failed to fetch vendors:", err);
 			setError(t("recommendedVendors.fetchError"));
 		} finally {
 			setLoading(false);
 		}
-	}, []);
+	};
 
 	useEffect(() => {
 		fetchServices();
-	}, [fetchServices]);
-
-
+	}, []);
 
 	const toggleFavorite = useCallback((serviceId: string) => {
 		setFavorites((prev) => {

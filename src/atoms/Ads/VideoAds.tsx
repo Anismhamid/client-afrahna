@@ -134,8 +134,8 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 				<video
 					crossOrigin='anonymous'
 					ref={videoRef}
-					key={videos[currentIndex]}
-					src={videos[currentIndex]}
+					key={videos.reverse()[currentIndex]}
+					src={videos.reverse()[currentIndex]}
 					muted
 					autoPlay
 					playsInline
