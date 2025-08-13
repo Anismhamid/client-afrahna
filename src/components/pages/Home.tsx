@@ -28,14 +28,15 @@ const Home: FunctionComponent<HomeProps> = () => {
 	const api = `${import.meta.env.VITE_API_URI}/videos`;
 	const {t} = useTranslation();
 
-	useEffect(() => {
-		const fetchVideos = async () => {
-			const videos = await getAdsVideos();
-				const urls = videos.map((v: any) => `${api}/${v._id}`);
-				setVideos(urls);
-		};
-		fetchVideos();
-	}, [api]);
+useEffect(() => {
+	const fetchVideos = async () => {
+		const videos = await getAdsVideos();
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const urls = videos.map((v: any) => `${api}/${v._id}`);
+		setVideos(urls);
+	};
+	fetchVideos();
+}, [api]);
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
@@ -93,7 +94,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 				<Box sx={{maxWidth: "70%", textAlign: "center", margin: "auto"}}>
 					{user && user.role === "admin" && <VideoUpload />}
 				</Box>
-
+				<VideoUpload />
 				{/* video ads */}
 				<VideoAds videos={videos} />
 

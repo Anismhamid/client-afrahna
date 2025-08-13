@@ -1,10 +1,10 @@
-import axios, { AxiosProgressEvent } from "axios";
+import axios from "axios";
 
 const api = `${import.meta.env.VITE_API_URI}/videos`;
 
 export const uploadVideo = async (
 	file: File,
-	onProgress: (progressEvent: AxiosProgressEvent) => void,
+	_: (progressEvent: {loaded: number; total: any}) => void,
 ) => {
 	const formData = new FormData();
 	formData.append("file", file);
@@ -14,7 +14,6 @@ export const uploadVideo = async (
 			headers: {
 				"Content-Type": "multipart/form-data",
 			},
-			onUploadProgress: onProgress,
 		});
 		return response.data;
 	} catch (error) {
@@ -29,6 +28,5 @@ export const getAdsVideos = async () => {
 		return response.data;
 	} catch (error) {
 		console.log(error);
-		return [];
 	}
 };

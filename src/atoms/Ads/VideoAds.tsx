@@ -22,7 +22,7 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 	// Handle video cycling and visibility
 	useEffect(() => {
 		if (videos.length <= 1) return;
-
+		console.log(videos);
 		const playNextVideo = () => {
 			setCurrentIndex((prev) => (prev + 1) % videos.length);
 			setIsLoading(true);
@@ -134,14 +134,13 @@ const VideoAdsCarousel: FunctionComponent<VideoAdsCarouselProps> = ({
 				<video
 					crossOrigin='anonymous'
 					ref={videoRef}
-					key={videos.reverse()[currentIndex]}
-					src={videos.reverse()[currentIndex]}
+					key={videos[currentIndex]}
+					src={videos[currentIndex]}
 					muted
 					autoPlay
 					playsInline
-					controls={true}
 					aria-label={t("ads.videoAds.promotionalVideo")}
-					preload='auto'
+					preload='metadata'
 					style={{
 						position: "absolute",
 						top: 0,
