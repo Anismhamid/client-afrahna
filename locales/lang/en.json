@@ -18,168 +18,122 @@
 			"info": "Personal information",
 			"userRole": "Role",
 			"subscriptionPlan": "Subscription plan",
-
-			"subscriptionPlans": [
-				{
-					"id": "free",
-					"name": "Trial Plan",
-					"price": "Free Forever",
-					"description": "The perfect solution to start showcasing your service basically",
-					"features": [
-						{"text": "Introductory page", "included": true},
-						{"text": "Display one image", "included": true},
-						{"text": "Display one sub-service", "included": true},
-						{"text": "Listing in service directory", "included": true},
-						{
-							"text": "Statistics or analytics",
-							"included": false,
-							"tooltip": "Available only in paid plans"
-						},
-						{
-							"text": "Live technical support",
-							"included": false,
-							"tooltip": "Available only in paid plans"
-						}
-					]
-				},
-				{
-					"id": "basic",
-					"name": "Silver Plan",
-					"price": "59 ILS/month",
-					"description": "For small businesses looking to develop their digital presence",
-					"features": [
-						{"text": "Display 5 high-quality images", "included": true},
-						{"text": "Display 6 detailed sub-services", "included": true},
-						{
-							"text": "Enhanced appearance in search results",
-							"included": true
-						},
-						{
-							"text": "Customer inquiries via phone and email",
-							"included": true
-						},
-						{"text": "Basic view statistics", "included": true},
-						{"text": "Email support during working days", "included": true},
-						{
-							"text": "Appointment booking system",
-							"included": false,
-							"tooltip": "Available in Gold Plan and above"
-						}
-					]
-				},
-				{
-					"id": "gold",
-					"name": "Gold Plan",
-					"price": "99 ILS/month",
-					"description": "Comprehensive solution for professional presentations and market distinction",
-					"features": [
-						{"text": "Custom professional page with logo", "included": true},
-						{"text": "Unlimited images", "included": true},
-						{"text": "Add up to 40 videos", "included": true},
-						{"text": "Unlimited sub-services", "included": true},
-						{"text": "'Recommended' badge", "included": true},
-						{"text": "Multiple communication channels", "included": true},
-						{"text": "Advanced page performance analytics", "included": true},
-						{
-							"text": "Integrated appointment management system",
-							"included": true
-						},
-						{"text": "Fast support via phone and email", "included": true},
-						{"text": "Embed Instagram and TikTok clips", "included": true},
-						{
-							"text": "Automatic ads",
-							"included": false,
-							"tooltip": "Available in Premium Plan"
-						}
-					],
-					"recommended": true
-				},
-				{
-					"id": "premium",
-					"name": "Premium Plan",
-					"price": "189 ILS/month",
-					"description": "For leading businesses seeking excellence and constant visibility",
-					"features": [
-						{"text": "Custom professional page with logo", "included": true},
-						{"text": "Unlimited images", "included": true},
-						{"text": "Add up to 60 videos", "included": true},
-						{"text": "Unlimited sub-services", "included": true},
-						{"text": "'Recommended' badge", "included": true},
-						{"text": "Multiple communication channels", "included": true},
-						{"text": "Advanced page performance analytics", "included": true},
-						{
-							"text": "Integrated appointment management system",
-							"included": true
-						},
-						{"text": "Fast support via phone and email", "included": true},
-						{"text": "Embed Instagram and TikTok clips", "included": true},
-						{"text": "Automatic ads on homepage", "included": true},
-						{"text": "Permanent appearance on homepage", "included": true},
-						{"text": "Custom monthly performance reports", "included": true},
-						{
-							"text": "Priority immediate technical support",
-							"included": true
-						},
-						{
-							"text": "'Trusted Provider' certificate and excellence badge",
-							"included": true
-						},
-						{
-							"text": "Multiple account management",
-							"included": false,
-							"tooltip": "Available in Enterprise Plan"
-						}
-					]
-				},
-				{
-					"id": "enterprise",
-					"name": "Enterprise & Agency Plan 🌐",
-					"price": "Contact Us",
-					"description": "Comprehensive solutions for large companies and agencies",
-					"features": [
-						{"text": "Custom professional page with logo", "included": true},
-						{"text": "Unlimited images", "included": true},
-						{"text": "Add up to 20 videos", "included": true},
-						{"text": "Unlimited sub-services", "included": true},
-						{"text": "'Recommended' badge", "included": true},
-						{"text": "Multiple communication channels", "included": true},
-						{"text": "Advanced page performance analytics", "included": true},
-						{
-							"text": "Integrated appointment management system",
-							"included": true
-						},
-						{"text": "Fast support via phone and email", "included": true},
-						{"text": "Embed Instagram and TikTok clips", "included": true},
-						{"text": "Automatic ads on homepage", "included": true},
-						{"text": "Permanent appearance on homepage", "included": true},
-						{"text": "Custom monthly performance reports", "included": true},
-						{
-							"text": "Priority immediate technical support",
-							"included": true
-						},
-						{
-							"text": "'Trusted Provider' certificate and excellence badge",
-							"included": true
-						},
-						{
-							"text": "Multiple account and site management",
-							"included": true
-						},
-						{
-							"text": "Custom integration with external systems",
-							"included": true
-						},
-						{"text": "Dedicated account manager", "included": true},
-						{"text": "24/7 live technical support", "included": true},
-						{"text": "Team training and workshops", "included": true},
-						{"text": "Custom marketing strategies", "included": true}
-					]
-				}
-			],
-			"boogings": "Bookings"
+			"subscriptionDate": "Subscription Date",
+			"expiryDate": "Expiry Date",
+			"noSubscriptionDate": "No subscription date"
+		},
+		"boogings": "Bookings"
+	},
+	"subscription": {
+		"title": "Afra7na Platform Subscription Plans",
+		"recommended": "Recommended Plan",
+		"selected": "Selected",
+		"selectPlan": "Select This Plan",
+		"subtitle": "Choose the plan that suits your needs and enjoy exclusive benefits"
+	},
+	"subscriptionPlans": {
+		"free": {
+			"name": "Free Plan",
+			"price": "Free Forever",
+			"description": "The perfect start to showcase your service",
+			"features": {
+				"pageIntro": "Introductory Page",
+				"oneImage": "One Image",
+				"oneSubService": "One Sub-Service",
+				"appearance": "Listed in Service Directory",
+				"analytics": "Analytics",
+				"analyticsTooltip": "Available only in paid plans",
+				"support": "Direct Support",
+				"supportTooltip": "Available only in paid plans"
+			}
+		},
+		"basic": {
+			"name": "Silver Plan",
+			"price": "₪59/month",
+			"description": "For small businesses growing their online presence",
+			"features": {
+				"fiveHighQualityImages": "5 High-Quality Images",
+				"sixSubServices": "6 Detailed Sub-Services",
+				"improvedSearchAppearance": "Improved Search Appearance",
+				"customerInquiries": "Customer Inquiries via Phone & Email",
+				"basicStats": "Basic View Stats",
+				"emailSupport": "Email Support (Business Days)",
+				"bookingSystem": "Booking System",
+				"bookingSystemTooltip": "Available in Gold Plan and above"
+			}
+		},
+		"gold": {
+			"name": "Gold Plan",
+			"price": "₪99/month",
+			"description": "Comprehensive solution for professional offers",
+			"features": {
+				"professionalPage": "Professional Branded Page",
+				"unlimitedImages": "Unlimited Images",
+				"upTo40Videos": "Up to 40 Videos",
+				"unlimitedSubServices": "Unlimited Sub-Services",
+				"recommendedBadge": "Recommended Badge",
+				"multipleContactChannels": "Multiple Contact Channels",
+				"advancedAnalytics": "Advanced Page Analytics",
+				"integratedBookingSystem": "Integrated Booking System",
+				"fastSupport": "Fast Support (Phone & Email)",
+				"instagramTiktokEmbed": "Instagram & TikTok Embed",
+				"automaticAds": "Automatic Ads",
+				"automaticAdsTooltip": "Available in Premium Plan"
+			}
+		},
+		"premium": {
+			"name": "Diamond Plan",
+			"price": "₪189/month",
+			"description": "For leading businesses aiming for constant visibility",
+			"features": {
+				"professionalPage": "Professional Branded Page",
+				"unlimitedImages": "Unlimited Images",
+				"upTo60Videos": "Up to 60 Videos",
+				"unlimitedSubServices": "Unlimited Sub-Services",
+				"recommendedBadge": "Recommended Badge",
+				"multipleContactChannels": "Multiple Contact Channels",
+				"advancedAnalytics": "Advanced Page Analytics",
+				"integratedBookingSystem": "Integrated Booking System",
+				"fastSupport": "Fast Support (Phone & Email)",
+				"instagramTiktokEmbed": "Instagram & TikTok Embed",
+				"automaticAdsHome": "Automatic Homepage Ads",
+				"permanentHomeAppearance": "Permanent Homepage Appearance",
+				"customMonthlyReports": "Custom Monthly Reports",
+				"prioritySupport": "Priority Support",
+				"trustedProviderBadge": "Trusted Provider Badge",
+				"multiAccountManagement": "Multi-Account Management",
+				"multiAccountManagementTooltip": "Available in Enterprise Plan"
+			}
+		},
+		"enterprise": {
+			"name": "Enterprise & Agencies 🌐",
+			"price": "Contact Us",
+			"description": "Complete solutions for large companies and agencies",
+			"features": {
+				"professionalPage": "Professional Branded Page",
+				"unlimitedImages": "Unlimited Images",
+				"upTo20Videos": "Up to 20 Videos",
+				"unlimitedSubServices": "Unlimited Sub-Services",
+				"recommendedBadge": "Recommended Badge",
+				"multipleContactChannels": "Multiple Contact Channels",
+				"advancedAnalytics": "Advanced Page Analytics",
+				"integratedBookingSystem": "Integrated Booking System",
+				"fastSupport": "Fast Support (Phone & Email)",
+				"instagramTiktokEmbed": "Instagram & TikTok Embed",
+				"automaticAdsHome": "Automatic Homepage Ads",
+				"permanentHomeAppearance": "Permanent Homepage Appearance",
+				"customMonthlyReports": "Custom Monthly Reports",
+				"prioritySupport": "Priority Support",
+				"trustedProviderBadge": "Trusted Provider Badge",
+				"multiAccountSiteManagement": "Multi-Account & Website Management",
+				"customIntegration": "Custom System Integration",
+				"dedicatedAccountManager": "Dedicated Account Manager",
+				"support247": "24/7 Direct Support",
+				"trainingWorkshops": "Team Training & Workshops",
+				"customMarketingStrategies": "Custom Marketing Strategies"
+			}
 		}
 	},
-
 	"ads": {
 		"noVideo": "No ad videos available",
 		"videoAds": {

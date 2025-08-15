@@ -39,6 +39,8 @@ interface Props {
 export function SubscriptionPlansList({plans, selectedPlanId, onSelectPlan}: Props) {
 	const {t, i18n} = useTranslation();
 
+
+
 	return (
 		<Grid
 			container
@@ -57,8 +59,8 @@ export function SubscriptionPlansList({plans, selectedPlanId, onSelectPlan}: Pro
 							borderWidth: plan.recommended ? 2 : 1,
 							backgroundColor: plan.recommended
 								? "rgba(0, 123, 255, 0.05)"
-								: "#fff",
-							boxShadow: plan.recommended ? 3 : 1,
+								: "primary",
+							boxShadow: plan.recommended ? 10 : 1,
 							borderRadius: 3,
 							position: "relative",
 						}}

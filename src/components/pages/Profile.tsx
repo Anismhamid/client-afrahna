@@ -50,8 +50,6 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 		`${user?.name?.first || ""} ${user?.name?.last || ""}`.trim() ||
 		"غير متوفر";
 
-	console.log(SubscriptionData);
-
 	// Safely get current plan
 	const currentPlan = subscriptionPlans.find(
 		(plan) => plan.id === (SubscriptionData?.planId || "free"),
@@ -102,8 +100,6 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 			</Box>
 		);
 	}
-	// console.log("SubscriptionData from useServiceData:", SubscriptionData);
-	// console.log("User subscriptionData:", user?.subscriptionData);
 
 	return (
 		<Box component='main' sx={{maxWidth: 1200, mx: "auto", p: 2}}>
@@ -115,7 +111,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 			>
 				{t("navbar.profile")}
 			</Typography>
-
+			{/* 
 			{user.profileImage?.url && (
 				<CardMedia
 					component='img'
@@ -130,9 +126,11 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 						objectFit: "cover",
 					}}
 				/>
-			)}
+			)} */}
 
-			{user.role === "isVendor" && <VendorsAnalyticsDashboard />}
+			{user.role === "isVendor" && user.subscriptionData?.planId !== "free" && (
+				<VendorsAnalyticsDashboard />
+			)}
 
 			<Paper
 				elevation={3}
@@ -180,20 +178,62 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					</Box>
 
 					{currentPlan && (
-						<Box>
-							<Typography variant='subtitle1' color='text.secondary'>
-								{t("afrahna.user.subscriptionPlan")}
-							</Typography>
-							<Chip
-								label={SubscriptionData?.planId || "free"}
-								sx={{
-									backgroundColor: subscriptionColor(
-										SubscriptionData?.planId || "free",
-									),
-									color: "main.primary",
-									mt: 1,
-								}}
-							/>
+						<Box display={"flex"} gap={5}>
+							<Box>
+								<Typography variant='subtitle1' color='text.secondary'>
+									{t("afrahna.user.subscriptionPlan")}
+								</Typography>
+								<Chip
+									label={SubscriptionData?.planId || "free"}
+									sx={{
+										backgroundColor: subscriptionColor(
+											SubscriptionData?.planId || "free",
+										),
+										color: "main.primary",
+										mt: 1,
+									}}
+								/>
+							</Box>
+							<Box>
+								<Typography variant='subtitle1' color='text.secondary'>
+									{t("afrahna.user.subscriptionDate")}
+								</Typography>
+								<Chip
+									label={
+										SubscriptionData?.subscriptionDate
+											? new Date(
+													SubscriptionData.subscriptionDate,
+											  ).toLocaleDateString()
+											: t("afrahna.user.noSubscriptionDate")
+									}
+									sx={{
+										backgroundColor: subscriptionColor(
+											SubscriptionData?.planId || "free",
+										),
+										color: "main.primary",
+										mt: 1,
+									}}
+								/>
+							</Box>
+
+							<Box>
+								<Typography variant='subtitle1' color='text.secondary'>
+									{t("afrahna.user.expiryDate")}
+								</Typography>
+								<Chip
+									label={
+										SubscriptionData?.expiryDate
+											? new Date(
+													SubscriptionData?.expiryDate,
+											  ).toLocaleDateString()
+											: t("afrahna.user.noSubscriptionDate")
+									}
+									sx={{
+										color: "main.primary",
+										mt: 1,
+									}}
+								/>
+							</Box>
 						</Box>
 					)}
 				</Stack>

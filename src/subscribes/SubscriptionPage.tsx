@@ -68,9 +68,8 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 					planId: selectedPlanId,
 					subscriptionDate: new Date().toISOString(),
 					expiryDate: new Date(
-						Date.now() + 30 * 24 * 60 * 60 * 1000,
+						Date.now() + 30 * 24 * 60 * 60 * 1000 + 1,
 					).toISOString(),
-					recommendedServices: false,
 				});
 
 				if (sub.token) {
@@ -81,6 +80,7 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 							subscriptionPlans.find((p) => p.id === selectedPlanId)?.name
 						}`,
 					);
+					window.location.reload();
 					navigate("/profile");
 				}
 			} catch (error) {
@@ -373,10 +373,10 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 			{selectedPlanId &&
 				!subscriptionPlans
 					.find((p) => p.id === selectedPlanId)
-					?.price.includes("مجاني") && (
+					?.price.includes("free") && (
 					<>
 						<Typography variant='h5' sx={{fontWeight: "bold", mb: 2}}>
-							معلومات الدفع
+							Payment
 						</Typography>
 						<PaymentForm formik={formik} />
 					</>

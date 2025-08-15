@@ -18,131 +18,120 @@
 			"info": "מידע אישי",
 			"userRole": "תפקיד",
 			"subscriptionPlan": "תוכנית מנוי",
-			"subscriptionPlans": [
-				{
-					"id": "free",
-					"name": "החבילה הניסיונית",
-					"price": "חינם לנצח",
-					"description": "הפתרון המושלם להתחלה בסיסית להצגת השירות שלך",
-					"features": [
-						{"text": "דף היכרות", "included": true},
-						{"text": "הצגת תמונה אחת", "included": true},
-						{"text": "הצגת שירות משני אחד", "included": true},
-						{"text": "הופעה במדריך השירותים", "included": true},
-						{
-							"text": "סטטיסטיקות או ניתוחים",
-							"included": false,
-							"tooltip": "זמין רק בחבילות בתשלום"
-						},
-						{
-							"text": "תמיכה טכנית בשידור חי",
-							"included": false,
-							"tooltip": "זמין רק בחבילות בתשלום"
-						}
-					]
-				},
-				{
-					"id": "basic",
-					"name": "החבילה הכסופה",
-					"price": "59 ש\"ח/חודש",
-					"description": "לעסקים קטנים שרוצים לפתח את הנוכחות הדיגיטלית שלהם",
-					"features": [
-						{"text": "הצגת 5 תמונות באיכות גבוהה", "included": true},
-						{"text": "הצגת 6 שירותים משניים מפורטים", "included": true},
-						{"text": "הופעה משופרת בתוצאות חיפוש", "included": true},
-						{"text": "פניות לקוחות בטלפון ובמייל", "included": true},
-						{"text": "סטטיסטיקות צפיות בסיסיות", "included": true},
-						{"text": "תמיכה במייל במהלך ימי עבודה", "included": true},
-						{
-							"text": "מערכת הזמנת תורים",
-							"included": false,
-							"tooltip": "זמין בחבילה הזהובה ומעלה"
-						}
-					]
-				},
-				{
-					"id": "gold",
-					"name": "החבילה הזהובה",
-					"price": "99 ש\"ח/חודש",
-					"description": "הפתרון המקיף להצגות מקצועיות והצטיינות בשוק",
-					"features": [
-						{"text": "דף מקצועי מותאם עם לוגו", "included": true},
-						{"text": "תמונות בלתי מוגבלות", "included": true},
-						{"text": "הוספת עד 40 סרטונים", "included": true},
-						{"text": "שירותים משניים בלתי מוגבלים", "included": true},
-						{"text": "סמל 'מומלץ'", "included": true},
-						{"text": "ערוצי תקשורת מרובים", "included": true},
-						{"text": "ניתוחים מתקדמים של ביצועי הדף", "included": true},
-						{"text": "מערכת ניהול תורים משולבת", "included": true},
-						{"text": "תמיכה מהירה בטלפון ובמייל", "included": true},
-						{"text": "שילוב קטעי אינסטגרם וטיוק טוק", "included": true},
-						{
-							"text": "פרסומות אוטומטיות",
-							"included": false,
-							"tooltip": "זמין בחבילה המאסיבית"
-						}
-					],
-					"recommended": true
-				},
-				{
-					"id": "premium",
-					"name": "החבילה המאסיבית",
-					"price": "189 ש\"ח/חודש",
-					"description": "לעסקים מובילים שרוצים מצוינות ונראות מתמדת",
-					"features": [
-						{"text": "דף מקצועי מותאם עם לוגו", "included": true},
-						{"text": "תמונות בלתי מוגבלות", "included": true},
-						{"text": "הוספת עד 60 סרטונים", "included": true},
-						{"text": "שירותים משניים בלתי מוגבלים", "included": true},
-						{"text": "סמל 'מומלץ'", "included": true},
-						{"text": "ערוצי תקשורת מרובים", "included": true},
-						{"text": "ניתוחים מתקדמים של ביצועי הדף", "included": true},
-						{"text": "מערכת ניהול תורים משולבת", "included": true},
-						{"text": "תמיכה מהירה בטלפון ובמייל", "included": true},
-						{"text": "שילוב קטעי אינסטגרם וטיוק טוק", "included": true},
-						{"text": "פרסומות אוטומטיות בדף הבית", "included": true},
-						{"text": "נראות קבועה בדף הבית", "included": true},
-						{"text": "דוחות ביצועים חודשיים מותאמים", "included": true},
-						{"text": "תמיכה טכנית מיידית בעדיפות גבוהה", "included": true},
-						{"text": "תעודת 'ספק אמין' וסמל מצוינות", "included": true},
-						{
-							"text": "ניהול חשבונות מרובה",
-							"included": false,
-							"tooltip": "זמין בחבילת הארגונים"
-						}
-					]
-				},
-				{
-					"id": "enterprise",
-					"name": "חבילת הארגונים והסוכנויות 🌐",
-					"price": "צור קשר",
-					"description": "פתרונות מקיפים לחברות גדולות וסוכנויות",
-					"features": [
-						{"text": "דף מקצועי מותאם עם לוגו", "included": true},
-						{"text": "תמונות בלתי מוגבלות", "included": true},
-						{"text": "הוספת עד 20 סרטונים", "included": true},
-						{"text": "שירותים משניים בלתי מוגבלים", "included": true},
-						{"text": "סמל 'מומלץ'", "included": true},
-						{"text": "ערוצי תקשורת מרובים", "included": true},
-						{"text": "ניתוחים מתקדמים של ביצועי הדף", "included": true},
-						{"text": "מערכת ניהול תורים משולבת", "included": true},
-						{"text": "תמיכה מהירה בטלפון ובמייל", "included": true},
-						{"text": "שילוב קטעי אינסטגרם וטיוק טוק", "included": true},
-						{"text": "פרסומות אוטומטיות בדף הבית", "included": true},
-						{"text": "נראות קבועה בדף הבית", "included": true},
-						{"text": "דוחות ביצועים חודשיים מותאמים", "included": true},
-						{"text": "תמיכה טכנית מיידית בעדיפות גבוהה", "included": true},
-						{"text": "תעודת 'ספק אמין' וסמל מצוינות", "included": true},
-						{"text": "ניהול חשבונות ואתרים מרובה", "included": true},
-						{"text": "אינטגרציה מותאמת עם מערכות חיצוניות", "included": true},
-						{"text": "מנהל חשבון ייעודי", "included": true},
-						{"text": "תמיכה טכנית חיה 24/7", "included": true},
-						{"text": "הדרכות וסדנאות לצוות", "included": true},
-						{"text": "אסטרטגיות שיווק מותאמות", "included": true}
-					]
-				}
-			],
+			"subscriptionDate": "תאריך ההרשמה",
+			"expiryDate": "תאריך תפוגה",
+			"noSubscriptionDate": "אין תאריך הרשמה",
 			"boogings": "הזמנות"
+		}
+	},
+	"subscription": {
+		"title": "תוכניות המנוי של פלטפורמת אפרחנא",
+		"recommended": "התוכנית המומלצת",
+		"selected": "נבחרה",
+		"selectPlan": "בחר תוכנית זו",
+		"subtitle": "בחר את החבילה המתאימה לצרכים שלך ותהנה מהטבות בלעדיות"
+	},
+	"subscriptionPlans": {
+		"free": {
+			"name": "חבילה חינמית",
+			"price": "חינם לנצח",
+			"description": "הפתרון המושלם להתחיל להציג את השירות שלך",
+			"features": {
+				"pageIntro": "דף היכרות",
+				"oneImage": "תמונה אחת",
+				"oneSubService": "שירות משנה אחד",
+				"appearance": "הופעה במדריך השירותים",
+				"analytics": "סטטיסטיקות או ניתוחים",
+				"analyticsTooltip": "זמין רק בחבילות בתשלום",
+				"support": "תמיכה ישירה",
+				"supportTooltip": "זמין רק בחבילות בתשלום"
+			}
+		},
+		"basic": {
+			"name": "חבילת כסף",
+			"price": "₪59/חודש",
+			"description": "לעסקים קטנים שרוצים להגדיל את הנוכחות הדיגיטלית שלהם",
+			"features": {
+				"fiveHighQualityImages": "5 תמונות באיכות גבוהה",
+				"sixSubServices": "6 שירותי משנה מפורטים",
+				"improvedSearchAppearance": "שיפור הופעה בחיפוש",
+				"customerInquiries": "פניות לקוחות בטלפון ובאימייל",
+				"basicStats": "סטטיסטיקות בסיסיות",
+				"emailSupport": "תמיכה באימייל בימי עבודה",
+				"bookingSystem": "מערכת הזמנות",
+				"bookingSystemTooltip": "זמין בחבילת זהב ומעלה"
+			}
+		},
+		"gold": {
+			"name": "חבילת זהב",
+			"price": "₪99/חודש",
+			"description": "פתרון מקיף להצעות מקצועיות",
+			"features": {
+				"professionalPage": "דף מותג מקצועי",
+				"unlimitedImages": "תמונות ללא הגבלה",
+				"upTo40Videos": "עד 40 סרטונים",
+				"unlimitedSubServices": "שירותי משנה ללא הגבלה",
+				"recommendedBadge": "תגית מומלץ",
+				"multipleContactChannels": "ערוצי קשר מרובים",
+				"advancedAnalytics": "ניתוחים מתקדמים של הדף",
+				"integratedBookingSystem": "מערכת הזמנות משולבת",
+				"fastSupport": "תמיכה מהירה בטלפון ובאימייל",
+				"instagramTiktokEmbed": "הטמעת אינסטגרם וטיקטוק",
+				"automaticAds": "פרסום אוטומטי",
+				"automaticAdsTooltip": "זמין בחבילת יהלום"
+			}
+		},
+		"premium": {
+			"name": "חבילת יהלום",
+			"price": "₪189/חודש",
+			"description": "לעסקים מובילים שמעוניינים בהופעה מתמדת",
+			"features": {
+				"professionalPage": "דף מותג מקצועי",
+				"unlimitedImages": "תמונות ללא הגבלה",
+				"upTo60Videos": "עד 60 סרטונים",
+				"unlimitedSubServices": "שירותי משנה ללא הגבלה",
+				"recommendedBadge": "תגית מומלץ",
+				"multipleContactChannels": "ערוצי קשר מרובים",
+				"advancedAnalytics": "ניתוחים מתקדמים של הדף",
+				"integratedBookingSystem": "מערכת הזמנות משולבת",
+				"fastSupport": "תמיכה מהירה בטלפון ובאימייל",
+				"instagramTiktokEmbed": "הטמעת אינסטגרם וטיקטוק",
+				"automaticAdsHome": "פרסום אוטומטי בעמוד הבית",
+				"permanentHomeAppearance": "הופעה קבועה בעמוד הבית",
+				"customMonthlyReports": "דו\"חות חודשיים מותאמים",
+				"prioritySupport": "תמיכה בעדיפות גבוהה",
+				"trustedProviderBadge": "תגית ספק מהימן",
+				"multiAccountManagement": "ניהול מרובה חשבונות",
+				"multiAccountManagementTooltip": "זמין בחבילת ארגונים"
+			}
+		},
+		"enterprise": {
+			"name": "חבילת ארגונים וסוכנויות 🌐",
+			"price": "צור קשר",
+			"description": "פתרונות שלמים לחברות גדולות וסוכנויות",
+			"features": {
+				"professionalPage": "דף מותג מקצועי",
+				"unlimitedImages": "תמונות ללא הגבלה",
+				"upTo20Videos": "עד 20 סרטונים",
+				"unlimitedSubServices": "שירותי משנה ללא הגבלה",
+				"recommendedBadge": "תגית מומלץ",
+				"multipleContactChannels": "ערוצי קשר מרובים",
+				"advancedAnalytics": "ניתוחים מתקדמים של הדף",
+				"integratedBookingSystem": "מערכת הזמנות משולבת",
+				"fastSupport": "תמיכה מהירה בטלפון ובאימייל",
+				"instagramTiktokEmbed": "הטמעת אינסטגרם וטיקטוק",
+				"automaticAdsHome": "פרסום אוטומטי בעמוד הבית",
+				"permanentHomeAppearance": "הופעה קבועה בעמוד הבית",
+				"customMonthlyReports": "דו\"חות חודשיים מותאמים",
+				"prioritySupport": "תמיכה בעדיפות גבוהה",
+				"trustedProviderBadge": "תגית ספק מהימן",
+				"multiAccountSiteManagement": "ניהול מרובה חשבונות ואתרים",
+				"customIntegration": "אינטגרציה מותאמת עם מערכות חיצוניות",
+				"dedicatedAccountManager": "מנהל חשבון ייעודי",
+				"support247": "תמיכה ישירה 24/7",
+				"trainingWorkshops": "הדרכה וסדנאות צוות",
+				"customMarketingStrategies": "אסטרטגיות שיווק מותאמות"
+			}
 		}
 	},
 	"ads": {

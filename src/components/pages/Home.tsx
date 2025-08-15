@@ -1,4 +1,4 @@
-import {FunctionComponent, useEffect, useState} from "react";
+import {FunctionComponent, useEffect} from "react";
 import {Box, Typography, CardContent, CardActionArea, Card} from "@mui/material";
 
 import {Link} from "react-router-dom";
@@ -29,7 +29,6 @@ const Home: FunctionComponent<HomeProps> = () => {
 			try {
 				const decoded = jwtDecode<JwtPayload>(token);
 				setUser(decoded);
-				console.log(decoded);
 			} catch (err) {
 				console.error("Invalid token", err);
 				localStorage.removeItem("token");

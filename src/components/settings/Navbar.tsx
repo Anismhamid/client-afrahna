@@ -23,7 +23,6 @@ import {
 	Typography,
 	useMediaQuery,
 	useTheme,
-	Grid,
 	PaletteMode,
 } from "@mui/material";
 
@@ -34,7 +33,7 @@ import {Logout, Person} from "@mui/icons-material";
 import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SubscripbeButton from "../../subscribes/subscribeButton/SubscripbeButton";
-import {mainMenu, navbarItems} from "../../config/mainMenu";
+import {navbarItems} from "../../config/mainMenu";
 import {CloseButton} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import TranslateButtons from "../../atoms/TranslateButtons";
@@ -287,11 +286,12 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 							</>
 						)}
 						{user?.role === "isVendor" &&
-							!user?.subscriptionData?.isSubscribed && (
+							user?.subscriptionData?.isSubscribed === false && (
 								<Box sx={{width: "100%", m: "auto"}}>
 									<SubscripbeButton />
 								</Box>
 							)}
+							<Link to='/profile'>my Plan</Link>
 						<Divider color='error' variant='fullWidth' />
 						{user?._id ? (
 							<Box
@@ -317,7 +317,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 									sx={{
 										width: "100%",
 										display: "flex",
-										marginBlock:"10px",
+										marginBlock: "10px",
 										justifyContent: "space-around",
 									}}
 									color='error'
