@@ -40,6 +40,13 @@ export default function SocialMediaLinks({
 		medium: iconSize || 32,
 		large: iconSize || 40,
 	};
+	const platformColors: Record<string, string> = {
+		Facebook: "#1877F2",
+		Instagram: "linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)",
+		Twitter: "#1DA1F2",
+		YouTube: "#FF0000",
+		TikTok: "#010101", // أو gradient إذا تحب
+	};
 
 	const platforms = [
 		{name: "Facebook", url: facebook, icon: <Facebook fontSize='inherit' />},
@@ -68,10 +75,13 @@ export default function SocialMediaLinks({
 								size={size}
 								aria-label={name}
 								sx={{
-									width: sizeMap[size],
-									height: sizeMap[size],
+									width: sizeMap[size] + 10,
+									height: sizeMap[size] + 10,
+									borderRadius: "50%",
+									background: platformColors[name] || "gray",
 									"& svg": {
 										fontSize: sizeMap[size],
+										color: "white",
 									},
 								}}
 							>
@@ -91,11 +101,11 @@ export default function SocialMediaLinks({
 						size={size}
 						aria-label='TikTok'
 						sx={{
-							width: sizeMap[size],
-							height: sizeMap[size],
+							width: sizeMap[size] + 10,
+							height: sizeMap[size] + 10,
 							padding: 1,
 							borderRadius: "50%",
-							bgcolor: "white",
+							bgcolor: platformColors["TikTok"],
 						}}
 					>
 						<img

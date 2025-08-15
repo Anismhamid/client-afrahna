@@ -26,6 +26,7 @@ import {
 	PaletteMode,
 } from "@mui/material";
 
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import MenuIcon from "@mui/icons-material/Menu";
 import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useUser} from "../../contextApi/useUserData";
@@ -257,10 +258,14 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 									{t("navbar.management")}
 								</Typography>
 
-								{navLinkItem("/profile", <Person />, t("navbar.profile"))}
+								{navLinkItem(
+									"/profile",
+									<Person color='primary' />,
+									t("navbar.profile"),
+								)}
 								{navLinkItem(
 									"/my-bookings",
-									<ChecklistRtlIcon />,
+									<ChecklistRtlIcon color='info' />,
 									t("navbar.bookingsManagement"),
 								)}
 							</>
@@ -286,14 +291,17 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 							</>
 						)}
 						{user?.role === "isVendor" &&
-							user?.subscriptionData?.planId !== "free" && (
+							user?.subscriptionData?.planId === "free" && (
 								<Box sx={{width: "100%", m: "auto"}}>
 									<SubscripbeButton />
 								</Box>
 							)}
-						{user?.subscriptionData?.isSubscribed === true && (
-							<Link to='/profile'>my Plan</Link>
-						)}
+						{user?.subscriptionData?.isSubscribed === true &&
+							navLinkItem(
+								"/Profile",
+								<AssignmentIndIcon color='primary' />,
+								"my subscription data",
+							)}
 						<Divider color='error' variant='fullWidth' />
 						{user?._id ? (
 							<Box
