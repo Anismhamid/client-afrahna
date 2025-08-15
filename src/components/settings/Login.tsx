@@ -1,5 +1,5 @@
 import {useFormik} from "formik";
-import {FunctionComponent, useState} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import {LoginSchema} from "../../interfaces/userSchema";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
@@ -29,8 +29,11 @@ const Login: FunctionComponent<LoginProps> = () => {
 
 	const navigate = useNavigate();
 	const {t} = useTranslation();
-
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+	useEffect(() => {
+		if (localStorage.getItem("token")) navigate("/");
+	},[]);
 
 	const formik = useFormik<LoginSchema>({
 		initialValues: {

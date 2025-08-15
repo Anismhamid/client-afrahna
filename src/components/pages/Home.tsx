@@ -1,8 +1,11 @@
-import {FunctionComponent} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import {Box, Typography, CardContent, CardActionArea, Card} from "@mui/material";
 
 import {Link} from "react-router-dom";
 import {mainMenu} from "../../config/mainMenu";
+import {useUser} from "../../contextApi/useUserData";
+import {JwtPayload} from "../../interfaces/userSchema";
+import {jwtDecode} from "jwt-decode";
 import TestimonialsSlider from "./TestimonialsSlider";
 import FAQPage from "../settings/FAQPage";
 import RecommendedServices from "../serviceView/RecommendedVendors";
@@ -17,7 +20,22 @@ import changeDirection from "../../../locales/directions";
 interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
+	const {setUser} = useUser();
 	const {t} = useTranslation();
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const decoded = jwtDecode<JwtPayload>(token);
+				setUser(decoded);
+				console.log(decoded);
+			} catch (err) {
+				console.error("Invalid token", err);
+				localStorage.removeItem("token");
+			}
+		}
+	}, []);
 
 	const dir = changeDirection();
 
