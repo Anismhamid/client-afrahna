@@ -55,6 +55,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 	const {user, setUser} = useUser();
 	const {t} = useTranslation();
 
+
 	const toggleDrawer = (open: boolean) => () => {
 		setOpen(open);
 	};
@@ -185,7 +186,34 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 					</Box>
 				</Toolbar>
 			</AppBar>
-
+			<Box
+				sx={{
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					border: 1,
+					p: 0.5,
+					width: "94.5%",
+					m: "auto",
+					borderRadius: "0 0px 10px 10px",
+					gap: 1,
+				}}
+			>
+				<Button
+					onClick={() => navigate("/")}
+					sx={{bgcolor: "#0F4073"}}
+					variant='contained'
+				>
+					الرئيسيه
+				</Button>
+				<Button
+					onClick={() => navigate("/specialOffers")}
+					sx={{bgcolor: "#0F4073"}}
+					variant='contained'
+				>
+					عروض خاصه
+				</Button>
+			</Box>
 			{/* side drawer */}
 			<Drawer
 				variant='persistent'

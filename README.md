@@ -9,7 +9,6 @@
 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin:100px">
 <img src="./public/localhost_5173_.png" style="max-width: 400px;"/>
 </div>
-<!-- ![Platform Showcase](/public/localhost_5173_.png) -->
 
 A comprehensive wedding planning ecosystem connecting couples with premium vendors across the Middle East. Afra7na simplifies wedding planning while empowering vendors with powerful business tools.
 
