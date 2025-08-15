@@ -17,6 +17,7 @@
 			"image": "User image",
 			"info": "Personal information",
 			"userRole": "Role",
+			"recommendedServices": "Recommended Services",
 			"subscriptionPlan": "Subscription plan",
 			"subscriptionDate": "Subscription Date",
 			"expiryDate": "Expiry Date",

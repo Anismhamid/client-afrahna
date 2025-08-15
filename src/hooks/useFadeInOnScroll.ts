@@ -1,4 +1,3 @@
-// hooks/useFadeInOnScroll.ts
 import {useEffect, RefObject, useState} from "react";
 
 export const useFadeInOnScroll = (

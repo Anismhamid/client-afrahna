@@ -128,7 +128,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 				/>
 			)} */}
 
-			{user.role === "isVendor" && user.subscriptionData?.planId !== "free" && (
+			{user.role === "isVendor" && user?.subscriptionData?.planId !== "free" && (
 				<VendorsAnalyticsDashboard />
 			)}
 
@@ -226,6 +226,22 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 											? new Date(
 													SubscriptionData?.expiryDate,
 											  ).toLocaleDateString()
+											: t("afrahna.user.noSubscriptionDate")
+									}
+									sx={{
+										color: "main.primary",
+										mt: 1,
+									}}
+								/>
+							</Box>
+							<Box>
+								<Typography variant='subtitle1' color='text.secondary'>
+									{t("afrahna.user.recommendedServices")}
+								</Typography>
+								<Chip
+									label={
+										SubscriptionData?.recommendedServices
+											? SubscriptionData?.recommendedServices
 											: t("afrahna.user.noSubscriptionDate")
 									}
 									sx={{
