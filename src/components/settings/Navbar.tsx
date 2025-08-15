@@ -286,12 +286,14 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 							</>
 						)}
 						{user?.role === "isVendor" &&
-							user?.subscriptionData?.isSubscribed === false && (
+							user?.subscriptionData?.planId !== "free" && (
 								<Box sx={{width: "100%", m: "auto"}}>
 									<SubscripbeButton />
 								</Box>
 							)}
+						{user?.subscriptionData?.isSubscribed === true && (
 							<Link to='/profile'>my Plan</Link>
+						)}
 						<Divider color='error' variant='fullWidth' />
 						{user?._id ? (
 							<Box
