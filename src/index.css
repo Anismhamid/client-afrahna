@@ -19,12 +19,8 @@
 }
 
 header {
-  /* background-color: var(--dark-bg) !important; */
-  background-image: url("/public/Pink Floral Congratulations Card");
-
   & nav {
-    background-color: #296fa509;
-    border: 5px double #0000000c;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
   }
 }
 

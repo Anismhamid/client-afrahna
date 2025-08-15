@@ -5,19 +5,23 @@ import {useTranslation} from "react-i18next";
 interface FooterProps {}
 
 const Footer: FunctionComponent<FooterProps> = () => {
-	const {t} = useTranslation();
+	const {t, i18n} = useTranslation();
+	const dir = i18n.dir();
+
 	return (
 		<Box
+			dir={dir}
 			component='footer'
 			sx={{
-				backgroundColor: "#25628F",
+				background: "linear-gradient(90deg, #6a11cb, #2575fc)",
 				textAlign: "center",
-				py: 2,
+				py: 3,
 				mt: 5,
+				color: "#ffffff",
 			}}
 		>
-			<Typography color='primary.main' dir='ltr' variant='h6'>
-				© {t("footer.copyRight")} 2025
+			<Typography variant='body2'>
+				© {new Date().getFullYear()} {t("footer.copyRight")}
 			</Typography>
 		</Box>
 	);

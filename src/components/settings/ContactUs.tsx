@@ -37,17 +37,37 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 	});
 
 	return (
-		<Box component='main' sx={{py: 4}}>
-			<Box sx={{maxWidth: "600px", mx: "auto", px: 2}}>
-				<Typography variant='h4' textAlign='center' mb={3} fontWeight='bold'>
+		<Box
+			component='main'
+			sx={{
+				py: 6,
+				background: "linear-gradient(to right, #f9f9f9, #ffffff)",
+				minHeight: "100vh",
+			}}
+		>
+			<Box
+				sx={{
+					maxWidth: "600px",
+					mx: "auto",
+					px: 2,
+				}}
+			>
+				<Typography
+					variant='h4'
+					textAlign='center'
+					mb={3}
+					fontWeight='bold'
+					color='primary.main'
+				>
 					{t("contactUs.title")}
 				</Typography>
 
 				<Typography
 					variant='body1'
 					textAlign='center'
-					mb={4}
+					mb={5}
 					color='text.secondary'
+					sx={{lineHeight: 1.6}}
 				>
 					{t("contactUs.subtitle")}
 				</Typography>
@@ -57,9 +77,13 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 					onSubmit={formik.handleSubmit}
 					sx={{
 						backgroundColor: "background.paper",
-						p: 4,
-						borderRadius: 2,
-						boxShadow: 1,
+						p: 5,
+						borderRadius: 3,
+						boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
+						"& .MuiTextField-root": {
+							backgroundColor: "#f7f7f7",
+							borderRadius: 2,
+						},
 					}}
 				>
 					<TextField
@@ -71,7 +95,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 						onBlur={formik.handleBlur}
 						error={formik.touched.name && Boolean(formik.errors.name)}
 						helperText={formik.touched.name && formik.errors.name}
-						sx={{mb: 3, textAlign: "right"}}
+						sx={{mb: 3}}
 					/>
 
 					<TextField
@@ -84,7 +108,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 						onBlur={formik.handleBlur}
 						error={formik.touched.email && Boolean(formik.errors.email)}
 						helperText={formik.touched.email && formik.errors.email}
-						sx={{mb: 3, textAlign: "right"}}
+						sx={{mb: 3}}
 					/>
 
 					<TextField
@@ -96,7 +120,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 						onBlur={formik.handleBlur}
 						error={formik.touched.subject && Boolean(formik.errors.subject)}
 						helperText={formik.touched.subject && formik.errors.subject}
-						sx={{mb: 3, textAlign: "right"}}
+						sx={{mb: 3}}
 					/>
 
 					<TextField
@@ -104,14 +128,14 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 						label={t("contactUs.fields.message")}
 						name='message'
 						multiline
-						rows={4}
+						rows={5}
 						value={formik.values.message}
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						error={formik.touched.message && Boolean(formik.errors.message)}
 						helperText={formik.touched.message && formik.errors.message}
 						inputProps={{maxLength: 500}}
-						sx={{mb: 3, textAlign: "right"}}
+						sx={{mb: 4}}
 					/>
 
 					<Button
@@ -120,6 +144,16 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
 						fullWidth
 						size='large'
 						disabled={formik.isSubmitting}
+						sx={{
+							background: "linear-gradient(90deg, #6a11cb, #2575fc)",
+							boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+							"&:hover": {
+								transform: "translateY(-2px)",
+								boxShadow: "0 6px 18px rgba(0,0,0,0.2)",
+							},
+							textTransform: "none",
+							fontWeight: "bold",
+						}}
 					>
 						{t("contactUs.submit")}
 					</Button>
