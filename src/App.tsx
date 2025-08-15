@@ -12,7 +12,6 @@ import AppRoutes from "./routes/AppRoutes";
 import Footer from "./components/settings/Footer";
 import {CssBaseline} from "@mui/material";
 import {useMemo, useState} from "react";
-import Theme from "./atoms/Theme";
 
 const cacheRtl = createCache({
 	key: "muirtl",

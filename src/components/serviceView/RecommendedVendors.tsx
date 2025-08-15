@@ -71,7 +71,6 @@ const RecommendedServices: FunctionComponent<RecommendedServicesProps> = () => {
 		try {
 			const res = await getRecommendedVendors();
 			setServices(res);
-			console.log(res);
 		} catch (err) {
 			console.error("Failed to fetch vendors:", err);
 			setError(t("recommendedVendors.fetchError"));

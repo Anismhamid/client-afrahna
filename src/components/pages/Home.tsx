@@ -1,17 +1,11 @@
-import {FunctionComponent, useEffect, useState} from "react";
+import {FunctionComponent} from "react";
 import {Box, Typography, CardContent, CardActionArea, Card} from "@mui/material";
 
 import {Link} from "react-router-dom";
 import {mainMenu} from "../../config/mainMenu";
-import {useUser} from "../../contextApi/useUserData";
-import {JwtPayload} from "../../interfaces/userSchema";
-import {jwtDecode} from "jwt-decode";
 import TestimonialsSlider from "./TestimonialsSlider";
 import FAQPage from "../settings/FAQPage";
 import RecommendedServices from "../serviceView/RecommendedVendors";
-import VideoUpload from "../../atoms/Ads/VideoUpload";
-import VideoAds from "../../atoms/Ads/VideoAds";
-import {getAdsVideos} from "../../services/videosForAds";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
 import JsonLd from "../JsonLd";
 import {generateCategoriesItemListJsonLd} from "../../utils/structuredData";
@@ -23,33 +17,7 @@ import changeDirection from "../../../locales/directions";
 interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
-	const {user, setUser} = useUser();
-	const [videos, setVideos] = useState<string[]>([]);
-	const api = `${import.meta.env.VITE_API_URI}/videos`;
 	const {t} = useTranslation();
-
-useEffect(() => {
-	const fetchVideos = async () => {
-		const videos = await getAdsVideos();
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const urls = videos.map((v: any) => `${api}/${v._id}`);
-		setVideos(urls);
-	};
-	fetchVideos();
-}, [api]);
-
-	useEffect(() => {
-		const token = localStorage.getItem("token");
-		if (token) {
-			try {
-				const decoded = jwtDecode<JwtPayload>(token);
-				setUser(decoded);
-			} catch (err) {
-				console.error("Invalid token", err);
-				localStorage.removeItem("token");
-			}
-		}
-	}, [setUser]);
 
 	const dir = changeDirection();
 
@@ -91,12 +59,6 @@ useEffect(() => {
 						{t("home.subTitle")}
 					</Typography>
 				</Box>
-				<Box sx={{maxWidth: "70%", textAlign: "center", margin: "auto"}}>
-					{user && user.role === "admin" && <VideoUpload />}
-				</Box>
-				<VideoUpload />
-				{/* video ads */}
-				<VideoAds videos={videos} />
 
 				{/* recommended vendors */}
 				<Box sx={{overflowY: "auto"}}>
