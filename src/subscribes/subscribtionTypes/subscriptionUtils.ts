@@ -1,15 +1,16 @@
 // 🎨 צבע רקע לפי מזהה המנוי
 export const subscriptionColor = (planId: string): string => {
 	const colors: Record<string, string> = {
-		free: "#00000029",
-		basic: "silver-bg",
-		gold: "gold-bg",
-		premium: "premium-bg",
-		enterprise: "enterprise-bg",
+		free: "#94a3b8",
+		basic: "#60a5fa", // silver
+		gold: "#f59e0b", // gold
+		premium: "linear-gradient(135deg, #a855f7, #d946ef)", // purple
+		enterprise: "#1e40af", // blue
 	};
 
 	return colors[planId] ?? "#00000029";
 };
+
 
 // how many services are displayed per plan
 export const getVisibleServices = (

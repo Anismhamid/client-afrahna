@@ -1,8 +1,7 @@
 import {FieldArray, FormikProvider, useFormik} from "formik";
 import {FunctionComponent, useEffect, useState} from "react";
-import * as yup from "yup";
-import {createNewOffer, getAllOffers} from "../../services/specialOffers";
-import {useUser} from "../../contextApi/useUserData";
+import {createNewOffer, getAllOffers} from "../../../services/specialOffers";
+import {useUser} from "../../../contextApi/useUserData";
 import {
 	Box,
 	Button,
@@ -13,9 +12,15 @@ import {
 	Divider,
 } from "@mui/material";
 import {Delete as DeleteIcon, Add as AddIcon} from "@mui/icons-material";
-import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
-import {FormValues} from "../../interfaces/specialOffers";
+import HorizontalDevider from "../../../atoms/customDeviders/HorizontalDevider";
+import {FormValues} from "../../../interfaces/specialOffers";
 import SpecialOffersList from "./SpecialOffersList";
+import {
+	specialOffersFormikInitialValues,
+	specialOffersValidationSchema,
+} from "./formik/specialOffersFormik";
+import {useTranslation} from "react-i18next";
+import changeDirection from "../../../../locales/directions";
 
 const SpecialOffers: FunctionComponent = () => {
 	const [offers, setOffers] = useState<FormValues[]>([]);
@@ -32,31 +37,8 @@ const SpecialOffers: FunctionComponent = () => {
 	}, []);
 
 	const formik = useFormik<FormValues>({
-		initialValues: {
-			title: "",
-			services: [{featureName: "", price: 0}],
-			images: [{url: "", alt: ""}],
-			note: "",
-		},
-		validationSchema: yup.object({
-			title: yup.string().required("Title is required"),
-			services: yup.array().of(
-				yup.object({
-					featureName: yup.string().required("Feature name is required"),
-					price: yup
-						.number()
-						.required("Price is required")
-						.min(0, "Price must be >= 0"),
-				}),
-			),
-			images: yup.array().of(
-				yup.object({
-					url: yup.string().url("Invalid URL").nullable(),
-					alt: yup.string(),
-				}),
-			),
-			note: yup.string(),
-		}),
+		initialValues: specialOffersFormikInitialValues,
+		validationSchema: specialOffersValidationSchema,
 		onSubmit: (values, {resetForm}) => {
 			const cleanedValues = {
 				...values,
@@ -81,26 +63,30 @@ const SpecialOffers: FunctionComponent = () => {
 		},
 	});
 
+	const {t} = useTranslation();
+	const dir = changeDirection();
 	return (
-		<Box textAlign='center' component='main' sx={{p: 3, maxWidth: 600}}>
+		<Box dir={dir} textAlign='center' component='main' sx={{p: 3}}>
 			<Typography variant='h4' gutterBottom>
-				عروض خاصة
+				{t("specialOffers.title")}
 			</Typography>
 
 			{user?.role === "isVendor" && (
 				<>
 					<HorizontalDevider />
 					<Typography variant='h5' gutterBottom sx={{mt: 3}}>
-						إنشاء عرض خاص جديد
+						{t("specialOffers.createNew")}
 					</Typography>
-					<HorizontalDevider />
-					<form onSubmit={formik.handleSubmit}>
+					<form
+						style={{padding: 30, maxWidth: 600, margin: "auto"}}
+						onSubmit={formik.handleSubmit}
+					>
 						{/* Title */}
 						<TextField
 							fullWidth
 							id='title'
 							name='title'
-							label='Offer Title*'
+							label={`${t("specialOffers.offerTitle")} *`}
 							placeholder='Enter offer title'
 							value={formik.values.title}
 							onChange={formik.handleChange}
@@ -113,7 +99,7 @@ const SpecialOffers: FunctionComponent = () => {
 						<FormikProvider value={formik}>
 							{/* Services */}
 							<Typography variant='h6' gutterBottom>
-								الخدمات*
+								{t("specialOffers.services")} *
 							</Typography>
 							<FieldArray
 								name='services'
@@ -129,7 +115,9 @@ const SpecialOffers: FunctionComponent = () => {
 												<TextField
 													fullWidth
 													name={`services[${index}].featureName`}
-													label='Feature Name*'
+													label={`${t(
+														"specialOffers.servicesName",
+													)} *`}
 													value={s.featureName}
 													onChange={formik.handleChange}
 													onBlur={formik.handleBlur}
@@ -196,7 +184,8 @@ const SpecialOffers: FunctionComponent = () => {
 											</Stack>
 										))}
 										<Button
-											variant='outlined'
+											variant='contained'
+											sx={{maxWidth: 200}}
 											startIcon={<AddIcon />}
 											onClick={() =>
 												arrayHelpers.push({
@@ -205,7 +194,7 @@ const SpecialOffers: FunctionComponent = () => {
 												})
 											}
 										>
-											Add Service
+											{t("specialOffers.addService")}
 										</Button>
 									</Stack>
 								)}
@@ -215,7 +204,7 @@ const SpecialOffers: FunctionComponent = () => {
 
 							{/* Images */}
 							<Typography variant='h6' gutterBottom>
-								Images
+								{t("specialOffers.images")}
 							</Typography>
 							<FieldArray
 								name='images'
@@ -231,7 +220,7 @@ const SpecialOffers: FunctionComponent = () => {
 												<TextField
 													fullWidth
 													name={`images[${index}].url`}
-													label='Image URL'
+													label={t("specialOffers.imagesUrl")}
 													value={img.url}
 													onChange={formik.handleChange}
 													onBlur={formik.handleBlur}
@@ -259,10 +248,11 @@ const SpecialOffers: FunctionComponent = () => {
 												<TextField
 													fullWidth
 													name={`images[${index}].alt`}
-													label='Alt Text'
+													label={t("specialOffers.imagesAlt")}
 													value={img.alt}
 													onChange={formik.handleChange}
 												/>
+
 												<IconButton
 													color='error'
 													onClick={() =>
@@ -277,13 +267,15 @@ const SpecialOffers: FunctionComponent = () => {
 											</Stack>
 										))}
 										<Button
-											variant='outlined'
+											variant='contained'
+											color='primary'
+											sx={{maxWidth: 200, mx: "auto"}}
 											startIcon={<AddIcon />}
 											onClick={() =>
 												arrayHelpers.push({url: "", alt: ""})
 											}
 										>
-											Add Image
+											{t("specialOffers.addImages")}
 										</Button>
 									</Stack>
 								)}
@@ -295,7 +287,7 @@ const SpecialOffers: FunctionComponent = () => {
 							fullWidth
 							id='note'
 							name='note'
-							label='Note'
+							label={t("specialOffers.offerDescription")}
 							multiline
 							rows={3}
 							value={formik.values.note}
@@ -309,19 +301,17 @@ const SpecialOffers: FunctionComponent = () => {
 							variant='contained'
 							color='primary'
 							disabled={submitting}
-							sx={{mt: 2}}
+							sx={{m: 2}}
 						>
-							{submitting ? "Creating..." : "Create Offer"}
+							{submitting
+								? t("specialOffers.creating")
+								: t("specialOffers.create")}
 						</Button>
 					</form>
 				</>
 			)}
 
-			<SpecialOffersList
-				setOffers={setOffers}
-				offers={offers}
-				loading={loading}
-			/>
+			<SpecialOffersList setOffers={setOffers} offers={offers} loading={loading} />
 		</Box>
 	);
 };

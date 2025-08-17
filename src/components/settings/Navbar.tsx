@@ -55,7 +55,6 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 	const {user, setUser} = useUser();
 	const {t} = useTranslation();
 
-
 	const toggleDrawer = (open: boolean) => () => {
 		setOpen(open);
 	};
@@ -156,7 +155,9 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 									color: "white",
 								}}
 							>
-								{t("afrahna.title")}
+								{user && user.role === "isVendor"
+									? `${t("afrahna.title")} :${currentUser} `
+									: t("afrahna.title")}
 							</NavLink>
 						</Box>
 
@@ -213,6 +214,15 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 				>
 					عروض خاصه
 				</Button>
+				{user?.role === "isVendor" && (
+					<Button
+						onClick={() => navigate(`/service/${user._id}`)}
+						sx={{bgcolor: "#0F4073"}}
+						variant='contained'
+					>
+						صفحتي
+					</Button>
+				)}
 			</Box>
 			{/* side drawer */}
 			<Drawer
@@ -318,18 +328,23 @@ const Navbar: FunctionComponent<NavbarProps> = ({mode, setMode}) => {
 								)}
 							</>
 						)}
-						{user?.role === "isVendor" &&
-							user?.subscriptionData?.planId === "free" && (
-								<Box sx={{width: "100%", m: "auto"}}>
-									<SubscripbeButton />
-								</Box>
-							)}
-						{user?.subscriptionData?.isSubscribed === true &&
-							navLinkItem(
-								"/Profile",
-								<AssignmentIndIcon color='primary' />,
-								"my subscription data",
-							)}
+						{user &&
+							(user.subscriptionData?.isSubscribed ? (
+								<>
+									{navLinkItem(
+										"/Profile",
+										<AssignmentIndIcon color='primary' />,
+										"my subscription data",
+									)}
+								</>
+							) : (
+								<>
+									<Box sx={{width: "100%", m: "auto"}}>
+										<SubscripbeButton />
+									</Box>
+								</>
+							))}
+
 						<Divider color='error' variant='fullWidth' />
 						{user?._id ? (
 							<Box

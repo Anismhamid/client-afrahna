@@ -21,9 +21,26 @@
 			"subscriptionPlan": "Subscription plan",
 			"subscriptionDate": "Subscription Date",
 			"expiryDate": "Expiry Date",
-			"noSubscriptionDate": "No subscription date"
-		},
-		"boogings": "Bookings"
+			"noSubscriptionDate": "No subscription date",
+			"boogings": "Bookings"
+		}
+	},
+	"specialOffers": {
+		"title": "Special Offers",
+		"offerTitle": "Offer Title",
+		"offerDate": "Offer Date",
+		"createNew": "Create New Offer",
+		"create": "Create",
+		"creating": "Creating...",
+		"services": "Services",
+		"servicesPrice": "Services Price",
+		"servicesName": "Services Name",
+		"addService": "Add Service",
+		"images": "Images",
+		"addImages": "Add Image",
+		"imagesUrl": "Image URL",
+		"imagesAlt": "Image Title",
+		"offerDescription": "Description"
 	},
 	"subscription": {
 		"title": "Afra7na Platform Subscription Plans",

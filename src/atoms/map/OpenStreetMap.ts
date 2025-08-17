@@ -12,7 +12,7 @@ export const getCoordinates = async (
 				format: "json",
 				q: addressQuery,
 				countrycodes: "il",
-				"accept-language": "ar",
+				"accept-language": "he",
 			},
 		});
 

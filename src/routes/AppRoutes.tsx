@@ -40,7 +40,7 @@ import UsersTable from "../components/settings/adminManagement/UsersTable";
 import VendorsTable from "../components/settings/adminManagement/VendorsTable";
 import MainChairs from "../components/pages/vendorsPages/MainChairses";
 import MainFireworksPage from "../components/pages/vendorsPages/MainFireworksPage";
-import SpecialOffers from "../components/pages/SpecialOffers";
+import SpecialOffers from "../components/pages/specialOffers/SpecialOffers";
 
 interface AppRoutesProps {}
 

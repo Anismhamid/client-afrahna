@@ -1,4 +1,4 @@
-import {FunctionComponent, useEffect} from "react";
+import {FunctionComponent} from "react";
 import {useUser} from "../../contextApi/useUserData";
 import {
 	Box,
@@ -7,7 +7,6 @@ import {
 	Paper,
 	Chip,
 	Stack,
-	CardMedia,
 	Button,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
@@ -19,6 +18,9 @@ import {subscriptionPlans} from "../../subscribes/subscribtionTypes/subscription
 import {subscriptionColor} from "../../subscribes/subscribtionTypes/subscriptionUtils";
 import {useTranslation} from "react-i18next";
 import {SubscriptionData} from "../../interfaces/userSchema";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
+import changeDirection from "../../../locales/directions";
 
 interface ProfileProps {}
 
@@ -64,25 +66,6 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 		);
 	}
 
-	// // Error states
-	// if (serviceError) {
-	// 	return (
-	// 		<Box sx={{textAlign: "center", mt: 5, mx: "auto", maxWidth: 500}}>
-	// 			<ErrorOutline color='error' sx={{fontSize: 60, mb: 2}} />
-	// 			<Typography variant='h5' color='error' gutterBottom>
-	// 				حدث خطأ في تحميل بيانات الخدمة
-	// 			</Typography>
-	// 			<Button
-	// 				variant='contained'
-	// 				onClick={() => window.location.reload()}
-	// 				sx={{mt: 2}}
-	// 			>
-	// 				إعادة المحاولة
-	// 			</Button>
-	// 		</Box>
-	// 	);
-	// }
-
 	if (!user) {
 		return (
 			<Box sx={{textAlign: "center", mt: 5, mx: "auto", maxWidth: 500}}>
@@ -101,8 +84,10 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 		);
 	}
 
+	const dir = changeDirection();
+
 	return (
-		<Box component='main' sx={{maxWidth: 1200, mx: "auto", p: 2}}>
+		<Box dir={dir} component='main' sx={{maxWidth: 1200, mx: "auto", p: 2}}>
 			<Typography
 				variant='h3'
 				align='center'
@@ -178,7 +163,23 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 					</Box>
 
 					{currentPlan && (
-						<Box display={"flex"} gap={5}>
+						<Box
+							textAlign={"center"}
+							sx={{
+								whiteSpace: "normal",
+								display: "grid",
+								gridTemplateColumns: {
+									xs: "1fr",
+									sm: "repeat(2, 1fr)",
+									md: "repeat(auto-fill, minmax(200px, 1fr))",
+									border: 1,
+									borderRadius: 3,
+									p: 3,
+								},
+								gap: 2,
+								width: "100%",
+							}}
+						>
 							<Box>
 								<Typography variant='subtitle1' color='text.secondary'>
 									{t("afrahna.user.subscriptionPlan")}
@@ -191,6 +192,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 										),
 										color: "main.primary",
 										mt: 1,
+										boxShadow: 5,
 									}}
 								/>
 							</Box>
@@ -210,8 +212,8 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 										backgroundColor: subscriptionColor(
 											SubscriptionData?.planId || "free",
 										),
-										color: "main.primary",
 										mt: 1,
+										boxShadow: 5,
 									}}
 								/>
 							</Box>
@@ -229,26 +231,62 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 											: t("afrahna.user.noSubscriptionDate")
 									}
 									sx={{
-										color: "main.primary",
+										backgroundColor: subscriptionColor(
+											SubscriptionData?.planId || "free",
+										),
 										mt: 1,
+										boxShadow: 5,
 									}}
 								/>
 							</Box>
 							<Box>
-								<Typography variant='subtitle1' color='text.secondary'>
+								<Typography variant='subtitle1' color='primary.main'>
 									{t("afrahna.user.recommendedServices")}
 								</Typography>
-								<Chip
-									label={
-										SubscriptionData?.recommendedServices
-											? SubscriptionData?.recommendedServices
-											: t("afrahna.user.noSubscriptionDate")
-									}
-									sx={{
-										color: "main.primary",
-										mt: 1,
-									}}
-								/>
+								{SubscriptionData?.recommendedServices ? (
+									<CheckCircleIcon
+										sx={{width: 30, height: 30, mt: 1}}
+										color='success'
+									/>
+								) : (
+									<CancelIcon
+										color='error'
+										sx={{width: 30, height: 30, mt: 1}}
+									/>
+								)}
+							</Box>
+							<Box
+								sx={{
+									whiteSpace: "normal",
+									display: "grid",
+									gridTemplateColumns: {
+										xs: "1fr",
+										sm: "repeat(2, 1fr)",
+										md: "repeat(auto-fill, minmax(200px, 1fr))",
+									},
+									gap: 2,
+									width: "100%",
+								}}
+							>
+								{currentPlan.features.map((feature, index) => (
+									<Chip
+										key={index}
+										icon={<CheckCircleIcon color='success' />}
+										label={t(feature.text)}
+										sx={{
+											backgroundColor: subscriptionColor(
+												SubscriptionData?.planId || "free",
+											),
+											color: "white",
+											boxShadow: 2,
+											justifyContent: "flex-start",
+											whiteSpace: "nowrap",
+											overflow: "hidden",
+											textOverflow: "ellipsis",
+											maxWidth: "100%",
+										}}
+									/>
+								))}
 							</Box>
 						</Box>
 					)}

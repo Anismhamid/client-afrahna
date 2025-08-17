@@ -1,4 +1,5 @@
-interface ServiceItem {
+export interface ServiceItem {
+	_id?: string;
 	featureName: string;
 	price: number;
 }
@@ -9,6 +10,14 @@ export interface FormValues {
 	createdAt?: Date;
 	title: string;
 	services: ServiceItem[];
-	images: Array<{url: string; alt: string}>;
+	images: {
+		_id?: string;
+		url: string;
+		alt: string;
+		createdAt?: Date;
+		updatedAt?: Date;
+	}[];
 	note: string;
+	updatedAt?: Date;
+	_v?: number;
 }

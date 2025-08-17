@@ -80,8 +80,8 @@ const SubscriptionPage: FunctionComponent<SubscriptionPageProps> = () => {
 							subscriptionPlans.find((p) => p.id === selectedPlanId)?.name
 						}`,
 					);
-					window.location.reload();
 					navigate("/profile");
+					window.location.reload();
 				}
 			} catch (error) {
 				console.error("Error:", error);

@@ -25,6 +25,23 @@
 			"boogings": "الحجوزات"
 		}
 	},
+	"specialOffers": {
+		"title": "عروض خاصة",
+		"offerTitle": "عنوان العرض",
+		"offerDate": "تاريخ العرض",
+		"createNew": "إنشاء عرض جديد",
+		"create": "إنشاء",
+		"creating": "...قيد الانشاء",
+		"services": "الخدمات",
+		"servicesPrice": "سعر الخدمات",
+		"servicesName": "اسم الخدمه",
+		"addService": "اضافة خدمه",
+		"images": "صور",
+		"addImages": "اضافه صورة",
+		"imagesUrl": "رابط الصورة",
+		"imagesAlt": "عنوان الصورة",
+		"offerDescription": "وصف"
+	},
 	"subscription": {
 		"title": "خطط اشتراك منصة أفراحنا ",
 		"recommended": "الخطة الموصى بها",

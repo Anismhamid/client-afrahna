@@ -1,5 +1,5 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {FunctionComponent, useState} from "react";
+import {FunctionComponent, SetStateAction, useEffect, useState} from "react";
 import {customToast, errorToast, successToast} from "../../atoms/notifications/Toasts";
 import {useFormik} from "formik";
 import * as yup from "yup";
@@ -16,7 +16,7 @@ import {
 import Calendar from "../../atoms/calendar/Calendar";
 import ReactSlick from "../../atoms/reactSlick/ReactSlick";
 import {formatCurrency} from "../../helpers/vendors";
-import {useServiceData} from "../../hooks/useServiceData";
+import {useServiceData, VendorService} from "../../hooks/useServiceData";
 import {useBookingHandler} from "../../hooks/useBookingHandler";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import HorizontalDevider from "../../atoms/customDeviders/HorizontalDevider";
@@ -32,6 +32,9 @@ import {Paper} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import i18n from "../../../locales/i18n";
 import changeDirection from "../../../locales/directions";
+import SpecialOffersList from "./specialOffers/SpecialOffersList";
+import {FormValues} from "../../interfaces/specialOffers";
+import {getVendorSpecialOffers} from "../../services/specialOffers";
 
 interface SingleServicePageProps {}
 
@@ -45,17 +48,11 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 	const navigate = useNavigate();
 	const {user} = useUser();
 	const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+	const [specialOffers, setSpecialOffers] = useState<FormValues[]>([]);
 	const [isDateAvailable, setIsDateAvailable] = useState<boolean>(true);
 	const {bookingState, handleBooking} = useBookingHandler();
-	const {
-		businessAddress,
-		service,
-		planId,
-		unavailableDates,
-		visibleServices,
-		loading,
-		error,
-	} = useServiceData(vendorId);
+	const {businessAddress, service, unavailableDates, visibleServices, loading, error} =
+		useServiceData(vendorId);
 
 	const {t} = useTranslation();
 	const dir = changeDirection();
@@ -79,6 +76,12 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 			errorToast(t("booking.tryAnotherDate"));
 		}
 	};
+
+	useEffect(() => {
+		getVendorSpecialOffers(vendorId).then((res) => {
+			setSpecialOffers(res);
+		});
+	}, []);
 
 	const handleFeatureToggle = (feature: {featureName: string; price: number}) => {
 		const exists = formik.values.features.some(
@@ -193,7 +196,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 					</Typography>
 					<Typography variant='body1' sx={{mb: 3}}>
 						{t("booking.weWellContactYou")}
-						{service.phone}
+						{service?.phone}
 					</Typography>
 					<Button
 						variant='contained'
@@ -239,7 +242,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 				},
 			}}
 		>
-			<JsonLd data={generateSingleServiceJsonLd(service)} />
+			<JsonLd data={generateSingleServiceJsonLd(service as VendorService)} />
 			<Typography
 				variant='h1'
 				sx={{color: "palette.text.primary", fontSize: "3rem", p: 3}}
@@ -256,7 +259,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 				/>
 
 				{/* special vendor tag */}
-				{planId === "premium" && <SpicialLogo />}
+				{service?.planId === "premium" && <SpicialLogo />}
 				{/* vendor address chip */}
 				<Chip
 					variant='outlined'
@@ -290,11 +293,11 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 			</Paper>
 			{/* social media links */}
 			<SocialMediaLinks
-				facebook={service.socialMediaLinks.facebook}
-				instagram={service.socialMediaLinks.instagram}
-				tikTok={service.socialMediaLinks.tikTok}
-				twitter={service.socialMediaLinks.x}
-				youtube={service.socialMediaLinks.youtube}
+				facebook={service?.socialMediaLinks.facebook}
+				instagram={service?.socialMediaLinks.instagram}
+				tikTok={service?.socialMediaLinks.tikTok}
+				twitter={service?.socialMediaLinks.x}
+				youtube={service?.socialMediaLinks.youtube}
 			/>
 
 			<HorizontalDevider />
@@ -332,7 +335,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 								position={[businessAddress.lat, businessAddress.lng]}
 							/>
 							{/* vendor working hours */}
-							<WorkingHours service={service} />
+							<WorkingHours service={service as VendorService} />
 							{/* facing description */}
 							<Box
 								sx={{
@@ -472,7 +475,7 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 											>
 												{t("booking.noServiceToChoose")}
 											</Typography>
-											{service.services.length === 0 && (
+											{service?.services.length === 0 && (
 												<>
 													<Typography
 														variant='body1'
@@ -548,9 +551,18 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 										{t("globalVendorsPage.bookNow")}
 									</Button>
 								</Box>
+								<Box width={"80%"} m="auto">
+									<SpecialOffersList
+										offers={specialOffers}
+										loading={false}
+										setOffers={setSpecialOffers}
+									/>
+								</Box>
 							</Box>
 						</>
 					)}
+
+					<HorizontalDevider />
 
 					{/* {galleryType === "videos" && (
 						<VideoGalleryComponent videos={service?.videos || []} />
@@ -561,20 +573,20 @@ const SingleServicePage: FunctionComponent<SingleServicePageProps> = () => {
 					)}
 
 					{galleryType === "contact" &&
-						service.planeId !== "basic" &&
-						service.planeId !== "free" && (
+						service?.planId !== "basic" &&
+						service?.planId !== "free" && (
 							<>
 								<Link
-									to={`mailto:${service.email}`}
+									to={`mailto:${service?.email}`}
 									className=' text-success d-block'
 								>
-									{t("registerPage.email")}: {service.email}
+									{t("registerPage.email")}: {service?.email}
 								</Link>
 								<Link
-									to={`tel:+947${service.phone}`}
+									to={`tel:+947${service?.phone}`}
 									className=' text-success'
 								>
-									{t("registerPage.phoneNum")}: {service.phone}
+									{t("registerPage.phoneNum")}: {service?.phone}
 								</Link>
 							</>
 						)}

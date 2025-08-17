@@ -30,6 +30,8 @@ interface MapControllerProps {
 
 function MapController({center, zoom}: MapControllerProps) {
 	const map = useMap();
+
+
 	useEffect(() => {
 		map.setView(center, zoom ?? map.getZoom());
 	}, [center, zoom, map]);
@@ -54,11 +56,11 @@ function MapWrapper({position, zoom = 14}: MapWrapperProps) {
 			: [51.505, -0.09]; // Default to London
 
 	return (
-		<Box my={5}>
+		<Box my={20}>
 			<MapContainer
 				center={safePosition}
 				zoom={zoom}
-				style={{height: "400px", width: "100%"}}
+				style={{height: "500px", width: "80%",margin:"auto"}}
 			>
 				<TileLayer
 					url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

@@ -26,6 +26,23 @@
 			"boogings": "הזמנות"
 		}
 	},
+	"specialOffers": {
+		"title": "מבצעים מיוחדים",
+		"offerTitle": "כותרת המבצע",
+		"offerDate": "תאריך העלאה",
+		"createNew": "צור מבצע חדש",
+		"create": "צור",
+		"creating": "בתהליך יצירה...",
+		"services": "שירותים",
+		"servicesPrice": "מחיר השירותים",
+		"servicesName": "שם השירותים",
+		"addService": "הוסף שירות",
+		"images": "תמונות",
+		"addImages": "הוסף תמונה",
+		"imagesUrl": "קישור לתמונה",
+		"imagesAlt": "כותרת התמונה",
+		"offerDescription": "תיאור"
+	},
 	"subscription": {
 		"title": "תוכניות המנוי של פלטפורמת אפרחנא",
 		"recommended": "התוכנית המומלצת",
